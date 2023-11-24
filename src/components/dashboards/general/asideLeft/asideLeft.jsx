@@ -1,6 +1,6 @@
 import "./style.css";
 
-import logoOscuro from '../../../assets/full-logo-black.svg';
+import logo from '../../../assets/logo.svg';
 
 
 function AsideLeft({props}) {
@@ -8,7 +8,7 @@ function AsideLeft({props}) {
     <div className="contenedorM">
       <div className="subContenedorM">
         <div className="LogoTitulo">
-          <img src={logoOscuro} alt="Not Found"/>
+          <img src={logo} alt="Not Found"/>
           <h3 className="Health">HealthBooking</h3>
         </div>
         <LogosMasTexts parametros={props} />
