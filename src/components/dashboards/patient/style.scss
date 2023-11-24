@@ -1,0 +1,306 @@
+.wrapper-PatientHome{
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  */
+  /* ---------------------------------------------------------------------------------------------- */
+  aside.navigation-menu{
+    /*
+    * -- Box model and Layout definitions ---------------------------------------------
+    */
+    top: 0;
+    position: fixed;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    padding: 2rem 0rem;
+  
+    @media only screen and (max-width: 767px) {/* mobile */
+    
+    }
+  
+    @media only screen and (min-width: 767px) {/* desktop */
+      left: 0;
+      width: 18rem;
+      grid-template-rows: 
+        0.4fr
+        0.5fr
+        1fr;
+    }
+  
+    /*
+    * -- Box and text styles definitions ----------------------------------------------
+    */
+    animation: 1s slide-in-from-left, 1s fade-in;
+    background: #F8F7FF;
+    box-shadow: -5px 0px 10px 0px rgba(0, 0, 0, 0.05) inset;
+  
+    /*
+    * -- Subcomponents and behaviours definitions -------------------------------------
+    */
+    .site-logo{
+      width: 14rem;
+      justify-self: center;
+    }
+  }
+  
+  aside.navigation-menu > .navigation-bar{
+    /*
+    * -- Box model and Layout definitions ---------------------------------------------
+    */
+    display: flex;
+    padding: 0rem 0.5rem;
+    flex-direction: column;
+    gap: 2rem;
+  
+    @media only screen and (max-width: 767px) {/* mobile */
+    }
+  
+    @media only screen and (min-width: 767px) {/* desktop */
+    }
+  
+    /*
+    * -- Box and text styles definitions ----------------------------------------------
+    */
+  
+    /*
+    * -- Subcomponents and behaviours definitions -------------------------------------
+    */
+    a{
+      display: flex;
+      padding: 0rem 1.5rem;
+      align-items: center;
+      gap: 1.5rem;
+      align-self: stretch;
+  
+      color: #8A898B;
+      font-family: DM Sans;
+      font-size: 0.975rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      text-decoration: none;
+    }
+  }
+  
+  aside.navigation-menu > .actions{
+    /*
+    * -- Box model and Layout definitions ---------------------------------------------
+    */
+    align-self: end;
+    display: flex;
+    justify-content: center;
+  
+    /*
+    * -- Subcomponents and behaviours definitions -------------------------------------
+    */
+    a{
+      display: flex;
+      width: 11.5rem;
+      padding: 0.75rem 0rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.625rem;
+  
+  
+      border-radius: 0.5rem;
+      background: #42A7C3;
+  
+      color: #FFF;
+      font-family: DM Sans;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      text-decoration: none;
+    }
+  }
+  
+  aside.user-menu{
+    /*
+    * -- Box model and Layout definitions ---------------------------------------------
+    */
+    top: 0;
+    position: fixed;
+    height: 100vh;
+    display: grid;
+    animation: 1s slide-in-from-right, 1s fade-in;
+  
+    @media only screen and (max-width: 767px) {/* mobile */
+    
+    }
+  
+    @media only screen and (min-width: 767px) {/* desktop */
+      right: 0;
+      width: 18rem;
+    }
+  
+    /*
+    * -- Box and text styles definitions ----------------------------------------------
+    */
+    background: #F8F7FF;
+    box-shadow: 5px 0px 10px 0px rgba(0, 0, 0, 0.05) inset;
+  
+    /*
+    * -- Subcomponents and behaviours definitions -------------------------------------
+    */
+  }
+  
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  */
+  /* ---------------------------------------------------------------------------------------------- */
+  main{
+    /*
+    * -- Box model and Layout definitions ---------------------------------------------
+    */
+    display: grid;
+    padding: 3rem 1.5rem;
+    gap: 2rem;
+  
+    @media only screen and (max-width: 767px) {/* mobile */
+  
+    }
+  
+    @media only screen and (min-width: 767px) {/* desktop */
+      margin-left: 18rem; // sidebar width
+      margin-right: 18rem; // sidebar width
+    }
+  
+    /*
+    * -- Box and text styles definitions ----------------------------------------------
+    */
+  
+    /*
+    * -- Subcomponents and behaviours definitions -------------------------------------
+    */
+    > header{
+      color: rgba(165, 162, 184, 0.60);
+      font-family: DM Sans;
+      font-size: 0.9rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.00875rem;
+    }
+  }
+  
+  main > article.summary{
+    /*
+    * -- Box model and Layout definitions ---------------------------------------------
+    */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  
+    @media only screen and (max-width: 767px) {/* mobile */
+    }
+  
+    @media only screen and (min-width: 767px) {/* desktop */
+    }
+  
+    /*
+    * -- Box and text styles definitions ----------------------------------------------
+    */
+  
+    /*
+    * -- Subcomponents and behaviours definitions -------------------------------------
+    */
+    > header{
+      color: #352E5B;
+      font-family: DM Sans;
+      font-size: 1.75rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      text-transform: uppercase;
+    }
+  }
+  
+  main > article.summary > .table-wrapper{
+    /* Box Style */
+    padding: 0.7rem 1rem;
+    border-radius: 1rem;
+    background: #42A7C3;
+    width: 100%;
+  }
+  
+  main > article.summary > .table-wrapper > table{
+    /* Box Style */
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+  }
+  
+  main > article.summary > .table-wrapper > table > thead{
+    /* Box Style */
+    height: 2.5rem;
+    border-bottom: 1px solid #F8F7FF;
+  
+    /* Children */
+    th{
+      /* Text Style */
+      color: #F6F4FF;
+      font-family: DM Sans;
+      font-size: 0.9rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+  
+  main > article.summary > .table-wrapper > table > tbody{
+  
+    td{
+      /* Text Style */
+      min-width: 2rem;
+      height: 3rem;
+      font-variant: all-small-caps;
+      text-align: center;
+  
+      color: #F6F4FF;
+      font-family: DM Sans;
+      font-size: 1.05rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+  
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  pagination styles */
+  /* ---------------------------------------------------------------------------------------------- */
+  .pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .page-item {
+    list-style: none;
+    margin: 0 5px;
+    color: #333;
+  }
+  
+  .page-item a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: lightgray; /* Updated background color */
+  
+   
+  }
+  
+  .page-item a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .page-item.active a {
+    background-color: darkgrey;
+    color: #fff;
+  }
+  }
