@@ -1,5 +1,5 @@
 import "./InfoPaciente.css"
-import foto from "../../../imagenes/Image.png"
+// import foto from "../../../imagenes/Image.png"
 
 const InfoPaciente = () => {
 
@@ -8,7 +8,7 @@ const InfoPaciente = () => {
     <div className="contenedor">
       <div className="subContenedor">
         <h2 className="paciente">Paciente</h2>
-        <img  className="foto" src={foto} alt="No found" />
+        <img  className="foto" src={''} alt="No found" />
         <div className="contNombre">
           <h3 className="Info" >Jose Abel Aguilar</h3>
           <h4 className="editPer">Editar perfil</h4>

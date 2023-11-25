@@ -1,10 +1,48 @@
 import "./style.scss";
+//_______________COMPONENTES
+import InfoPaciente from "../../../../componentes jose/GENERAL/InfoPaciente/InfoPaciente";
+import AsideLeft from "../general/asideLeft/asideLeft";
+import HomePatient from "./routes/home/homePatient";
+
+
+
+//_______________SVGS
+import homeSVG from '../../assets/brands/home.svg';
+import editSVG from '../../assets/brands/edit-profile.svg';
+import newDateSVG from '../../assets/brands/make-date.svg';
+import historySVG from '../../assets/brands/history.svg';
+
+
+const navigationOptions = [
+  {svg:homeSVG, text:'Home', link:''},
+  {svg:editSVG, text:'Editar perfil', link:''},
+  {svg:newDateSVG, text:'Nueva cita', link:''},
+  {svg:historySVG, text:'Historial Medico', link:''},
+]
 
 function DashboardPatient() {
   return (
     <div className="wrapper-PatientHome">
-      <aside className="navigation-menu">
-        <img className="site-logo" src="/svg/full-logo-black.svg"></img>
+      <AsideLeft menuData={navigationOptions}/>
+
+      <aside className="user-menu">
+        <InfoPaciente/>
+      </aside>
+
+      <div className="dashboard-main">
+        <HomePatient/>
+      </div>
+
+    </div>
+  );
+}
+
+export default DashboardPatient;
+
+
+/*
+      {/* <aside className="navigation-menu">
+        <img className="site-logo" src={logoOscuro}></img>
 
         <nav className="navigation-bar">
           <a href="/patient">
@@ -155,81 +193,7 @@ function DashboardPatient() {
             </svg>
             Agendar Cita
           </a>
+          
         </div>
-      </aside>
-
-      <aside className="user-menu"></aside>
-
-      <main>
-        <header>Dashboard &#62; Home</header>
-
-        <article className="summary">
-          <header>Resumen</header>
-
-          <article className="table-wrapper">
-            <nav className="pagination-wrapper">
-              <ul className="pagination">
-                <li className="page-item">
-                  <a href="#" className="page-link" onClick={prePage}>
-                    Anteriores
-                  </a>
-                </li>
-
-                {numbers.map((number, index) => (
-                  <li
-                    className={`page-item ${
-                      currentPage === number ? "active" : ""
-                    }`}
-                    key={index}
-                  >
-                    <a
-                      href="#"
-                      className="page-link"
-                      onClick={() => {
-                        changePage(number);
-                      }}
-                    >
-                      {number}
-                    </a>
-                  </li>
-                ))}
-
-                <li className="page-item">
-                  <a href="#" className="page-link" onClick={nextPage}>
-                    Siguientes
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <table>
-              <thead>
-                <tr>
-                  <th>Especialidad</th>
-                  <th>Medico</th>
-                  <th>Valor</th>
-                  <th>Estado</th>
-                  <th>Fecha</th>
-                  <th>ID de la cita</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentCitas.map((cita, index) => (
-                  <tr key={index}>
-                    <td>{cita.Especialidad}</td>
-                    <td>{cita.Medico}</td>
-                    <td>{cita.Valor}</td>
-                    <td>{cita.Estado}</td>
-                    <td>{cita.Fecha}</td>
-                    <td>{cita.IdDeCita}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </article>
-        </article>
-      </main>
-    </div>
-  );
-}
-
-export default DashboardPatient;
+      </aside> 
+*/

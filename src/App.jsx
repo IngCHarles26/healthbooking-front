@@ -2,9 +2,14 @@
 // import reactLogo from "./assets/react.svg";
 // import viteLogo from "/vite.svg";
 import "./App.scss";
-import AsideLeft from "./components/dashboards/general/asideLeft/asideLeft";
 import DashboardPatient from "./components/dashboards/patient/dashboardPatient";
 import Landing from "./components/landing/landing";
+
+
+import AsideLeft from "./components/dashboards/general/asideLeft/asideLeft";
+// import InfoPaciente from "../../../../componentes jose/GENERAL/InfoPaciente/InfoPaciente";
+
+
 
 function App() {
   // const [count, setCount] = useState(0)
