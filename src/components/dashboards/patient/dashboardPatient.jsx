@@ -160,7 +160,7 @@ function DashboardPatient() {
 
       <aside className="user-menu"></aside>
 
-      <main>
+      {/* <main>
         <header>Dashboard &#62; Home</header>
 
         <article className="summary">
@@ -227,7 +227,7 @@ function DashboardPatient() {
             </table>
           </article>
         </article>
-      </main>
+      </main> */}
     </div>
   );
 }
