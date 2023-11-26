@@ -4,8 +4,8 @@ import axios from "axios"
 import { useState } from "react"
 import data from "./data.json"
 import { NavLink } from "react-router-dom";
-import logo from "./svgs/logo.svg"
-import AsideRight from "../../general/AsideRight/AsideRight"
+import logo from "./svgs/logo.svg";
+//import AsideRight from "../../general/AsideRight/asideRight";
 import fotoPerfil from "../../../assets/img/doctor.avif"
 
 const PostDoctor = () => {
@@ -62,7 +62,7 @@ const PostDoctor = () => {
   const changeUploadImage = async (event) => {
     const file = event.target.files[0];
     const data = new FormData();
-    data.append("file", file);
+      data.append("file", file);
     data.append("upload_preset", "postDoctorPf");
 
     try {
@@ -115,7 +115,7 @@ const PostDoctor = () => {
     }
   };
 
-  const indormacion = [
+  const informacion = [
     { text: "Altura", info:"190cm (74.8in)"},
     { text: "Peso", info:"79kg (39,5Lb)"},
     { text: "Cumpleaños", info:"Sep 04, 1996"},
@@ -127,7 +127,7 @@ const PostDoctor = () => {
 
   return (
     <div>
-      <AsideRight parametros={indormacion} perfil={perfil}></AsideRight>
+      <AsideRight parametros={informacion} perfil={perfil}></AsideRight>
     <form onSubmit={handleSubmit}>
       <div className="formulario">
       <div className="div1">
