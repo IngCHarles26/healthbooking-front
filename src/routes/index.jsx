@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Landing from "../components/landing/landing";
 import DashboardPatient from "../components/dashboards/patient/dashboardPatient";
 
-
+//hola
 
 const router = createBrowserRouter([
   {path:'/',element:<Landing/>},

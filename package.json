@@ -11,11 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@auth0/auth0-react": "^2.2.3",
-=======
     "axios": "^1.6.2",
->>>>>>> 29ba6b034d8616b80037a5988a0748e46aa2afee
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.3",
