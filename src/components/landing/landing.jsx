@@ -47,7 +47,7 @@ function Landing() {
         </nav>
       </header>
 
-      <main>
+      <main className="landing-main">
         <section className="hero">
           <div className="hero-desc">
             <div className="description">

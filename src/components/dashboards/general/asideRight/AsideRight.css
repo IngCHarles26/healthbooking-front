@@ -4,11 +4,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 54px 24px;
+  padding:  60px 10px;
   float: right;
-  width: 14em;
+  width: 13em;
   height: 100vh;
   margin: 0;
+  position: fixed;
+  right: 0;
+  overflow: hidden;
 }
 
 .subContenedor{
@@ -22,7 +25,18 @@
 
 .foto{
   border-radius: 50mm;
-  max-width: 10em;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+  border: 1px solid;
+}
+
+.marco{
+  border-radius: 50mm;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+  border: 1px solid;
 }
 
 .contNombre{
@@ -83,7 +97,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-top: -3px;
+  margin-top: 10px;
   margin-bottom: 40px;
 }
 
