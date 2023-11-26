@@ -23,7 +23,7 @@ function AsideLeft(props) {
   );
 }
 
-export default AsideRight;
+export default AsideLeft;
 
 function Navs(props) {
   let {svg,text,link,handlePage} = props
