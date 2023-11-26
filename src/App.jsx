@@ -6,6 +6,8 @@ import router from './routes/index'
 
 import DashboardPatient from "./components/dashboards/patient/dashboardPatient";
 import Landing from "./components/landing/landing";
+import PostDoctor from "./components/dashboards/doctor/PostDoctor/PostDoctor";
+//import AsideRight from "./components/dashboards/general/AsideRight/AsideRight";
 
 
 
