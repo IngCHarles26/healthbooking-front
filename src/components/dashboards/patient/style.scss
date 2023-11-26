@@ -6,8 +6,10 @@
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
+
     top: 0;
     position: fixed;
+    // width: 74%;
     height: 100vh;
     display: grid;
     justify-content: center;
@@ -19,7 +21,7 @@
   
     @media only screen and (min-width: 767px) {/* desktop */
       left: 0;
-      width: 18rem;
+      width: 11%;
       grid-template-rows: 
         0.4fr
         0.5fr
@@ -37,7 +39,7 @@
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
     .site-logo{
-      width: 14rem;
+      width: 90%;
       justify-self: center;
     }
   }
@@ -56,7 +58,9 @@
   
     @media only screen and (min-width: 767px) {/* desktop */
     }
-  
+    :hover{
+      cursor: pointer;
+    }
     /*
     * -- Box and text styles definitions ----------------------------------------------
     */
@@ -130,7 +134,7 @@
   
     @media only screen and (min-width: 767px) {/* desktop */
       right: 0;
-      width: 18rem;
+      width: 15%;
     }
   
     /*
@@ -147,160 +151,12 @@
   /* ---------------------------------------------------------------------------------------------- */
   /*  */
   /* ---------------------------------------------------------------------------------------------- */
-  main{
-    /*
-    * -- Box model and Layout definitions ---------------------------------------------
-    */
-    display: grid;
-    padding: 3rem 1.5rem;
-    gap: 2rem;
-  
-    @media only screen and (max-width: 767px) {/* mobile */
-  
-    }
-  
-    @media only screen and (min-width: 767px) {/* desktop */
-      margin-left: 18rem; // sidebar width
-      margin-right: 18rem; // sidebar width
-    }
-  
-    /*
-    * -- Box and text styles definitions ----------------------------------------------
-    */
-  
-    /*
-    * -- Subcomponents and behaviours definitions -------------------------------------
-    */
-    > header{
-      color: rgba(165, 162, 184, 0.60);
-      font-family: DM Sans;
-      font-size: 0.9rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      letter-spacing: 0.00875rem;
-    }
+
+
+  .dashboard-main{
+    height: 100vh;
   }
-  
-  main > article.summary{
-    /*
-    * -- Box model and Layout definitions ---------------------------------------------
-    */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-  
-    @media only screen and (max-width: 767px) {/* mobile */
-    }
-  
-    @media only screen and (min-width: 767px) {/* desktop */
-    }
-  
-    /*
-    * -- Box and text styles definitions ----------------------------------------------
-    */
-  
-    /*
-    * -- Subcomponents and behaviours definitions -------------------------------------
-    */
-    > header{
-      color: #352E5B;
-      font-family: DM Sans;
-      font-size: 1.75rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-      text-transform: uppercase;
-    }
-  }
-  
-  main > article.summary > .table-wrapper{
-    /* Box Style */
-    padding: 0.7rem 1rem;
-    border-radius: 1rem;
-    background: #42A7C3;
-    width: 100%;
-  }
-  
-  main > article.summary > .table-wrapper > table{
-    /* Box Style */
-    width: 100%;
-    table-layout: auto;
-    border-collapse: collapse;
-  }
-  
-  main > article.summary > .table-wrapper > table > thead{
-    /* Box Style */
-    height: 2.5rem;
-    border-bottom: 1px solid #F8F7FF;
-  
-    /* Children */
-    th{
-      /* Text Style */
-      color: #F6F4FF;
-      font-family: DM Sans;
-      font-size: 0.9rem;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-    }
-  }
-  
-  main > article.summary > .table-wrapper > table > tbody{
-  
-    td{
-      /* Text Style */
-      min-width: 2rem;
-      height: 3rem;
-      font-variant: all-small-caps;
-      text-align: center;
-  
-      color: #F6F4FF;
-      font-family: DM Sans;
-      font-size: 1.05rem;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-    }
-  }
-  
-  /* ---------------------------------------------------------------------------------------------- */
-  /*  pagination styles */
-  /* ---------------------------------------------------------------------------------------------- */
-  .pagination-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  .pagination {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .page-item {
-    list-style: none;
-    margin: 0 5px;
-    color: #333;
-  }
-  
-  .page-item a {
-    text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    background-color: lightgray; /* Updated background color */
-  
-   
-  }
-  
-  .page-item a:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .page-item.active a {
-    background-color: darkgrey;
-    color: #fff;
-  }
-  }
+
+
+
+}
