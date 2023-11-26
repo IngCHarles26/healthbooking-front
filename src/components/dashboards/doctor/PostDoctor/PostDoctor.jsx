@@ -5,7 +5,7 @@ import { useState } from "react"
 import data from "./data.json"
 import { NavLink } from "react-router-dom";
 import logo from "./svgs/logo.svg"
-import AsideRight from "../../general/AsideRight/AsideRight"
+// import AsideRight from "../../general/AsideRight/AsideRight"
 import fotoPerfil from "../../../assets/img/doctor.avif"
 
 const PostDoctor = () => {

@@ -1,0 +1,162 @@
+.wrapper-PatientHome{
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  */
+  /* ---------------------------------------------------------------------------------------------- */
+  aside.navigation-menu{
+    /*
+    * -- Box model and Layout definitions ---------------------------------------------
+    */
+
+    top: 0;
+    position: fixed;
+    // width: 74%;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    padding: 2rem 0rem;
+  
+    @media only screen and (max-width: 767px) {/* mobile */
+    
+    }
+  
+    @media only screen and (min-width: 767px) {/* desktop */
+      left: 0;
+      width: 11%;
+      grid-template-rows: 
+        0.4fr
+        0.5fr
+        1fr;
+    }
+  
+    /*
+    * -- Box and text styles definitions ----------------------------------------------
+    */
+    animation: 1s slide-in-from-left, 1s fade-in;
+    background: #F8F7FF;
+    box-shadow: -5px 0px 10px 0px rgba(0, 0, 0, 0.05) inset;
+  
+    /*
+    * -- Subcomponents and behaviours definitions -------------------------------------
+    */
+    .site-logo{
+      width: 90%;
+      justify-self: center;
+    }
+  }
+  
+  aside.navigation-menu > .navigation-bar{
+    /*
+    * -- Box model and Layout definitions ---------------------------------------------
+    */
+    display: flex;
+    padding: 0rem 0.5rem;
+    flex-direction: column;
+    gap: 2rem;
+  
+    @media only screen and (max-width: 767px) {/* mobile */
+    }
+  
+    @media only screen and (min-width: 767px) {/* desktop */
+    }
+    :hover{
+      cursor: pointer;
+    }
+    /*
+    * -- Box and text styles definitions ----------------------------------------------
+    */
+  
+    /*
+    * -- Subcomponents and behaviours definitions -------------------------------------
+    */
+    a{
+      display: flex;
+      padding: 0rem 1.5rem;
+      align-items: center;
+      gap: 1.5rem;
+      align-self: stretch;
+  
+      color: #8A898B;
+      font-family: DM Sans;
+      font-size: 0.975rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      text-decoration: none;
+    }
+  }
+  
+  aside.navigation-menu > .actions{
+    /*
+    * -- Box model and Layout definitions ---------------------------------------------
+    */
+    align-self: end;
+    display: flex;
+    justify-content: center;
+  
+    /*
+    * -- Subcomponents and behaviours definitions -------------------------------------
+    */
+    a{
+      display: flex;
+      width: 11.5rem;
+      padding: 0.75rem 0rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.625rem;
+  
+  
+      border-radius: 0.5rem;
+      background: #42A7C3;
+  
+      color: #FFF;
+      font-family: DM Sans;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      text-decoration: none;
+    }
+  }
+  
+  aside.user-menu{
+    /*
+    * -- Box model and Layout definitions ---------------------------------------------
+    */
+    top: 0;
+    position: fixed;
+    height: 100vh;
+    display: grid;
+    animation: 1s slide-in-from-right, 1s fade-in;
+  
+    @media only screen and (max-width: 767px) {/* mobile */
+    
+    }
+  
+    @media only screen and (min-width: 767px) {/* desktop */
+      right: 0;
+      width: 15%;
+    }
+  
+    /*
+    * -- Box and text styles definitions ----------------------------------------------
+    */
+    background: #F8F7FF;
+    box-shadow: 5px 0px 10px 0px rgba(0, 0, 0, 0.05) inset;
+  
+    /*
+    * -- Subcomponents and behaviours definitions -------------------------------------
+    */
+  }
+  
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  */
+  /* ---------------------------------------------------------------------------------------------- */
+
+
+  .dashboard-main{
+    height: 100vh;
+  }
+
+
+
+}
