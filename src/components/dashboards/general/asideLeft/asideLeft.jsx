@@ -1,35 +1,36 @@
-import "./style.css";
+import './style.scss';
+import logoOscuro from "../../../assets/full-logo-black.svg";
+import { useState } from 'react';
 
-import logoOscuro from '../../../assets/full-logo-black.svg';
+function AsideLeft(props) {
+  let {menuData,handlePage} = props;
 
+  return ( 
+    <aside className="navigation-menu">
+      <img className="site-logo" src={logoOscuro} alt="logoOscuro"/>
 
-function AsideLeft({props}) {
-  return (
-    <div className="contenedorM">
-      <div className="subContenedorM">
-        <div className="LogoTitulo">
-          <img src={logoOscuro} alt="Not Found"/>
-          <h3 className="Health">HealthBooking</h3>
-        </div>
-        <LogosMasTexts parametros={props} />
-      </div>
-    </div> 
+      <nav className="navigation-bar">
+        {menuData.map((el,ix)=>
+          <Navs key={'nav_'+ix}
+            svg = {el.svg}
+            text = {el.text}
+            link = {el.link}
+            handlePage = {handlePage}
+          />)}
+      </nav>
+
+    </aside>
   );
 }
 
 export default AsideLeft;
 
-const LogosMasTexts = ({ parametros }) => {
-  return (
-    <div className="LogosTexts">
-      {parametros.map((item, index) => (
-        <div className="LogoText" key={index}>
-          <img src={item.svg} alt="" />
-          <a className="texto" href={item.ref}>
-            {item.text}
-          </a>
-        </div>
-      ))}
-    </div>
+function Navs(props) {
+  let {svg,text,link,handlePage} = props
+  return ( 
+    <a onClick={()=>handlePage(link)}>
+      <img src={svg} alt="altSvg" />
+      {text}
+    </a>
   );
-};
+}

@@ -20,7 +20,7 @@
     /*
     * -- Box and text styles definitions ----------------------------------------------
     */
-    padding-top: 1.5rem;
+    // padding-top: 1.5rem;
     background-color: #26335d;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.25' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
   
@@ -63,6 +63,12 @@
   /* ---------------------------------------------------------------------------------------------- */
   /* Hero Section */
   /* ---------------------------------------------------------------------------------------------- */
+  
+  .landing-main{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
   section.hero{
   
     /* Layout Model */
@@ -70,9 +76,10 @@
     place-content: center;
     place-items: center;
     gap: 1.5rem;
+    width: 100%;
   
     @media only screen and (max-width: 767px) {/* mobile */
-      padding: 3rem 1rem;
+      padding: 1rem 1rem;
       grid-template-columns: 94vw;
       grid-template-areas:
         "img"
@@ -80,7 +87,7 @@
     }
   
     @media only screen and (min-width: 767px) {/* desktop */
-      padding: 3rem;
+      padding: 1rem;
       grid-template-columns: 5vw clamp(25rem, 42vw, 40rem) clamp(25rem, 48vw, 40rem) 5vw;
       grid-template-areas:
         ". description img .";
@@ -312,3 +319,4 @@
   /* ---------------------------------------------------------------------------------------------- */
   
   }
+
