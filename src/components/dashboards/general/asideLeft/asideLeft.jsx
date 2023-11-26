@@ -1,3 +1,4 @@
+import './style.scss';
 import logoOscuro from "../../../assets/full-logo-black.svg";
 
 function AsideLeft(props) {

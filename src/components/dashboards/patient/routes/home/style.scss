@@ -2,19 +2,23 @@ main{
   /*
   * -- Box model and Layout definitions ---------------------------------------------
   */
-  display: grid;
-  padding: 3rem 1.5rem;
-  gap: 2rem;
-  grid-template-rows: 1fr 15fr 1fr;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  padding: 1.5rem 1.5rem;
+  gap: 1rem;
+  width: 74%;
+  height: 100%;
+  // grid-template-rows: 1fr 15fr 1fr;
 
   @media only screen and (max-width: 767px) {/* mobile */
 
   }
 
-  @media only screen and (min-width: 767px) {/* desktop */
-    margin-left: 18rem; // sidebar width
-    margin-right: 18rem; // sidebar width
-    height: 100%;
+  @media only screen and (min-width: 767px) {
+    /* desktop */
+    margin-left: 11%; // sidebar width
+    margin-right: 15%; // sidebar width
   }
 
   /*
@@ -38,7 +42,7 @@ main{
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
   }
 
@@ -63,6 +67,7 @@ main > article.summary{
   }
 
   @media only screen and (min-width: 767px) {/* desktop */
+    height: 43rem;
   }
 
   /*
@@ -85,8 +90,8 @@ main > article.summary{
 
 main > article.summary > .table-wrapper{
   /* Box Style */
-  padding: 0.7rem 1rem;
-  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
   background: #42A7C3;
   width: 100%;
 }
@@ -120,9 +125,10 @@ main > article.summary > .table-wrapper > table > tbody{
   td{
     /* Text Style */
     min-width: 2rem;
-    height: 3rem;
+    height: 2rem;
     font-variant: all-small-caps;
-    text-align: center;
+    text-align: left;
+    padding: 0 0.1rem;
 
     color: #F6F4FF;
     font-family: DM Sans;
@@ -137,6 +143,3 @@ main > article.summary > .table-wrapper > table > tbody{
 
 
 
-/* ---------------------------------------------------------------------------------------------- */
-/*  pagination styles */
-/* ---------------------------------------------------------------------------------------------- */

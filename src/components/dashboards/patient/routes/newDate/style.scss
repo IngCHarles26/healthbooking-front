@@ -1,0 +1,408 @@
+  main {
+    /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+    display: grid;
+    padding: 1.5rem 1.5rem;
+    gap: 1rem;
+    width: 74%;
+    @media only screen and (max-width: 767px) {
+      /* mobile */
+    }
+
+    @media only screen and (min-width: 767px) {
+      /* desktop */
+      margin-left: 11%; // sidebar width
+      margin-right: 15%; // sidebar width
+    }
+
+    /*
+  * -- Box and text styles definitions ----------------------------------------------
+  */
+
+    /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+    > header {
+      color: rgba(165, 162, 184, 0.6);
+      font-family: DM Sans;
+      font-size: 0.9rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.00875rem;
+    }
+  }
+
+  main > article.forms-wrapper {
+    /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+    // width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 1rem;
+
+    /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+    > header {
+      color: #352e5b;
+      font-family: DM Sans;
+      font-size: 1.75rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      text-transform: uppercase;
+    }
+    > hr {
+      width: 100%;
+      border: 1px #e9e9e9 solid;
+    }
+  }
+
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  */
+  /* ---------------------------------------------------------------------------------------------- */
+  main > article.forms-wrapper > section.select-doctor {
+    /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+    width: 100%rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+
+    > * {
+      width: 100%;
+    }
+
+    > header {
+      width: 100%;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+  }
+
+  main > article.forms-wrapper > section.select-doctor > header > .tabs-group {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    // height: 5rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0 5rem;
+
+    > .tab {
+      // display: flex;
+      list-style-type: none;
+      padding: 0.25rem 0.80rem;
+      justify-content: center;
+      align-items: center;
+      align-self: stretch;
+      border-left: 1px solid #e9e9e9;
+      &:last-child {
+        border-right: 1px solid #e9e9e9;
+      }
+      &:hover {
+        background-color: #f8f7ff;
+        cursor: pointer;
+      }
+    }
+    > .selectedTab {
+      list-style-type: none;
+      background-color: #42a7c3;
+      color: white;
+    }
+  }
+
+  main
+    > article.forms-wrapper
+    > section.select-doctor
+    > header
+    > .filters-group {
+    /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+    width: 100%;
+    display: flex;
+    padding: 0 32px;
+    justify-content: space-evenly;
+    align-items: center;
+    align-self: stretch;
+
+    /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+    .options {
+      display: flex;
+      gap: 0.5rem;
+
+      form,
+      div {
+        display: flex;
+        height: 2.1rem;
+        padding: 0.25rem 0.85rem;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.25rem;
+        border: 1px solid #e9e9e9;
+        border-radius: 4px;
+        color: #747474;
+        font-family: DM Sans;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 184.615% */
+
+        &:hover {
+          background-color: #f8f7ff;
+          cursor: pointer;
+        }
+
+        select {
+          width: 1rem;
+        }
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+        }
+      }
+    }
+
+    .search-bar {
+      display: flex;
+      width: 50%;
+      min-width: 20rem;
+      padding: 6px 16px;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 4px;
+      border: 1px solid #e9e9e9;
+
+      color: #bbb;
+      font-family: Poppins;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 184.615% */
+
+      > input:focus {
+        outline: none !important;
+      }
+    }
+  }
+
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  */
+  /* ---------------------------------------------------------------------------------------------- */
+  section.select-doctor > form > fieldset {
+    border: none;
+  }
+
+  section.select-doctor > form > fieldset > section.cards-grid {
+    /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    grid-template-rows: masonry;
+    justify-items: center;
+    gap: 1rem;
+  }
+
+  section.select-doctor > form > fieldset > section.cards-grid > article.tile {
+    /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+    display: flex;
+    width: 11.3125rem;
+    height: 14.5625rem;
+    padding: 0.625rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+
+    /*
+  * -- Box and text styles definitions ----------------------------------------------
+  */
+    border-radius: 1.5rem;
+    border: 1px solid #e9e9e9;
+    background: #fff;
+
+    img {
+      object-fit: cover;
+      border-radius: 100%;
+      width: 8rem;
+      height: 8rem;
+    }
+
+    h1 {
+      color: #352e5b;
+      font-family: DM Sans;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    p {
+      color: #6b779a;
+      text-align: center;
+      font-family: DM Sans;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.0125rem;
+    }
+
+    /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  */
+  /* ---------------------------------------------------------------------------------------------- */
+  main
+    > article.forms-wrapper
+    > section.select-doctor
+    > footer
+    > nav
+    > .pagination {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 0.625rem 0 0rem;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+  }
+
+  main
+    > article.forms-wrapper
+    > section.select-doctor
+    > footer
+    > nav
+    > .pagination
+    > .page-item {
+    /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+
+    &.active {
+      border: none;
+      background: none;
+      a {
+        cursor: default;
+      }
+    }
+  }
+
+  main
+    > article.forms-wrapper
+    > section.select-doctor
+    > footer
+    > nav
+    > .pagination
+    > .page-item
+    > a {
+    /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+    display: flex;
+    height: 2rem;
+    padding: 0.25rem 0.7rem;
+    align-items: center;
+    text-decoration: none;
+
+    /*
+  * -- Box and text styles definitions ----------------------------------------------
+  */
+    color: #686868;
+    font-size: 0.8125rem;
+    line-height: 1.5rem; /* 184.615% */
+
+    &:hover {
+      background-color: #f8f7ff;
+    }
+  }
+
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  */
+  /* ---------------------------------------------------------------------------------------------- */
+  main > article.forms-wrapper > section.select-date {
+    /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    align-self: stretch;
+
+    > h1 {
+      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    > form > fieldset {
+      border: none;
+      border-radius: 0.5rem;
+      border: 1px solid #e1e1e1;
+      background: #fff;
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  */
+  /* ---------------------------------------------------------------------------------------------- */
+  main > article.forms-wrapper > footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  main > article.forms-wrapper > footer > button.send-formulary {
+    display: flex;
+    width: 11.5rem;
+    padding: 0.625rem 0rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+
+    color: #fff;
+    font-family: DM Sans;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    border-radius: 0.5rem;
+    background: #42a7c3;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  /* ---------------------------------------------------------------------------------------------- */
+  /*  */
+  /* ---------------------------------------------------------------------------------------------- */
+

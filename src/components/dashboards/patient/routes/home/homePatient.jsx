@@ -28,12 +28,13 @@ function HomePatient() {
               </thead>
               <tbody>
                 <tr>
-                  <td>ID </td>
-                  <td>Fecha</td>
-                  <td>Medico</td>
-                  <td>Especialidad</td>
-                  <td>Valor</td>
-                  <td>Estado</td>
+                  <td>IDssssssssssssssss ssssssss</td>
+                  <td>IDssssssssssssssss ssssssss</td>
+                  <td>IDssssssssssssssss ssssssss</td>
+                  <td>IDssssssssssssssss ssssssss</td>
+                  <td>IDssssssssssssssss ssssssss</td>
+                  <td>IDssssssssssssssss ssssssss</td>
+
                 </tr>
                 {/* {currentCitas.map((cita, index) => (
                   <tr key={index}>

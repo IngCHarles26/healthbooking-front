@@ -6,8 +6,10 @@
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
+
     top: 0;
     position: fixed;
+    // width: 74%;
     height: 100vh;
     display: grid;
     justify-content: center;
@@ -19,7 +21,7 @@
   
     @media only screen and (min-width: 767px) {/* desktop */
       left: 0;
-      width: 18rem;
+      width: 11%;
       grid-template-rows: 
         0.4fr
         0.5fr
@@ -37,7 +39,7 @@
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
     .site-logo{
-      width: 14rem;
+      width: 90%;
       justify-self: center;
     }
   }
@@ -130,7 +132,7 @@
   
     @media only screen and (min-width: 767px) {/* desktop */
       right: 0;
-      width: 18rem;
+      width: 15%;
     }
   
     /*
@@ -147,6 +149,7 @@
   /* ---------------------------------------------------------------------------------------------- */
   /*  */
   /* ---------------------------------------------------------------------------------------------- */
+
 
   .dashboard-main{
     height: 100vh;

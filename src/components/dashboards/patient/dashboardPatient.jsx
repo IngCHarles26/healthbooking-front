@@ -11,6 +11,7 @@ import homeSVG from '../../assets/brands/home.svg';
 import editSVG from '../../assets/brands/edit-profile.svg';
 import newDateSVG from '../../assets/brands/make-date.svg';
 import historySVG from '../../assets/brands/history.svg';
+import NewDate from "./routes/newDate/newDate";
 
 
 const navigationOptions = [
@@ -25,13 +26,16 @@ function DashboardPatient() {
     <div className="wrapper-PatientHome">
       <AsideLeft menuData={navigationOptions}/>
 
+      <div className="dashboard-main">
+        <NewDate/>
+        {/* <HomePatient/> */}
+      </div>
+
       <aside className="user-menu">
         <InfoPaciente/>
       </aside>
 
-      <div className="dashboard-main">
-        <HomePatient/>
-      </div>
+      
 
     </div>
   );
