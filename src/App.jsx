@@ -5,13 +5,17 @@ import "./App.scss";
 import AsideLeft from "./components/dashboards/general/asideLeft/asideLeft";
 import DashboardPatient from "./components/dashboards/patient/dashboardPatient";
 import Landing from "./components/landing/landing";
+import PostDoctor from "./components/dashboards/doctor/PostDoctor/PostDoctor";
+import AsideRight from "./components/dashboards/general/AsideRight/AsideRight";
 
 function App() {
   // const [count, setCount] = useState(0)
   return (
     <>
       {/* <Landing/> */}
-      <DashboardPatient/>
+      {/* <DashboardPatient/> */}
+      <PostDoctor></PostDoctor>
+      {/* <AsideRight></AsideRight> */}
       {/* <div>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />

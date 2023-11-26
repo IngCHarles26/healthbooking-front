@@ -3,7 +3,7 @@ import "./style.css";
 import logo from '../../../assets/logo.svg';
 
 
-function AsideLeft({props}) {
+function AsideRight({props}) {
   return (
     <div className="contenedorM">
       <div className="subContenedorM">
@@ -17,7 +17,7 @@ function AsideLeft({props}) {
   );
 }
 
-export default AsideLeft;
+export default AsideRight;
 
 const LogosMasTexts = ({ parametros }) => {
   return (

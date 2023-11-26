@@ -5,6 +5,8 @@ import { useState } from "react"
 import data from "./data.json"
 import { NavLink } from "react-router-dom";
 import logo from "./svgs/logo.svg"
+import AsideRight from "../../general/AsideRight/AsideRight"
+import fotoPerfil from "../../../assets/img/doctor.avif"
 
 const PostDoctor = () => {
   const [foto, setFoto] = useState("");
@@ -19,6 +21,7 @@ const PostDoctor = () => {
     id: "",
     phone: "",
     email: "",
+    price: "",
     sure: [],
   });
 
@@ -80,8 +83,8 @@ const PostDoctor = () => {
     reader.onload = () => setFoto(reader.result);
     if (file) reader.readAsDataURL(file);
 
-    // const imageUrl = await changeUploadImage(event);
-    // setDoctor({ ...doctor, profilePicture: imageUrl });
+    const imageUrl = await changeUploadImage(event);
+    setDoctor({ ...doctor, profilePicture: imageUrl });
   };
 
   //console.log(doctor);
@@ -99,7 +102,8 @@ const PostDoctor = () => {
         profilePicture: "",
         id: "",
         phone: "",
-        email: "",
+        email: "",  
+        price: "",
         sure: [],
       });
 
@@ -111,7 +115,19 @@ const PostDoctor = () => {
     }
   };
 
+  const indormacion = [
+    { text: "Altura", info:"190cm (74.8in)"},
+    { text: "Peso", info:"79kg (39,5Lb)"},
+    { text: "Cumpleaños", info:"Sep 04, 1996"},
+    { text: "RH", info:"O+"},
+  ]
+
+  const perfil = { rol: 'Paciente', img: fotoPerfil, name: "Fabio Catrillon"}
+
+
   return (
+    <div>
+      <AsideRight parametros={indormacion} perfil={perfil}></AsideRight>
     <form onSubmit={handleSubmit}>
       <div className="formulario">
       <div className="div1">
@@ -119,6 +135,7 @@ const PostDoctor = () => {
           <div className="div3"/>
           <div className="div4"/>
         {foto && <img src={foto} alt="Not Found" className="div4" />}
+        {foto ? <p></p> : <p className="fotoError">{errors.profilePicture}</p> }
         </div>
 
         <input id="input-file" className="inputFile" type="file" accept=".jpg, .jpeg, .png" values={doctor.profilePicture}onChange={mostrarVistaPrevia} />
@@ -133,24 +150,8 @@ const PostDoctor = () => {
         </label>
 
         <div className="div12">
-          <div className="div13">
-            <div className="div14">
-              <div className="div15">
-                <div className="div16">
-                  Cancel
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="div17">
-            <div className="div18">
-              <div className="div19">
-                <div className="div20">
-                  Enviar
-                </div>
-              </div>
-            </div>
-          </div>
+            <button className="div14">Cancelar</button>
+            <button className="div14">Enviar</button>
         </div>
         <div className="div21">
         <h1 className="div22">FORMULARIO</h1>
@@ -164,6 +165,7 @@ const PostDoctor = () => {
                   <div className="div29">
                   <input type="text" className="div30" placeholder="Ingresa nombre" name="name" value={doctor.name} onChange={handleChange}></input>
                   </div>
+                  <p className="MessageError">{errors.name}</p>
                 </div>
               </div>
             </div>
@@ -174,8 +176,9 @@ const PostDoctor = () => {
               <div className="div27">
                 <div className="div28">
                   <div className="div29">
-                  <input type="number" name="id" className="div30" placeholder="Ej. 12345" value={doctor.id} onChange={handleChange} ></input>
+                  <input type="text" name="id" className="div30" placeholder="Ej. 12345" value={doctor.id} onChange={handleChange} ></input>
                   </div>
+                  <p className="MessageError">{errors.id}</p>
                 </div>
               </div>
             </div>
@@ -192,8 +195,9 @@ const PostDoctor = () => {
                     {especialidad?.map((esp, index)=>(
                       <option key={index}>{esp}</option> 
                     ))}
-          </select>
+                  </select>
                   </div>
+                  <p className="MessageError">{errors.specialty}</p>
                 </div>
               </div>
             </div>
@@ -212,8 +216,9 @@ const PostDoctor = () => {
                        <option key={index}>{ind}</option>
                       ))}
                     </select>
-                    <input type="number" name="phone" className="div30" placeholder="Ej. 1234567890" value={doctor.phone} onChange={handleChange}></input>
+                    <input type="text" name="phone" className="div30" placeholder="Ej. 1234567890" value={doctor.phone} onChange={handleChange}></input>
                   </div>
+                  <p className="MessageError">{errors.phone}</p>
                 </div>
               </div>
             </div>
@@ -228,6 +233,20 @@ const PostDoctor = () => {
                   <div className="div29">
                   <input type="email" name="email" className="div30"  placeholder="Ej. ejemp@mail.com" value={doctor.email} onChange={handleChange}></input>
                   </div>
+                  <p className="MessageError" >{errors.email}</p>
+                </div>
+              </div>
+            </div>
+            <div className="div24">
+              <div className="div25">
+                <h1 className="div26">Price</h1>
+              </div>
+              <div className="div27">
+                <div className="div28">
+                  <div className="div29">
+                  <input type="text" name="price" className="div30"  placeholder="Ej. 123456" value={doctor.price} onChange={handleChange}></input>
+                  </div>
+                  <p className="MessageError" >{errors.price}</p>
                 </div>
               </div>
             </div>
@@ -249,18 +268,12 @@ const PostDoctor = () => {
                   ))}
                </select>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="div24">
-              <div className="div25">
-                <h1 className="div26">Price</h1>
-              </div>
-              <div className="div27">
-                <div className="div28">
-                  <div className="div29">
-                  <input type="number" name="email" className="div30"  placeholder="Ej. 120.000" value={doctor.email} onChange={handleChange}></input>
-                  </div>
+                  <p> 
+              {seguros.map((seg)=>(
+              <button className="butonDeletSure" value={seg} onClick={(event)=> {setSeguros(seguros.filter((e)=> e !== event.target.value));setDoctor({...doctor, sure: doctor.sure.length ? doctor.sure.filter((e)=> e !== event.target.value) : ""} )}}>{seg}</button> 
+                ))}
+            </p> 
+                  {!seguros.length && <p className="MessageError" name="Seguro">{errors.sure}</p>}
                 </div>
               </div>
             </div>
@@ -278,7 +291,7 @@ const PostDoctor = () => {
       </div>
     </div>
   </form>
-    
+  </div>
   );
 };
 
