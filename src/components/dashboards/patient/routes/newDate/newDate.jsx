@@ -6,6 +6,10 @@ import searchDoctor from '../../../../assets/brands/search-doctor.svg';
 import leftArrow from '../../../../assets/brands/arrow-left-newDate.svg';
 import rightArrow from '../../../../assets/brands/arrow-right-newDate.svg';
 
+import { useState } from "react";
+
+
+const cardsPerPage = 12;
 
 const x = {
   id: "33326",
@@ -16,7 +20,44 @@ const x = {
   arraySure: [],
 }
 
-function NewDate() {
+function NewDate(props) {
+  let {sures,doctors,specialtys} = props;
+  const [filtSure, setFiltSure] = useState('');
+  const [filtSpecialty, setFiltSpecialty] = useState('');
+  const [filtName, setFiltName] = useState('');
+  const [orderName, setOrderName] = useState('');
+
+  const [maxPage, setMaxPage] = useState(Math.ceil(doctors.length/cardsPerPage));
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // console.log({filtSure,filtSpecialty,filtName,orderName})
+
+  const filterDoctors = ()=>{
+    let aux = [...doctors]
+    if(filtSpecialty) aux = [...aux].filter(doctor=>+doctor.Specialty === +filtSpecialty);
+    if(filtSure) aux = [...aux].filter(doctor=>doctor.Sures.includes(+filtSure));
+    aux = [...aux].filter(doctor=>doctor.name.toLowerCase().includes(filtName.toLowerCase()));
+    if(orderName) {
+      aux = [...aux].sort((a, b) =>
+        orderName === "a-z"
+          ? a.name.localeCompare(b.name)
+          : b.name.localeCompare(a.name)
+      );
+    } 
+    let maxPages = Math.ceil(aux.length/cardsPerPage);
+    if(!maxPages) maxPages = 1;
+    if(maxPage != maxPages) setMaxPage(maxPages);
+    if(currentPage>maxPages) setCurrentPage(1)
+    // console.log({currentPage,maxPage})
+    return aux;
+  }
+
+  const handlePage = (one)=>{
+    let newPage = currentPage+one;
+    if(0<newPage && newPage<=maxPage) setCurrentPage(newPage);
+  }
+
+
   return ( 
     <main>
       <header>Dashboard &#62; Agendar Cita</header>
@@ -29,45 +70,34 @@ function NewDate() {
             <h1>Seleccione el doctor de su preferencia:</h1>
 
             <ul className="tabs-group">
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
-              <SpecialtyOption name = 'Pediatría'/>
+              {specialtys.slice(1).map((el,ix)=>
+                <SpecialtyOption 
+                  key={'spec_'+ix}
+                  name={el} 
+                  index={ix+1} 
+                  filtSpecialty={filtSpecialty}
+                  setFiltSpecialty={setFiltSpecialty}
+                />)}
             </ul>
 
             <div className="filters-group">
               <div className="options">
-                <div>{/*agregar aqui el evento on Click */}
+                <div onClick={()=>setOrderName('')}>{/*agregar aqui el evento on Click */}
                   <img src={deleteOrder} alt="delete " />
                 </div>
 
                 <form>
                   <label htmlFor="order">Sort <img src={orderCards} alt="orderCards" /></label>
-                  <select id="order">
-                    {/* <option value="unOrdered"></option>
-                    <optgroup label='Por Nombre'>
-                    </optgroup> */}
-                      <option value="z-a">Descendente</option>
+                  <select id="order" value={orderName} onChange={(e)=>{e.preventDefault();setOrderName(e.target.value)}}>
                       <option value="a-z">Ascendente</option>
+                      <option value="z-a">Descendente</option>
                   </select>
 
                 </form>
               </div>
 
               <form className="search-bar" id="searh-in-grid">
-                <input type="text" />
+                <input type="text" value={filtName} onChange={(e)=>{e.preventDefault();setFiltName(e.target.value)}}/>
                 <div className="submit">
                   <img src={searchDoctor} alt="searchDoctor" />
                 </div>
@@ -76,12 +106,17 @@ function NewDate() {
               <div className="options">
                 <form >
                   <label htmlFor="order">Obra Social <img src={orderCards} alt="orderCards" /></label>
-                  <select name="" id="order">
-                    <ObraSocial name='MOCA'/>
-                    <ObraSocial name='MOCAa'/>
+                  <select name="" id="order" value={filtSure} onChange={()=>{}}>
+                    {sures.slice(1).map((el,ix)=>
+                      <ObraSocial 
+                        key={'sure_'+ix}
+                        name={el} 
+                        ix={ix+1} 
+                        setFiltSure={setFiltSure}
+                      />)}
                   </select>
                 </form>
-                <div>{/*agregar aqui el evento on Click */}
+                <div onClick={()=>setFiltSure('')}>{/*agregar aqui el evento on Click */}
                   <img src={deleteFilter} alt="delete " />
                 </div>
               </div>
@@ -91,23 +126,14 @@ function NewDate() {
           <form action="">
             <fieldset className="select-doctor">
               <section className="cards-grid">
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
-                <DoctorCard image={x.profilePicture} id={x.id} name={x.name} specialty={x.specialty.id}/>
+                {filterDoctors().slice( (currentPage-1)*cardsPerPage , currentPage*cardsPerPage ).map(doctor=>
+                  <DoctorCard 
+                    key={'doctor-card-'+doctor.id}
+                    image={doctor.profilePicture} 
+                    name={doctor.name} 
+                    specialty={specialtys[doctor.Specialty]}
+                    id={doctor.id}
+                    />)}
               </section>
             </fieldset>
           </form>
@@ -116,15 +142,13 @@ function NewDate() {
             <nav aria-label='Navegación por páginas'>
               <ul className="pagination">
                 <li className="page-item">
-                  <a href="" className="prev">
+                  <a href="" className="prev" onClick={(e)=>{e.preventDefault();handlePage(-1)}}>
                     <img src={leftArrow} alt="leftArrow" />
                   </a>
                 </li>
-                <NumberPage number='1'/>
-                <NumberPage number='2'/>
-                <NumberPage number='3'/>
+                <p className="pageButton">{currentPage} de {maxPage}</p>
                 <li className="page-item">
-                  <a href="" className="prev">
+                  <a href="" className="prev" onClick={(e)=>{e.preventDefault();handlePage(+1)}}>
                     <img src={rightArrow} alt="rightArrow" />
                   </a>
                 </li>
@@ -141,18 +165,19 @@ export default NewDate;
 
 
 function SpecialtyOption(props) {
-  let {name} = props;
+  let {name,index,setFiltSpecialty,filtSpecialty} = props;
+  let style = 'tab'+(index==filtSpecialty ? ' specialty-selected' : '');
   return ( 
-    <li className="tab">
+    <li className={style} onClick={()=>setFiltSpecialty(index == filtSpecialty ? '' : index)}>
       {name}
     </li>
   );
 }
 
 function ObraSocial(props) {
-  let {name} = props
+  let {name,setFiltSure,ix} = props
   return ( 
-    <option>
+    <option onClick={()=>setFiltSure(ix)}>
       {name}
     </option>
   );

@@ -1,8 +1,10 @@
 import './style.scss';
 import logoOscuro from "../../../assets/full-logo-black.svg";
+import { useState } from 'react';
 
 function AsideLeft(props) {
-  let {menuData} = props;
+  let {menuData,handlePage} = props;
+
   return ( 
     <aside className="navigation-menu">
       <img className="site-logo" src={logoOscuro} alt="logoOscuro"/>
@@ -13,6 +15,7 @@ function AsideLeft(props) {
             svg = {el.svg}
             text = {el.text}
             link = {el.link}
+            handlePage = {handlePage}
           />)}
       </nav>
 
@@ -23,9 +26,9 @@ function AsideLeft(props) {
 export default AsideLeft;
 
 function Navs(props) {
-  let {svg,text,link} = props
+  let {svg,text,link,handlePage} = props
   return ( 
-    <a href={link}>
+    <a onClick={()=>handlePage(link)}>
       <img src={svg} alt="altSvg" />
       {text}
     </a>
