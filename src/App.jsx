@@ -4,15 +4,7 @@ import { RouterProvider } from "react-router-dom";
 
 import router from './routes/index'
 
-import DashboardPatient from "./components/dashboards/patient/dashboardPatient";
 import Landing from "./components/landing/landing";
-//import AsideRight from "./components/dashboards/general/AsideRight/AsideRight";
-
-
-
-import AsideLeft from "./components/dashboards/general/asideLeft/asideLeft";
-// import InfoPaciente from "../../../../componentes jose/GENERAL/InfoPaciente/InfoPaciente";
-
 
 
 function App() {

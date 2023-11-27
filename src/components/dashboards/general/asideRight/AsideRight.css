@@ -1,15 +1,15 @@
 .contenedor{
-  align-items: center;
   background-color: #F8F7FF;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  padding:  60px 10px;
-  float: right;
+  padding: 60px 10px;
+  float: center;
   width: 13em;
   height: 100vh;
   margin: 0;
-  position: fixed;
+  /* position: fixed; */
   right: 0;
   overflow: hidden;
 }
@@ -99,6 +99,9 @@
   line-height: normal;
   margin-top: 10px;
   margin-bottom: 40px;
+}
+.editPer:hover{
+  cursor: pointer;
 }
 
 .paciente{

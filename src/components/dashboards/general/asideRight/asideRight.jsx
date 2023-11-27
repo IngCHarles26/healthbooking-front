@@ -1,11 +1,18 @@
 import "./AsideRight.css"
 //import foto from "../../../imagenes/Image.png"
+<<<<<<< HEAD
 import { useAuth0 } from '@auth0/auth0-react'
 
 
 const AsideRight = ({ parametros, perfil }) => {
+=======
+>>>>>>> 9b63cadf935e85e419b39a9c6a7f737392e6cc59
 
-  const { user } = useAuth0()
+
+const AsideRight = (props) => {
+  const {image,name,info,type} = props;
+
+// console.log({image})
 
   console.log(user);
 
@@ -31,6 +38,7 @@ const AsideRight = ({ parametros, perfil }) => {
 }
 
 export default AsideRight;
+<<<<<<< HEAD
 
 
 
@@ -44,3 +52,5 @@ const infor = (item) => {
   )
 }
 
+=======
+>>>>>>> 9b63cadf935e85e419b39a9c6a7f737392e6cc59

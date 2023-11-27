@@ -57,8 +57,10 @@ function Landing() {
             </div>
 
             <div className="actions">
+
               <a href="/patient" className="login" onClick={() => loginWithRedirect()}> ingresar</a>
               <a href="/patient" className="signup" onClick={() => loginWithRedirect()}> UNETE</a>
+
             </div>
           </div>
           <img className="hero-logo" src={heroImg} />
