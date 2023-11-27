@@ -14,6 +14,7 @@ const router = createBrowserRouter([
   {path:'/master',element:<DashboardMaster/>},
   {path:'/doctor',element:<DashboardDoctor/>},
 
+
 ]);
 
 

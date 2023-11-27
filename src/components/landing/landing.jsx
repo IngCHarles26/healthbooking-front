@@ -6,6 +6,7 @@ import logoOscuro from "../assets/full-logo-black.svg";
 import linkSVG from "../assets/util/link-clip.svg";
 import arrowRight from "../assets/util/white-arrow-right.svg";
 import linkedInSVG from "../assets/brands/linkedin.svg";
+import { useAuth0, } from "@auth0/auth0-react";
 // import gitHubSVG from "../assets/brands/github.svg";
 
 const aboutInfo = [
@@ -28,6 +29,10 @@ const infoParticipants = [
 ];
 
 function Landing() {
+
+  const { loginWithRedirect } = useAuth0()
+
+
   return (
     <div className="wrapper-LandingPage">
       <header>
@@ -35,7 +40,7 @@ function Landing() {
           <img src={logoClaro} alt="logoClaro" />
         </div>
         <nav className="actions">
-          <a onClick={() => {}}>Iniciar sesión</a>
+          <a onClick={() => { }}>Iniciar sesión</a>
           <a href="/signup">
             UNETE <img src={arrowRight}></img>
           </a>
@@ -52,8 +57,10 @@ function Landing() {
             </div>
 
             <div className="actions">
-              <a href="/patient" className="login"> INGRESAR</a>
-              <a href="/master" className="signup"> UNETE</a>
+
+              <a href="/patient" className="login" onClick={() => loginWithRedirect()}> ingresar</a>
+              <a href="/patient" className="signup" onClick={() => loginWithRedirect()}> UNETE</a>
+
             </div>
           </div>
           <img className="hero-logo" src={heroImg} />
@@ -81,7 +88,7 @@ function Landing() {
               {aboutInfo.map((el) => (
                 <LinkAbout key={"about_" + el.text}
                   link={el.link}
-                  text={el.text}/>))}
+                  text={el.text} />))}
             </nav>
           </div>
 
@@ -89,9 +96,9 @@ function Landing() {
             <h1>Integrantes</h1>
             <nav>
               {infoParticipants.map(el => (
-                <LinkParticipants key={'participant_'+el.name} 
-                  name={el.name} 
-                  linkedin={el.linkedin}/>))}
+                <LinkParticipants key={'participant_' + el.name}
+                  name={el.name}
+                  linkedin={el.linkedin} />))}
             </nav>
           </div>
         </div>
@@ -120,7 +127,7 @@ function LinkParticipants(props) {
   const { linkedin, github, name } = props;
   return (
     <a href={linkedin}>
-      <img src={linkedInSVG}/>
+      <img src={linkedInSVG} />
       {name}
     </a>
   );
