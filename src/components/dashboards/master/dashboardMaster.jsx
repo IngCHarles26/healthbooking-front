@@ -12,15 +12,16 @@ import PostDoctor from "./routes/PostDoctor/PostDoctor";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
+//import PostDoctor from "../doctor/PostDoctor/PostDoctor";
 
 const routes = {
 
 }
 
 const navigationOptions = [
-  {svg:homeSVG, text:'Home', link:0},
-  {svg:newDateSVG, text:'Crear Doctor', link:1},
-  {svg:editSVG, text:'Editar perfil', link:2},
+  { svg: homeSVG, text: 'Home', link: 0 },
+  { svg: newDateSVG, text: 'Crear Doctor', link: 1 },
+  { svg: editSVG, text: 'Editar perfil', link: 2 },
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]
 
@@ -30,25 +31,37 @@ function DashboardPatient() {
   // console.log({currentPage})
 
   //_______________Obtencion de informacion
-  useEffect(()=>{
+  useEffect(() => {
 
-  },[])
+  }, [])
   //_______________Navegacion en el Dashboard 
   const pageList = [
-    <PostDoctor></PostDoctor>
+    <HomeMaster />,
+    <PostDoctor />
   ];
-  const handlePage = (page)=> setCurrentPage(page);
+  const handlePage = (page) => setCurrentPage(page);
 
-  
+  // const informacion = [
+  //   { text: "Altura", info:"190cm (74.8in)"},
+  //   { text: "Peso", info:"79kg (39,5Lb)"},
+  //   { text: "Cumpleaños", info:"Sep 04, 1996"},
+  //   { text: "RH", info:"O+"},
+  // ]
+
+  // const perfil = { rol: 'Paciente', img: "fotoPerfil", name: "Fabio Catrillon" }
 
   return (
     <div className="wrapper-PatientHome">
-      <AsideLeft 
-        menuData={navigationOptions} 
-        handlePage={handlePage}/>
+      <AsideLeft
+        menuData={navigationOptions}
+        handlePage={handlePage} />
+
+        {/* <AsideRight 
+        parametros={informacion} 
+        perfil={perfil} /> */}
 
       <div className="dashboard-main">
-      {pageList[currentPage]}
+        {pageList[currentPage]}
       </div>
 
       <aside className="user-menu">
