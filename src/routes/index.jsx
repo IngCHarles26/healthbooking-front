@@ -4,14 +4,15 @@ import Landing from "../components/landing/landing";
 import DashboardPatient from "../components/dashboards/patient/dashboardPatient";
 import DashboardMaster from "../components/dashboards/master/dashboardMaster";
 import DashboardDoctor from "../components/dashboards/doctor/dashboardDoctor";
-import Detail from "../components/dashboards/general/Detail/Detail";
+import UserForm from "../components/userForm/userForm";
 
 
 
 const router = createBrowserRouter([
   {path:'/',element:<Landing/>},
   {path:'/patient',element:<DashboardPatient/>},
-  {path:'/patient/detailDoctor/:id',element:<Detail />},
+  {path:'/patientForm',element:<UserForm/>},
+  {path:'/patient/detailDoctor/:id',element:<p>holi</p>},
   {path:'/master',element:<DashboardMaster/>},
   {path:'/doctor',element:<DashboardDoctor/>},
 
