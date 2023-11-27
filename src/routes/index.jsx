@@ -10,6 +10,7 @@ import DashboardDoctor from "../components/dashboards/doctor/dashboardDoctor";
 const router = createBrowserRouter([
   {path:'/',element:<Landing/>},
   {path:'/patient',element:<DashboardPatient/>},
+  {path:'/patient/detailDoctor/:id',element:<p>holi</p>},
   {path:'/master',element:<DashboardMaster/>},
   {path:'/doctor',element:<DashboardDoctor/>},
 

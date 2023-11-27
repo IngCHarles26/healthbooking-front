@@ -17,6 +17,7 @@ import EditProfile from "./routes/editProfile/editProfile";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const routes = {
   doctors: 'http://localhost:3001/doctors',
@@ -49,6 +50,8 @@ function DashboardPatient() {
   const [specialtys, setSpecialtys] = useState([]);
   const [doctors, setDoctors] = useState([]);
   // console.log({currentPage})
+
+  // const navigate = useNavigate();
 
   //_______________Obtencion de informacion
   useEffect(()=>{
