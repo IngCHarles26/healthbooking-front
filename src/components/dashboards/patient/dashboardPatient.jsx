@@ -15,6 +15,7 @@ import AsideRight from "../general/asideRight/asideRight";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth0 } from '@auth0/auth0-react'
 
 const routes = {
   doctors: 'http://localhost:3001/doctors',
@@ -24,9 +25,9 @@ const routes = {
 }
 
 const navigationOptions = [
-  {svg:homeSVG, text:'Home', link:0},
-  {svg:newDateSVG, text:'Nueva cita', link:1},
-  {svg:editSVG, text:'Editar perfil', link:2},
+  { svg: homeSVG, text: 'Home', link: 0 },
+  { svg: newDateSVG, text: 'Nueva cita', link: 1 },
+  { svg: editSVG, text: 'Editar perfil', link: 2 },
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]
 
@@ -35,58 +36,68 @@ function DashboardPatient() {
   const [sures, setSures] = useState([]);
   const [specialtys, setSpecialtys] = useState([]);
   const [doctors, setDoctors] = useState([]);
+  const { isAuthenticated } = useAuth0()
+
   // console.log({currentPage})
 
   //_______________Obtencion de informacion
-  useEffect(()=>{
+  useEffect(() => {
     axios.get(routes.doctors)
-      .then(({data})=>{setDoctors(data); 
-        return axios.get(routes.specialtys)})
-      .then(({data})=>{setSpecialtys(data);
-        return axios.get(routes.sures)})
-      .then(({data})=>{setSures(data)})
-      .then(()=>console.log({sures,specialtys,doctors}))
-      .catch((err)=>console.log(err.message))
-  },[])
+      .then(({ data }) => {
+        setDoctors(data);
+        return axios.get(routes.specialtys)
+      })
+      .then(({ data }) => {
+        setSpecialtys(data);
+        return axios.get(routes.sures)
+      })
+      .then(({ data }) => { setSures(data) })
+      .then(() => console.log({ sures, specialtys, doctors }))
+      .catch((err) => console.log(err.message))
+  }, [])
   //_______________Navegacion en el Dashboard 
   const pageList = [
     <HomePatient />,
-    <NewDate 
-      sures={convertOptions(sures)} 
-      doctors={convertDoctors(doctors)} 
-      specialtys={convertOptions(specialtys)}/>,
-    <EditProfile/>,
+    <NewDate
+      sures={convertOptions(sures)}
+      doctors={convertDoctors(doctors)}
+      specialtys={convertOptions(specialtys)} />,
+    <EditProfile />,
   ];
-  const handlePage = (page)=> setCurrentPage(page);
+  const handlePage = (page) => setCurrentPage(page);
 
-  
+
 
   return (
-    <div className="wrapper-PatientHome">
-      <AsideLeft 
-        menuData={navigationOptions} 
-        handlePage={handlePage}/>
+    isAuthenticated && (<div className="wrapper-PatientHome">
+      <AsideLeft
+        menuData={navigationOptions}
+        handlePage={handlePage} />
 
       <div className="dashboard-main">
-      {pageList[currentPage]}
+        {pageList[currentPage]}
       </div>
 
       <aside className="user-menu">
         {/* <InfoPaciente/> */}
-        {/* <AsideRight/> */}
+        {<AsideRight />}
       </aside>
 
-    </div>
+    </div>)
   );
 }
 
 export default DashboardPatient;
 
 const convertDoctors = (docs) =>
-  docs.map(doc=>{return {...doc,
-    Specialty:doc.Specialty.id,
-    Sures:doc.Sures.map(sure=>sure.id)}});
+  docs.map(doc => {
+    return {
+      ...doc,
+      Specialty: doc.Specialty.id,
+      Sures: doc.Sures.map(sure => sure.id)
+    }
+  });
 
-const convertOptions = (values) => values.reduce((ac,el)=>{
-  return [...ac,el.name]
-},['no have'])
+const convertOptions = (values) => values.reduce((ac, el) => {
+  return [...ac, el.name]
+}, ['no have'])
