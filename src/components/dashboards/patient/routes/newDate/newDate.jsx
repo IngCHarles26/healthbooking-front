@@ -7,6 +7,7 @@ import leftArrow from '../../../../assets/brands/arrow-left-newDate.svg';
 import rightArrow from '../../../../assets/brands/arrow-right-newDate.svg';
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const cardsPerPage = 12;
@@ -18,6 +19,10 @@ const x = {
   profilePicture:
     "https://res.cloudinary.com/dvpo44a4q/image/upload/v1700189494/doctors/men/jdcch5dshqe6cupwdubx.jpg",
   arraySure: [],
+}
+
+const routes = {
+  getDetail: 'detailDoctor/',
 }
 
 function NewDate(props) {
@@ -51,7 +56,7 @@ function NewDate(props) {
     // console.log({currentPage,maxPage})
     return aux;
   }
-
+  const filtered = filterDoctors()
   const handlePage = (one)=>{
     let newPage = currentPage+one;
     if(0<newPage && newPage<=maxPage) setCurrentPage(newPage);
@@ -146,7 +151,7 @@ function NewDate(props) {
                     <img src={leftArrow} alt="leftArrow" />
                   </a>
                 </li>
-                <p className="pageButton">{currentPage} de {maxPage}</p>
+                <p className="pageButton">{filtered.length ? currentPage+' de '+maxPage : 'Sin coincidencias'}</p>
                 <li className="page-item">
                   <a href="" className="prev" onClick={(e)=>{e.preventDefault();handlePage(+1)}}>
                     <img src={rightArrow} alt="rightArrow" />
@@ -194,9 +199,12 @@ function NumberPage(props) {
 
 function DoctorCard(props){
   let {image,id,name,specialty} = props;
+
+  const navigate = useNavigate();
+
   return(
     <article className="tile">
-      <img src={image} alt="imageDoctor" />
+      <img src={image} alt="imageDoctor" onClick={()=>{navigate(routes.getDetail+id)}}/>
       <section className="card-description">
         <h1>{name}</h1>
         <p className="specialization">{specialty}</p>

@@ -5,16 +5,19 @@ import editSVG from '../../assets/brands/edit-profile.svg';
 import newDateSVG from '../../assets/brands/make-date.svg';
 import historySVG from '../../assets/brands/history.svg';
 import NewDate from "./routes/newDate/newDate";
+import imagePrueba from '../../assets/img/profile.jpeg'
+
 
 //_______________COMPONENTS
 // import InfoPaciente from "../../../../componentes jose/GENERAL/InfoPaciente/InfoPaciente";
 import AsideLeft from "../general/asideLeft/asideLeft";
+import AsideRight from "../general/asideRight/asideRight";
 import HomePatient from "./routes/home/homePatient";
 import EditProfile from "./routes/editProfile/editProfile";
-import AsideRight from "../general/asideRight/asideRight";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 import { useAuth0 } from '@auth0/auth0-react'
 
 const routes = {
@@ -31,6 +34,17 @@ const navigationOptions = [
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]
 
+const infoUser = {
+  image:imagePrueba,
+  name:'Perico Palotes',
+  info:[
+    {text:'Altura',info:'190cm'},
+    {text:'Peso',info:'79kg'},
+    {text:'Nacimiento',info:'Sep 04, 1996'},
+    {text:'RH',info:'O+'},
+  ],
+}
+
 function DashboardPatient() {
   const [currentPage, setCurrentPage] = useState(0);
   const [sures, setSures] = useState([]);
@@ -39,6 +53,8 @@ function DashboardPatient() {
   const { isAuthenticated } = useAuth0()
 
   // console.log({currentPage})
+
+  // const navigate = useNavigate();
 
   //_______________Obtencion de informacion
   useEffect(() => {
@@ -79,8 +95,13 @@ function DashboardPatient() {
       </div>
 
       <aside className="user-menu">
-        {/* <InfoPaciente/> */}
-        {<AsideRight />}
+
+        <AsideRight
+          type={'Paciente'}
+          image={infoUser.image}
+          name={infoUser.name}
+          info={infoUser.info}
+          />
       </aside>
 
     </div>)
