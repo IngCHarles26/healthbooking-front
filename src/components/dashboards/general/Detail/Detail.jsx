@@ -33,50 +33,57 @@ const Detail = () => {
 
 
   return (
-    <div className="contDetail">
-      <div className="contNombre">
+    <div className="containDetail">
+      <div className="contDetail">
+      <div className="subConten">
         <h1 className="nombre">{filt[0].name}</h1>
-        <img className="foto" alt="" src={filt[0].profilePicture} />
-      </div>
+        <img className="fotoDetail" alt="" src={filt[0].profilePicture} />
+      
       <div className="datos">
         <div className="contInfo">
           <label className="info">Informacion</label>
         </div>
-        <div className="frame-2">
-          <label className="text-wrapper-2">Especialidad</label>
-          <label className="text-wrapper-3">{filt[0].specialty}</label>
+        <div className="textos">
+          <label className="textoIzq">Especialidad</label>
+          <label className="textoDer">{filt[0].specialty}</label>
         </div>
-        <hr />
-        <div className="group-2">
-          <label className="text-wrapper-4">Licencia</label>
-          <p className="text-wrapper-5">{filt[0].license}</p>
+       
+        <div className="textos">
+          <label className="textoIzq">Licencia</label>
+          <p className="textoDer">{filt[0].license}</p>
         </div>
-        <hr />
-        <div className="group-2">
-          <label className="text-wrapper-6">Telefono</label>
-          <label className="text-wrapper-5">{filt[0].phone}</label>
+        
+        <div className="textos">
+          <label className="textoIzq">Telefono</label>
+          <label className="textoDer">{filt[0].phone}</label>
         </div>
-        <hr />
-        <div className="group-2">
-          <div className="text-wrapper-7">email</div>
-          <label className="text-wrapper-5">{filt[0].email}</label>
+        
+        <div className="textos">
+          <div className="textoIzq">email</div>
+          <label className="textoDer">{filt[0].email}</label>
         </div>
-        <hr />
-        <div className="group-2">
-          <div className="text-wrapper-7">Sure</div>
-          <label className="text-wrapper-5">{filt[0].arraySure.join(', ')}</label>
+        
+        <div className="textos">
+          <div className="textoIzq">Sure</div>
+          <label className="textoDer">{filt[0].arraySure.join(', ')}</label>
         </div>
+        
+      <hr />
       </div>
 
       <div className="contBotones">
-          <NavLink to={"/patient/new_appointment"}>
-            <button className="Cancel">Cancelar</button>
+          <NavLink to={"/patient"}>
+            <button className="boton">Regresa</button>
           </NavLink>
 
-        <button className="Seleccionar">Seleccionar</button>
+        <button className="boton">Seleccionar</button>
+     </div>
+
      </div>
 
     </div>
+    </div>
+    
   )
 }
 
