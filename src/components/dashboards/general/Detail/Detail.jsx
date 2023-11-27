@@ -1,37 +1,42 @@
-import "./DetailDoctor.css"
+import "./Detail.css"
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios"
-//import Data from "./doctorDetail.json"
+import Data from './data.json'
 
-const DetailDoctor = () => {
+const Detail = () => {
 
   const { id } = useParams();
   const [doctor, setDoctors] = useState([]);  
   
-  //let filt = Data.doctors.filter((doc)=>doc.license === id)
+  let filt = Data.doctors.filter((doc)=>doc.license === id)
+
 
   //console.log(filt[0].name);
 
-  useEffect(() => {
-    if (doctor.length === 0) {
-      axios.get(`http://localhost:3001/doctors/${id}`)
-      .then(({data}) => {
-        if (data) setDoctors(data);
-        //console.log(data);
-      }) 
-      return setDoctors({});
-    }
-  },[id]);
+  // useEffect(() => {
+  //   if (doctor.length === 0) {
+  //     axios.get(`http://localhost:3001/doctors/${id}`)
+  //     .then(({data}) => {
+  //       if (data) setDoctors(data);
+  //       //console.log(data);
+  //     }) 
+  //     return setDoctors({});
+  //   }
+  // },[id]);
 
-  let sure = doctor?.Sures?.map((sur)=> sur.name);
-  let specialty = doctor.Specialty;
+  // let sure = doctor?.Sures?.map((sur)=> sur.name);
+  // let specialty = doctor.Specialty;
+
+  // let sure = filt.arraySure.map((sur)=> sur.name);
+  // let specialty = filt.specialty;
+
 
   return (
-      <div className="contFoto">
-        <img className="foto" alt="" src={doctor?.profilePicture} />
+    <div className="contDetail">
       <div className="contNombre">
-        <h1 className="nombre">{doctor?.name}</h1>
+        <h1 className="nombre">{filt[0].name}</h1>
+        <img className="foto" alt="" src={filt[0].profilePicture} />
       </div>
       <div className="datos">
         <div className="contInfo">
@@ -39,27 +44,27 @@ const DetailDoctor = () => {
         </div>
         <div className="frame-2">
           <label className="text-wrapper-2">Especialidad</label>
-          <label className="text-wrapper-3">{specialty?.name}</label>
+          <label className="text-wrapper-3">{filt[0].specialty}</label>
         </div>
         <hr />
         <div className="group-2">
           <label className="text-wrapper-4">Licencia</label>
-          <p className="text-wrapper-5">{doctor?.id}</p>
+          <p className="text-wrapper-5">{filt[0].license}</p>
         </div>
         <hr />
         <div className="group-2">
           <label className="text-wrapper-6">Telefono</label>
-          <label className="text-wrapper-5">{doctor?.phone}</label>
+          <label className="text-wrapper-5">{filt[0].phone}</label>
         </div>
         <hr />
         <div className="group-2">
           <div className="text-wrapper-7">email</div>
-          <label className="text-wrapper-5">{doctor?.email}</label>
+          <label className="text-wrapper-5">{filt[0].email}</label>
         </div>
         <hr />
         <div className="group-2">
           <div className="text-wrapper-7">Sure</div>
-          <label className="text-wrapper-5">{sure?.join(', ')}</label>
+          <label className="text-wrapper-5">{filt[0].arraySure.join(', ')}</label>
         </div>
       </div>
 
@@ -75,4 +80,4 @@ const DetailDoctor = () => {
   )
 }
 
-export default DetailDoctor;
+export default Detail;
