@@ -1,9 +1,9 @@
 import "./style.scss";
 
-function HomeDoctor() {
+function HomeDoctor(props) {
   return (
     <div>
-
+      <p>DOCTOR</p>
     </div>
   );
 }

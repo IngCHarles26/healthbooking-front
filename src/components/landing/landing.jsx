@@ -52,8 +52,8 @@ function Landing() {
             </div>
 
             <div className="actions">
-              <a href="/patient" className="login"> ingresar</a>
-              <a href="/patient" className="signup"> UNETE</a>
+              <a href="/patient" className="login"> INGRESAR</a>
+              <a href="/master" className="signup"> UNETE</a>
             </div>
           </div>
           <img className="hero-logo" src={heroImg} />

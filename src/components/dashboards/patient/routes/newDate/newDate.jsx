@@ -51,7 +51,7 @@ function NewDate(props) {
     // console.log({currentPage,maxPage})
     return aux;
   }
-
+  const filtered = filterDoctors()
   const handlePage = (one)=>{
     let newPage = currentPage+one;
     if(0<newPage && newPage<=maxPage) setCurrentPage(newPage);
@@ -146,7 +146,7 @@ function NewDate(props) {
                     <img src={leftArrow} alt="leftArrow" />
                   </a>
                 </li>
-                <p className="pageButton">{currentPage} de {maxPage}</p>
+                <p className="pageButton">{filtered.length ? currentPage+' de '+maxPage : 'Sin coincidencias'}</p>
                 <li className="page-item">
                   <a href="" className="prev" onClick={(e)=>{e.preventDefault();handlePage(+1)}}>
                     <img src={rightArrow} alt="rightArrow" />
