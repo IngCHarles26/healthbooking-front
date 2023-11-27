@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const cardsPerPage = 12;
+const cardsPerPage = 14;
 
 const x = {
   id: "33326",
@@ -35,7 +35,9 @@ function NewDate(props) {
   const [maxPage, setMaxPage] = useState(Math.ceil(doctors.length/cardsPerPage));
   const [currentPage, setCurrentPage] = useState(1);
 
-  // console.log({filtSure,filtSpecialty,filtName,orderName})
+  const [doctorSelected, setDoctorSelected] = useState(0);
+
+  // console.log({doctorSelected})
 
   const filterDoctors = ()=>{
     let aux = [...doctors]
@@ -62,6 +64,9 @@ function NewDate(props) {
     if(0<newPage && newPage<=maxPage) setCurrentPage(newPage);
   }
 
+  const handleSendInfo = ()=>{
+    //Enviar la informacion del doctor (variable doctorSelected)
+  }
 
   return ( 
     <main>
@@ -138,6 +143,8 @@ function NewDate(props) {
                     name={doctor.name} 
                     specialty={specialtys[doctor.Specialty]}
                     id={doctor.id}
+                    doctorSelected={doctorSelected}
+                    setDoctorSelected={setDoctorSelected}
                     />)}
               </section>
             </fieldset>
@@ -162,6 +169,10 @@ function NewDate(props) {
           </footer>
         </section>
       </article>
+
+      <section>
+        <button onClick={()=>{handleSendInfo}}>Generar Cita</button>
+      </section>
     </main>
   );
 }
@@ -198,14 +209,15 @@ function NumberPage(props) {
 }
 
 function DoctorCard(props){
-  let {image,id,name,specialty} = props;
+  let {image,id,name,specialty,doctorSelected,setDoctorSelected} = props;
 
   const navigate = useNavigate();
 
+  let style = 'tile'+(id==doctorSelected ? ' doctor-selected' : '');
   return(
-    <article className="tile">
+    <article className={style}>
       <img src={image} alt="imageDoctor" onClick={()=>{navigate(routes.getDetail+id)}}/>
-      <section className="card-description">
+      <section className="card-description" onClick={()=>{setDoctorSelected(id == doctorSelected ? 0 : id)}}>
         <h1>{name}</h1>
         <p className="specialization">{specialty}</p>
         <p className="licence">{id}</p>
