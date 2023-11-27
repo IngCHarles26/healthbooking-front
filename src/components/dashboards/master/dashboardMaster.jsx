@@ -12,15 +12,16 @@ import AsideRight from "../general/asideRight/asideRight";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
+import PostDoctor from "../doctor/PostDoctor/PostDoctor";
 
 const routes = {
 
 }
 
 const navigationOptions = [
-  {svg:homeSVG, text:'Home', link:0},
-  {svg:newDateSVG, text:'Crear Doctor', link:1},
-  {svg:editSVG, text:'Editar perfil', link:2},
+  { svg: homeSVG, text: 'Home', link: 0 },
+  { svg: newDateSVG, text: 'Crear Doctor', link: 1 },
+  { svg: editSVG, text: 'Editar perfil', link: 2 },
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]
 
@@ -30,25 +31,26 @@ function DashboardPatient() {
   // console.log({currentPage})
 
   //_______________Obtencion de informacion
-  useEffect(()=>{
+  useEffect(() => {
 
-  },[])
+  }, [])
   //_______________Navegacion en el Dashboard 
   const pageList = [
     <HomeMaster />,
+    <PostDoctor />
   ];
-  const handlePage = (page)=> setCurrentPage(page);
+  const handlePage = (page) => setCurrentPage(page);
 
-  
+
 
   return (
     <div className="wrapper-PatientHome">
-      <AsideLeft 
-        menuData={navigationOptions} 
-        handlePage={handlePage}/>
+      <AsideLeft
+        menuData={navigationOptions}
+        handlePage={handlePage} />
 
       <div className="dashboard-main">
-      {/* {pageList[currentPage]} */}
+        {pageList[currentPage]}
       </div>
 
       <aside className="user-menu">
