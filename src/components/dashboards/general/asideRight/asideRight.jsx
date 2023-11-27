@@ -25,3 +25,15 @@ const AsideRight = ({ parametros, perfil }) => {
 }
 
 export default AsideRight;
+
+
+
+
+const infor = (item) => {
+  return(
+    <div className="altura">
+      <h3 className="texto1">{item.text}</h3>
+      <h3 className="texto2">{item.info}</h3>
+    </div>
+  )
+}

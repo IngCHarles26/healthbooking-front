@@ -7,11 +7,11 @@ import historySVG from '../../assets/brands/history.svg';
 import NewDate from "./routes/newDate/newDate";
 
 //_______________COMPONENTS
-//import InfoPaciente from "../../../../componentes jose/GENERAL/InfoPaciente/InfoPaciente";
-import AsideRight from "../general/asideRight/asideRight";
+// import InfoPaciente from "../../../../componentes jose/GENERAL/InfoPaciente/InfoPaciente";
 import AsideLeft from "../general/asideLeft/asideLeft";
 import HomePatient from "./routes/home/homePatient";
 import EditProfile from "./routes/editProfile/editProfile";
+import AsideRight from "../general/asideRight/asideRight";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -72,6 +72,7 @@ function DashboardPatient() {
       </div>
 
       <aside className="user-menu">
+        {/* <InfoPaciente/> */}
         {/* <AsideRight/> */}
       </aside>
 
