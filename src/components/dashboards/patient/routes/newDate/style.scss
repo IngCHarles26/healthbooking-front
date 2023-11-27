@@ -272,6 +272,7 @@
       letter-spacing: 0.0125rem;
     }
 
+
     /*
   * -- Subcomponents and behaviours definitions -------------------------------------
   */
@@ -280,6 +281,10 @@
     }
   }
 
+
+  section.select-doctor > form > fieldset > section.cards-grid > article.doctor-selected{
+    background-color: #bbb;
+  }
   /* ---------------------------------------------------------------------------------------------- */
   /*  */
   /* ---------------------------------------------------------------------------------------------- */
