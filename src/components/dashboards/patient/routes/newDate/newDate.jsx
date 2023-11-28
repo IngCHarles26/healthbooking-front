@@ -48,7 +48,7 @@ function NewDate(props) {
   initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
 
 
-
+  console.log({filtSure})
 
   const filterDoctors = () => {
     let aux = [...doctors]
@@ -133,7 +133,7 @@ function NewDate(props) {
               <div className="options">
                 <form >
                   <label htmlFor="order">Obra Social <img src={orderCards} alt="orderCards" /></label>
-                  <select name="" id="order" value={filtSure} onChange={() => { }}>
+                  <select name="" id="order" value={filtSure} onChange={(e) => {setFiltSure(e.target.value)}}>
                     {sures.slice(1).map((el, ix) =>
                       <ObraSocial
                         key={'sure_' + ix}
@@ -215,7 +215,7 @@ function SpecialtyOption(props) {
 function ObraSocial(props) {
   let { name, setFiltSure, ix } = props
   return (
-    <option onClick={() => setFiltSure(ix)}>
+    <option value={ix}>
       {name}
     </option>
   );
