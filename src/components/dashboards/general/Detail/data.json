@@ -7,6 +7,7 @@
         "phone": "+541155943326",
         "specialty":  "Radiología e Imágenes Médicas",
         "profilePicture": "https://res.cloudinary.com/dvpo44a4q/image/upload/v1700189494/doctors/men/jdcch5dshqe6cupwdubx.jpg",
+        "price": "1.500",
         "arraySure": []
       },
       {
@@ -16,6 +17,7 @@
         "phone": "+541156372894",
         "specialty": "Neumonología",
         "profilePicture": "https://res.cloudinary.com/dvpo44a4q/image/upload/v1700189494/doctors/men/uiddrwmboauusqh8hdaq.jpg",
+        "price": "1.500",
         "arraySure": ["Swiss Medical"]
       },
       {
@@ -25,6 +27,7 @@
         "phone": "+541156740981",
         "specialty":  "Radiología e Imágenes Médicas",
         "profilePicture": "https://res.cloudinary.com/dvpo44a4q/image/upload/v1700189495/doctors/men/fiox2awavxyrmgljijgy.jpg",
+        "price": "1.500",
         "arraySure": ["Galeno"]
       },
       {
@@ -34,6 +37,7 @@
           "phone": "+541159082147",
           "specialty": "Oftalmología",
           "profilePicture": "https://res.cloudinary.com/dvpo44a4q/image/upload/v1700189494/doctors/men/qkzjxs7740l6zu5fxnfc.jpg",
+          "price": "1.500",
           "arraySure": ["Swiss Medical", "Sancor Salud"]
         },
         {
@@ -43,6 +47,7 @@
           "phone": "+541153545289",
           "specialty":  "Endocrinología y Nutrición",
           "profilePicture": "https://res.cloudinary.com/dvpo44a4q/image/upload/v1700189495/doctors/men/zgxq5hnchjd6whytswy4.jpg",
+          "price": "1.500",
           "arraySure": ["OSDE", "Swiss Medical", "Medifé"]
         },
         {

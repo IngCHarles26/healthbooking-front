@@ -6,12 +6,12 @@ import data from "./data.json"
 import { NavLink } from "react-router-dom";
 import logo from "../../../../assets/brands/svgsCreateDoctor/logo.svg"
 // import AsideRight from "../../general/AsideRight/AsideRight"
-import fotoPerfil from "../../../../assets/img/doctor.avif"
+// import fotoPerfil from "../../../../assets/img/doctor.avif"
 
 const PostDoctor = () => {
+  // const [aux, setAux] = useState([]);
+  // const [aux1, setAux1] = useState([]);
   const [foto, setFoto] = useState("");
-  const [aux, setAux] = useState([]);
-  const [aux1, setAux1] = useState([]);
   const [errors, setErrors] = useState({});
   const [seguros, setSeguros] = useState([]);
   const [doctor, setDoctor] = useState({
@@ -38,7 +38,7 @@ const PostDoctor = () => {
     setDoctor({ ...doctor, [name]: value });
     setErrors(validation({ ...doctor, [name]: value }));
   };
-  console.log(doctor);
+  //console.log(doctor);
 
   const handleSure = (event) => {
     const values = event.target.value;
@@ -46,6 +46,13 @@ const PostDoctor = () => {
       setSeguros([...seguros, values]);
       setDoctor({ ...doctor, sure: [...doctor.sure, values] });
     }
+  };
+
+
+  const handlePhone = (codigoPais, numeroTelefono) => {
+    const telefonoCompleto = codigoPais + numeroTelefono;
+    setDoctor({ ...doctor, phone: telefonoCompleto})
+    setErrors(validation({ ...doctor, phone: telefonoCompleto }))
   };
 
   //const { name, id, email, phone, profilePicture, sure, specialty } = newDoc
@@ -78,7 +85,6 @@ const PostDoctor = () => {
     setDoctor({ ...doctor, profilePicture: imageUrl });
   };
 
-  //console.log(doctor);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -100,25 +106,14 @@ const PostDoctor = () => {
 
       window.alert("Registro Exitoso!");
 
-      //console.log(doctor);
     } catch (error) {
       window.alert(error.response.data.error);
     }
   };
 
-  // const informacion = [
-  //   { text: "Altura", info:"190cm (74.8in)"},
-  //   { text: "Peso", info:"79kg (39,5Lb)"},
-  //   { text: "Cumpleaños", info:"Sep 04, 1996"},
-  //   { text: "RH", info:"O+"},
-  // ]
-
-  // const perfil = { rol: 'Paciente', img: fotoPerfil, name: "Fabio Catrillon" }
-
 
   return (
     <div>
-    {/* <AsideRight parametros={indormacion} perfil={perfil}></AsideRight> */}
     <form onSubmit={handleSubmit}>
       <div className="formulario">
         <div className="div1">
@@ -141,7 +136,8 @@ const PostDoctor = () => {
           </label>
 
           <div className="div12">
-            <button className="div14">Cancelar</button>
+              <button className="div14">Cancelar</button>
+            
             <button type= "submit" className="div14">Enviar</button>
           </div>
           <div className="div21">
@@ -202,12 +198,20 @@ const PostDoctor = () => {
                 <div className="div27">
                   <div className="div28">
                     <div className="div29">
-                      <select className="div46" >
+                      <select className="div46" id="codigoPais" onChange={(e) => {
+                          const codigoPais = e.target.value;
+                          const numeroTelefono = document.getElementById('numeroTelefono').value;
+                          handlePhone(codigoPais, numeroTelefono);
+                        }}>
                         {indicativos.map((ind, index) => (
                           <option key={index} value={ind}>{ind}</option>
                         ))}
                       </select>
-                      <input type="text" name="phone" className="div30" placeholder="Ej. 1234567890" value={doctor.phone} onChange={handleChange}></input>
+                      <input type="text" name="phone" className="div30" placeholder="Ej. 12345678901" id="numeroTelefono" onChange={(e) => {
+                        const codigoPais = document.getElementById('codigoPais').value;
+                        const numeroTelefono = e.target.value;
+                        handlePhone(codigoPais, numeroTelefono);
+                      }}></input>
                     </div>
                     <p className="MessageError">{errors.phone}</p>
                   </div>
@@ -216,7 +220,7 @@ const PostDoctor = () => {
               <div className="div24">
                 <div className="div25">
                   <div className="div26">
-                    Email
+                    Correo
                   </div>
                 </div>
                 <div className="div27">
@@ -230,7 +234,7 @@ const PostDoctor = () => {
               </div>
               <div className="div24">
                 <div className="div25">
-                  <h1 className="div26">Price</h1>
+                  <h1 className="div26">Tarifa</h1>
                 </div>
                 <div className="div27">
                   <div className="div28">

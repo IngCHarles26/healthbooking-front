@@ -46,6 +46,8 @@ function DashboardPatient() {
 
   }, [])
   //_______________Navegacion en el Dashboard 
+
+  
   const pageList = [
     <HomeMaster />,
     <PostDoctor />
