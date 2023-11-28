@@ -202,6 +202,12 @@
   word-wrap: break-word;
 }
 
+.div14:hover{
+  transition: 500ms;
+  background-color: #81e1fc;
+  color: rgb(63, 63, 63);
+}
+
 /* .div15 {
   justify-content: flex-start;
   align-items: center;
@@ -329,6 +335,7 @@
 }
 
 .div28{
+  
   align-self: stretch;
   height: 72px;
   flex-direction: column;
@@ -339,6 +346,7 @@
 }
 
 .div29 {
+ 
   align-self: stretch;
   justify-content: flex-start;
   align-items: flex-start;

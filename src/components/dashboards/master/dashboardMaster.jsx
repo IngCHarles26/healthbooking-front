@@ -8,11 +8,11 @@ import imagePrueba from '../../assets/img/profile.jpeg'
 //_______________COMPONENTS
 import AsideLeft from "../general/asideLeft/asideLeft";
 import AsideRight from "../general/asideRight/asideRight";
-
+import PostDoctor from "./routes/PostDoctor/PostDoctor";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
-import PostDoctor from "../doctor/PostDoctor/PostDoctor";
+//import PostDoctor from "../doctor/PostDoctor/PostDoctor";
 
 const routes = {
 
@@ -46,19 +46,32 @@ function DashboardPatient() {
 
   }, [])
   //_______________Navegacion en el Dashboard 
+
+  
   const pageList = [
     <HomeMaster />,
     <PostDoctor />
   ];
   const handlePage = (page) => setCurrentPage(page);
 
+  // const informacion = [
+  //   { text: "Altura", info:"190cm (74.8in)"},
+  //   { text: "Peso", info:"79kg (39,5Lb)"},
+  //   { text: "Cumpleaños", info:"Sep 04, 1996"},
+  //   { text: "RH", info:"O+"},
+  // ]
 
+  // const perfil = { rol: 'Paciente', img: "fotoPerfil", name: "Fabio Catrillon" }
 
   return (
     <div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
         handlePage={handlePage} />
+
+        {/* <AsideRight 
+        parametros={informacion} 
+        perfil={perfil} /> */}
 
       <div className="dashboard-main">
 

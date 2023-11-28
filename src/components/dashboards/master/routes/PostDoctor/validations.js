@@ -9,6 +9,7 @@ export default function validation({ name, id, email, phone, profilePicture, sur
   let rxExaCinNum = /^[0-9]{5}$/;
   let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   let rxEspacios = /\s/;
+  let rxForPhone = /^[0-9+]+$/
 
   if (!profilePicture) error.profilePicture = "La imagen es requerida"
   else error.profilePicture = ""
@@ -40,9 +41,9 @@ export default function validation({ name, id, email, phone, profilePicture, sur
  
 
   if (phone){
-    if(!rxNoLet.test(phone)) error.phone = 'Debe contener solo números';
-    else if(!numEntPos.test(phone)) error.phone = 'Debe ser un numero entero positivo';
-    else if (phone.length > 10) error.phone = "Máximo 10 caracteres";
+    if(!rxForPhone.test(phone)) error.phone = 'Debe contener solo números';
+    //else if(!numEntPos.test(phone)) error.phone = 'Debe ser un numero entero positivo';
+    else if (phone.length > 14) error.phone = "Máximo 11 caracteres";
     else if (phone.length < 8 ) error.phone = "Minimo 8 caracteres";
     else error.phone = "";
   } else error.phone = "El telefono es requerido";
