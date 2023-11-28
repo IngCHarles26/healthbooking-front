@@ -91,25 +91,76 @@ const PostDoctor = () => {
 
     try {
 
-      const { data } = await axios.post("http://localhost:3001/doctor", doctor);
+      if (doctor.name === '' && 
+      doctor.specialty === '' && 
+      doctor.id === '' && 
+      doctor.phone === '' && 
+      doctor.email === '' &&
+      doctor.price === '' && 
+      doctor.sure.length === 0) {
+        alert("Por Favor llena los campos");
+      }else if (doctor.name === '') {
+        alert("Falta el nombre. Por favor, completa el campo correspondiente.");
+      } else if (doctor.specialty === '') {
+        alert("Falta la especialidad. Por favor, completa el campo correspondiente.");
+      } else if (doctor.profilePicture === '') {
+        alert("Falta la foto de perfil. Por favor, completa el campo correspondiente.");
+      } else if (doctor.id === '') {
+        alert("Falta el ID. Por favor, completa el campo correspondiente.");
+      } else if (doctor.phone === '') {
+        alert("Falta el teléfono. Por favor, completa el campo correspondiente.");
+      } else if (doctor.email === '') {
+        alert("Falta el correo electrónico. Por favor, completa el campo correspondiente.");
+      } else if (doctor.sure.length === 0) {
+        alert("Falta agregar seguros. Por favor, completa el campo correspondiente.");
+      } else if(errors.name !== 'El nombre es requerido'&& errors.name !== ''){
+        alert('Nombre erroneo, por favor corrige el campo correspondiente')
+      }else if(errors.id !== 'La licencia es requerida' && errors.id !== ''){
+        alert('Licencia erronea, por favor corrige el campo correspondiente')
+      }else if(errors.phone !== 'El telefono es requerido' && errors.phone !== ''){
+        alert('Telefono erroneo, por favor corrige el campo correspondiente')
+      }else if(errors.email !== 'El email es requerido' && errors.email !== ''){
+        alert('Correo erroneo, por favor corrige el campo correspondiente')
+      }else if(errors.price !== 'La tarifa es requerido'&& errors.price !== ''){
+        alert('Tarifa erronea, por favor corrige el campo correspondiente')
+      }
+      else{
+            const { data } = await axios.post("http://localhost:3001/doctor", doctor);
 
-      setDoctor({
-        name: "",
-        specialty: "",
-        profilePicture: "",
-        id: "",
-        phone: "",
-        email: "",
-        price: "",
-        sure: [],
-      });
+          setDoctor({
+            name: "",
+            specialty: "",
+            profilePicture: "",
+            id: "",
+            phone: "",
+            email: "",
+            price: "",
+            sure: [],
+          });
 
-      window.alert("Registro Exitoso!");
+          window.alert("Registro Exitoso!");
+          }
 
     } catch (error) {
       window.alert(error.response.data.error);
     }
   };
+
+  const seteo = () => {
+    setDoctor({
+      name: "",
+      specialty: "",
+      profilePicture: "",
+      id: "",
+      phone: "",
+      email: "",
+      price: "",
+      sure: [],
+    });
+    setErrors("")
+    setSeguros([])
+    setFoto("")
+  }
 
 
   return (
@@ -136,7 +187,7 @@ const PostDoctor = () => {
           </label>
 
           <div className="div12">
-              <button className="div14">Cancelar</button>
+              <button className="div14" type="button" onClick={()=> seteo()}>Cancelar</button>
             
             <button type= "submit" className="div14">Enviar</button>
           </div>
@@ -268,7 +319,7 @@ const PostDoctor = () => {
                         <button className="butonDeletSure" value={seg} onClick={(event) => { setSeguros(seguros.filter((e) => e !== event.target.value)); setDoctor({ ...doctor, sure: doctor.sure.length ? doctor.sure.filter((e) => e !== event.target.value) : "" }) }}>{seg}</button>
                       ))}
                     </p>
-                    {!seguros.length && <p className="MessageError" name="Seguro">{errors.sure}</p>}
+                    {seguros.length === 0 && <p className="MessageError" name="Seguro">{errors.sure}</p>}
                   </div>
                 </div>
               </div>
