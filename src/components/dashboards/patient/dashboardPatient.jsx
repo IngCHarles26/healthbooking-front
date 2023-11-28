@@ -35,13 +35,13 @@ const navigationOptions = [
 ]
 
 const infoUser = {
-  image:imagePrueba,
-  name:'Perico Palotes',
-  info:[
-    {text:'Altura',info:'190cm'},
-    {text:'Peso',info:'79kg'},
-    {text:'Nacimiento',info:'Sep 04, 1996'},
-    {text:'RH',info:'O+'},
+  image: imagePrueba,
+  name: 'Perico Palotes',
+  info: [
+    { text: 'Altura', info: '190cm' },
+    { text: 'Peso', info: '79kg' },
+    { text: 'Nacimiento', info: 'Sep 04, 1996' },
+    { text: 'RH', info: 'O+' },
   ],
 }
 
@@ -101,7 +101,7 @@ function DashboardPatient() {
           image={infoUser.image}
           name={infoUser.name}
           info={infoUser.info}
-          />
+        />
       </aside>
 
     </div>)
