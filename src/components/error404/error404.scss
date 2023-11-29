@@ -1,0 +1,99 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensure the image covers the entire container */
+    }
+  }
+  
+  .error-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #222222;
+    font-family: 'Inter';
+  
+    .error-message-container {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  
+    .error-message {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      font-size: 35px;
+      font-weight: 400;
+      line-height: 38.40px;
+      word-wrap: break-word;
+    }
+  
+    .error-code {
+      font-size: 172px;
+      font-weight: 700;
+      word-wrap: break-word;
+    }
+  
+    .menu-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+      }
+      
+      .menu-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; /* Add this property */
+        gap: 20px;
+      }
+      
+      .menu-item {
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 24px;
+        word-wrap: break-word;
+      }
+  }
+  
+  .logo-container {
+    width: 100%;
+    max-width: 353px; /* Limit the width for larger screens */
+    height: auto;
+    padding-top: 10px;
+    left: 50%;
+    top: 23px;
+    transform: translateX(-50%); /* Center the container horizontally */
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+    text-align: center;
+    color: black;
+    font-family: 'Montserrat';
+  }
+  
+  .logo-container .logo {
+    position: relative;
+  }
+  
+  .logo-container .logo-text {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 32px;
+    letter-spacing: 0.10px;
+    word-wrap: break-word;
+  }
