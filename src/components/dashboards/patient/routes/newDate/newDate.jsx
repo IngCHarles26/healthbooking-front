@@ -211,8 +211,8 @@ function SpecialtyOption(props) {
 
 function ObraSocial(props) {
   let { name, setFiltSure, ix } = props
-    <option value={ix}>
 return (
+    <option value={ix}>
       {name}
     </option>
   );
