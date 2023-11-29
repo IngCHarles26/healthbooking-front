@@ -54,9 +54,9 @@ export default function validation({ name, id, email, phone, profilePicture, sur
 
   if (price){
     if(!rxNoLet.test(price)) error.price = 'Debe contener solo números';
-    else if(!numEntPos.test(phone)) error.phone = 'Debe ser un numero entero positivo';
+    else if(!numEntPos.test(price)) error.price = 'Debe ser un numero entero positivo';
     else error.price = "";
-  } else error.price = "El precio es requerido"
+  } else error.price = "La tarifa es requerido"
   
   
   if (sure.length === 0) error.sure = "Seleccione al menos una Obra Social";

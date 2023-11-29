@@ -14,9 +14,6 @@ import { useNavigate } from "react-router-dom";
 // MERCADOPAGO
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
-
-
-
 const cardsPerPage = 14;
 
 const x = {
@@ -49,6 +46,7 @@ function NewDate(props) {
 
 
   console.log({filtSure})
+
 
   const filterDoctors = () => {
     let aux = [...doctors]
@@ -132,7 +130,6 @@ function NewDate(props) {
 
               <div className="options">
                 <form >
-                  <label htmlFor="order">Obra Social <img src={orderCards} alt="orderCards" /></label>
                   <select name="" id="order" value={filtSure} onChange={(e) => {setFiltSure(e.target.value)}}>
                     {sures.slice(1).map((el, ix) =>
                       <ObraSocial
@@ -214,7 +211,7 @@ function SpecialtyOption(props) {
 
 function ObraSocial(props) {
   let { name, setFiltSure, ix } = props
-  return (
+return (
     <option value={ix}>
       {name}
     </option>
