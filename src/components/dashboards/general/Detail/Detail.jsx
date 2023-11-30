@@ -79,9 +79,7 @@ const Detail = () => {
 
         <button className="boton">Seleccionar</button>
      </div>
-
      </div>
-
     </div>
     </div>
     
