@@ -111,17 +111,19 @@ const PostDoctor = () => {
         alert("Falta el teléfono. Por favor, completa el campo correspondiente.");
       } else if (doctor.email === '') {
         alert("Falta el correo electrónico. Por favor, completa el campo correspondiente.");
+      } else if(doctor.price === ''){
+        alert('Falta la tarifa. Por favor, completa el campo correspondiente')
       } else if (doctor.sure.length === 0) {
         alert("Falta agregar seguros. Por favor, completa el campo correspondiente.");
       } else if(errors.name !== 'El nombre es requerido'&& errors.name !== ''){
         alert('Nombre erroneo, por favor corrige el campo correspondiente')
-      }else if(errors.id !== 'La licencia es requerida' && errors.id !== ''){
+      } else if(errors.id !== 'La licencia es requerida' && errors.id !== ''){
         alert('Licencia erronea, por favor corrige el campo correspondiente')
-      }else if(errors.phone !== 'El telefono es requerido' && errors.phone !== ''){
+      } else if(errors.phone !== 'El telefono es requerido' && errors.phone !== ''){
         alert('Telefono erroneo, por favor corrige el campo correspondiente')
-      }else if(errors.email !== 'El email es requerido' && errors.email !== ''){
+      } else if(errors.email !== 'El email es requerido' && errors.email !== ''){
         alert('Correo erroneo, por favor corrige el campo correspondiente')
-      }else if(errors.price !== 'La tarifa es requerido'&& errors.price !== ''){
+      } else if(errors.price !== 'La tarifa es requerido'&& errors.price !== ''){
         alert('Tarifa erronea, por favor corrige el campo correspondiente')
       }
       else{
@@ -315,8 +317,8 @@ const PostDoctor = () => {
                       </select>
                     </div>
                     <p>
-                      {seguros.map((seg) => (
-                        <button className="butonDeletSure" value={seg} onClick={(event) => { setSeguros(seguros.filter((e) => e !== event.target.value)); setDoctor({ ...doctor, sure: doctor.sure.length ? doctor.sure.filter((e) => e !== event.target.value) : "" }) }}>{seg}</button>
+                      {seguros.map((seg, index) => (
+                        <button key={index} type="button" className="butonDeletSure" value={seg} onClick={(event) => { setSeguros(seguros.filter((e) => e !== event.target.value)); setDoctor({ ...doctor, sure: doctor.sure.length ? doctor.sure.filter((e) => e !== event.target.value) : "" }) }}>{seg}</button>
                       ))}
                     </p>
                     {seguros.length === 0 && <p className="MessageError" name="Seguro">{errors.sure}</p>}
