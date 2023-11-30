@@ -31,6 +31,7 @@ const navigationOptions = [
   { svg: homeSVG, text: 'Home', link: 0 },
   { svg: newDateSVG, text: 'Nueva cita', link: 1 },
   { svg: editSVG, text: 'Editar perfil', link: 2 },
+  { svg: editSVG, text: 'FeedBack', link: 2 },
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]
 
