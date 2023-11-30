@@ -2,11 +2,17 @@ import "./Detail.css"
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios"
+//import Data from './data.json'
 
 const Detail = () => {
 
   const { id } = useParams();
   const [doctor, setDoctors] = useState([]);  
+  
+  //let filt = Data.doctors.filter((doc)=>doc.license === id)
+  // let sure = filt.arraySure.map((sur)=> sur.name);
+  // let specialty = filt.specialty;
+  //console.log(filt[0].name);
 
   useEffect(() => {
     if (doctor.length === 0) {

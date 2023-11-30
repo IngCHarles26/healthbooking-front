@@ -5,10 +5,12 @@ import { useState } from "react"
 import data from "./data.json"
 import { NavLink } from "react-router-dom";
 import logo from "../../../../assets/brands/svgsCreateDoctor/logo.svg"
-
+// import AsideRight from "../../general/AsideRight/AsideRight"
+// import fotoPerfil from "../../../../assets/img/doctor.avif"
 
 const PostDoctor = () => {
-
+  // const [aux, setAux] = useState([]);
+  // const [aux1, setAux1] = useState([]);
   const [foto, setFoto] = useState("");
   const [errors, setErrors] = useState({});
   const [seguros, setSeguros] = useState([]);
@@ -36,6 +38,7 @@ const PostDoctor = () => {
     setDoctor({ ...doctor, [name]: value });
     setErrors(validation({ ...doctor, [name]: value }));
   };
+  //console.log(doctor);
 
   const handleSure = (event) => {
     const values = event.target.value;
@@ -51,6 +54,8 @@ const PostDoctor = () => {
     setDoctor({ ...doctor, phone: telefonoCompleto})
     setErrors(validation({ ...doctor, phone: telefonoCompleto }))
   };
+
+  //const { name, id, email, phone, profilePicture, sure, specialty } = newDoc
 
   const changeUploadImage = async (event) => {
     const file = event.target.files[0];
