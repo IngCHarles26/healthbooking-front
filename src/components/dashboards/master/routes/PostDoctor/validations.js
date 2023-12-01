@@ -1,14 +1,12 @@
 export default function validation({ name, id, email, phone, profilePicture, sure, specialty, price }){
 
   let error = {};
-  let rxNoSimNum = /^[A-Za-z\s]*$/;
+  let rxNoSimNum = /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/
   let rxPriLetMay = /\b[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñ]*\b/g; 
-  let rxNoNum = /^[A-Za-z ]*$/;
   let rxNoLet = /^\d+$/;
   var numEntPos = /^[1-9]\d*$/;
   let rxExaCinNum = /^[0-9]{5}$/;
   let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  let rxEspacios = /\s/;
   let rxForPhone = /^[0-9+]+$/
 
   if (!profilePicture) error.profilePicture = "La imagen es requerida"
@@ -17,10 +15,7 @@ export default function validation({ name, id, email, phone, profilePicture, sur
 
   if (name) {
     if (!rxPriLetMay.test(name)) error.name = "La primera letra deberia ser Mayúscula";
-    else if (rxEspacios.test(name)){
-      if (!rxPriLetMay.test(name)) error.name = "La primera letra deberia ser Mayúscula";
-    }
-    else if (!rxNoSimNum.test(name)) error.name = "No debe contender Simbolos ni Numero";
+    else if (!rxNoSimNum.test(name)) error.name = "No debe contender Simbolos ni Numeros";
     else if (name.length > 50) error.name = "Máximo 50 caracteres";
     else if (name.length < 5 ) error.name = "Minimo 5 caracteres";
     else error.name = "";

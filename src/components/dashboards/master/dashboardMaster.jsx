@@ -7,7 +7,7 @@ import historySVG from '../../assets/brands/history.svg';
 import imagePrueba from '../../assets/img/profile.jpeg'
 //_______________COMPONENTS
 import AsideLeft from "../general/asideLeft/asideLeft";
-import AsideRight from "../general/asideRight/asideRight";
+import AsideRight from "../general/asideRight/asideRight"
 import PostDoctor from "./routes/PostDoctor/PostDoctor";
 import { useEffect, useState } from "react";
 import axios from "axios";
