@@ -13,7 +13,7 @@ const AsideRight = (props) => {
   return (
     <aside className="contenedor">
       <div className="subContenedor">
-        {/* <h2 className="paciente">{type}</h2>
+        <h2 className="paciente">{type}</h2>
 
         {user.picture !== undefined 
           ? <img className="foto" src={user.picture} alt="" /> 
@@ -26,7 +26,7 @@ const AsideRight = (props) => {
         <div className="contInfo">
           <h3 className="Info">Informacion</h3>
           {info.map((item) => infor(item))}
-        </div> */}
+        </div>
       </div>
     </aside>
 

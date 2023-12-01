@@ -19,7 +19,11 @@ import { useEffect, useState } from "react";
 //import axios from "axios";
 
 import { useAuth0 } from '@auth0/auth0-react'
+
+import ConfirmDate from "./routes/confirmDate/confirmDate";
+
 import { healthApi } from "../../../Api/HealthBookingApi";
+
 
 const routes = {
   doctors: '/doctors',
@@ -32,6 +36,7 @@ const navigationOptions = [
   { svg: homeSVG, text: 'Home', link: 0 },
   { svg: newDateSVG, text: 'Nueva cita', link: 1 },
   { svg: editSVG, text: 'Editar perfil', link: 2 },
+  { svg: editSVG, text: 'Resumen Cita', link: 3 },
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]
 
@@ -44,6 +49,12 @@ const infoUser = {
     { text: 'Nacimiento', info: 'Sep 04, 1996' },
     { text: 'RH', info: 'O+' },
   ],
+}
+
+const infoFinishDate = {
+  patient: {id:'1', name:'Carlos Condori Ll', sure: 'OSDE'},
+  doctor: {id:'1',name:'Santi Chaparro', Specialty:'Neurología',sures:['OSDE','Galeno'],cost:9600},
+  date: {date:'15/12/2023',hour:'09:00 am'},
 }
 
 function DashboardPatient() {
@@ -80,6 +91,8 @@ function DashboardPatient() {
       doctors={convertDoctors(doctors)}
       specialtys={convertOptions(specialtys)} />,
     <EditProfile />,
+    <ConfirmDate
+      infoFinishDate={infoFinishDate}/>
   ];
   const handlePage = (page) => setCurrentPage(page);
 
