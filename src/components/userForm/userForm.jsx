@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import validator from 'validator';
 import "./PostDoctor.css"
 import { useAuth0 } from '@auth0/auth0-react'
-import axios from "axios"
+//import axios from "axios"
+import { healthApi } from '../../Api/HealthBookingApi';
 
 
 const UserForm = () => {
@@ -21,7 +22,7 @@ const UserForm = () => {
     });
 
     const peticion = async () => {
-        const { data } = await axios('http://localhost:3001/sure')
+        const { data } = await healthApi('/sure')
         setSures(data)
     }
 
@@ -54,7 +55,7 @@ const UserForm = () => {
         e.preventDefault();
         const createuser = { id: formData.dni, name: formData.nombreCompleto, phone: formData.telefono, email: user.email, sure: formData.obrasocial }
         if (validateForm()) {
-            //const newUser = await axios.post('http://localhost:3000/pacient/register', createuser)
+            //const newUser = await healthApi.post('/pacient/register', createuser)
             navigate('/patient');
         } else {
             console.log('Formulario no válido');
