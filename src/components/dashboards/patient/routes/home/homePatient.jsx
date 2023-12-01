@@ -15,7 +15,7 @@ function HomePatient() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/appointment/25719384');
+        const response = await axios.get('http://localhost:3001/appointment/39421857');
         setData(response.data);
         // console.log(response.data);
       } catch (error) {
@@ -59,7 +59,7 @@ function HomePatient() {
             </thead>
             <tbody>
 
-              {data.slice(
+              {data?.slice(
                 (currentPage - 1) * perPage,
                 (currentPage - 1) * perPage + perPage
               ).map((cita) => (

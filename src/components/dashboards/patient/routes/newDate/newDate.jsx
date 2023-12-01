@@ -237,7 +237,7 @@ function DoctorCard(props) {
     setPreference({
       date: "2020-09-11",
       time: "08:00",
-      idPatient: 25719384,
+      idPatient: 39421857,
       idDoctor: id
     });
   };
