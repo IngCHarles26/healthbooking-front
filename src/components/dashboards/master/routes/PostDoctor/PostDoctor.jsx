@@ -5,6 +5,7 @@ import { useState } from "react"
 import data from "./data.json"
 import { NavLink } from "react-router-dom";
 import logo from "../../../../assets/brands/svgsCreateDoctor/logo.svg"
+import { healthApi } from "../../../../../Api/HealthBookingApi"
 // import AsideRight from "../../general/AsideRight/AsideRight"
 // import fotoPerfil from "../../../../assets/img/doctor.avif"
 
@@ -124,8 +125,10 @@ const PostDoctor = () => {
       } else if (errors.price !== 'La tarifa es requerido' && errors.price !== '') {
         alert('Tarifa erronea, por favor corrige el campo correspondiente')
       }
-      else {
-        const { data } = await axios.post("http://localhost:3001/doctor", doctor);
+
+      else{
+            const { data } = await healthApi.post("/doctor", doctor);
+
 
         setDoctor({
           name: "",
