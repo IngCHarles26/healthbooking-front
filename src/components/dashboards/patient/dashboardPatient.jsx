@@ -16,16 +16,20 @@ import HomePatient from "./routes/home/homePatient";
 import EditProfile from "./routes/editProfile/editProfile";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 
 import { useAuth0 } from '@auth0/auth0-react'
+
 import ConfirmDate from "./routes/confirmDate/confirmDate";
 
+import { healthApi } from "../../../Api/HealthBookingApi";
+
+
 const routes = {
-  doctors: 'http://localhost:3001/doctors',
-  specialtys: 'http://localhost:3001/specialty',
-  sures: 'http://localhost:3001/sure',
-  dates: 'http://localhost:3001/',
+  doctors: '/doctors',
+  specialtys: '/specialty',
+  sures: '/sure',
+  dates: '/',
 }
 
 const navigationOptions = [
@@ -66,14 +70,14 @@ function DashboardPatient() {
 
   //_______________Obtencion de informacion
   useEffect(() => {
-    axios.get(routes.doctors)
+    healthApi.get(routes.doctors)
       .then(({ data }) => {
         setDoctors(data);
-        return axios.get(routes.specialtys)
+        return healthApi.get(routes.specialtys)
       })
       .then(({ data }) => {
         setSpecialtys(data);
-        return axios.get(routes.sures)
+        return healthApi.get(routes.sures)
       })
       .then(({ data }) => { setSures(data) })
       .then(() => console.log({ sures, specialtys, doctors }))
