@@ -6,13 +6,14 @@ import searchDoctor from '../../../../assets/brands/search-doctor.svg';
 import leftArrow from '../../../../assets/brands/arrow-left-newDate.svg';
 import rightArrow from '../../../../assets/brands/arrow-right-newDate.svg';
 
-import axios from "axios";
+//import axios from "axios";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // MERCADOPAGO
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import { healthApi } from "../../../../../Api/HealthBookingApi";
 
 const cardsPerPage = 14;
 
@@ -74,8 +75,8 @@ function NewDate(props) {
   }
 
   const handleSendInfo = async (buyDate) => {
-    const response = await axios.post(
-      "http://localhost:3001/pay",
+    const response = await healthApi.post(
+      "/pay",
       buyDate
     );
     console.log(response)

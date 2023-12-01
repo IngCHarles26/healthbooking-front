@@ -10,7 +10,7 @@ import AsideLeft from "../general/asideLeft/asideLeft";
 import AsideRight from "../general/asideRight/asideRight"
 import PostDoctor from "./routes/PostDoctor/PostDoctor";
 import { useEffect, useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
 //import PostDoctor from "../doctor/PostDoctor/PostDoctor";
 

@@ -1,7 +1,8 @@
 import "./Detail.css"
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import axios from "axios"
+//import axios from "axios"
+import { healthApi } from "../../../../Api/HealthBookingApi";
 //import Data from './data.json'
 
 const Detail = () => {
@@ -16,7 +17,7 @@ const Detail = () => {
 
   useEffect(() => {
     if (doctor.length === 0) {
-      axios.get(`http://localhost:3001/doctors/${id}`)
+      healthApi.get(`/doctors/${id}`)
       .then(({data}) => {
         if (data) setDoctors(data);
       }) 
