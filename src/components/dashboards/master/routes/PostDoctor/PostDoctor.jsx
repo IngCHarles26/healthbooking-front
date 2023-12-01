@@ -125,6 +125,7 @@ const PostDoctor = () => {
       } else if (errors.price !== 'La tarifa es requerido' && errors.price !== '') {
         alert('Tarifa erronea, por favor corrige el campo correspondiente')
       }
+
       else {
         const { data } = await healthApi.post("/doctor", doctor);
 
