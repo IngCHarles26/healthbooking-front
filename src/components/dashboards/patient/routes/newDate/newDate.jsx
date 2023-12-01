@@ -40,12 +40,12 @@ function NewDate(props) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [doctorSelected, setDoctorSelected] = useState(0);
-  const [preference, setPreference] = useState({ id: "", price: "", name: "" });
+  const [preference, setPreference] = useState({});
 
   initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
 
 
-  console.log({filtSure})
+  console.log({ filtSure })
 
 
   const filterDoctors = () => {
@@ -74,6 +74,7 @@ function NewDate(props) {
   }
 
   const handleSendInfo = async (buyDate) => {
+    console.log(buyDate)
     const response = await axios.post(
       "http://localhost:3001/pay",
       buyDate
@@ -130,7 +131,7 @@ function NewDate(props) {
 
               <div className="options">
                 <form >
-                  <select name="" id="order" value={filtSure} onChange={(e) => {setFiltSure(e.target.value)}}>
+                  <select name="" id="order" value={filtSure} onChange={(e) => { setFiltSure(e.target.value) }}>
                     {sures.slice(1).map((el, ix) =>
                       <ObraSocial
                         key={'sure_' + ix}
@@ -211,7 +212,7 @@ function SpecialtyOption(props) {
 
 function ObraSocial(props) {
   let { name, setFiltSure, ix } = props
-return (
+  return (
     <option value={ix}>
       {name}
     </option>
@@ -230,14 +231,14 @@ function NumberPage(props) {
 function DoctorCard(props) {
   let { image, id, name, specialty, price, doctorSelected, setDoctorSelected, setPreference } = props;
 
-  const handleDoctorSelection = () => {
+  const handleDoctorSelection = (id) => {
     setDoctorSelected(id == doctorSelected ? 0 : id);
 
     setPreference({
-      id: id,
-      price: price,
-      name: name,
-      image: image
+      date: "2020-09-11",
+      time: "08:00",
+      idPatient: 25719384,
+      idDoctor: id
     });
   };
 
@@ -247,7 +248,7 @@ function DoctorCard(props) {
   return (
     <article className={style}>
       <img src={image} alt="imageDoctor" onClick={() => { navigate(routes.getDetail + id) }} />
-      <section className="card-description" onClick={() => { handleDoctorSelection(price, id, name, image) }}>
+      <section className="card-description" onClick={() => { handleDoctorSelection(id) }}>
         <h1>{name}</h1>
         <p className="specialization">{specialty}</p>
         <p className="licence">{id}</p>
