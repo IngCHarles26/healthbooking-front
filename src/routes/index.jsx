@@ -7,8 +7,9 @@ import DashboardDoctor from "../components/dashboards/doctor/dashboardDoctor";
 import UserForm from "../components/userForm/userForm";
 import Detail from "../components/dashboards/general/Detail/Detail";
 import Error404 from "../components/error404/Error404";
-
+import Confirmdate from "../components/dashboards/patient/routes/confirmedate/Confirmdate";
 const router = createBrowserRouter([
+  { path: "/confirmdate", element: <Confirmdate /> },
   { path: "/error", element: <Error404 /> },
   { path: "/", element: <Landing /> },
   { path: "/patient", element: <DashboardPatient /> },
