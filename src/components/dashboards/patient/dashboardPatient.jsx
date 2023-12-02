@@ -14,6 +14,7 @@ import AsideLeft from "../general/asideLeft/asideLeft";
 import AsideRight from "../general/asideRight/asideRight";
 import HomePatient from "./routes/home/homePatient";
 import EditProfile from "./routes/editProfile/editProfile";
+import Loading from "../../Loading/Loading"
 
 import { useEffect, useState } from "react";
 //import axios from "axios";
@@ -23,6 +24,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import ConfirmDate from "./routes/confirmDate/confirmDate";
 
 import { healthApi } from "../../../Api/HealthBookingApi";
+import { Navigate } from "react-router-dom";
 
 
 const routes = {
@@ -52,9 +54,9 @@ const infoUser = {
 }
 
 const infoFinishDate = {
-  patient: {id:'1', name:'Carlos Condori Ll', sure: 'OSDE'},
-  doctor: {id:'1',name:'Santi Chaparro', Specialty:'Neurología',sures:['OSDE','Galeno'],cost:9600},
-  date: {date:'15/12/2023',hour:'09:00 am'},
+  patient: { id: '1', name: 'Carlos Condori Ll', sure: 'OSDE' },
+  doctor: { id: '1', name: 'Santi Chaparro', Specialty: 'Neurología', sures: ['OSDE', 'Galeno'], cost: 9600 },
+  date: { date: '15/12/2023', hour: '09:00 am' },
 }
 
 function DashboardPatient() {
@@ -62,7 +64,7 @@ function DashboardPatient() {
   const [sures, setSures] = useState([]);
   const [specialtys, setSpecialtys] = useState([]);
   const [doctors, setDoctors] = useState([]);
-  const { isAuthenticated } = useAuth0()
+  const { isAuthenticated, isLoading } = useAuth0()
 
   // console.log({currentPage})
 
@@ -92,11 +94,18 @@ function DashboardPatient() {
       specialtys={convertOptions(specialtys)} />,
     <EditProfile />,
     <ConfirmDate
-      infoFinishDate={infoFinishDate}/>
+      infoFinishDate={infoFinishDate} />
   ];
   const handlePage = (page) => setCurrentPage(page);
 
-
+  if (isLoading) {
+    return (
+      <Loading />
+    )
+  }
+  if (!isAuthenticated) {
+    Navigate("/")
+  }
 
   return (
     isAuthenticated && (<div className="wrapper-PatientHome">
