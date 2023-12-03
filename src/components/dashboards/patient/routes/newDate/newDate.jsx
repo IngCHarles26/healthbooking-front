@@ -46,7 +46,7 @@ function NewDate(props) {
   initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
 
 
-  console.log({ filtSure })
+  //console.log({ filtSure })
 
 
   const filterDoctors = () => {
@@ -79,7 +79,7 @@ function NewDate(props) {
       "/pay",
       buyDate
     );
-    console.log(response)
+    //console.log(response)
 
     window.location.href = response.data;
   }

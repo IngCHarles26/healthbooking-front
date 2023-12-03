@@ -1,19 +1,12 @@
 import "./Detail.css"
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-//import axios from "axios"
 import { healthApi } from "../../../../Api/HealthBookingApi";
-//import Data from './data.json'
 
-const Detail = () => {
+const Detail = ({ handlePage }) => {
 
   const { id } = useParams();
   const [doctor, setDoctors] = useState([]);  
-  
-  //let filt = Data.doctors.filter((doc)=>doc.license === id)
-  // let sure = filt.arraySure.map((sur)=> sur.name);
-  // let specialty = filt.specialty;
-  //console.log(filt[0].name);
 
   useEffect(() => {
     if (doctor.length === 0) {
@@ -37,7 +30,7 @@ const Detail = () => {
         <img className="fotoDetail" alt="" src={doctor?.profilePicture} />
       
       <div className="datos">
-        <div className="contInfo">
+        <div className="contInfor">
           <label className="info">Informacion</label>
         </div>
         <div className="textos">
@@ -70,15 +63,11 @@ const Detail = () => {
           <label className="textoDer">{sure?.join(', ')}</label>
         </div>
         
-      <hr />
+      <hr className="hr"/>
       </div>
 
       <div className="contBotones">
-          <NavLink to={"/patient"}>
-            <button className="boton">Regresa</button>
-          </NavLink>
-
-        <button className="boton">Seleccionar</button>
+            <button className="boton" onClick={()=>handlePage(1)}>Regresar</button>
      </div>
      </div>
     </div>

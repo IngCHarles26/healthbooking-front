@@ -23,6 +23,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import ConfirmDate from "./routes/confirmDate/confirmDate";
 
 import { healthApi } from "../../../Api/HealthBookingApi";
+import Detail from "../general/Detail/Detail";
 
 
 const routes = {
@@ -60,6 +61,7 @@ const infoFinishDate = {
 function DashboardPatient() {
   const [currentPage, setCurrentPage] = useState(0);
   const [sures, setSures] = useState([]);
+  const [idDetailDoctor, setIdDetailDoctor] = useState(0);
   const [specialtys, setSpecialtys] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const { isAuthenticated } = useAuth0()
@@ -80,23 +82,25 @@ function DashboardPatient() {
         return healthApi.get(routes.sures)
       })
       .then(({ data }) => { setSures(data) })
-      .then(() => console.log({ sures, specialtys, doctors }))
+      //.then(() => console.log({ sures, specialtys, doctors }))
       .catch((err) => console.log(err.message))
   }, [])
   //_______________Navegacion en el Dashboard 
+  const handlePage = (page) => setCurrentPage(page);
+
+  const handleIdDoctor = (id) => setIdDetailDoctor(id);
+
   const pageList = [
     <HomePatient />,
     <NewDate
       sures={convertOptions(sures)}
       doctors={convertDoctors(doctors)}
-      specialtys={convertOptions(specialtys)} />,
+      specialtys={convertOptions(specialtys)}
+      handlePagee={handlePage}
+      handleIdDoctor={handleIdDoctor} />,
     <EditProfile />,
-    <ConfirmDate
-      infoFinishDate={infoFinishDate}/>
+     <Detail handlePage={handlePage}></Detail>
   ];
-  const handlePage = (page) => setCurrentPage(page);
-
-
 
   return (
     isAuthenticated && (<div className="wrapper-PatientHome">

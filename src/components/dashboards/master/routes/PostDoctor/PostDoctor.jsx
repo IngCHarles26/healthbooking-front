@@ -41,6 +41,8 @@ const PostDoctor = () => {
   };
   //console.log(doctor);
 
+  handleSpecialty = () => {}
+
   const handleSure = (event) => {
     const values = event.target.value;
     if (!seguros.includes(values)) {
