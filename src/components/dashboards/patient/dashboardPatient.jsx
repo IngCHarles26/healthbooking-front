@@ -99,12 +99,7 @@ function DashboardPatient() {
   const handlePage = (page) => setCurrentPage(page);
 
   if (isLoading) {
-    return (
-      <Loading />
-    )
-  }
-  if (!isAuthenticated) {
-    Navigate("/")
+    <Loading />
   }
 
   return (

@@ -30,8 +30,15 @@ const infoParticipants = [
 
 function Landing() {
 
-  const { loginWithRedirect } = useAuth0()
+  const { loginWithRedirect, user, isAuthenticated } = useAuth0()
+  console.log(user);
+  console.log(isAuthenticated);
 
+  if (isAuthenticated) {
+    console.log("localstorage");
+    localStorage.setItem('bool', JSON.stringify(isAuthenticated));
+    localStorage.setItem('user', JSON.stringify(user.email));
+  }
 
   return (
     <div className="wrapper-LandingPage">

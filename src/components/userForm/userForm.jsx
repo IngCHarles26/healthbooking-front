@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import validator from 'validator';
 import "./PostDoctor.css"
 import { useAuth0 } from '@auth0/auth0-react'
 //import axios from "axios"
 import { healthApi } from '../../Api/HealthBookingApi';
-
+import Loading from "../Loading/Loading"
 
 const UserForm = () => {
 
     const navigate = useNavigate();
     const [sures, setSures] = useState([]);
-    const { user } = useAuth0();
+    const [isLoading, setIsLoading] = useState(true);
+
+    // const [userExist, setUserExist] = useState(false)
+    const { user, isAuthenticated } = useAuth0();
     const [formData, setFormData] = useState({
         dni: '',
         nombreCompleto: '',
@@ -20,15 +23,30 @@ const UserForm = () => {
         telefono: '',
         obrasocial: '',
     });
-
-    const peticion = async () => {
+    const boolstorage = localStorage.getItem('bool');
+    const bool = JSON.parse(boolstorage);
+    const userstorage = localStorage.getItem('user');
+    const users = JSON.parse(userstorage);
+    const getSure = async () => {
         const { data } = await healthApi('/sure')
         setSures(data)
+    }
+    const getUser = async () => {
+        const { data } = await healthApi('/logging', { params: { email: users } })
+        console.log(data);
+        if (data) {
+            navigate('/patient')
+        }
     }
 
 
     useEffect(() => {
-        peticion()
+        getUser()
+        const timeoutId = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+        getSure()
+        return () => clearTimeout(timeoutId);
     }, [])
 
     const [errors, setErrors] = useState({});
@@ -55,7 +73,7 @@ const UserForm = () => {
         e.preventDefault();
         const createuser = { id: formData.dni, name: formData.nombreCompleto, phone: formData.telefono, email: user.email, sure: formData.obrasocial }
         if (validateForm()) {
-            //const newUser = await healthApi.post('/pacient/register', createuser)
+            const newUser = await healthApi.post('/pacient/register', createuser)
             navigate('/patient');
         } else {
             console.log('Formulario no válido');
@@ -101,9 +119,14 @@ const UserForm = () => {
         return Object.keys(newErrors).length === 0;
     };
 
+    if (isLoading) {
+        return (
+            <Loading />
+        )
+    }
 
     return (
-        <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        isAuthenticated ? (<div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <form onSubmit={handleSubmit} style={{ margin: '30px', width: '50%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <div style={{ width: '90%', height: '100%', padding: 40, background: 'white', borderRadius: 35, border: '1px #D7DEDD solid', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 16, display: 'inline-flex', boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.5)' }}>
                     <div style={{ color: '#42A7C3', fontSize: 24, fontFamily: 'Outfit', fontWeight: '600', wordWrap: 'break-word' }}>Ingresa tus datos</div>
@@ -231,7 +254,7 @@ const UserForm = () => {
                     <div style={{ alignSelf: 'stretch', height: 0, border: '1px #D7DEDD solid' }}></div>
                 </div>
             </form>
-        </div>
+        </div>) : navigate('/')
     );
 
 };

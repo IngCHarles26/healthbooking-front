@@ -14,6 +14,7 @@ import Loading from "../../Loading/Loading"
 //import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom"
 //import PostDoctor from "../doctor/PostDoctor/PostDoctor";
 
 const routes = {
@@ -41,6 +42,7 @@ const navigationOptions = [
 function DashboardPatient() {
   const [currentPage, setCurrentPage] = useState(0);
   const { isAuthenticated, isLoading } = useAuth0()
+  const navigate = useNavigate()
   // console.log({currentPage})
 
   //_______________Obtencion de informacion
@@ -72,7 +74,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated && (<div className="wrapper-PatientHome">
+    isAuthenticated ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
         handlePage={handlePage} />
@@ -96,7 +98,7 @@ function DashboardPatient() {
         />
       </aside>
 
-    </div>)
+    </div>) : navigate("/")
   );
 }
 
