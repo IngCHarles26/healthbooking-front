@@ -52,9 +52,15 @@ const infoUser = {
 }
 
 const infoFinishDate = {
-  patient: {id:'1', name:'Carlos Condori Ll', sure: 'OSDE'},
-  doctor: {id:'1',name:'Santi Chaparro', Specialty:'Neurología',sures:['OSDE','Galeno'],cost:9600},
-  date: {date:'15/12/2023',hour:'09:00 am'},
+  idPatient:28271453,
+  namePatient:"Santiago Chaparro",
+  idDoctor:89657,
+  nameDoctor:"Santiago paz",
+  specialty:"Cardiología",
+  date:"2023-11-11",
+  time:"11:00",
+  costo:4500
+
 }
 
 function DashboardPatient() {
