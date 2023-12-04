@@ -26,7 +26,7 @@ const AsideRight = (props) => {
         
           <div className="contInfo">
             <h3 className="Info">Informacion</h3>
-            {info.map((item) => infor(item, index))}
+            {info.map((item, index) => infor(item, index))}
           </div>
         </div>
     </aside>
@@ -36,11 +36,11 @@ const AsideRight = (props) => {
 
 export default AsideRight;
 
-const infor = (item) => {
+const infor = (item, index) => {
   return(
     <div className="altura" key={index}>
       <h3 className="texto1">{item.text}</h3>
       <h3 className="texto2">{item.info}</h3>
-    </div>
-  )
+      </div>
+    )
 }
