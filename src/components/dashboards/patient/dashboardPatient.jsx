@@ -52,9 +52,9 @@ const infoUser = {
 }
 
 const infoFinishDate = {
-  idPatient:28271453,
+  idPatient:39421857,
   namePatient:"Santiago Chaparro",
-  idDoctor:89657,
+  idDoctor:45289,
   nameDoctor:"Santiago paz",
   specialty:"Cardiología",
   date:"2023-11-11",
