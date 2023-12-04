@@ -443,6 +443,139 @@
     }
   }
 
+  .agenda-doctor{
+    width: 100%;
+
+
+  }
+
+
+  .table-disponibility{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 60rem;
+    outline: none;
+    border: none;
+
+
+    th,td{
+      text-align: center;
+      padding: 0.5rem;
+      margin: 0;
+      border-radius: 0.2rem;
+    }
+
+    thead{
+      background-color: #3498db;
+    }
+    .ocupied-hour{
+      background-color: #ff000099;
+      color: #ff0000;
+    }
+    .free-hour{
+      background-color: #3498db10;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+    .endWeek-hour{
+      background-color: #74747470;
+      color: #74747450;
+    }
+
+    .selected-hour{
+      background-color: #8BC34A;
+
+      &::after{
+        content: "X";
+        color: black;
+      }
+      &:hover{
+        cursor: pointer;
+      }
+    }
+
+     
+    tr td:first-child{
+      background-color: #3498db70;
+      &::after{
+        content: "";
+        color: black;
+      }
+    }
+  }
+
+  .navigationAgenda{
+    width: 100%;
+    padding: 1rem 0 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+    img{
+      padding: 0.5rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 0.5rem;
+      
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  } 
+
+    
   /* ---------------------------------------------------------------------------------------------- */
   /*  */
   /* ---------------------------------------------------------------------------------------------- */
+
+  // .scheduler-container {
+  //   width: 1000px;
+  //   height: auto;
+  //   padding: 20px;
+  //   border: 1px solid #ccc;
+  //   font-family: 'Arial', sans-serif;
+  // }
+ 
+  // // Style the table
+  // table {
+  //   width: 100%;
+  //   border-collapse: collapse;
+  //   margin-top: 20px;
+  //   background-color: #fff;
+  //   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ 
+   
+ 
+  //   // Style the table cells (time slots)
+  //   td {
+  //     padding: 15px;
+  //     text-align: center;
+  //     border: 1px solid #ccc;
+  //     transition: background-color 0.3s;
+ 
+  //     // Add some hover effect
+  //     &:hover {
+  //       background-color: #ecf0f1;
+  //     }
+ 
+  //     // Style the time div inside each cell
+  //     .day {
+  //       font-weight: bolder;
+  //       font-size: 18px;
+  //       color: #333;
+  //     }
+  //   }
+ 
+  //   // Style the row with the class days-of-the-week
+  //   .days-of-the-week {
+  //     background-color: #3498db;
+  //     color: #fff;
+  //     border: 3px solid red; // Add a 3px red border to this specific row
+  //   }
+  //   .time-time{
+  //       background-color: #3498db;
+  //     color: #fff;
+  //     border: 3px solid red;;
+  //   }
+  // }
