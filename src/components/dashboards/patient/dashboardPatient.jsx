@@ -26,6 +26,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { addAllDoctors } from "../../../redux/slices/patient/allDoctors";
 import { addAllSpecialtys } from "../../../redux/slices/patient/allSpecialtys";
 import { addAllSures } from "../../../redux/slices/patient/allSures";
+//import Detail from "../general/Detail/Detail";
 import { changePage } from "../../../redux/slices/pageNav";
 
 const routes = {
