@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // MERCADOPAGO
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+// import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 
 const cardsPerPage = 14;
@@ -43,7 +43,7 @@ function NewDate(props) {
   const [doctorSelected, setDoctorSelected] = useState(0);
   const [preference, setPreference] = useState({});
 
-  initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
+  // initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
 
 
   console.log({ filtSure })
