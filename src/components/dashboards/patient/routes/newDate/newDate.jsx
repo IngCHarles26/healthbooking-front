@@ -312,8 +312,8 @@ function NewDate() {
 
       <section>
         {/* <Wallet initialization={{ preferenceId: preference.id }} /> */}
-        {/* {console.log(preference)} */}
-        <button className="btnBuy" onClick={() => { handleSendInfo(preference) }}>Generar Cita</button>
+        {/* {console.log(preference)} handleSendInfo(infoSend)*/}
+        <button className="btnBuy" onClick={() => dispatch(changePage(4))}>Generar Cita</button>
 
       </section>
     </main>

@@ -79,6 +79,7 @@ function DashboardPatient() {
     <NewDate/>,
     <EditProfile />,
     <Detail/>,
+    <ConfirmDate/>
   ];
 
   return (
