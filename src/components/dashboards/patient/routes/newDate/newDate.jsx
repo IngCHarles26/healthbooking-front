@@ -10,8 +10,10 @@ import rightArrow from '../../../../assets/brands/arrow-right-newDate.svg';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// IMPORTS
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+
+// MERCADOPAGO
+// import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setId } from "../../../../../redux/slices/patient/doctorSelected";
@@ -31,54 +33,12 @@ const initialPreference = {
   idDoctor: '',
 }
 
-const x = {
-  id: "33326",
-  name: "Alejandro Cruz",
-  specialty: { id: 2 },
-  profilePicture:
-    "https://res.cloudinary.com/dvpo44a4q/image/upload/v1700189494/doctors/men/jdcch5dshqe6cupwdubx.jpg",
-  arraySure: [],
-}
+
 
 const routes = {
   getDetail: 'detailDoctor/',
 }
 
-let routeBack = [
-  {
-    "id": "86f5cb2d-09e9-43a1-b650-08f03523df61",
-    "date": "2023-12-04",
-    "time": "09:00:00",
-    "finalAmount": 5040,
-    "status": "pending",
-    "createdAt": "2023-12-02T04:09:58.552Z",
-    "updatedAt": "2023-12-02T04:09:58.552Z",
-    "doctorId": 73640,
-    "patientId": 71639284
-  },
-  {
-    "id": "a3700075-826d-4d2e-babb-edb21c32da74",
-    "date": "2023-12-05",
-    "time": "15:00:00",
-    "finalAmount": 5040,
-    "status": "pending",
-    "createdAt": "2023-12-02T04:09:58.940Z",
-    "updatedAt": "2023-12-02T04:09:58.940Z",
-    "doctorId": 73640,
-    "patientId": 71839254
-  },
-  {
-    "id": "e5ddab4b-9947-486f-b904-9f9cad9fbd3f",
-    "date": "2023-12-06",
-    "time": "08:00:00",
-    "finalAmount": 5040,
-    "status": "pending",
-    "createdAt": "2023-12-02T04:09:59.030Z",
-    "updatedAt": "2023-12-02T04:09:59.030Z",
-    "doctorId": 73640,
-    "patientId": 71839254
-  },
-]
 
 const prueba = getPlan(routeBack);
 
@@ -101,6 +61,7 @@ function NewDate() {
   const [agendaPage, setAgendaPage] = useState(1);
   
   const [doctorSelected, setDoctorSelected] = useState(0);
+
   const [hourSelected, setHourSelected] = useState(0);
   const [preference, setPreference] = useState(initialPreference);
   // const [agenda, setAgenda] = useState([]);
@@ -313,8 +274,8 @@ function NewDate() {
 
       <section>
         {/* <Wallet initialization={{ preferenceId: preference.id }} /> */}
-        {/* {console.log(preference)} */}
-        <button className="btnBuy" onClick={() => { handleSendInfo(preference) }}>Generar Cita</button>
+        {/* {console.log(preference)} handleSendInfo(infoSend)*/}
+        <button className="btnBuy" onClick={() => dispatch(changePage(4))}>Generar Cita</button>
 
       </section>
     </main>
