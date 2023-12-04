@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "./AsideRight.css"
 //import foto from "../../../imagenes/Image.png"
 
-
+//EL ASIDE RIGHT ES UN COMPONENTE QUE SE RENDERIZA EN CADA TIPO DE USUARIO, YA SEA POR AUTH0 O DE MANERA LOCAL
 const AsideRight = (props) => {
   const {image,name,info,type} = props;
   const {user} = useAuth0();
@@ -25,7 +25,7 @@ const AsideRight = (props) => {
         </div>
         <div className="contInfo">
           <h3 className="Info">Informacion</h3>
-          {info.map((item) => infor(item))}
+          {/* {info.map((item) => infor(item))} */}
         </div>
       </div>
     </aside>

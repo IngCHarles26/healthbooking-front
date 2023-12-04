@@ -7,50 +7,74 @@ import leftArrow from '../../../../assets/brands/arrow-left-newDate.svg';
 import rightArrow from '../../../../assets/brands/arrow-right-newDate.svg';
 
 //import axios from "axios";
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 // MERCADOPAGO
 // import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+
 import { healthApi } from "../../../../../Api/HealthBookingApi";
+import { useDispatch, useSelector } from "react-redux";
+import { setId } from "../../../../../redux/slices/patient/doctorSelected";
+import { addDataAgenda } from "../../../../../redux/slices/patient/agendaDoctor";
+import { setInfo } from "../../../../../redux/slices/patient/infoSend";
+import { changePage } from "../../../../../redux/slices/pageNav";
 
+//VARIABLES
+import { getPlan,weeksPlan } from "../../../../../redux/slices/patient/agendaDoctor";
 const cardsPerPage = 14;
+const weeksAgenda = weeksPlan;
 
-const x = {
-  id: "33326",
-  name: "Alejandro Cruz",
-  specialty: { id: 2 },
-  profilePicture:
-    "https://res.cloudinary.com/dvpo44a4q/image/upload/v1700189494/doctors/men/jdcch5dshqe6cupwdubx.jpg",
-  arraySure: [],
+const initialPreference = {
+  date: "",
+  time: "",
+  idPatient: 39421857,
+  idDoctor: '',
 }
+
+
 
 const routes = {
   getDetail: 'detailDoctor/',
 }
 
-function NewDate(props) {
-  let { sures, doctors, specialtys } = props;
+
+const prueba = getPlan(routeBack);
+
+function NewDate() {
+  const dispatch = useDispatch();
+  const doctors = useSelector(st=>st.allDoctors);
+  const specialtys = useSelector(st=>st.allSpecialtys);
+  const sures = useSelector(st=>st.allSures);
+  const agenda = useSelector(st=>st.agendaDoctor);
+  const infoSend = useSelector(st=>st.infoSend);
+
+  const doctorSelect = useSelector(st=>st.doctorSelected)
+
   const [filtSure, setFiltSure] = useState('');
   const [filtSpecialty, setFiltSpecialty] = useState('');
   const [filtName, setFiltName] = useState('');
   const [orderName, setOrderName] = useState('');
 
-  const [maxPage, setMaxPage] = useState(Math.ceil(doctors.length / cardsPerPage));
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [agendaPage, setAgendaPage] = useState(1);
+  
   const [doctorSelected, setDoctorSelected] = useState(0);
-  const [preference, setPreference] = useState({});
 
-  // initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
+  const [hourSelected, setHourSelected] = useState(0);
+  const [preference, setPreference] = useState(initialPreference);
+  // const [agenda, setAgenda] = useState([]);
+  
+  const [maxPage, setMaxPage] = useState(Math.ceil(doctors.length / cardsPerPage));
+  
+  initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
 
-
-  console.log({ filtSure })
+  console.log(infoSend)
 
 
   const filterDoctors = () => {
-    let aux = [...doctors]
+    let aux = [...doctors];
     if (filtSpecialty) aux = [...aux].filter(doctor => +doctor.Specialty === +filtSpecialty);
     if (filtSure) aux = [...aux].filter(doctor => doctor.Sures.includes(+filtSure));
     aux = [...aux].filter(doctor => doctor.name.toLowerCase().includes(filtName.toLowerCase()));
@@ -68,20 +92,41 @@ function NewDate(props) {
     // console.log({currentPage,maxPage})
     return aux;
   }
-  const filtered = filterDoctors()
+  const filtered = filterDoctors();
   const handlePage = (one) => {
     let newPage = currentPage + one;
     if (0 < newPage && newPage <= maxPage) setCurrentPage(newPage);
   }
 
   const handleSendInfo = async (buyDate) => {
-    const response = await healthApi.post(
-      "/pay",
-      buyDate
-    );
-    console.log(response)
+    if(hourSelected && infoSend.idDoctor){
 
-    window.location.href = response.data;
+      const response = await healthApi.post(
+        "/pay",
+        buyDate
+        );
+        console.log(response)
+        
+        window.location.href = response.data;
+      }
+  }
+
+  const handlePageAgenda = (one)=>{
+    let newPage = agendaPage + one;
+    if (0 < newPage && newPage <= weeksPlan) setAgendaPage(newPage);
+  }
+
+  const handleHour = (val)=>{
+    if(typeof(val) === 'number') setHourSelected(val === hourSelected ? 0 : val);
+    let fecha = new Date(val === hourSelected ? 0 : val);
+    let date = fecha.toLocaleDateString().split('/').reverse().join('-');
+    let time = fecha.toLocaleTimeString();
+    dispatch(setInfo({...infoSend,date,time}))
+    // setPreference({
+    //   ...preference,
+    //   date,
+    //   time
+    // })
   }
 
   return (
@@ -162,6 +207,7 @@ function NewDate(props) {
                     doctorSelected={doctorSelected}
                     setDoctorSelected={setDoctorSelected}
                     setPreference={setPreference}
+                    preference={preference}
                   />)}
               </section>
             </fieldset>
@@ -185,12 +231,50 @@ function NewDate(props) {
             </nav>
           </footer>
         </section>
+
+        <section className="agenda-doctor">
+          <table className="table-disponibility">
+            <thead> 
+              <tr>
+                {agenda[0].slice(8*(agendaPage-1),8*agendaPage).map((el,ix)=>
+                  <th key={'heandTable_'+ix}>
+                    {el}
+                  </th>)}
+              </tr>
+            </thead>
+                
+            <tbody>
+              {agenda[1].map((row,irow)=> 
+                <tr key={'rowTable_'+irow}>
+                  {row.slice(8*(agendaPage-1),8*agendaPage).map((col,icol)=>
+                    <td key={'colTable'+irow+icol} 
+                      onClick={()=>handleHour(col)}
+                      className={
+                        !col 
+                          ? ['Dom','Sab'].includes(agenda[0][icol].slice(0,3)) 
+                            ? 'endWeek-hour' 
+                            : 'ocupied-hour'
+                          : !(col-hourSelected) && doctorSelect
+                            ? 'selected-hour'
+                            : 'free-hour'
+                        }>
+                        {!icol ? col : !col ? 'NO DISP.' : ''}
+                    </td>)}
+                </tr>)}
+            </tbody>
+          </table>
+          <div className="navigationAgenda">
+              <img src={leftArrow} alt="leftArrow" onClick={()=>handlePageAgenda(-1)} />
+              <img src={rightArrow} alt="rightArrow" onClick={()=>handlePageAgenda(1)} />
+          </div>
+        </section>
+        
       </article>
 
       <section>
         {/* <Wallet initialization={{ preferenceId: preference.id }} /> */}
-        {/* {console.log(preference)} */}
-        <button className="btnBuy" onClick={() => { handleSendInfo(preference) }}>Generar Cita</button>
+        {/* {console.log(preference)} handleSendInfo(infoSend)*/}
+        <button className="btnBuy" onClick={() => dispatch(changePage(4))}>Generar Cita</button>
 
       </section>
     </main>
@@ -199,61 +283,122 @@ function NewDate(props) {
 
 export default NewDate;
 
+//COMPONENTES
+  function DoctorCard(props) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    let { image, id, name, specialty, price, doctorSelected, setDoctorSelected, setPreference,preference } = props;
+    const doctorSelect = useSelector(st=>st.doctorSelected);
+    const infoSend = useSelector(st=>st.infoSend)
 
-function SpecialtyOption(props) {
-  let { name, index, setFiltSpecialty, filtSpecialty } = props;
-  let style = 'tab' + (index == filtSpecialty ? ' specialty-selected' : '');
-  return (
-    <li className={style} onClick={() => setFiltSpecialty(index == filtSpecialty ? '' : index)}>
-      {name}
-    </li>
-  );
-}
 
-function ObraSocial(props) {
-  let { name, setFiltSure, ix } = props
-  return (
-    <option value={ix}>
-      {name}
-    </option>
-  );
-}
+    const handleDoctorSelection = (id) => {
+      dispatch(setId(id == doctorSelected ? 0 : id));
+      dispatch(setInfo({...infoSend,idDoctor:id == doctorSelected ? 0 : id}));
+      setDoctorSelected(id == doctorSelected ? 0 : id);
 
-function NumberPage(props) {
-  let { number } = props;
-  return (
-    <li className="page-item">
-      <a href="">{number}</a>
-    </li>
-  );
-}
+      setPreference({...preference,idDoctor:doctorSelect})
+      if(id){
+        healthApi.get('/appointment/'+id)
+          .then(({data})=>{dispatch(addDataAgenda(getPlan(data)))})
+          .catch(err=>console.log(err.message))
+      } 
+      // setPreference({
+      //   date: "2020-09-11",
+      //   time: "08:00",
+      //   idPatient: 39421857,
+      //   idDoctor: id
+      // });
+    };
 
-function DoctorCard(props) {
-  let { image, id, name, specialty, price, doctorSelected, setDoctorSelected, setPreference } = props;
+    let style = 'tile' + (id == doctorSelect ? ' doctor-selected' : '');
+    return (
+      <article className={style} onClick={() => { handleDoctorSelection(id) }}>
+        <img src={image} alt="imageDoctor" onClick={() => { dispatch(changePage(3)) }} />
+        <section className="card-description" >
+          <h1>{name}</h1>
+          <p className="specialization">{specialty}</p>
+          <p className="licence">{id}</p>
+          <p className="specialization">${price}</p>
+        </section >
+      </article >
+    )
+  }
+  function SpecialtyOption(props) {
+    let { name, index, setFiltSpecialty, filtSpecialty } = props;
+    let style = 'tab' + (index == filtSpecialty ? ' specialty-selected' : '');
+    return (
+      <li className={style} onClick={() => setFiltSpecialty(index == filtSpecialty ? '' : index)}>
+        {name}
+      </li>
+    );
+  }
+  function ObraSocial(props) {
+    let { name, setFiltSure, ix } = props
+    return (
+      <option value={ix}>
+        {name}
+      </option>
+    );
+  }
+  function NumberPage(props) {
+    let { number } = props;
+    return (
+      <li className="page-item">
+        <a href="">{number}</a>
+      </li>
+    );
+  }
 
-  const handleDoctorSelection = (id) => {
-    setDoctorSelected(id == doctorSelected ? 0 : id);
+//FUNCIONES  AUXILIARES
+// function getPlan(annal, duration = 60, start = 8, end = 17, weeks = weeksAgenda) {
+//   // const days = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
+//   const days = ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
+//   const turnsPerDay = (end - start) * 60 / duration;
+//   const today = (new Date());
+//   const milsInSecond = 60*1000;
+//   const milsInHour = 60*milsInSecond;
+//   const milsInDay = 24*milsInHour;
+//   const startDay = (new Date(`${today.getMonth()+1}/${today.getDate()}/${today.getFullYear()}`)).getTime()
+//   const startCalendar = startDay + start*milsInHour;
+  
+//   let titles = [];
+//   let values = [];
+//   let hoursCol = [];
+//   annal = annal.map(el=>new Date(`${el.date} ${el.time}`).getTime()); 
 
-    setPreference({
-      date: "2020-09-11",
-      time: "08:00",
-      idPatient: 39421857,
-      idDoctor: id
-    });
-  };
+//   //Definicion de los valores horarios de la 1ra columna ej: 10:00 o 15:00
+//   let time = 0;
+//   for(let col=0; col<turnsPerDay;col++){
+//     let _mins = time % 60;
+//     let _hour = start + (time-_mins)/60;
+//     let clock = `${_hour<10 ? '0'+_hour: _hour}:${_mins<10 ? '0'+_mins: _mins}`
+//     hoursCol = [...hoursCol, clock];
+//     time+=duration;
+//   }
+  
+//   //Definicion de los valores de la 1ra fila ej: Lun 01/01
+//   for(let i=0;i<weeks*7;i++){
+//     const date = new Date(startCalendar + milsInDay * i);
+//     let day = date.getDate();
+//     let ans = `${days[date.getDay()]} ${day<10?'0'+day:day}/${date.getMonth()+1}`;
+//     titles = [...titles,ans]
+//   }
+  
+//   //Rellenado de los lugares disponibles y ocupados
+//   for(let hour = 0 ; hour < turnsPerDay ; hour++){
+//     let row = [];
+//     for(let day = 0 ; day < weeks * 7 ; day++){
+//       if(!Boolean(day%7)) row = [...row,hoursCol[hour]];
+//       const actual = startCalendar + hour * milsInHour + day * milsInDay;
+//       const actualDay = (new Date(actual)).getDay();
+//       const condition = Boolean(actualDay%6) && (actual>today) && (!annal.includes(actual)) ;
+//       row = [...row,condition ? actual : 0];
+//     }
+//     values = [...values,row]
+//   }
+  
+//   titles = [...titles].reduce((ac,el,ix)=>!Boolean(ix%7)?[...ac,'HORA',el]:[...ac,el],[])
 
-  const navigate = useNavigate();
-
-  let style = 'tile' + (id == doctorSelected ? ' doctor-selected' : '');
-  return (
-    <article className={style}>
-      <img src={image} alt="imageDoctor" onClick={() => { navigate(routes.getDetail + id) }} />
-      <section className="card-description" onClick={() => { handleDoctorSelection(id) }}>
-        <h1>{name}</h1>
-        <p className="specialization">{specialty}</p>
-        <p className="licence">{id}</p>
-        <p className="specialization">${price}</p>
-      </section >
-    </article >
-  )
-}
+//   return [titles,values]
+// }

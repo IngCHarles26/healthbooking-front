@@ -1,10 +1,23 @@
 import './style.scss';
+
+//_______________SVGS
 import logoOscuro from "../../../assets/full-logo-black.svg";
-import { useState } from 'react';
+
+//_______________COMPONENTS
+
+//_______________REACT
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+//_______________ACTIONS
+import { changePage } from '../../../../redux/slices/pageNav';
+import { useSelector } from 'react-redux';
+
+
 
 function AsideLeft(props) {
-  let {menuData,handlePage} = props;
+  let {menuData} = props;
   const navigate = useNavigate();
 
   return ( 
@@ -17,7 +30,6 @@ function AsideLeft(props) {
             svg = {el.svg}
             text = {el.text}
             link = {el.link}
-            handlePage = {handlePage}
           />)}
       </nav>
 
@@ -28,9 +40,12 @@ function AsideLeft(props) {
 export default AsideLeft;
 
 function Navs(props) {
-  let {svg,text,link,handlePage} = props
+  const page = useSelector(st=>st.pageNav);
+  const dispatch = useDispatch();
+  let {svg,text,link} = props
   return ( 
-    <a onClick={()=>handlePage(link)}>
+    <a  className={link === page ? 'navSelected': ''} 
+      onClick={()=>{dispatch(changePage(link))}}>
       <img src={svg} alt="altSvg" />
       {text}
     </a>

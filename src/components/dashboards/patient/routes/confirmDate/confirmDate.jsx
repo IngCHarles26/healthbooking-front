@@ -31,29 +31,29 @@ const infoFinishDate = {
           <header>RESUMEN DE CITA</header>
 
           <div className="table-wrapperr">
-          <h1>Confirma tu cita !</h1>
-          <div>
-                        <div>
-                            <h2>Datos del paciente</h2>
-                            <p>Nombre: {namePatient}</p>
-                            <p>Dni: {idPatient}</p>
-                        </div>
-                        <div>
-                            <h2>Datos del Médico</h2>
-                            <p>Nombre: {nameDoctor}</p>
-                            <p>Licencia: {idDoctor}</p>
-                            <p>Especialidad: {specialty}</p>
-                        </div>
-                        <div>
-                            <h2>Datos de la cita</h2>
-                            <p>Fecha: {date}</p>
-                            <p>Hora: {time}</p>
-                            
-                            <p>Monto a pagar: {costo}</p>
-                        </div>
-                        <button>VOLVER</button>
-                        <button>REALIZAR PAGO</button>
-                    </div>
+            <h1>Confirma tu cita !</h1>
+            <div>
+              <div>
+                  <h2>Datos del paciente</h2>
+                  <p>Nombre: {namePatient}</p>
+                  <p>Dni: {idPatient}</p>
+              </div>
+              <div>
+                  <h2>Datos del Médico</h2>
+                  <p>Nombre: {nameDoctor}</p>
+                  <p>Licencia: {idDoctor}</p>
+                  <p>Especialidad: {specialty}</p>
+              </div>
+              <div>
+                  <h2>Datos de la cita</h2>
+                  <p>Fecha: {date}</p>
+                  <p>Hora: {time}</p>
+                  
+                  <p>Monto a pagar: {costo}</p>
+              </div>
+              <button>VOLVER</button>
+              <button>REALIZAR PAGO</button>
+            </div>
           </div>
 
         </article>
