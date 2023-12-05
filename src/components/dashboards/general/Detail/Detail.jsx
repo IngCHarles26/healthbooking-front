@@ -90,7 +90,7 @@
 // export default Detail;
 
 
-import "./Detail.css"
+import "./Detail.scss";
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { healthApi } from "../../../../Api/HealthBookingApi";
