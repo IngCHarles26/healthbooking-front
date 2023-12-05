@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   date:'',
   time:'',
-  idPatient: 25729384,
+  idPatient: 39421857,
   idDoctor: 0,
 };
 

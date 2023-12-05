@@ -15,9 +15,21 @@ import { changePage } from "../../../../../redux/slices/pageNav";
 function ConfirmDate(props) {
 
   const dispatch = useDispatch();
-  
 
+  const infoBase = useSelector(st=>st.infoSend);
+  const doctors = useSelector(st=>st.allDoctors);
+  const specialtys = useSelector(st=>st.allSpecialtys);
+  const sures = useSelector(st=>st.allSures);
+
+  const {idDoctor,idPatient,date,time} = infoBase;
+  const infoDoctor = doctors.find(el=>+el.id===+idDoctor);
+  const nameDoctor = infoDoctor.name;
+  const specialty = specialtys[infoDoctor.Specialty];
+  const namePatient = "Santiago Chaparro";
+  const costo = 4500;
+  
   //console.log(props.infoFinishDate)
+  /*
   const infoFinishDate = {
     idPatient:28271453,
     namePatient:"Santiago Chaparro",
@@ -27,17 +39,20 @@ function ConfirmDate(props) {
     date:"2023-11-11",
     time:"11:00",
     costo:4500
+    
   
   }
+  */
+ /*
   const data = infoFinishDate;
  const {idPatient,namePatient,idDoctor,nameDoctor,specialty,date,time,costo} = data;
-
+*/
 
 
 
 const handleSendInfo = async (buyDate) => {
   const response = await healthApi.post(
-    "/pay",
+    "/patient/pay",
     buyDate
   );
   console.log(response)
@@ -52,8 +67,9 @@ const preference ={
 }
 useEffect(() => {
   // Verifica que confirmDateData existe antes de mostrar el SweetAlert
-  if (data) {
-    console.log(data);
+  if (infoBase) {
+    console.log(infoBase)
+    console.log(specialtys)
     const htmlContent = `
       <div>
         <h2>Datos del paciente</h2>
@@ -110,7 +126,7 @@ useEffect(() => {
           }
 
           // Realiza las acciones necesarias
-          handleSendInfo(preference);
+          handleSendInfo(infoBase);
           console.log("Confirmar pago");
 
           // No cierres manualmente la alerta, espera a que se redirija o se cierre automáticamente
@@ -125,7 +141,7 @@ useEffect(() => {
       }
     });
   }
-}, [data]);
+}, [infoBase]);
 
 return (
   <div>

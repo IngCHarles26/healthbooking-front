@@ -8,70 +8,77 @@ import imagePrueba from '../../assets/img/profile.jpeg'
 //_______________COMPONENTS
 import AsideLeft from "../general/asideLeft/asideLeft";
 import AsideRight from "../general/asideRight/asideRight";
+import Loading from "../../Loading/Loading"
 
 import { useEffect, useState } from "react";
 //import axios from "axios";
 import HomeDoctor from "./routes/home/homeDoctor";
-
+import { useAuth0 } from "@auth0/auth0-react"
+import { Navigate } from "react-router-dom";
 const routes = {
 
 }
 
 const infoUser = {
-  image:imagePrueba,
-  name:'Perico Palotes',
-  info:[
-    {text:'Altura',info:'190cm'},
-    {text:'Peso',info:'79kg'},
-    {text:'Nacimiento',info:'Sep 04, 1996'},
-    {text:'RH',info:'O+'},
+  image: imagePrueba,
+  name: 'Perico Palotes',
+  info: [
+    { text: 'Altura', info: '190cm' },
+    { text: 'Peso', info: '79kg' },
+    { text: 'Nacimiento', info: 'Sep 04, 1996' },
+    { text: 'RH', info: 'O+' },
   ],
 }
 
 const navigationOptions = [
-  {svg:homeSVG, text:'Home', link:0},
-  {svg:newDateSVG, text:'Crear Doctor', link:1},
-  {svg:editSVG, text:'Editar perfil', link:2},
+  { svg: homeSVG, text: 'Home', link: 0 },
+  { svg: newDateSVG, text: 'Crear Doctor', link: 1 },
+  { svg: editSVG, text: 'Editar perfil', link: 2 },
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]
 
 function DashboardDoctor() {
   const [currentPage, setCurrentPage] = useState(0);
+  const { isAuthenticated, isLoading } = useAuth0()
 
   // console.log({currentPage})
 
   //_______________Obtencion de informacion
-  useEffect(()=>{
+  useEffect(() => {
 
-  },[])
+  }, [])
   //_______________Navegacion en el Dashboard 
   const pageList = [
     <HomeDoctor />,
   ];
-  const handlePage = (page)=> setCurrentPage(page);
+  const handlePage = (page) => setCurrentPage(page);
 
-  
+  if (isLoading) {
+    return (
+      <Loading />
+    )
+  }
 
   return (
-    <div className="wrapper-PatientHome">
-      <AsideLeft 
-        menuData={navigationOptions} 
-        handlePage={handlePage}/>
+    isAuthenticated ? (<div className="wrapper-PatientHome">
+      <AsideLeft
+        menuData={navigationOptions}
+        handlePage={handlePage} />
 
       <div className="dashboard-main">
-      {pageList[currentPage]}
+        {pageList[currentPage]}
       </div>
 
       <aside className="user-menu">
-        <AsideRight
+        {/* <AsideRight
           type='Doctor'
           image={infoUser.image}
           name={infoUser.name}
           info={infoUser.info}
-        />
+        /> */}
       </aside>
 
-    </div>
+    </div>) : Navigate("/")
   );
 }
 
