@@ -20,7 +20,7 @@ const UserForm = () => {
   });
 
   const peticion = async () => {
-    const { data } = await healthApi("/sure");
+    const { data } = await healthApi.get("/doctor/sure");
     setSures(data);
   };
 

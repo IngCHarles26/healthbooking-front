@@ -17,7 +17,7 @@ function HomePatient() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://healtbooking-backend.onrender.com/appointment/patient/39421857');
+        const response = await healthApi.get('/patient/appointment/39421857');
         setData(response.data);
         // console.log(response.data);
       } catch (error) {

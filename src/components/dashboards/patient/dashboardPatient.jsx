@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 import { healthApi } from "../../../Api/HealthBookingApi";
 import Detail from "../general/Detail/Detail";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //_______________ACTIONS
 import { addAllDoctors } from "../../../redux/slices/patient/allDoctors";
@@ -54,21 +54,21 @@ const infoUser = {
 }
 
 const infoFinishDate = {
-  idPatient:39421857,
-  namePatient:"Santiago Chaparro",
-  idDoctor:45289,
-  nameDoctor:"Santiago paz",
-  specialty:"Cardiología",
-  date:"2023-11-11",
-  time:"11:00",
-  costo:4500
+  idPatient: 39421857,
+  namePatient: "Santiago Chaparro",
+  idDoctor: 45289,
+  nameDoctor: "Santiago paz",
+  specialty: "Cardiología",
+  date: "2023-11-11",
+  time: "11:00",
+  costo: 4500
 
 }
 
 function DashboardPatient() {
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const page = useSelector(st=>st.pageNav);
+  const page = useSelector(st => st.pageNav);
 
   //_______________Obtencion de informacion
   useEffect(() => {
@@ -81,10 +81,10 @@ function DashboardPatient() {
         dispatch(addAllSpecialtys(convertOptions(data)));
         return healthApi.get(routes.sures)
       })
-      .then(({ data }) => { 
+      .then(({ data }) => {
         dispatch(addAllSures(convertOptions(data)));
       })
-      //.catch((err) => console.log(err.message))
+    //.catch((err) => console.log(err.message))
   }, [])
   //_______________Navegacion en el Dashboard 
   const handlePage = (page) => setCurrentPage(page);
@@ -93,20 +93,20 @@ function DashboardPatient() {
 
   const pageList = [
     <HomePatient />,
-    <NewDate/>,
+    <NewDate />,
     <EditProfile />,
-    <Detail/>,
-    <ConfirmDate/>
+    <Detail />,
+    <ConfirmDate />
   ];
 
   return (
     isAuthenticated && (<div className="wrapper-PatientHome">
       <AsideLeft
-        menuData={navigationOptions} 
+        menuData={navigationOptions}
       />
 
       <div className="dashboard-main">
-      {pageList[page]}
+        {pageList[page]}
       </div>
 
       <aside className="user-menu">
