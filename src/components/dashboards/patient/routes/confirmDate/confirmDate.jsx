@@ -3,29 +3,38 @@ import Swal from "sweetalert2";
 import "animate.css";
 import { useEffect } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { changePage } from "../../../../../redux/slices/pageNav";
+
 
 //_____________SVGs
 
 
 
 function ConfirmDate(props) {
+
+  const dispatch = useDispatch();
+  
+
   //console.log(props.infoFinishDate)
-  const data = props.infoFinishDate;
-  const {idPatient,namePatient,idDoctor,nameDoctor,specialty,date,time,costo} = data;
-/*
+  const infoFinishDate = {
+    idPatient:28271453,
+    namePatient:"Santiago Chaparro",
+    idDoctor:89657,
+    nameDoctor:"Santiago paz",
+    specialty:"Cardiología",
+    date:"2023-11-11",
+    time:"11:00",
+    costo:4500
+  
+  }
+  const data = infoFinishDate;
+ const {idPatient,namePatient,idDoctor,nameDoctor,specialty,date,time,costo} = data;
 
 
-const infoFinishDate = {
-  idPatient:28271453,
-  namePatient:"Santiago Chaparro",
-  idDoctor:89657,
-  nameDoctor:"Santiago paz",
-  specialty:"Cardiología",
-  date:"2023-11-11",
-  time:"11:00",
-  costo:4500
 
-}*/
+
 const handleSendInfo = async (buyDate) => {
   const response = await healthApi.post(
     "/pay",
@@ -111,6 +120,7 @@ useEffect(() => {
     }).then((result) => {
        if (result.dismiss === Swal.DismissReason.cancel) {
         // Acciones cuando se hace clic en Volver
+        dispatch(changePage(1));
         console.log("Volver");
       }
     });
@@ -123,6 +133,7 @@ return (
     </div>
     );
   };
+//import { changePage } from "../../../../../redux/slices/pageNav";
   
   export default ConfirmDate;
 
