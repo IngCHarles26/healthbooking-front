@@ -10,9 +10,12 @@ import AsideLeft from "../general/asideLeft/asideLeft";
 import AsideRight from "../general/asideRight/asideRight"
 import PostDoctor from "./routes/PostDoctor/PostDoctor";
 import { useEffect, useState } from "react";
+import Loading from "../../Loading/Loading"
 //import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
 import { useDispatch, useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom"
 //import PostDoctor from "../doctor/PostDoctor/PostDoctor";
 
 const routes = {
@@ -20,13 +23,13 @@ const routes = {
 }
 
 const infoUser = {
-  image:imagePrueba,
-  name:'Perico Palotes',
-  info:[
-    {text:'Altura',info:'190cm'},
-    {text:'Peso',info:'79kg'},
-    {text:'Nacimiento',info:'Sep 04, 1996'},
-    {text:'RH',info:'O+'},
+  image: imagePrueba,
+  name: 'Perico Palotes',
+  info: [
+    { text: 'Altura', info: '190cm' },
+    { text: 'Peso', info: '79kg' },
+    { text: 'Nacimiento', info: 'Sep 04, 1996' },
+    { text: 'RH', info: 'O+' },
   ],
 }
 
@@ -40,7 +43,8 @@ const navigationOptions = [
 function DashboardPatient() {
   const algo = useSelector((st)=> st.pageNav)
   const [currentPage, setCurrentPage] = useState(0);
-
+  const { isAuthenticated, isLoading } = useAuth0()
+  const navigate = useNavigate()
   // console.log({currentPage})
 
   //_______________Obtencion de informacion
@@ -49,15 +53,30 @@ function DashboardPatient() {
   }, [])
   //_______________Navegacion en el Dashboard 
 
-  
+
   const pageList = [
     <HomeMaster />,
     <PostDoctor />,
   ];
   const handlePage = (page) => setCurrentPage(page);
 
+  // const informacion = [
+  //   { text: "Altura", info:"190cm (74.8in)"},
+  //   { text: "Peso", info:"79kg (39,5Lb)"},
+  //   { text: "Cumpleaños", info:"Sep 04, 1996"},
+  //   { text: "RH", info:"O+"},
+  // ]
+
+  // const perfil = { rol: 'Paciente', img: "fotoPerfil", name: "Fabio Catrillon" }
+
+  if (isLoading) {
+    return (
+      <Loading />
+    )
+  }
+
   return (
-    <div className="wrapper-PatientHome">
+    isAuthenticated ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
         handlePage={handlePage} />
@@ -77,7 +96,7 @@ function DashboardPatient() {
         /> */}
       </aside>
 
-    </div>
+    </div>) : navigate("/")
   );
 }
 

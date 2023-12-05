@@ -1,44 +1,47 @@
-.wrapper-LandingPage{
+.wrapper-LandingPage {
+
   /* ---------------------------------------------------------------------------------------------- */
   /* Site Header */
   /* ---------------------------------------------------------------------------------------------- */
-  header{
+  header {
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
     display: grid;
     grid-template-areas: ". logo nav .";
-  
-    @media only screen and (max-width: 767px) {/* mobile */
+
+    @media only screen and (max-width: 767px) {
+      /* mobile */
       grid-template-columns: 0.75rem 1fr 1fr 0.75rem;
     }
-  
-    @media only screen and (min-width: 767px) {/* desktop */
+
+    @media only screen and (min-width: 767px) {
+      /* desktop */
       grid-template-columns: 0.15fr 1fr 1fr 0.15fr;
     }
-  
+
     /*
     * -- Box and text styles definitions ----------------------------------------------
     */
     // padding-top: 1.5rem;
     background-color: #26335d;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.25' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
-  
+
     /*
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
-    > .logo{
+    >.logo {
       grid-area: logo;
     }
   }
-  
-  header > .actions{
+
+  header>.actions {
     grid-area: nav;
     justify-self: end;
     display: flex;
     align-items: center;
-  
-    a{
+
+    a {
       display: flex;
       gap: 0.3rem;
       padding: 0.7rem;
@@ -50,70 +53,74 @@
       font-weight: 700;
       font-size: 0.875rem;
     }
-  
-    a.signup-button{
+
+    a.signup-button {
       border-radius: 0.3125rem;
       background: #42B8C3;
-      &:hover:not(:active){
+
+      &:hover:not(:active) {
         background: darken($color: #42B8C3, $amount: 5);
       }
-    }   
+    }
   }
-  
+
   /* ---------------------------------------------------------------------------------------------- */
   /* Hero Section */
   /* ---------------------------------------------------------------------------------------------- */
-  
-  .landing-main{
+
+  .landing-main {
     margin: 0;
     padding: 0;
     width: 100%;
   }
-  section.hero{
-  
+
+  section.hero {
+
     /* Layout Model */
     display: grid;
     place-content: center;
     place-items: center;
     gap: 1.5rem;
     width: 100%;
-  
-    @media only screen and (max-width: 767px) {/* mobile */
+
+    @media only screen and (max-width: 767px) {
+      /* mobile */
       padding: 1rem 1rem;
       grid-template-columns: 94vw;
       grid-template-areas:
         "img"
         "description";
     }
-  
-    @media only screen and (min-width: 767px) {/* desktop */
+
+    @media only screen and (min-width: 767px) {
+      /* desktop */
       padding: 1rem;
       grid-template-columns: 5vw clamp(25rem, 42vw, 40rem) clamp(25rem, 48vw, 40rem) 5vw;
       grid-template-areas:
         ". description img .";
-     }
-  
+    }
+
     /*
     * -- Box and text styles definitions ----------------------------------------------
     */
     background-color: #26335d;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.25' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
-  
+
     /*
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
-    .hero-logo{
+    .hero-logo {
       grid-area: img;
       animation: 1s slide-in-from-up, 1s fade-in;
     }
-  
-    .hero-desc{
+
+    .hero-desc {
       grid-area: description;
       animation: 1s slide-in-from-up, 1s fade-in;
     }
   }
-  
-  section.hero > div.hero-desc{
+
+  section.hero>div.hero-desc {
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
@@ -121,81 +128,93 @@
     flex-direction: column;
     justify-content: center;
     gap: 3rem;
-  
-    @media only screen and (max-width: 767px) {/* mobile */
+
+    @media only screen and (max-width: 767px) {
+      /* mobile */
       text-align: center;
       align-items: center;
     }
   }
-  
-  section.hero > div.hero-desc > .description{
+
+  section.hero>div.hero-desc>.description {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1.5rem;
-  
-    .slogan{
+
+    .slogan {
       color: #42B8C3;
       font-family: Montserrat;
       font-size: 1.125rem;
       font-weight: 700;
-      line-height: 1.5rem; /* 133.333% */
+      line-height: 1.5rem;
+      /* 133.333% */
       letter-spacing: 0.00625rem;
     }
-  
-    .title{
+
+    .title {
       color: #FFF;
       font-family: Montserrat;
       font-size: 3.1rem;
       font-weight: 700;
     }
-  
-    .comment{
+
+    .comment {
       color: #FFF;
       font-family: Montserrat;
       font-size: 1.25rem;
       font-weight: 400;
-      line-height: 1.875rem; /* 150% */
+      line-height: 1.875rem;
+      /* 150% */
       letter-spacing: 0.0125rem;
     }
   }
-  
-  section.hero > div.hero-desc > .actions{
+
+  section.hero>div.hero-desc>.actions {
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
     display: flex;
     align-items: center;
     gap: 1.125rem;
-  
+
     /*
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
-    > a.login, > a.signup{
-      display: flex;
-      padding: 0.7rem 4rem;
-      border-radius: 0.3125rem;
-      color: var(--light-text-color, #FFF);
-      text-decoration: none;
-      font-family: Montserrat;
-      font-size: 0.875rem;
-      text-align: center;
-      font-weight: 700;
+    >button.login,
+    >a.signup {
+
+      background-color: #42A7C3;
+      /* Adjust color as needed */
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #36758E;
+        /* Adjust hover color as needed */
+      }
+
+      /* Add other button styles as needed */
+
     }
-  
-    > a.login{
+
+    >a.login {
       border: 1px solid #42B8C3;
     }
-  
-    > a.signup{
+
+    >a.signup {
       background: #42B8C3;
     }
   }
-  
+
   /* ---------------------------------------------------------------------------------------------- */
   /* Site Footer */
   /* ---------------------------------------------------------------------------------------------- */
-  footer > .menu{
+  footer>.menu {
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
@@ -203,8 +222,9 @@
     gap: 3rem;
     padding: 4rem 3rem;
     background: #FFF;
-  
-    @media only screen and (max-width: 767px) {/* mobile */
+
+    @media only screen and (max-width: 767px) {
+      /* mobile */
       justify-content: center;
       grid-template-columns: 90vw;
       grid-template-areas:
@@ -212,26 +232,27 @@
         "contact"
         "banner";
     }
-  
-    @media only screen and (min-width: 767px) {/* desktop */
+
+    @media only screen and (min-width: 767px) {
+      /* desktop */
       grid-template-columns: 2fr 0.8fr 0.8fr;
       grid-template-areas: "banner about contact";
     }
-  
-    .banner{
+
+    .banner {
       grid-area: banner;
     }
-  
-    .about{
+
+    .about {
       grid-area: about;
     }
-  
-    .contact{
+
+    .contact {
       grid-area: contact;
     }
   }
-  
-  footer > .menu > .banner{
+
+  footer>.menu>.banner {
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
@@ -239,7 +260,7 @@
     flex-direction: column;
     width: min(95vw, 30rem);
     gap: 1rem;
-  
+
     /*
     * -- Box and text styles definitions ----------------------------------------------
     */
@@ -247,53 +268,54 @@
     font-family: Inter;
     font-size: 1.1rem;
     line-height: 1.5rem;
-  
+
     /*
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
-    img{
+    img {
       width: 18rem;
     }
   }
-  
-  footer > .menu > .links-group{
+
+  footer>.menu>.links-group {
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-  
+
     /*
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
-    > h1{
+    >h1 {
       color: var(--neutural-black, #081B2F);
       font-family: Inter;
       font-size: 1.1rem;
       font-weight: 500;
     }
-  
-    > nav{
+
+    >nav {
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
       min-width: 16rem;
-  
-      a{
+
+      a {
         display: flex;
         align-items: center;
         gap: 0.4rem;
-  
+
         text-decoration: none;
         color: var(--neutural-grey-1, #86898B);
         font-family: Inter;
         font-size: 1.1rem;
-        line-height: 1.5rem; /* 133.333% */
-      }    
+        line-height: 1.5rem;
+        /* 133.333% */
+      }
     }
-  
-    &.contact > nav{
+
+    &.contact>nav {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
@@ -302,8 +324,8 @@
       gap: 0.4rem;
     }
   }
-  
-  footer > .copyright{
+
+  footer>.copyright {
     color: var(--neutural-grey-1, #86898B);
     background: #F4F7FB;
     padding: 1.5rem 0rem;
@@ -313,10 +335,9 @@
     font-style: normal;
     font-weight: 400;
   }
-  
+
   /* ---------------------------------------------------------------------------------------------- */
   /*  */
   /* ---------------------------------------------------------------------------------------------- */
-  
-  }
 
+}
