@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import Loading from "../../Loading/Loading"
 //import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
+import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom"
 //import PostDoctor from "../doctor/PostDoctor/PostDoctor";
@@ -40,6 +41,7 @@ const navigationOptions = [
 ]
 
 function DashboardPatient() {
+  const algo = useSelector((st)=> st.pageNav)
   const [currentPage, setCurrentPage] = useState(0);
   const { isAuthenticated, isLoading } = useAuth0()
   const navigate = useNavigate()
@@ -54,7 +56,7 @@ function DashboardPatient() {
 
   const pageList = [
     <HomeMaster />,
-    <PostDoctor />
+    <PostDoctor />,
   ];
   const handlePage = (page) => setCurrentPage(page);
 
@@ -79,23 +81,19 @@ function DashboardPatient() {
         menuData={navigationOptions}
         handlePage={handlePage} />
 
-      {/* <AsideRight 
-        parametros={informacion} 
-        perfil={perfil} /> */}
-
       <div className="dashboard-main">
 
-        {pageList[currentPage]}
+      {pageList[algo]}
 
       </div>
 
       <aside className="user-menu">
-        <AsideRight
+        {/* <AsideRight
           type='Master'
           image={infoUser.image}
           name={infoUser.name}
           info={infoUser.info}
-        />
+        /> */}
       </aside>
 
     </div>) : navigate("/")

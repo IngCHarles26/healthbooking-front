@@ -1,21 +1,21 @@
 import "./PostDoctor.css"
 import validation from "./validations"
 import axios from "axios"
-import { useState } from "react"
-import data from "./data.json"
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react"
 import logo from "../../../../assets/brands/svgsCreateDoctor/logo.svg"
 import { healthApi } from "../../../../../Api/HealthBookingApi"
-// import AsideRight from "../../general/AsideRight/AsideRight"
-// import fotoPerfil from "../../../../assets/img/doctor.avif"
+
 
 const PostDoctor = () => {
-  const [selectSure, setSelectSure] = useState('');
   const [selectSpecialty, setSelectSpecialty] = useState('');
   const [selectIndiPhone, setSelectIndiPhone] = useState('');
-  const [foto, setFoto] = useState("");
-  const [errors, setErrors] = useState({});
+  const [selectPhone, setSelectPhone] = useState('');
+  const [selectSure, setSelectSure] = useState('');
+  const [specialtys, setSpecaltys] = useState([]);
   const [seguros, setSeguros] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [sures, setSures] = useState([]);
+  const [foto, setFoto] = useState("");
   const [doctor, setDoctor] = useState({
     name: "",
     specialty: "",
@@ -27,20 +27,31 @@ const PostDoctor = () => {
     sure: [],
   });
 
+  useEffect(()=>{
+   healthApi.get("/doctor/specialty")
+   .then(({data}) => {
+    setSpecaltys(data)
+    })
+
+  },[])
+
+  useEffect(()=>{
+    healthApi.get("/doctor/sure")
+    .then(({data}) => {
+     setSures(data)
+    })
+ 
+   },[])
+
   const indicativos = ["+1", "+54", "+57", "+51", "+52"];
-  let especialidad = [...new Set(data.doctors.map((esp) => esp.specialty))];
-  let seguro = [
-    ...new Set(
-      data.doctors.flatMap((sur) => sur.arraySure.map((sure) => sure))
-    ),
-  ];
+  let especialidad = specialtys.map((item)=> item.name);
+  let seguro = sures.map((item) => item.name)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setDoctor({ ...doctor, [name]: value });
     setErrors(validation({ ...doctor, [name]: value }));
   };
-  //console.log(doctor);
 
   const handleSpecialty = (event) => {
     const { name, value } = event.target;
@@ -59,12 +70,14 @@ const PostDoctor = () => {
   };
 
 
-  const handlePhone = (event, codigoPais, numeroTelefono) => {
-    setSelectIndiPhone(event.target.value)
+  const handlePhone = (codigoPais, numeroTelefono) => {
+    setSelectIndiPhone(codigoPais)
+    setSelectPhone(numeroTelefono)
     const telefonoCompleto = codigoPais + numeroTelefono;
     setDoctor({ ...doctor, phone: telefonoCompleto })
     setErrors(validation({ ...doctor, phone: telefonoCompleto }))
   };
+
 
   //const { name, id, email, phone, profilePicture, sure, specialty } = newDoc
 
@@ -150,12 +163,13 @@ const PostDoctor = () => {
           sure: [],
         });
 
-        setErrors("")
-        setSeguros([])
-        setFoto("")
-        setSelectSpecialty('')
-        setSelectIndiPhone('')
-        setSelectSure('')
+        setErrors("");
+        setSeguros([]);
+        setFoto("");
+        setSelectSpecialty('');
+        setSelectIndiPhone('');
+        setSelectSure('');
+        setSelectPhone('');
 
         window.alert("Registro Exitoso!");
       }
@@ -176,12 +190,13 @@ const PostDoctor = () => {
       price: "",
       sure: [],
     });
+    setFoto("")
     setErrors("")
     setSeguros([])
-    setFoto("")
-    setSelectSpecialty('')
+    setSelectPhone('');
+    setSelectSure('');
     setSelectIndiPhone('')
-    setSelectSure('')
+    setSelectSpecialty('')
   }
 
 
@@ -209,7 +224,7 @@ const PostDoctor = () => {
             </label>
 
             <div className="div12">
-              <button className="div14" type="button" onClick={() => seteo()}>Cancelar</button>
+              <button className="div14" type="button" onClick={() => seteo()}>Limpiar</button>
 
               <button type="submit" className="div14">Enviar</button>
             </div>
@@ -281,7 +296,7 @@ const PostDoctor = () => {
                             <option key={index} value={ind}>{ind}</option>
                           ))}
                         </select>
-                        <input type="text" name="phone" className="div30" placeholder="Ej. 12345678901" id="numeroTelefono" onChange={(e) => {
+                        <input type="text" name="phone" className="div30" placeholder="Ej. 12345678901" id="numeroTelefono" value={selectPhone} onChange={(e) => {
                           const codigoPais = document.getElementById('codigoPais').value;
                           const numeroTelefono = e.target.value;
                           handlePhone(codigoPais, numeroTelefono);
