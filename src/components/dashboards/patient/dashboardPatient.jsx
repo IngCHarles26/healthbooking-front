@@ -18,13 +18,12 @@ import Loading from "../../Loading/Loading"
 
 import { useEffect, useState } from "react";
 //import axios from "axios";
-
 import { useAuth0 } from '@auth0/auth0-react'
 
 import ConfirmDate from "./routes/confirmDate/confirmDate";
 
 import { healthApi } from "../../../Api/HealthBookingApi";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const routes = {
@@ -65,7 +64,7 @@ function DashboardPatient() {
   const [specialtys, setSpecialtys] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const { isAuthenticated, isLoading } = useAuth0()
-
+  const navigate = useNavigate()
   // console.log({currentPage})
 
   // const navigate = useNavigate();
@@ -103,7 +102,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated && (<div className="wrapper-PatientHome">
+    isAuthenticated ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
         handlePage={handlePage} />
@@ -122,7 +121,7 @@ function DashboardPatient() {
         />
       </aside>
 
-    </div>)
+    </div>) : navigate('/')
   );
 }
 

@@ -1,5 +1,5 @@
 import "./style.scss";
-
+import { useNavigate } from "react-router-dom";
 import heroImg from "../assets/img/hero-cover.png";
 import logoClaro from "../assets/full-logo-white.svg";
 import logoOscuro from "../assets/full-logo-black.svg";
@@ -29,7 +29,7 @@ const infoParticipants = [
 ];
 
 function Landing() {
-
+  const navigate = useNavigate()
   const { loginWithRedirect, user, isAuthenticated } = useAuth0()
   console.log(user);
   console.log(isAuthenticated);
@@ -38,6 +38,15 @@ function Landing() {
     console.log("localstorage");
     localStorage.setItem('bool', JSON.stringify(isAuthenticated));
     localStorage.setItem('user', JSON.stringify(user.email));
+  }
+
+
+  const loginAuthenticate = () => {
+    if (isAuthenticated) {
+      navigate('/patient')
+    } else {
+      loginWithRedirect()
+    }
   }
 
   return (
@@ -65,8 +74,11 @@ function Landing() {
 
             <div className="actions">
 
-              <a href="/patient" className="login" onClick={() => loginWithRedirect()}> ingresar</a>
-              <a href="/patient" className="signup" onClick={() => loginWithRedirect()}> UNETE</a>
+              {isAuthenticated ? (
+                <button className="login" onClick={() => loginAuthenticate()}> ingresar</button>
+              ) : (
+                <button className="login" onClick={() => loginWithRedirect()}>Unirse</button>
+              )}
 
             </div>
           </div>
