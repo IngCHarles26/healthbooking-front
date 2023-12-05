@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 
 // MERCADOPAGO
-// import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,7 +40,7 @@ const routes = {
 }
 
 
-const prueba = getPlan(routeBack);
+// const prueba = getPlan(routeBack);
 
 function NewDate() {
   const dispatch = useDispatch();
