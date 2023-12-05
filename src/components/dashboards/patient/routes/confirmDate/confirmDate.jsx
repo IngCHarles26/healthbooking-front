@@ -3,55 +3,77 @@ import Swal from "sweetalert2";
 import "animate.css";
 import { useEffect } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { changePage } from "../../../../../redux/slices/pageNav";
+
 
 //_____________SVGs
 
 function ConfirmDate(props) {
-  //console.log(props.infoFinishDate)
-  const data = props.infoFinishDate;
-  const {
-    idPatient,
-    namePatient,
-    idDoctor,
-    nameDoctor,
-    specialty,
-    date,
-    time,
-    costo,
-  } = data;
-  /*
+
+  const dispatch = useDispatch();
+
+  const infoBase = useSelector(st=>st.infoSend);
+  const doctors = useSelector(st=>st.allDoctors);
+  const specialtys = useSelector(st=>st.allSpecialtys);
+  const sures = useSelector(st=>st.allSures);
+
+  const {idDoctor,idPatient,date,time} = infoBase;
+  const infoDoctor = doctors.find(el=>+el.id===+idDoctor);
+  const nameDoctor = infoDoctor.name;
+  const specialty = specialtys[infoDoctor.Specialty];
+  const namePatient = "Santiago Chaparro";
+  const costo = 4500;
   
+  //console.log(props.infoFinishDate)
+
+
+ 
+  const infoFinishDate = {
+    idPatient:28271453,
+    namePatient:"Santiago Chaparro",
+    idDoctor:89657,
+    nameDoctor:"Santiago paz",
+    specialty:"Cardiología",
+    date:"2023-11-11",
+    time:"11:00",
+    costo:4500
+    
+
+  
+  }
+  */
+ /*
+  const data = infoFinishDate;
+ const {idPatient,namePatient,idDoctor,nameDoctor,specialty,date,time,costo} = data;
+*/
 
 
 
-const infoFinishDate = {
-  idPatient:28271453,
-  namePatient:"Santiago Chaparro",
-  idDoctor:89657,
-  nameDoctor:"Santiago paz",
-  specialty:"Cardiología",
-  date:"2023-11-11",
-  time:"11:00",
-  costo:4500
 
-}*/ 1111111111111111111111111111111111111;
-  const handleSendInfo = async (buyDate) => {
-    const response = await healthApi.post("/pay", buyDate);
-    console.log(response);
+const handleSendInfo = async (buyDate) => {
+  const response = await healthApi.post(
+    "/patient/pay",
+    buyDate
+  );
+  console.log(response)
 
-    window.location.href = response.data;
-  };
-  const preference = {
-    idPatient,
-    idDoctor,
-    date,
-    time,
-  };
-  useEffect(() => {
-    // Verifica que confirmDateData existe antes de mostrar el SweetAlert
-    if (data) {
-      console.log(data);
-      const htmlContent = `
+  window.location.href = response.data;
+}
+const preference ={
+  idPatient,
+  idDoctor,
+  date,
+  time
+}
+useEffect(() => {
+  // Verifica que confirmDateData existe antes de mostrar el SweetAlert
+  if (infoBase) {
+    console.log(infoBase)
+    console.log(specialtys)
+    const htmlContent = `
+
       <div>
         <h2>Datos del paciente</h2>
         <p>Nombre: ${namePatient}</p>
@@ -88,45 +110,53 @@ const infoFinishDate = {
           animate__fadeOutDown
           animate__faster
         `,
-        },
 
-        showCancelButton: true, // Oculta el botón de Cancelar
-        showConfirmButton: true, // Oculta el botón OK
-        timer: 10000,
-        customClass: {
-          container: "custom-swal-container", // Clase personalizada para el contenedor
-        },
-        padding: "2rem", // Ajusta el espaciado interno del contenedor
-        background: "#fff",
-        preConfirm: () => {
-          return new Promise((resolve) => {
-            // Deshabilita el botón de confirmación después de hacer clic
-            const confirmButton = document.querySelector(".swal2-confirm");
-            if (confirmButton) {
-              confirmButton.disabled = true;
-            }
+      },
+      
+      showCancelButton: true, // Oculta el botón de Cancelar
+      showConfirmButton: true, // Oculta el botón OK
+      timer:10000,
+      customClass: {
+        container: 'custom-swal-container', // Clase personalizada para el contenedor
+      },
+      padding: '2rem', // Ajusta el espaciado interno del contenedor
+      background: '#fff',
+      preConfirm: () => {
+        return new Promise((resolve) => {
+          // Deshabilita el botón de confirmación después de hacer clic
+          const confirmButton = document.querySelector('.swal2-confirm');
+          if (confirmButton) {
+            confirmButton.disabled = true;
+          }
 
-            // Realiza las acciones necesarias
-            handleSendInfo(preference);
-            console.log("Confirmar pago");
+          // Realiza las acciones necesarias
+          handleSendInfo(infoBase);
+          console.log("Confirmar pago");
 
-            // No cierres manualmente la alerta, espera a que se redirija o se cierre automáticamente
-            resolve();
-          });
-        },
-      }).then((result) => {
-        if (result.dismiss === Swal.DismissReason.cancel) {
-          // Acciones cuando se hace clic en Volver
-          console.log("Volver");
-        }
-      });
-    }
-  }, [data]);
+          // No cierres manualmente la alerta, espera a que se redirija o se cierre automáticamente
+          resolve();
+        });
+      },
+    }).then((result) => {
+       if (result.dismiss === Swal.DismissReason.cancel) {
+        // Acciones cuando se hace clic en Volver
+        dispatch(changePage(1));
+        console.log("Volver");
+      }
+    });
+  }
+}, [infoBase]);
 
-  return <div></div>;
-}
+return (
+  <div>
+   
+    </div>
+    );
+  };
+//import { changePage } from "../../../../../redux/slices/pageNav";
+  
+  export default ConfirmDate;
 
-export default ConfirmDate;
 
 /*
   return ( 
