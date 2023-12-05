@@ -40,7 +40,7 @@ const routes = {
 }
 
 
-//const prueba = getPlan(routeBack);
+// const prueba = getPlan(routeBack);
 
 function NewDate() {
   const dispatch = useDispatch();
@@ -300,7 +300,7 @@ export default NewDate;
 
       setPreference({...preference,idDoctor:doctorSelect})
       if(id){
-        healthApi.get('/appointment/'+id)
+        healthApi.get('/doctor/appointment/'+id)
           .then(({data})=>{dispatch(addDataAgenda(getPlan(data)))})
           .catch(err=>console.log(err.message))
       } 
