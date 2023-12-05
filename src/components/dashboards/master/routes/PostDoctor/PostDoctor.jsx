@@ -10,8 +10,9 @@ import { healthApi } from "../../../../../Api/HealthBookingApi"
 // import fotoPerfil from "../../../../assets/img/doctor.avif"
 
 const PostDoctor = () => {
-  // const [aux, setAux] = useState([]);
-  // const [aux1, setAux1] = useState([]);
+  const [selectSure, setSelectSure] = useState('');
+  const [selectSpecialty, setSelectSpecialty] = useState('');
+  const [selectIndiPhone, setSelectIndiPhone] = useState('');
   const [foto, setFoto] = useState("");
   const [errors, setErrors] = useState({});
   const [seguros, setSeguros] = useState([]);
@@ -41,8 +42,16 @@ const PostDoctor = () => {
   };
   //console.log(doctor);
 
+  const handleSpecialty = (event) => {
+    const { name, value } = event.target;
+    setSelectSpecialty(value)
+    setDoctor({ ...doctor, [name]: value });
+    setErrors(validation({ ...doctor, [name]: value }));
+  }
+
   const handleSure = (event) => {
     const values = event.target.value;
+    setSelectSure(values)
     if (!seguros.includes(values)) {
       setSeguros([...seguros, values]);
       setDoctor({ ...doctor, sure: [...doctor.sure, values] });
@@ -50,7 +59,8 @@ const PostDoctor = () => {
   };
 
 
-  const handlePhone = (codigoPais, numeroTelefono) => {
+  const handlePhone = (event, codigoPais, numeroTelefono) => {
+    setSelectIndiPhone(event.target.value)
     const telefonoCompleto = codigoPais + numeroTelefono;
     setDoctor({ ...doctor, phone: telefonoCompleto })
     setErrors(validation({ ...doctor, phone: telefonoCompleto }))
@@ -127,7 +137,7 @@ const PostDoctor = () => {
       }
 
       else {
-        const { data } = await healthApi.post("/doctor", doctor);
+        const { data } = await healthApi.post("/master/doctor", doctor);
 
         setDoctor({
           name: "",
@@ -139,6 +149,13 @@ const PostDoctor = () => {
           price: "",
           sure: [],
         });
+
+        setErrors("")
+        setSeguros([])
+        setFoto("")
+        setSelectSpecialty('')
+        setSelectIndiPhone('')
+        setSelectSure('')
 
         window.alert("Registro Exitoso!");
       }
@@ -162,6 +179,9 @@ const PostDoctor = () => {
     setErrors("")
     setSeguros([])
     setFoto("")
+    setSelectSpecialty('')
+    setSelectIndiPhone('')
+    setSelectSure('')
   }
 
 
@@ -230,7 +250,7 @@ const PostDoctor = () => {
                   <div className="div27">
                     <div className="div28">
                       <div className="div29">
-                        <select name="specialty" className="div30" value={doctor.specialty} onChange={handleChange}>
+                        <select name="specialty" className="div30" value={selectSpecialty} onChange={handleSpecialty}>
                           <option value="">Seleccionar</option>
                           {especialidad?.map((esp, index) => (
                             <option key={index}>{esp}</option>
@@ -251,11 +271,12 @@ const PostDoctor = () => {
                   <div className="div27">
                     <div className="div28">
                       <div className="div29">
-                        <select className="div46" id="codigoPais" onChange={(e) => {
+                        <select className="div46" id="codigoPais" value={selectIndiPhone} onChange={(e) => {
                           const codigoPais = e.target.value;
                           const numeroTelefono = document.getElementById('numeroTelefono').value;
                           handlePhone(codigoPais, numeroTelefono);
                         }}>
+                          <option value=''> + </option>
                           {indicativos.map((ind, index) => (
                             <option key={index} value={ind}>{ind}</option>
                           ))}
@@ -307,7 +328,7 @@ const PostDoctor = () => {
                   <div className="div27">
                     <div className="div28">
                       <div className="div29">
-                        <select name="sure" className="div30" value={doctor.sure} onChange={handleSure}>
+                        <select name="sure" className="div30" value={selectSure} onChange={handleSure}>
                           <option value="">Seleccionar</option>
                           {seguro?.map((sure, index) => (
                             <option key={index} value={sure}>
