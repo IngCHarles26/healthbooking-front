@@ -13,6 +13,8 @@ function ConfirmDate(props) {
   const data = props.infoFinishDate;
   const {idPatient,namePatient,idDoctor,nameDoctor,specialty,date,time,costo} = data;
 /*
+  
+
 
 
 const infoFinishDate = {
@@ -25,7 +27,7 @@ const infoFinishDate = {
   time:"11:00",
   costo:4500
 
-}*/
+}*/1111111111111111111111111111111111111
 const handleSendInfo = async (buyDate) => {
   const response = await healthApi.post(
     "/pay",
