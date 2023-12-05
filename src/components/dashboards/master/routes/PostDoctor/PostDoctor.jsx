@@ -169,7 +169,7 @@ const PostDoctor = () => {
         setSelectSpecialty('');
         setSelectIndiPhone('');
         setSelectSure('');
-        selectPhone('');
+        setSelectPhone('');
 
         window.alert("Registro Exitoso!");
       }
@@ -193,7 +193,7 @@ const PostDoctor = () => {
     setFoto("")
     setErrors("")
     setSeguros([])
-    selectPhone('');
+    setSelectPhone('');
     setSelectSure('');
     setSelectIndiPhone('')
     setSelectSpecialty('')
@@ -224,7 +224,7 @@ const PostDoctor = () => {
             </label>
 
             <div className="div12">
-              <button className="div14" type="button" onClick={() => seteo()}>Cancelar</button>
+              <button className="div14" type="button" onClick={() => seteo()}>Limpiar</button>
 
               <button type="submit" className="div14">Enviar</button>
             </div>
