@@ -12,6 +12,7 @@ import PostDoctor from "./routes/PostDoctor/PostDoctor";
 import { useEffect, useState } from "react";
 //import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
+import { useDispatch, useSelector } from "react-redux";
 //import PostDoctor from "../doctor/PostDoctor/PostDoctor";
 
 const routes = {
@@ -37,6 +38,7 @@ const navigationOptions = [
 ]
 
 function DashboardPatient() {
+  const algo = useSelector((st)=> st.pageNav)
   const [currentPage, setCurrentPage] = useState(0);
 
   // console.log({currentPage})
@@ -50,18 +52,9 @@ function DashboardPatient() {
   
   const pageList = [
     <HomeMaster />,
-    <PostDoctor />
+    <PostDoctor />,
   ];
   const handlePage = (page) => setCurrentPage(page);
-
-  // const informacion = [
-  //   { text: "Altura", info:"190cm (74.8in)"},
-  //   { text: "Peso", info:"79kg (39,5Lb)"},
-  //   { text: "Cumpleaños", info:"Sep 04, 1996"},
-  //   { text: "RH", info:"O+"},
-  // ]
-
-  // const perfil = { rol: 'Paciente', img: "fotoPerfil", name: "Fabio Catrillon" }
 
   return (
     <div className="wrapper-PatientHome">
@@ -69,23 +62,19 @@ function DashboardPatient() {
         menuData={navigationOptions}
         handlePage={handlePage} />
 
-        {/* <AsideRight 
-        parametros={informacion} 
-        perfil={perfil} /> */}
-
       <div className="dashboard-main">
 
-      {pageList[currentPage]}
+      {pageList[algo]}
 
       </div>
 
       <aside className="user-menu">
-        <AsideRight
+        {/* <AsideRight
           type='Master'
           image={infoUser.image}
           name={infoUser.name}
           info={infoUser.info}
-        />
+        /> */}
       </aside>
 
     </div>
