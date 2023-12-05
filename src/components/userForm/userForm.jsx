@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import validator from 'validator';
-import "./PostDoctor.css"
+import "./PostDoctor.scss"
 import { useAuth0 } from '@auth0/auth0-react'
 //import axios from "axios"
 import { healthApi } from '../../Api/HealthBookingApi';
@@ -28,13 +28,13 @@ const UserForm = () => {
     const userstorage = localStorage.getItem('user');
     const users = JSON.parse(userstorage);
     const getSure = async () => {
-        const { data } = await healthApi('/sure')
+        const { data } = await healthApi.get('/doctor/sure')
         setSures(data)
     }
     const getUser = async () => {
-        const { data } = await healthApi('/logging', { params: { email: users } })
-        console.log(data);
-        if (data) {
+        const { data } = await healthApi.get('/logging', { params: { email: users } })
+        console.log(data.exist);
+        if (data.exist) {
             navigate('/patient')
         }
     }
@@ -73,7 +73,7 @@ const UserForm = () => {
         e.preventDefault();
         const createuser = { id: formData.dni, name: formData.nombreCompleto, phone: formData.telefono, email: user.email, sure: formData.obrasocial }
         if (validateForm()) {
-            const newUser = await healthApi.post('/pacient/register', createuser)
+            const newUser = await healthApi.post('/patient/register', createuser)
             navigate('/patient');
         } else {
             console.log('Formulario no válido');

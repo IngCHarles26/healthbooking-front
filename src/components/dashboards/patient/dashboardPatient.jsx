@@ -15,7 +15,6 @@ import HomePatient from "./routes/home/homePatient";
 import EditProfile from "./routes/editProfile/editProfile";
 import Loading from "../../Loading/Loading"
 
-import { useEffect, useState } from "react";
 //import axios from "axios";
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -23,7 +22,6 @@ import ConfirmDate from "./routes/confirmDate/confirmDate";
 
 //_______________REACT
 import { useEffect, useState } from "react";
-import { useAuth0 } from '@auth0/auth0-react';
 import { healthApi } from "../../../Api/HealthBookingApi";
 import { useNavigate } from "react-router-dom";
 import Detail from "../general/Detail/Detail";
