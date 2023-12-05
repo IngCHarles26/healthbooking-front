@@ -52,6 +52,18 @@ const infoUser = {
   ],
 }
 
+const infoFinishDate = {
+  idPatient:39421857,
+  namePatient:"Santiago Chaparro",
+  idDoctor:45289,
+  nameDoctor:"Santiago paz",
+  specialty:"Cardiología",
+  date:"2023-11-11",
+  time:"11:00",
+  costo:4500
+
+}
+
 function DashboardPatient() {
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
