@@ -7,7 +7,6 @@ import historySVG from '../../assets/brands/history.svg';
 import NewDate from "./routes/newDate/newDate";
 import imagePrueba from '../../assets/img/profile.jpeg'
 
-
 //_______________COMPONENTS
 // import InfoPaciente from "../../../../componentes jose/GENERAL/InfoPaciente/InfoPaciente";
 import AsideLeft from "../general/asideLeft/asideLeft";
@@ -22,14 +21,25 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 import ConfirmDate from "./routes/confirmDate/confirmDate";
 
+//_______________REACT
+import { useEffect, useState } from "react";
+import { useAuth0 } from '@auth0/auth0-react';
 import { healthApi } from "../../../Api/HealthBookingApi";
 import { useNavigate } from "react-router-dom";
+import Detail from "../general/Detail/Detail";
+import { useDispatch, useSelector } from "react-redux";
 
+//_______________ACTIONS
+import { addAllDoctors } from "../../../redux/slices/patient/allDoctors";
+import { addAllSpecialtys } from "../../../redux/slices/patient/allSpecialtys";
+import { addAllSures } from "../../../redux/slices/patient/allSures";
+//import Detail from "../general/Detail/Detail";
+import { changePage } from "../../../redux/slices/pageNav";
 
 const routes = {
-  doctors: '/doctors',
-  specialtys: '/specialty',
-  sures: '/sure',
+  doctors: '/patient/doctors',
+  specialtys: '/patient/specialty',
+  sures: '/patient/sure',
   dates: '/',
 }
 
@@ -37,8 +47,6 @@ const navigationOptions = [
   { svg: homeSVG, text: 'Home', link: 0 },
   { svg: newDateSVG, text: 'Nueva cita', link: 1 },
   { svg: editSVG, text: 'Editar perfil', link: 2 },
-  { svg: editSVG, text: 'Resumen Cita', link: 3 },
-  // {svg:historySVG, text:'Historial Medico', link:3},
 ]
 
 const infoUser = {
@@ -53,62 +61,59 @@ const infoUser = {
 }
 
 const infoFinishDate = {
-  patient: { id: '1', name: 'Carlos Condori Ll', sure: 'OSDE' },
-  doctor: { id: '1', name: 'Santi Chaparro', Specialty: 'Neurología', sures: ['OSDE', 'Galeno'], cost: 9600 },
-  date: { date: '15/12/2023', hour: '09:00 am' },
+  idPatient: 39421857,
+  namePatient: "Santiago Chaparro",
+  idDoctor: 45289,
+  nameDoctor: "Santiago paz",
+  specialty: "Cardiología",
+  date: "2023-11-11",
+  time: "11:00",
+  costo: 4500
+
 }
 
 function DashboardPatient() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [sures, setSures] = useState([]);
-  const [specialtys, setSpecialtys] = useState([]);
-  const [doctors, setDoctors] = useState([]);
-  const { isAuthenticated, isLoading } = useAuth0()
+  const { isAuthenticated, isLoading } = useAuth0();
+  const dispatch = useDispatch();
+  const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
-  // console.log({currentPage})
-
-  // const navigate = useNavigate();
-
   //_______________Obtencion de informacion
   useEffect(() => {
     healthApi.get(routes.doctors)
       .then(({ data }) => {
-        setDoctors(data);
+        dispatch(addAllDoctors(convertDoctors(data)));
         return healthApi.get(routes.specialtys)
       })
       .then(({ data }) => {
-        setSpecialtys(data);
+        dispatch(addAllSpecialtys(convertOptions(data)));
         return healthApi.get(routes.sures)
       })
-      .then(({ data }) => { setSures(data) })
-      .then(() => console.log({ sures, specialtys, doctors }))
-      .catch((err) => console.log(err.message))
+      .then(({ data }) => {
+        dispatch(addAllSures(convertOptions(data)));
+      })
+    //.catch((err) => console.log(err.message))
   }, [])
   //_______________Navegacion en el Dashboard 
-  const pageList = [
-    <HomePatient />,
-    <NewDate
-      sures={convertOptions(sures)}
-      doctors={convertDoctors(doctors)}
-      specialtys={convertOptions(specialtys)} />,
-    <EditProfile />,
-    <ConfirmDate
-      infoFinishDate={infoFinishDate} />
-  ];
   const handlePage = (page) => setCurrentPage(page);
 
-  if (isLoading) {
-    <Loading />
-  }
+  const handleIdDoctor = (id) => setIdDetailDoctor(id);
+
+  const pageList = [
+    <HomePatient />,
+    <NewDate />,
+    <EditProfile />,
+    <Detail />,
+    <ConfirmDate />
+  ];
 
   return (
     isAuthenticated ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
-        handlePage={handlePage} />
+      />
 
       <div className="dashboard-main">
-        {pageList[currentPage]}
+        {pageList[page]}
       </div>
 
       <aside className="user-menu">

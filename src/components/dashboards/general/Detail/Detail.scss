@@ -24,7 +24,7 @@
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .fotoDetail {
@@ -97,7 +97,7 @@
   align-items: center;
   justify-content: space-between;
   display: inline-flex;
-  margin-top: -2rem;
+  
 }
 
 .boton {
@@ -118,6 +118,12 @@
   }
 }
 
-
-
-
+@media (max-width: 775px) {
+  .subConten {
+    gap: 1rem;  
+   
+  }
+  .contDetail{
+    transform: scale(0.65);
+  }
+}

@@ -7,6 +7,8 @@ import axios from 'axios';
 import leftArrow from '../../../../assets/brands/left-arrow.svg'
 import rightArrow from '../../../../assets/brands/right-arrow.svg'
 
+import { healthApi } from "../../../../../Api/HealthBookingApi";
+
 
 
 function HomePatient() {
@@ -15,7 +17,7 @@ function HomePatient() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/appointment/39421857');
+        const response = await healthApi.get('/patient/appointment/39421857');
         setData(response.data);
         // console.log(response.data);
       } catch (error) {

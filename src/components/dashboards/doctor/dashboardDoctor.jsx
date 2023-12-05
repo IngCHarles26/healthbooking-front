@@ -70,12 +70,12 @@ function DashboardDoctor() {
       </div>
 
       <aside className="user-menu">
-        <AsideRight
+        {/* <AsideRight
           type='Doctor'
           image={infoUser.image}
           name={infoUser.name}
           info={infoUser.info}
-        />
+        /> */}
       </aside>
 
     </div>) : Navigate("/")

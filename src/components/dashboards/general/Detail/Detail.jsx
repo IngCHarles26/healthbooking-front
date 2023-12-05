@@ -1,33 +1,25 @@
 import "./Detail.css"
 import { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
-//import axios from "axios"
 import { healthApi } from "../../../../Api/HealthBookingApi";
-//import Data from './data.json'
+import { useDispatch,useSelector } from "react-redux";
+import { changePage } from "../../../../redux/slices/pageNav";
 
-const Detail = () => {
-
-  const { id } = useParams();
+const Detail = ({ handlePage }) => {
+  const dispatch = useDispatch();
+  const id = useSelector(st=>st.doctorSelected)
   const [doctor, setDoctors] = useState([]);  
-  
-  //let filt = Data.doctors.filter((doc)=>doc.license === id)
-  // let sure = filt.arraySure.map((sur)=> sur.name);
-  // let specialty = filt.specialty;
-  //console.log(filt[0].name);
 
   useEffect(() => {
     if (doctor.length === 0) {
-      healthApi.get(`/doctors/${id}`)
-      .then(({data}) => {
+      healthApi.get(`/doctors/${id}`).then(({ data }) => {
         if (data) setDoctors(data);
-      }) 
+      });
       return setDoctors({});
     }
-  },[id]);
+  }, [id]);
 
-  let sure = doctor?.Sures?.map((sur)=> sur.name);
+  let sure = doctor?.Sures?.map((sur) => sur.name);
   let specialty = doctor.Specialty;
-
 
   return (
     <div className="containDetail">
@@ -37,7 +29,7 @@ const Detail = () => {
         <img className="fotoDetail" alt="" src={doctor?.profilePicture} />
       
       <div className="datos">
-        <div className="contInfo">
+        <div className="contInfor">
           <label className="info">Informacion</label>
         </div>
         <div className="textos">
@@ -70,21 +62,16 @@ const Detail = () => {
           <label className="textoDer">{sure?.join(', ')}</label>
         </div>
         
-      <hr />
+      <hr className="hr"/>
       </div>
 
       <div className="contBotones">
-          <NavLink to={"/patient"}>
-            <button className="boton">Regresa</button>
-          </NavLink>
-
-        <button className="boton">Seleccionar</button>
+            <button className="boton" onClick={()=>dispatch(changePage(1))}>Regresar</button>
      </div>
      </div>
     </div>
     </div>
-    
-  )
-}
+  );
+};
 
 export default Detail;
