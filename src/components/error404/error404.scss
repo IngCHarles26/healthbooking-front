@@ -47,25 +47,31 @@
     }
   
     .menu-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 20px;
-      }
-      
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+  
       .menu-items {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between; /* Add this property */
         gap: 20px;
       }
-      
+      @media screen and (max-width: 789px) {
+        .menu-items {
+          gap: 3px;
+        }
+      }
       .menu-item {
         font-size: 25px;
         font-weight: 700;
         line-height: 24px;
         word-wrap: break-word;
       }
+    }
+  
+    
   }
   
   .logo-container {

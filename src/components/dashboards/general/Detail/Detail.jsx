@@ -11,17 +11,15 @@ const Detail = ({ handlePage }) => {
 
   useEffect(() => {
     if (doctor.length === 0) {
-      healthApi.get(`/doctors/${id}`)
-      .then(({data}) => {
+      healthApi.get(`/doctors/${id}`).then(({ data }) => {
         if (data) setDoctors(data);
-      }) 
+      });
       return setDoctors({});
     }
-  },[id]);
+  }, [id]);
 
-  let sure = doctor?.Sures?.map((sur)=> sur.name);
+  let sure = doctor?.Sures?.map((sur) => sur.name);
   let specialty = doctor.Specialty;
-
 
   return (
     <div className="containDetail">
@@ -73,8 +71,7 @@ const Detail = ({ handlePage }) => {
      </div>
     </div>
     </div>
-    
-  )
-}
+  );
+};
 
 export default Detail;
