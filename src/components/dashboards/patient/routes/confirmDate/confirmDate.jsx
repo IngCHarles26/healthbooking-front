@@ -1,5 +1,6 @@
 import "./style.scss";
-
+import { useSelector,useDispatch } from "react-redux";
+import { changePage } from "../../../../../redux/slices/pageNav";
 //_____________SVGs
 
 
@@ -9,6 +10,8 @@ function ConfirmDate(props) {
   const data = props.infoFinishDate;
   const {idPatient,namePatient,idDoctor,nameDoctor,specialty,date,time,costo} = data;
 /*
+  
+
 
 const infoFinishDate = {
   idPatient:28271453,
