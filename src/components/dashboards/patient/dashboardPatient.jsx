@@ -19,13 +19,14 @@ import ConfirmDate from "./routes/confirmDate/confirmDate";
 import { useEffect, useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 import { healthApi } from "../../../Api/HealthBookingApi";
+import Detail from "../general/Detail/Detail";
 import { useDispatch,useSelector } from "react-redux";
 
 //_______________ACTIONS
 import { addAllDoctors } from "../../../redux/slices/patient/allDoctors";
 import { addAllSpecialtys } from "../../../redux/slices/patient/allSpecialtys";
 import { addAllSures } from "../../../redux/slices/patient/allSures";
-import Detail from "../general/Detail/Detail";
+//import Detail from "../general/Detail/Detail";
 import { changePage } from "../../../redux/slices/pageNav";
 
 const routes = {
@@ -83,9 +84,13 @@ function DashboardPatient() {
       .then(({ data }) => { 
         dispatch(addAllSures(convertOptions(data)));
       })
-      .catch((err) => console.log(err.message))
+      //.catch((err) => console.log(err.message))
   }, [])
   //_______________Navegacion en el Dashboard 
+  const handlePage = (page) => setCurrentPage(page);
+
+  const handleIdDoctor = (id) => setIdDetailDoctor(id);
+
   const pageList = [
     <HomePatient />,
     <NewDate/>,
