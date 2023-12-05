@@ -40,7 +40,7 @@ const routes = {
 }
 
 
-const prueba = getPlan(routeBack);
+// const prueba = getPlan(routeBack);
 
 function NewDate() {
   const dispatch = useDispatch();
@@ -68,7 +68,7 @@ function NewDate() {
   
   const [maxPage, setMaxPage] = useState(Math.ceil(doctors.length / cardsPerPage));
   
-  initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
+  // initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
 
   console.log(infoSend)
 
