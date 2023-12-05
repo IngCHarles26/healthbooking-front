@@ -40,7 +40,7 @@ const routes = {
 }
 
 
-const prueba = getPlan(routeBack);
+/* const prueba = getPlan(routeBack); */
 
 function NewDate() {
   const dispatch = useDispatch();
