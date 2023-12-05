@@ -30,9 +30,9 @@ import { addAllSures } from "../../../redux/slices/patient/allSures";
 import { changePage } from "../../../redux/slices/pageNav";
 
 const routes = {
-  doctors: '/doctors',
-  specialtys: '/specialty',
-  sures: '/sure',
+  doctors: '/patient/doctors',
+  specialtys: '/patient/specialty',
+  sures: '/patient/sure',
   dates: '/',
 }
 
