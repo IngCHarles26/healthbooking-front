@@ -5,18 +5,9 @@ import { useEffect } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 
 //_____________SVGs
+import { useSelector,useDispatch } from "react-redux";
 
-
-
-function ConfirmDate(props) {
-  //console.log(props.infoFinishDate)
-  const data = props.infoFinishDate;
-  const {idPatient,namePatient,idDoctor,nameDoctor,specialty,date,time,costo} = data;
-/*
-  
-
-
-
+  /*
 const infoFinishDate = {
   idPatient:28271453,
   namePatient:"Santiago Chaparro",
@@ -27,7 +18,26 @@ const infoFinishDate = {
   time:"11:00",
   costo:4500
 
-}*/1111111111111111111111111111111111111
+}*/
+
+const namePatient="Santiago Chaparro";
+
+function ConfirmDate(props) {
+  //console.log(props.infoFinishDate)
+  const data = props.infoFinishDate;
+  // const {idPatient,namePatient,idDoctor,nameDoctor,specialty,date,time,costo} = data;
+  const infoBase = useSelector(st=>st.infoSend);
+  const doctors = useSelector(st=>st.allDoctors);
+  const specialtys = useSelector(st=>st.allSpecialtys);
+  const sures = useSelector(st=>st.allSures);
+
+  const {idDoctor,idPatient,date,time} = infoBase;
+  const infoDoctor = doctors.find(el=>+el.id===+idDoctor);
+  const nameDoctor = infoDoctor.name;
+  const specialty = specialtys[infoDoctor.specialty];
+
+  //implementar el estado para guardar los datos del paciente en un redux
+
 const handleSendInfo = async (buyDate) => {
   const response = await healthApi.post(
     "/pay",
@@ -37,12 +47,13 @@ const handleSendInfo = async (buyDate) => {
 
   window.location.href = response.data;
 }
-const preference ={
-  idPatient,
-  idDoctor,
-  date,
-  time
-}
+const preference =infoBase;
+// {
+//   idPatient,
+//   idDoctor,
+//   date,
+//   time
+// }
 useEffect(() => {
   // Verifica que confirmDateData existe antes de mostrar el SweetAlert
   if (data) {

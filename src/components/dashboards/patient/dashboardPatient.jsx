@@ -106,7 +106,7 @@ function DashboardPatient() {
       />
 
       <div className="dashboard-main">
-      {pageList[page]}
+        {pageList[page]}
       </div>
 
       <aside className="user-menu">

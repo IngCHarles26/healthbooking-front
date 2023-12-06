@@ -99,16 +99,16 @@ function NewDate() {
     if (0 < newPage && newPage <= maxPage) setCurrentPage(newPage);
   }
 
-  const handleSendInfo = async (buyDate) => {
+  const handleSendInfo = () => {
     if(hourSelected && infoSend.idDoctor){
-
-      const response = await healthApi.post(
-        "/pay",
-        buyDate
-        );
-        console.log(response)
+      dispatch(changePage(4))
+      // const response = await healthApi.post(
+      //   "/pay",
+      //   buyDate
+      //   );
+      //   console.log(response)
         
-        window.location.href = response.data;
+      //   window.location.href = response.data;
       }
   }
 
@@ -275,7 +275,7 @@ function NewDate() {
       <section>
         {/* <Wallet initialization={{ preferenceId: preference.id }} /> */}
         {/* {console.log(preference)} handleSendInfo(infoSend)*/}
-        <button className="btnBuy" onClick={() => dispatch(changePage(4))}>Generar Cita</button>
+        <button className="btnBuy" onClick={() => handleSendInfo()}>Generar Cita</button>
 
       </section>
     </main>
