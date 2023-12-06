@@ -27,7 +27,9 @@ function ConfirmDate(props) {
   const costo = 4500;
   
   //console.log(props.infoFinishDate)
-  /*
+
+
+ 
   const infoFinishDate = {
     idPatient:28271453,
     namePatient:"Santiago Chaparro",
@@ -38,13 +40,15 @@ function ConfirmDate(props) {
     time:"11:00",
     costo:4500
     
+
   
   }
-  */
+  
  /*
   const data = infoFinishDate;
  const {idPatient,namePatient,idDoctor,nameDoctor,specialty,date,time,costo} = data;
 */
+
 
 
 
@@ -69,6 +73,7 @@ useEffect(() => {
     console.log(infoBase)
     console.log(specialtys)
     const htmlContent = `
+
       <div>
         <h2>Datos del paciente</h2>
         <p>Nombre: ${namePatient}</p>
@@ -105,23 +110,24 @@ useEffect(() => {
           animate__fadeOutDown
           animate__faster
         `,
-        },
 
-        showCancelButton: true, // Oculta el botón de Cancelar
-        showConfirmButton: true, // Oculta el botón OK
-        timer: 10000,
-        customClass: {
-          container: "custom-swal-container", // Clase personalizada para el contenedor
-        },
-        padding: "2rem", // Ajusta el espaciado interno del contenedor
-        background: "#fff",
-        preConfirm: () => {
-          return new Promise((resolve) => {
-            // Deshabilita el botón de confirmación después de hacer clic
-            const confirmButton = document.querySelector(".swal2-confirm");
-            if (confirmButton) {
-              confirmButton.disabled = true;
-            }
+      },
+      
+      showCancelButton: true, // Oculta el botón de Cancelar
+      showConfirmButton: true, // Oculta el botón OK
+      timer:10000,
+      customClass: {
+        container: 'custom-swal-container', // Clase personalizada para el contenedor
+      },
+      padding: '2rem', // Ajusta el espaciado interno del contenedor
+      background: '#fff',
+      preConfirm: () => {
+        return new Promise((resolve) => {
+          // Deshabilita el botón de confirmación después de hacer clic
+          const confirmButton = document.querySelector('.swal2-confirm');
+          if (confirmButton) {
+            confirmButton.disabled = true;
+          }
 
           // Realiza las acciones necesarias
           handleSendInfo(infoBase);
@@ -150,6 +156,7 @@ return (
 //import { changePage } from "../../../../../redux/slices/pageNav";
   
   export default ConfirmDate;
+
 
 /*
   return ( 
