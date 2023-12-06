@@ -1,0 +1,147 @@
+/* styles.scss */
+
+/* Container styles */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Form styles */
+.summary {
+  margin: 30px;
+  width: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  background: white;
+  border-radius: 35px;
+  border: 1px #D7DEDD solid;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  padding: 40px;
+
+  /* Rest of your form styles go here */
+}
+
+/* Section styles (e.g., Name, DNI, Email, etc.) */
+.divider {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 10px;
+
+  /* Rest of your section styles go here */
+}
+
+/* Label styles */
+label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input styles */
+.input {
+  flex: 1 1 0;
+  height: 40px;
+  padding: 8px;
+  background: linear-gradient(0deg, #EDF5F4 0%, #EDF5F4 100%);
+  box-shadow: 0px -1px 0px #484747 inset;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  display: flex;
+
+
+}
+
+/* Input field focus styles */
+.input-field:focus {
+  outline: none;
+  border-color: #42A7C3; /* Adjust color as needed */
+  box-shadow: 0px 0px 5px #42A7C3; /* Adjust shadow as needed */
+}
+
+/* Message error styles */
+.message-error {
+  color: red;
+  margin-top: 5px; /* Adjust spacing as needed */
+  font-size: 14px;
+
+  /* Rest of your message error styles go here */
+}
+
+/* Select styles */
+.select {
+  height: 40px;
+  padding: 8px;
+  background: linear-gradient(0deg, #EDF5F4 0%, #EDF5F4 100%);
+  box-shadow: 0px -1px 0px #484747 inset;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  display: flex;
+
+  /* Rest of your select styles go here */
+
+  select {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    appearance: none; /* Remove default arrow in some browsers */
+    padding: 0;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  &::after {
+    content: '▼';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+}
+
+/* Button styles */
+button {
+  background-color: #42A7C3; /* Adjust color as needed */
+  color: white;
+  padding: 8px 13px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #184a5d; /* Adjust hover color as needed */
+  }
+
+  /* Add other button styles as needed */
+}
+
+/* Responsive styles */
+ @media (max-width: 768px) {
+  .summary {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .label-text {
+    font-size: 65%;
+  }
+
+  .input-field {
+    font-size: 65%;
+    width: auto;
+    flex: none;
+  }
+} 
