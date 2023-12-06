@@ -10,8 +10,7 @@ import rightArrow from "../../../../assets/brands/arrow-right-newDate.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// MERCADOPAGO
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+
 
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,10 +35,13 @@ const initialPreference = {
 };
 
 const routes = {
-  getDetail: "detailDoctor/",
-};
+  getDetail: 'detailDoctor/',
+}
+
+
 
 // const prueba = getPlan(routeBack);
+
 
 function NewDate() {
   const dispatch = useDispatch();
