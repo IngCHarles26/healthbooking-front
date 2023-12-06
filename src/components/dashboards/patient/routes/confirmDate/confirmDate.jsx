@@ -34,8 +34,7 @@ const infoFinishDate = {
   time:"11:00",
   costo:4500
 
-}*/ 1111111111111111111111111111111111111;
-  const handleSendInfo = async (buyDate) => {
+}*/ const handleSendInfo = async (buyDate) => {
     const response = await healthApi.post("/pay", buyDate);
     console.log(response);
 
