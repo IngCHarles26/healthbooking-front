@@ -11,8 +11,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-// MERCADOPAGO
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+
 
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,7 +39,9 @@ const routes = {
 }
 
 
+
 // const prueba = getPlan(routeBack);
+
 
 function NewDate() {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ function NewDate() {
   
   const [maxPage, setMaxPage] = useState(Math.ceil(doctors.length / cardsPerPage));
   
-  initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
+  // initMercadoPago('TEST-a343d129-f780-4d77-8de3-0cbccf82c334');
 
 
   //console.log({ filtSure })
