@@ -4,14 +4,15 @@ import { healthApi } from "../../../../Api/HealthBookingApi";
 import { useDispatch,useSelector } from "react-redux";
 import { changePage } from "../../../../redux/slices/pageNav";
 
-const Detail = ({ handlePage }) => {
+const Detail = () => {
   const dispatch = useDispatch();
   const id = useSelector(st=>st.doctorSelected)
   const [doctor, setDoctors] = useState([]);  
 
   useEffect(() => {
     if (doctor.length === 0) {
-      healthApi.get(`/doctors/${id}`).then(({ data }) => {
+      healthApi.get(`/patient/doctor/${id}`)
+      .then(({ data }) => {
         if (data) setDoctors(data);
       });
       return setDoctors({});
