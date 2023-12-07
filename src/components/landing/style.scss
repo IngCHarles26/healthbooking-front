@@ -3,7 +3,7 @@
   /* ---------------------------------------------------------------------------------------------- */
   /* Site Header */
   /* ---------------------------------------------------------------------------------------------- */
-  header {
+  .landing-header {
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
@@ -35,13 +35,13 @@
     }
   }
 
-  header>.actions {
+  .landing-header>.actions {
     grid-area: nav;
     justify-self: end;
     display: flex;
     align-items: center;
 
-    a {
+    .landing-a-tag {
       display: flex;
       gap: 0.3rem;
       padding: 0.7rem;
@@ -54,14 +54,14 @@
       font-size: 0.875rem;
     }
 
-    a.signup-button {
+   /*  a.signup-button {
       border-radius: 0.3125rem;
       background: #42B8C3;
 
       &:hover:not(:active) {
         background: darken($color: #42B8C3, $amount: 5);
       }
-    }
+    } */
   }
 
   /* ---------------------------------------------------------------------------------------------- */
@@ -182,7 +182,7 @@
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
     >button.login,
-    >a.signup {
+    >.landing-a-tag.signup {
 
       background-color: #42A7C3;
       /* Adjust color as needed */
@@ -202,11 +202,11 @@
 
     }
 
-    >a.login {
+    >.landing-a-tag.login {
       border: 1px solid #42B8C3;
     }
 
-    >a.signup {
+    >.landing-a-tag.signup {
       background: #42B8C3;
     }
   }
@@ -214,7 +214,7 @@
   /* ---------------------------------------------------------------------------------------------- */
   /* Site Footer */
   /* ---------------------------------------------------------------------------------------------- */
-  footer>.menu {
+  .landing-footer>.menu {
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
@@ -252,7 +252,7 @@
     }
   }
 
-  footer>.menu>.banner {
+  .landing-footer>.menu>.banner {
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
@@ -272,12 +272,12 @@
     /*
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
-    img {
+    .landings-logo-img {
       width: 18rem;
     }
   }
 
-  footer>.menu>.links-group {
+  .landing-footer>.menu>.links-group {
     /*
     * -- Box model and Layout definitions ---------------------------------------------
     */
@@ -288,7 +288,7 @@
     /*
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
-    >h1 {
+    >.landing-h1 {
       color: var(--neutural-black, #081B2F);
       font-family: Inter;
       font-size: 1.1rem;
@@ -325,7 +325,7 @@
     }
   }
 
-  footer>.copyright {
+  .landing-footer>.copyright {
     color: var(--neutural-grey-1, #86898B);
     background: #F4F7FB;
     padding: 1.5rem 0rem;
