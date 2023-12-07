@@ -91,35 +91,33 @@ function HomeDoctor(props) {
             </thead>
 
             <tbody>
-              {dateList?.slice(
-                (currentPage - 1) * perPage,
-                (currentPage - 1) * perPage + perPage
-              ).map((cita) => (
-                <tr key={cita.id}>
-                  <td>{cita.time}</td>
-                  <td>{cita.Patient.name}</td>
-                  <td>{cita.Patient.Sure.name}</td>
-                  <td><button onClick={() => alert('detail')}>x</button> </td>
-                  <td>
-                    {cita.Patient.history === null ? (
-                      <button onClick={() => alert('form historial clinico')}>x</button>
-                    ) : (
-                      <Link to={cita.Patient.history} target="_blank">
-                        <button>x</button>
-                      </Link>
-                    )}
-                  </td>
-                  <td>
-                    {menorHoras(cita.date) ? (
-                      <button onClick={() => alert('No puedes reprogramar esta cita en menos de 24 horas.')}>
-                        x
-                      </button>
-                    ) : (
-                      <button onClick={() => console.log('hora cambiada')}>x</button>
-                    )}
-                  </td>
-                </tr>
-              ))}
+              {dateList?.slice((currentPage - 1) * perPage,
+                Math.min((currentPage - 1) * perPage + perPage, dateList.length)).map((cita) => (
+                  <tr key={cita.id}>
+                    <td>{cita.time}</td>
+                    <td>{cita.Patient.name}</td>
+                    <td>{cita.Patient.Sure.name}</td>
+                    <td><button onClick={() => alert('detail')}>x</button> </td>
+                    <td>
+                      {cita.Patient.history === null ? (
+                        <button onClick={() => alert('form historial clinico')}>x</button>
+                      ) : (
+                        <Link to={cita.Patient.history} target="_blank">
+                          <button>x</button>
+                        </Link>
+                      )}
+                    </td>
+                    <td>
+                      {menorHoras(cita.date) ? (
+                        <button onClick={() => alert('No puedes reprogramar esta cita en menos de 24 horas.')}>
+                          x
+                        </button>
+                      ) : (
+                        <button onClick={() => console.log('hora cambiada')}>x</button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
 
           </table>
