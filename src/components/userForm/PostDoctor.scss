@@ -12,7 +12,7 @@
 .form {
   margin: 30px;
   width: 50%;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,7 +43,7 @@
 }
 
 /* Section styles (e.g., DNI, Nombre Completo, etc.) */
-.section {
+.sectionUserForm {
   width: 100%;
   justify-content: flex-start;
   align-items: flex-start;
@@ -78,7 +78,7 @@
 }
 
 /* Input styles */
-.input {
+.userForm-input {
   flex: 1 1 0;
   height: 40px;
   padding: 8px;
@@ -109,7 +109,7 @@
 }
 
 /* Select styles */
-.select {
+.userForm-select {
   
   height: 40px;
   padding: 8px;
@@ -119,19 +119,16 @@
   align-items: center;
   gap: 8px;
   display: flex;
+ 
+  border: none;
+  background-color: transparent;
+  appearance: none; /* Remove default arrow in some browsers */
+  padding: 0;
+  font-size: 16px;
+  cursor: pointer;
+  
 
-  /* Rest of your select styles go here */
-
-  select {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background-color: transparent;
-    appearance: none; /* Remove default arrow in some browsers */
-    padding: 0;
-    font-size: 16px;
-    cursor: pointer;
-  }
+  
 
   &::after {
     content: '▼';
@@ -144,7 +141,7 @@
 }
 
 /* Button styles */
-button {
+.userform-submit-button {
   background-color: #42A7C3; /* Adjust color as needed */
   color: white;
   padding: 10px 20px;

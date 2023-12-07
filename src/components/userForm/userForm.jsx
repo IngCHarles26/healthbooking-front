@@ -126,138 +126,142 @@ const UserForm = () => {
         )
     }
 
-    return (
-        isAuthenticated ? (<div className="container">
-            <form className="form" onSubmit={handleSubmit}>
-                <img src={logo} alt="Logo" />
-                <div className="form-wrapper">
-                    <div className="section">
-                        <label for="dni" className="label">
-                            <p className="label-text">DNI</p>{" "}
-                        </label>
-                        <div className="input-container">
-                            <div className="input">
-                                <input
-                                    type="text"
-                                    name="dni"
-                                    className="input-field"
-                                    value={formData.dni}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-                        {errors.dni && <p className="message-error">{errors.dni}</p>}
-                    </div>
-
-                    <div className="section">
-                        <label className="label">
-                            <p className="label-text">Nombre Complepto</p>
-                        </label>
-                        <div className="input-container">
-                            <div className="input">
-                                <input
-                                    type="text"
-                                    name="nombreCompleto"
-                                    className="input-field"
-                                    value={formData.nombreCompleto}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-                        {errors.nombreCompleto && (
-                            <p className="message-error">{errors.nombreCompleto}</p>
-                        )}
-                    </div>
-
-                    <div className="section">
-                        <label className="label">
-                            <p className="label-text">Altura</p>{" "}
-                        </label>
-                        <div className="input-container">
-                            <div className="input">
-                                <input
-                                    type="text"
-                                    name="altura"
-                                    className="input-field"
-                                    value={formData.altura}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-                        {errors.altura && <p className="message-error">{errors.altura}</p>}
-                    </div>
-
-                    <div className="section">
-                        <label className="label">
-                            <p className="label-text">Peso</p>{" "}
-                        </label>
-                        <div className="input-container">
-                            <div className="input">
-                                <input
-                                    type="text"
-                                    name="peso"
-                                    className="input-field"
-                                    value={formData.peso}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-                        {errors.peso && <p className="message-error">{errors.peso}</p>}
-                    </div>
-
-                    <div className="section">
-                        <label className="label">
-                            <p className="label-text">Teléfono</p>{" "}
-                        </label>
-                        <div className="input-container">
-                            <div className="input">
-                                <div className="select">
-                                    <select onChange={handleSure}>
-                                        {indicativos.map((ind, index) => (
-                                            <option key={index}>{ind}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="input">
-                                    <input
-                                        type="text"
-                                        name="telefono"
-                                        className="input-field"
-                                        value={formData.telefono}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        {errors.telefono && (
-                            <p className="message-error">{errors.telefono}</p>
-                        )}
-                    </div>
-
-                    <div className="section">
-                        <label className="label">
-                            <p className="label-text">Obras socialep</p>
-                        </label>
-                        <div className="input-container">
-                            <div className="input">
-                                <select className="select" onChange={handleSure}>
-                                    <option>Obra social</option>
-                                    {sures.map((opcion) => (
-                                        <option key={opcion.id} value={opcion.name}>
-                                            {opcion.name}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" className="submit-button">
-                        Enviar
-                    </button>
+    return isAuthenticated ? (
+      <div className="container">
+        <form className="form" onSubmit={handleSubmit}>
+          <img src={logo} alt="Logo" />
+          <div className="form-wrapper">
+            <div className="sectionUserForm">
+              <label for="dni" className="label">
+                <p className="label-text">DNI</p>{" "}
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <input
+                    type="text"
+                    name="dni"
+                    className="input-field"
+                    value={formData.dni}
+                    onChange={handleChange}
+                  />
                 </div>
-            </form>
-        </div>) : navigate('/')
+              </div>
+              {errors.dni && <p className="message-error">{errors.dni}</p>}
+            </div>
+
+            <div className="sectionUserForm">
+              <label className="label">
+                <p className="label-text">Nombre Complepto</p>
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <input
+                    type="text"
+                    name="nombreCompleto"
+                    className="input-field"
+                    value={formData.nombreCompleto}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              {errors.nombreCompleto && (
+                <p className="message-error">{errors.nombreCompleto}</p>
+              )}
+            </div>
+
+            <div className="sectionUserForm">
+              <label className="label">
+                <p className="label-text">Altura</p>{" "}
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <input
+                    type="text"
+                    name="altura"
+                    className="input-field"
+                    value={formData.altura}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              {errors.altura && (
+                <p className="message-error">{errors.altura}</p>
+              )}
+            </div>
+
+            <div className="sectionUserForm">
+              <label className="label">
+                <p className="label-text">Peso</p>{" "}
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <input
+                    type="text"
+                    name="peso"
+                    className="input-field"
+                    value={formData.peso}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              {errors.peso && <p className="message-error">{errors.peso}</p>}
+            </div>
+
+            <div className="sectionUserForm">
+              <label className="label">
+                <p className="label-text">Teléfono</p>{" "}
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <div className="userForm-select">
+                    <select onChange={handleSure}>
+                      {indicativos.map((ind, index) => (
+                        <option key={index}>{ind}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="userForm-input">
+                    <input
+                      type="text"
+                      name="telefono"
+                      className="input-field"
+                      value={formData.telefono}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+              </div>
+              {errors.telefono && (
+                <p className="message-error">{errors.telefono}</p>
+              )}
+            </div>
+
+            <div className="sectionUserForm">
+              <label className="label">
+                <p className="label-text">Obras socialep</p>
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <select className="userForm-select" onChange={handleSure}>
+                    <option>Obra social</option>
+                    {sures.map((opcion) => (
+                      <option key={opcion.id} value={opcion.name}>
+                        {opcion.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" className="userform-submit-button">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    ) : (
+      navigate("/")
     );
 
 };
