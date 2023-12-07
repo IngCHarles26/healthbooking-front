@@ -1,4 +1,4 @@
-main{
+.homepatient-main {
   /*
   * -- Box model and Layout definitions ---------------------------------------------
   */
@@ -28,7 +28,7 @@ main{
   /*
   * -- Subcomponents and behaviours definitions -------------------------------------
   */
-  > header{
+  > .homePatient-header {
     color: rgba(165, 162, 184, 0.60);
     font-family: DM Sans;
     font-size: 0.9rem;
@@ -38,23 +38,23 @@ main{
     letter-spacing: 0.00875rem;
   }
 
-  > footer{
+  > .homepatient-footer {
     width: 100%;
     display: flex;
     justify-content: center;
     gap: 1rem;
     align-items: center;
-  }
 
-  > footer .pageButton{
-    background-color: #8A898B40;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 25%;
+    .pageButton {
+      background-color: #8A898B40;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 25%;
+    }
   }
 }
 
-main > article.summary{
+.homepatient-main .homepatient-summary {
   /*
   * -- Box model and Layout definitions ---------------------------------------------
   */
@@ -67,7 +67,7 @@ main > article.summary{
   }
 
   @media only screen and (min-width: 767px) {/* desktop */
-    height: 43rem;
+
   }
 
   /*
@@ -77,7 +77,7 @@ main > article.summary{
   /*
   * -- Subcomponents and behaviours definitions -------------------------------------
   */
-  > header{
+  > .homepatient-main {
     color: #352E5B;
     font-family: DM Sans;
     font-size: 1.75rem;
@@ -88,7 +88,7 @@ main > article.summary{
   }
 }
 
-main > article.summary > .table-wrapper{
+.homepatient-main .homepatient-summary .table-wrapper {
   /* Box Style */
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -96,20 +96,20 @@ main > article.summary > .table-wrapper{
   width: 100%;
 }
 
-main > article.summary > .table-wrapper > table{
+.homepatient-main .homepatient-summary .table-wrapper table {
   /* Box Style */
   width: 100%;
   table-layout: auto;
   border-collapse: collapse;
 }
 
-main > article.summary > .table-wrapper > table > thead{
+.homepatient-main .homepatient-summary .table-wrapper table thead {
   /* Box Style */
   height: 2.5rem;
   border-bottom: 1px solid #F8F7FF;
 
   /* Children */
-  th{
+  th {
     /* Text Style */
     color: #F6F4FF;
     font-family: DM Sans;
@@ -118,11 +118,14 @@ main > article.summary > .table-wrapper > table > thead{
     font-weight: 600;
     line-height: normal;
   }
-}
+ 
+ 
+  }
 
-main > article.summary > .table-wrapper > table > tbody{
 
-  td{
+.homepatient-main .homepatient-summary .table-wrapper table tbody {
+
+  td {
     /* Text Style */
     min-width: 2rem;
     height: 2rem;
@@ -138,8 +141,20 @@ main > article.summary > .table-wrapper > table > tbody{
     line-height: normal;
   }
 }
+@media (max-width: 769px) {
+  .homepatient-main .homepatient-summary .table-wrapper table thead th {
+    font-size: 0.7rem;
+  }
+  .homepatient-main .homepatient-summary .table-wrapper table tbody td {
+    font-size: 0.9rem;
+  }
+}
 
-
-
-
-
+@media (max-width: 567px) {
+  .homepatient-main .homepatient-summary .table-wrapper table thead th {
+    font-size: 0.4rem;
+  }
+  .homepatient-main .homepatient-summary .table-wrapper table tbody td {
+    font-size: 0.4rem;
+  }
+}

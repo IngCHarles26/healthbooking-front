@@ -1,5 +1,5 @@
 import "./style.scss";
-
+import { useNavigate } from "react-router-dom";
 import heroImg from "../assets/img/hero-cover.png";
 import logoClaro from "../assets/full-logo-white.svg";
 import logoOscuro from "../assets/full-logo-black.svg";
@@ -29,20 +29,37 @@ const infoParticipants = [
 ];
 
 function Landing() {
+  const navigate = useNavigate();
+  const { loginWithRedirect, user, isAuthenticated } = useAuth0();
+  console.log(user);
+  console.log(isAuthenticated);
 
-  const { loginWithRedirect } = useAuth0()
+  if (isAuthenticated) {
+    console.log("localstorage");
+    localStorage.setItem("bool", JSON.stringify(isAuthenticated));
+    localStorage.setItem("user", JSON.stringify(user.email));
+  }
 
+  const loginAuthenticate = () => {
+    if (isAuthenticated) {
+      navigate("/patient");
+    } else {
+      loginWithRedirect();
+    }
+  };
 
   return (
     <div className="wrapper-LandingPage">
-      <header>
+      <header className="landing-header">
         <div className="logo">
-          <img src={logoClaro} alt="logoClaro" />
+          <img className="landings-logo-img" src={logoClaro} alt="logoClaro" />
         </div>
         <nav className="actions">
-          <a onClick={() => { }}>Iniciar sesión</a>
-          <a href="/signup">
-            UNETE <img src={arrowRight}></img>
+          <a className="landing-a-tag" onClick={() => {}}>
+            Iniciar sesión
+          </a>
+          <a className="landing-a-tag" href="/signup">
+            UNETE <img className="landings-logo-img" src={arrowRight}></img>
           </a>
         </nav>
       </header>
@@ -52,15 +69,27 @@ function Landing() {
           <div className="hero-desc">
             <div className="description">
               <span className="slogan">Conecta con tu salud</span>
-              <span className="title"> HealthBooking es la web que te facilita la salud</span>
-              <span className="comment"> Regístrate ya y conecta con tu salud</span>
+              <span className="title">
+                {" "}
+                HealthBooking es la web que te facilita la salud
+              </span>
+              <span className="comment">
+                {" "}
+                Regístrate ya y conecta con tu salud
+              </span>
             </div>
 
             <div className="actions">
-
-              <a href="/patient" className="login" onClick={() => loginWithRedirect()}> ingresar</a>
-              <a href="/patient" className="signup" onClick={() => loginWithRedirect()}> UNETE</a>
-
+              {isAuthenticated ? (
+                <button className="login" onClick={() => loginAuthenticate()}>
+                  {" "}
+                  ingresar
+                </button>
+              ) : (
+                <button className="login" onClick={() => loginWithRedirect()}>
+                  Unirse
+                </button>
+              )}
             </div>
           </div>
           <img className="hero-logo" src={heroImg} />
@@ -75,30 +104,45 @@ function Landing() {
         </section>
       </main>
 
-      <footer>
+      <footer className="landing-footer">
         <div className="menu">
           <div className="banner">
-            <img src={logoOscuro} alt="logoClaroOscuro" />
-            <span> <strong>HealthBooking</strong> es un proyecto desarrollado por estudiantes del bootcamp Henry, una academia online que forma desarrolladores web full stack.{" "}</span>
+            <img
+              className="landings-logo-img"
+              src={logoOscuro}
+              alt="logoClaroOscuro"
+            />
+            <span>
+              {" "}
+              <strong>HealthBooking</strong> es un proyecto desarrollado por
+              estudiantes del bootcamp Henry, una academia online que forma
+              desarrolladores web full stack.{" "}
+            </span>
           </div>
 
           <div className="links-group about">
-            <h1>Sobre este proyecto</h1>
+            <h1 className="landing-h1">Sobre este proyecto</h1>
             <nav>
               {aboutInfo.map((el) => (
-                <LinkAbout key={"about_" + el.text}
+                <LinkAbout
+                  key={"about_" + el.text}
                   link={el.link}
-                  text={el.text} />))}
+                  text={el.text}
+                />
+              ))}
             </nav>
           </div>
 
           <div className="links-group contact">
-            <h1>Integrantes</h1>
+            <h1 className="landing-h1">Integrantes</h1>
             <nav>
-              {infoParticipants.map(el => (
-                <LinkParticipants key={'participant_' + el.name}
+              {infoParticipants.map((el) => (
+                <LinkParticipants
+                  key={"participant_" + el.name}
                   name={el.name}
-                  linkedin={el.linkedin} />))}
+                  linkedin={el.linkedin}
+                />
+              ))}
             </nav>
           </div>
         </div>
@@ -116,18 +160,18 @@ export default Landing;
 function LinkAbout(props) {
   const { link, text } = props;
   return (
-    <a href={link} target="_blank">
-      <img src={linkSVG} alt="imageLink" />
+    <a className="landing-a-tag" href={link} target="_blank">
+      <img className="landings-logo-img" src={linkSVG} alt="imageLink" />
       {text}
     </a>
-  )
+  );
 }
 
 function LinkParticipants(props) {
   const { linkedin, github, name } = props;
   return (
-    <a href={linkedin}>
-      <img src={linkedInSVG} />
+    <a className="landing-a-tag" href={linkedin}>
+      <img className="landings-logo-img" src={linkedInSVG} />
       {name}
     </a>
   );

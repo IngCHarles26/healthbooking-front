@@ -1,0 +1,156 @@
+.not-allowed-day {
+    opacity: 0.5;
+    /* Por ejemplo, disminuir la opacidad para indicar que no está permitido */
+    pointer-events: none;
+    cursor: not-allowed;
+    /* Deshabilitar eventos de clic para días no permitidos */
+}
+
+.allowed-day {
+    /* Estilos para días permitidos si es necesario */
+    cursor: pointer;
+}
+
+// main {
+//     /*
+//     * -- Box model and Layout definitions ---------------------------------------------
+//     */
+//     display: flex;
+//     flex-direction: column;
+//     align-content: space-between;
+//     padding: 1.5rem 1.5rem;
+//     gap: 1rem;
+//     width: 74%;
+//     height: 100%;
+//     // grid-template-rows: 1fr 15fr 1fr;
+
+//     @media only screen and (max-width: 767px) {
+//         /* mobile */
+
+//     }
+
+//     @media only screen and (min-width: 767px) {
+//         /* desktop */
+//         margin-left: 11%; // sidebar width
+//         margin-right: 15%; // sidebar width
+//     }
+
+//     /*
+//     * -- Box and text styles definitions ----------------------------------------------
+//     */
+
+//     /*
+//     * -- Subcomponents and behaviours definitions -------------------------------------
+//     */
+//     >header {
+//         color: rgba(165, 162, 184, 0.60);
+//         font-family: DM Sans;
+//         font-size: 0.9rem;
+//         font-style: normal;
+//         font-weight: 400;
+//         line-height: normal;
+//         letter-spacing: 0.00875rem;
+//     }
+
+//     >footer {
+//         width: 100%;
+//         display: flex;
+//         justify-content: center;
+//         gap: 1rem;
+//         align-items: center;
+//     }
+
+//     >footer .pageButton {
+//         background-color: #8A898B40;
+//         width: 2rem;
+//         height: 2rem;
+//         border-radius: 25%;
+//     }
+// }
+
+// main>article.summary {
+//     /*
+//     * -- Box model and Layout definitions ---------------------------------------------
+//     */
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//     gap: 1.5rem;
+
+//     @media only screen and (max-width: 767px) {
+//         /* mobile */
+//     }
+
+//     @media only screen and (min-width: 767px) {
+//         /* desktop */
+//         height: 43rem;
+//     }
+
+//     /*
+//     * -- Box and text styles definitions ----------------------------------------------
+//     */
+
+//     /*
+//     * -- Subcomponents and behaviours definitions -------------------------------------
+//     */
+//     >header {
+//         color: #352E5B;
+//         font-family: DM Sans;
+//         font-size: 1.75rem;
+//         font-style: normal;
+//         font-weight: 700;
+//         line-height: normal;
+//         text-transform: uppercase;
+//     }
+// }
+
+// main>article.summary>.table-wrapper {
+//     /* Box Style */
+//     padding: 0.5rem 1rem;
+//     border-radius: 0.5rem;
+//     background: #42A7C3;
+//     width: 100%;
+// }
+
+// main>article.summary>.table-wrapper>table {
+//     /* Box Style */
+//     width: 100%;
+//     table-layout: auto;
+//     border-collapse: collapse;
+// }
+
+// main>article.summary>.table-wrapper>table>thead {
+//     /* Box Style */
+//     height: 2.5rem;
+//     border-bottom: 1px solid #F8F7FF;
+
+//     /* Children */
+//     th {
+//         /* Text Style */
+//         color: #F6F4FF;
+//         font-family: DM Sans;
+//         font-size: 1.1rem;
+//         font-style: normal;
+//         font-weight: 600;
+//         line-height: normal;
+//     }
+// }
+
+// main>article.summary>.table-wrapper>table>tbody {
+
+//     td {
+//         /* Text Style */
+//         min-width: 2rem;
+//         height: 2rem;
+//         font-variant: all-small-caps;
+//         text-align: left;
+//         padding: 0 0.1rem;
+
+//         color: #F6F4FF;
+//         font-family: DM Sans;
+//         font-size: 0.95rem;
+//         font-style: normal;
+//         font-weight: 500;
+//         line-height: normal;
+//     }
+// }
