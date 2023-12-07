@@ -103,23 +103,9 @@
   align-items: center;
   justify-content: center;
   display: inline-flex;
-  margin-top: -3.4rem;
+  margin-top: -3.5rem;
 }
 
 .boton{
-  background-color: #42A7C3;
-  padding: 2mm;
-  border-radius: 2mm;
   width: 22rem;
-  font-family: "DM Sans", Helvetica;
-  color: white;
-  font-size: 100%;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.boton:hover{
-  transition: 500ms;
-  background-color: #81e1fc;
-  color: rgb(63, 63, 63);
 }

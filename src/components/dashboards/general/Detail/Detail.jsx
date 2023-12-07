@@ -1,4 +1,4 @@
-import "./Detail.scss";
+import "./Detail.css";
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../Api/HealthBookingApi";
 import { useDispatch, useSelector } from "react-redux";
