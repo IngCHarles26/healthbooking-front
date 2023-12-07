@@ -10,8 +10,7 @@ import Error404 from "../components/error404/Error404";
 import EditProfile from "../components/dashboards/patient/routes/editProfile/editProfile";
 
 const router = createBrowserRouter([
-  { path: "/editProfile", element: <EditProfile /> },
-  { path: "/error", element: <Error404 /> },
+  { path: "/error", element: <EditProfile /> },
   { path: "/", element: <Landing /> },
   { path: "/patient", element: <DashboardPatient /> },
   { path: "/patientForm", element: <UserForm /> },
