@@ -79,7 +79,7 @@ function EditProfile() {
     <main className="editprofileMain">
       <header>Dashboard &#62; Editar Perfil</header>
 
-      <article className="summary">
+      <article className="editprofile-summary">
         {!edit ? <img src={logo} alt="Logo" /> : null}
 
         <header>Edit profile</header>
