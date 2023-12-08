@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 //import axios from "axios";
 import HomeDoctor from "./routes/home/homeDoctor";
 import { useAuth0 } from "@auth0/auth0-react"
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const routes = {
 
 }
@@ -40,7 +40,7 @@ const navigationOptions = [
 function DashboardDoctor() {
   const [currentPage, setCurrentPage] = useState(0);
   const { isAuthenticated, isLoading } = useAuth0()
-
+  const navigate = useNavigate()
   // console.log({currentPage})
 
   //_______________Obtencion de informacion
@@ -70,15 +70,15 @@ function DashboardDoctor() {
       </div>
 
       <aside className="user-menu">
-        {/* <AsideRight
+        <AsideRight
           type='Doctor'
           image={infoUser.image}
           name={infoUser.name}
           info={infoUser.info}
-        /> */}
+        />
       </aside>
 
-    </div>) : Navigate("/")
+    </div>) : navigate("/")
   );
 }
 

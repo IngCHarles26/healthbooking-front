@@ -1,4 +1,4 @@
-import "./style.scss";
+import "./confirmdate.scss";
 import Swal from "sweetalert2";
 import "animate.css";
 import { useEffect } from "react";
@@ -10,8 +10,6 @@ import { changePage } from "../../../../../redux/slices/pageNav";
 
 //_____________SVGs
 import { useSelector,useDispatch } from "react-redux";
-
-
 
 function ConfirmDate(props) {
 
@@ -30,7 +28,9 @@ function ConfirmDate(props) {
   const costo = 4500;
   
   //console.log(props.infoFinishDate)
-  /*
+
+
+ 
   const infoFinishDate = {
     idPatient:28271453,
     namePatient:"Santiago Chaparro",
@@ -41,13 +41,15 @@ function ConfirmDate(props) {
     time:"11:00",
     costo:4500
     
+
   
   }
-  */
+  
  /*
   const data = infoFinishDate;
  const {idPatient,namePatient,idDoctor,nameDoctor,specialty,date,time,costo} = data;
 */
+
 
 
 
@@ -73,6 +75,7 @@ useEffect(() => {
     console.log(infoBase)
     console.log(specialtys)
     const htmlContent = `
+
       <div>
         <h2>Datos del paciente</h2>
         <p>Nombre: ${namePatient}</p>
@@ -91,24 +94,25 @@ useEffect(() => {
       </div>
       
     `;
-  
-    Swal.fire({
-      title: "Confirma tu cita!",
-      html: htmlContent,
-      showClass: {
-        popup: `
+
+      Swal.fire({
+        title: "Confirma tu cita!",
+        html: htmlContent,
+        showClass: {
+          popup: `
           animate__animated
           animate__fadeInUp
           animate__faster
         `,
-      },
-    
-      hideClass: {
-        popup: `
+        },
+
+        hideClass: {
+          popup: `
           animate__animated
           animate__fadeOutDown
           animate__faster
         `,
+
       },
       
       showCancelButton: true, // Oculta el botón de Cancelar
@@ -154,6 +158,7 @@ return (
 //import { changePage } from "../../../../../redux/slices/pageNav";
   
   export default ConfirmDate;
+
 
 /*
   return ( 
