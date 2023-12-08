@@ -4,9 +4,9 @@ import heroImg from "../assets/img/hero-cover.png";
 import logoClaro from "../assets/full-logo-white.svg";
 import logoOscuro from "../assets/full-logo-black.svg";
 import linkSVG from "../assets/util/link-clip.svg";
-import arrowRight from "../assets/util/white-arrow-right.svg";
 import linkedInSVG from "../assets/brands/linkedin.svg";
 import { useAuth0, } from "@auth0/auth0-react";
+import { arrowRight } from "../assets/svgs";
 // import gitHubSVG from "../assets/brands/github.svg";
 
 const aboutInfo = [
@@ -72,6 +72,7 @@ function Landing() {
               <span className="title">
                 {" "}
                 HealthBooking es la web que te facilita la salud
+                
               </span>
               <span className="comment">
                 {" "}
@@ -119,7 +120,6 @@ function Landing() {
               desarrolladores web full stack.{" "}
             </span>
           </div>
-
           <div className="links-group about">
             <h1 className="landing-h1">Sobre este proyecto</h1>
             <nav>
@@ -149,6 +149,7 @@ function Landing() {
 
         <div className="copyright">
           ©2023 <strong>HealthBooking.</strong> Henry Bootcamp
+
         </div>
       </footer>
     </div>
