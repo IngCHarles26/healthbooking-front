@@ -80,6 +80,14 @@ function HomeDoctor(props) {
 
   return (
     <main className="homeDoctor-main">
+      <header className="homeDoctor-title">Calendario de citas</header>
+      <div className="custom-calendar-container">
+        <Calendar
+          className="custom-calendar-style"
+          onChange={handleDateChange}
+          tileClassName={tileClassName}
+        />
+      </div>
       <article className="homeDoctor-summary">
         <header className="homeDoctor-title">Historial de Citas</header>
 
@@ -171,6 +179,7 @@ function HomeDoctor(props) {
           )}
         </article>
       </article>
+
       {dateList.length !== 0 && selectedDate ? (
         <footer className="homeDoctor-navigation">
           <button disabled={currentPage === 1} onClick={previous}>
@@ -182,13 +191,6 @@ function HomeDoctor(props) {
           </button>
         </footer>
       ) : null}
-      <div className="custom-calendar-container">
-        <Calendar
-          className="custom-calendar-style"
-          onChange={handleDateChange}
-          tileClassName={tileClassName}
-        />
-      </div>
     </main>
   );
 }

@@ -16,7 +16,7 @@
      * -- Box model and Layout definitions ---------------------------------------------
     */
     display: flex;
-    flex-direction: column;
+    flex-direction:  column;
      align-content: space-between;
     padding: 1.5rem 1.5rem;
      gap: 1rem;
@@ -43,13 +43,13 @@
      * -- Subcomponents and behaviours definitions -------------------------------------
     */
      >.homeDoctor-title {
-         color: rgba(165, 162, 184, 0.60);
+        color: #352E5B;
         font-family: DM Sans;
-         font-size: 0.9rem;
+        font-size: 1.75rem;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 700;
         line-height: normal;
-         letter-spacing: 0.00875rem;
+        text-transform: uppercase;
     }
 
     >.homeDoctor-navigation {
@@ -58,6 +58,7 @@
         justify-content: center;
         gap: 1rem;
         align-items: center;
+        
     }
 
     >.homeDoctor-navigation .pageButton {
