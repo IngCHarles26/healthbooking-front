@@ -8,7 +8,7 @@
 }
 
 /* Form styles */
-.summary {
+.editprofile-summary {
   margin: 30px;
   width: 400px;
   height: auto;
@@ -125,7 +125,7 @@
 
 /* Responsive styles */
  @media (max-width: 768px) {
-  .summary {
+  .editprofile-summary {
     width: 80%;
   }
 }

@@ -79,13 +79,21 @@ function HomeDoctor(props) {
 
 
   return (
-    < main >
-      <article className="summary">
-        <header>Historial de Citas</header>
+    <main className="homeDoctor-main">
+      <header className="homeDoctor-title">Calendario de citas</header>
+      <div className="custom-calendar-container">
+        <Calendar
+          className="custom-calendar-style"
+          onChange={handleDateChange}
+          tileClassName={tileClassName}
+        />
+      </div>
+      <article className="homeDoctor-summary">
+        <header className="homeDoctor-title">Historial de Citas</header>
 
-        <article className="table-wrapper">
+        <article className="homeDoctor-calendar">
           {dateList.length > 0 ? (
-            <table>
+            <table className="homeDoctor-table">
               <thead>
                 <tr>
                   <th>Hora</th>
@@ -98,16 +106,37 @@ function HomeDoctor(props) {
               </thead>
 
               <tbody>
-                {dateList?.slice((currentPage - 1) * perPage,
-                  Math.min((currentPage - 1) * perPage + perPage, dateList.length)).map((cita) => (
+                {dateList
+                  ?.slice(
+                    (currentPage - 1) * perPage,
+                    Math.min(
+                      (currentPage - 1) * perPage + perPage,
+                      dateList.length
+                    )
+                  )
+                  .map((cita) => (
                     <tr key={cita.id}>
                       <td>{cita.time}</td>
                       <td>{cita.Patient.name}</td>
                       <td>{cita.Patient.Sure.name}</td>
-                      <td><button onClick={() => alert('aca iria el detail con un dispatch')}>x</button> </td>
+                      <td>
+                        <button
+                          onClick={() =>
+                            alert("aca iria el detail con un dispatch")
+                          }
+                        >
+                          x
+                        </button>{" "}
+                      </td>
                       <td>
                         {cita.Patient.history === null ? (
-                          <button onClick={() => alert('aca iria el form con un dispatch')}>x</button>
+                          <button
+                            onClick={() =>
+                              alert("aca iria el form con un dispatch")
+                            }
+                          >
+                            x
+                          </button>
                         ) : (
                           <Link to={cita.Patient.history} target="_blank">
                             <button>x</button>
@@ -116,37 +145,53 @@ function HomeDoctor(props) {
                       </td>
                       <td>
                         {menorHoras(cita.date) ? (
-                          <button onClick={() => alert('No puedes reprogramar esta cita en menos de 24 horas.')}>
+                          <button
+                            onClick={() =>
+                              alert(
+                                "No puedes reprogramar esta cita en menos de 24 horas."
+                              )
+                            }
+                          >
                             x
                           </button>
                         ) : (
-                          <button onClick={() => console.log('aca iria el reprogramar con un dispatch')}>x</button>
+                          <button
+                            onClick={() =>
+                              console.log(
+                                "aca iria el reprogramar con un dispatch"
+                              )
+                            }
+                          >
+                            x
+                          </button>
                         )}
                       </td>
                     </tr>
                   ))}
               </tbody>
-
-            </table>) : (<p>{dateList.length === 0 && selectedDate ? 'No hay citas para el día seleccionado.' : 'Seleccione un día para ver las citas.'}</p>)}
+            </table>
+          ) : (
+            <p>
+              {dateList.length === 0 && selectedDate
+                ? "No hay citas para el día seleccionado."
+                : "Seleccione un día para ver las citas."}
+            </p>
+          )}
         </article>
-      </article >
+      </article>
+
       {dateList.length !== 0 && selectedDate ? (
-        <footer className="navigation">
+        <footer className="homeDoctor-navigation">
           <button disabled={currentPage === 1} onClick={previous}>
             <img src={leftArrow} alt="leftArrow" />
           </button>
-          <button className="pageButton">
-            {currentPage}
-          </button>
+          <button className="pageButton">{currentPage}</button>
           <button disabled={currentPage === max} onClick={next}>
             <img src={rightArrow} alt="rightArrow" />
           </button>
-        </footer>) : null}
-      <div>
-        <Calendar className="custom-calendar-style" onChange={handleDateChange} tileClassName={tileClassName} />
-      </div>
-    </main >
-
+        </footer>
+      ) : null}
+    </main>
   );
 }
 
