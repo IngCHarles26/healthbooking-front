@@ -39,11 +39,11 @@ function HomePatient() {
   };
 
   return (
-    <main>
+    <main className="homepatient-main">
       <header>Dashboard &#62; Home</header>
 
-      <article className="summary">
-        <header>Historial de Turnos</header>
+      <article className="homepatient-summary">
+        <header className="homePatient-header">Historial de Turnos</header>
 
         <article className="table-wrapper">
           <table>
@@ -78,7 +78,7 @@ function HomePatient() {
         </article>
       </article>
 
-      <footer className="navigation">
+      <footer className="homepatient-footer">
         <button disabled={currentPage === 1} onClick={previous}>
           <img src={leftArrow} alt="leftArrow" />
         </button>

@@ -76,20 +76,22 @@ function EditProfile() {
   };
 
   return (
-    <main>
+    <main className="editprofileMain">
       <header>Dashboard &#62; Editar Perfil</header>
 
-      <article className="summary">
+      <article className="editprofile-summary">
         {!edit ? <img src={logo} alt="Logo" /> : null}
 
         <header>Edit profile</header>
         {patient && (
           <div>
             <div className="divider">
-              <label htmlFor="name">Name: </label>
+              <label className="editProfilelabel" htmlFor="name">
+                Name:{" "}
+              </label>
               {edit ? (
                 <input
-                  className="input input-field"
+                  className="inputedit inputedit-field"
                   type="text"
                   name="name"
                   value={editPatient.name}
@@ -100,18 +102,24 @@ function EditProfile() {
               )}
             </div>
             <div className="divider">
-              <label htmlFor="id">Dni: </label>
+              <label className="editProfilelabel" htmlFor="id">
+                Dni:{" "}
+              </label>
               <span>{editPatient.id}</span>
             </div>
             <div className="divider">
-              <label htmlFor="email">Email: </label>
+              <label className="editProfilelabel" htmlFor="email">
+                Email:{" "}
+              </label>
               <span>{editPatient.email}</span>
             </div>
             <div className="divider">
-              <label htmlFor="phone">Phone: </label>
+              <label className="editProfilelabel" htmlFor="phone">
+                Phone:{" "}
+              </label>
               {edit ? (
                 <input
-                  className="input input-field"
+                  className="inputedit inputedit-field"
                   type="text"
                   name="phone"
                   value={editPatient.phone}
@@ -122,10 +130,12 @@ function EditProfile() {
               )}
             </div>
             <div className="divider">
-              <label htmlFor="sure">Sure: </label>
+              <label className="editProfilelabel" htmlFor="sure">
+                Sure:{" "}
+              </label>
               {edit ? (
                 <select
-                  className="select"
+                  className="selecteditProfile"
                   type="text"
                   name="sureId"
                   value={editPatient.sureId}
@@ -146,10 +156,12 @@ function EditProfile() {
               )}
             </div>
             <div className="divider">
-              <label htmlFor="height">Height: </label>
+              <label className="editProfilelabel" htmlFor="height">
+                Height:{" "}
+              </label>
               {edit ? (
                 <input
-                  className="input input-field"
+                  className="inputedit inputedit-field"
                   type="text"
                   name="height"
                   value={editPatient.height}
@@ -160,10 +172,12 @@ function EditProfile() {
               )}
             </div>
             <div className="divider">
-              <label htmlFor="weight">Weight:</label>
+              <label className="editProfilelabel" htmlFor="weight">
+                Weight:
+              </label>
               {edit ? (
                 <input
-                  className="input input-field"
+                  className="inputedit inputedit-field"
                   type="text"
                   name="weight"
                   value={editPatient.weight}
@@ -176,11 +190,20 @@ function EditProfile() {
             <div className="divider">
               {edit ? (
                 <div>
-                  <button onClick={handleSaveChanges}>Save changes</button>
-                  <button onClick={handleCancel}>Cancel</button>
+                  <button
+                    className="editprofileBtn"
+                    onClick={handleSaveChanges}
+                  >
+                    Save changes
+                  </button>
+                  <button className="editprofileBtn" onClick={handleCancel}>
+                    Cancel
+                  </button>
                 </div>
               ) : (
-                <button onClick={handleEdit}>Edit</button>
+                <button className="editprofileBtn" onClick={handleEdit}>
+                  Edit
+                </button>
               )}
             </div>
           </div>
