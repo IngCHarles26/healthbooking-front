@@ -1,11 +1,14 @@
 import "./ClinicalHistory.css";
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
+import { useDispatch } from "react-redux";
+import { changePage } from "../../../../../redux/slices/pageNav";
 
 const ClinicalHistory = () => {
 
+  const dispatch = useDispatch();
+
   const [ patients, setPatients ] = useState([])
-  const [ usuarios, setUsuarios ] = useState([])
   const [ selectName, setSelectName ] = useState('')
   const [ errors, setErrors ] = useState({});
   const [ medicalHistory, setMedicalHistory ] = useState({
@@ -14,35 +17,20 @@ const ClinicalHistory = () => {
   })
 
   useEffect(()=>{
-    healthApi.get(`/doctor/appointment/${82147}`)
+    healthApi.get(`/doctor/appointment/${45289}`)
     .then(({data}) => {
       setPatients(data);
     })
   },[])
 
-  useEffect(()=>{
-    healthApi.get('/master/')
-    .then(({data}) => {
-      setUsuarios(data)
-    })
-  },[])
+  let names = patients.map((it)=> ({id: it.patientId , name: it.Patient.name}))
 
-  let idPatients = patients.map((item)=> item.patientId)
+  let patientsDoctor = names.filter((elemento, indice, self) =>
+    indice === self.findIndex((e) => e.name === elemento.name)
+  );
 
-  let arr = []
-  let arr1= []
-
-  for (let i = 0; i < usuarios.length; i++) {
-    arr.push({id:usuarios[i].id, name:usuarios[i].name})
-  }
-
-  let filtrado = arr.filter(objeto => objeto.id.toString().length > 5);
-
-  filtrado.forEach(objeto => arr1.push({id: objeto.id, name: objeto.name}));
-
-  let nombresFiltrados = arr1.filter(objeto => idPatients.includes(objeto.id));
-
-  let alphabetically = nombresFiltrados.sort((a ,b) => a.name.localeCompare(b.name) ) 
+  let alphabetically = patientsDoctor.sort((a ,b) => a.name.localeCompare(b.name) ) 
+  
   const handleChange = (event) => {
     const { name, value } = event.target
     if (name === "idPatients") setSelectName(value)
@@ -115,7 +103,7 @@ const ClinicalHistory = () => {
         </div>
       </div>
       <div className="footerHC">
-        <button type="button" className="botonesHC" onClick={()=>seteo()}>
+        <button type="button" className="botonesHC" onClick={()=>seteo() || dispatch(changePage(0))}>
          Cancelar
         </button>
         <button type="submit" className="botonesHC">

@@ -66,8 +66,8 @@ const Detail = () => {
             <hr className="hr" />
           </div>
 
-          <div className="contBotones">
-            <button className="boton" onClick={() => dispatch(changePage(1))}>
+          <div className="contBotonesD">
+            <button className="botonD" onClick={() => dispatch(changePage(1))}>
               Regresar
             </button>
           </div>

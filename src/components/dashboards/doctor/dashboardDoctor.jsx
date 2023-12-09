@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import HomeDoctor from "./routes/home/homeDoctor";
 import { useAuth0 } from "@auth0/auth0-react"
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const routes = {
 
 }

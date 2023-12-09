@@ -99,13 +99,27 @@
   text-align: right;
 }
 
-.contBotones{
+.contBotonesD{
   align-items: center;
   justify-content: center;
   display: inline-flex;
   margin-top: -3.5rem;
 }
 
-.boton{
+.botonD{
   width: 22rem;
+  border-radius: 0.5rem;
+  background-color: #42A7C3;
+  padding: 0.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.botonD:hover{
+  transition: 500ms;
+  background-color: #348095;
+}
+.botonD:active{
+  scale: 3rem;
+  background-color: #42A7C3;
 }

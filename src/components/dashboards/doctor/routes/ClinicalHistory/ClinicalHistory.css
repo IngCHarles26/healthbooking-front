@@ -105,6 +105,18 @@
 
     .botonesHC{
       width: 10rem;
+      border-radius: 0.5rem;
+      background-color: #42A7C3;
+      padding: 0.5rem;
+      color: white;
+      cursor: pointer;
+    }
+    .botonesHC:hover{
+      transition: 500ms;
+      background-color: #348095;
+    }
+    .botonesHC:active{
+      background-color: #42A7C3;
     }
 
   
