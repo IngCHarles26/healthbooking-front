@@ -1,9 +1,10 @@
 import "./style.scss";
+import HistorialPagos from "../historialPagos/historialPagos";
 
 function HomeMaster(props) {
   return ( 
     <div>
-      HOME MASTER
+        <HistorialPagos/>
     </div>
   );
 }
