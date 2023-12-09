@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import "animate.css";
 
 
 
 const EditDate = ({ id }) => {
+
+    const navigate = useNavigate()
     const [appointment, setAppointment] = useState({})
     const [newDate, setNewDate] = useState({
         date: '',
@@ -30,9 +35,19 @@ const EditDate = ({ id }) => {
             date: newDates
         })
     }
+
+    const handleCancel = () => {
+        navigate('rutadecitas')
+    }
+
     const handleSubmit = async () => {
         const newAppointment = await healthApi.patch(`/doctor/updateAppointment/${id}`, newDate)
         //notificacion
+        if (newAppointment) {
+            Swal.fire("Se camio la fecha de la cita con exito!");
+            navigate('rutadecitas')
+        }
+
     }
 
     useEffect(() => {
@@ -52,6 +67,9 @@ const EditDate = ({ id }) => {
 
 
             <button onClick={() => handleSubmit()}>Listo</button>
+            <button onClick={() => handleCancel()}>Cancelar</button>
+
+
         </div>
     )
 }
