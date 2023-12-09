@@ -3,11 +3,13 @@ import { healthApi } from "../../../../../Api/HealthBookingApi";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "animate.css";
+import { useDispatch } from "react-redux";
+import { changePage } from "../../../../../redux/slices/pageNav";
 
 
 
 const EditDate = ({ id }) => {
-
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [appointment, setAppointment] = useState({})
     const [newDate, setNewDate] = useState({
@@ -15,11 +17,14 @@ const EditDate = ({ id }) => {
         time: ''
     })
 
-    const getAppointment = (idDate) => {
-        const appointment = healthApi.get(`/doctor/appointmentById/${idDate}`)
-        setAppointment(appointment)
-    }
+    const { Patient } = appointment;
 
+
+    const getAppointment = async () => {
+        const { data } = await healthApi.get(`/doctor/appointmentById/${id}`)
+        setAppointment(data)
+
+    }
     const handleTime = (e) => {
         const newTime = e.target.value
         setNewDate({
@@ -37,7 +42,7 @@ const EditDate = ({ id }) => {
     }
 
     const handleCancel = () => {
-        navigate('rutadecitas')
+        dispatch(changePage(1))
     }
 
     const handleSubmit = async () => {
@@ -45,19 +50,20 @@ const EditDate = ({ id }) => {
         //notificacion
         if (newAppointment) {
             Swal.fire("Se camio la fecha de la cita con exito!");
-            navigate('rutadecitas')
+            dispatch(changePage(1))
         }
 
     }
 
     useEffect(() => {
-        getAppointment(id)
+        getAppointment()
     }, [])
-    3
+
+
 
     return (
-        <div>
-            <h2>{appointment.Patient.name}</h2>
+        Patient && (<div>
+            <h2>{Patient.name}</h2>
             <h2>{appointment.patientId}</h2>
             <h2>{appointment.date}</h2>
             <h2>{appointment.time}</h2>
@@ -70,7 +76,7 @@ const EditDate = ({ id }) => {
             <button onClick={() => handleCancel()}>Cancelar</button>
 
 
-        </div>
+        </div>)
     )
 }
 

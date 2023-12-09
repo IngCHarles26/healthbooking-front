@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 
 import leftArrow from '../../../../assets/brands/left-arrow.svg'
 import rightArrow from '../../../../assets/brands/right-arrow.svg'
+import { useDispatch } from "react-redux";
+import { changePage } from "../../../../../redux/slices/pageNav";
 
 
 
@@ -14,12 +16,12 @@ function HomeDoctor(props) {
   const [selectedDate, setSelectedDate] = useState();
   const [datesDoctor, setDatesDoctor] = useState(new Date());
   const [dateList, setDateList] = useState([])
-
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await healthApi.get('/doctor/appointment/45289');
+        const response = await healthApi.get('/doctor/appointment/92737');
         console.log(response.data)
         setDatesDoctor(response.data);
 
@@ -157,9 +159,7 @@ function HomeDoctor(props) {
                         ) : (
                           <button
                             onClick={() =>
-                              console.log(
-                                "aca iria el reprogramar con un dispatch"
-                              )
+                              dispatch(changePage(1))
                             }
                           >
                             x
@@ -180,18 +180,20 @@ function HomeDoctor(props) {
         </article>
       </article>
 
-      {dateList.length !== 0 && selectedDate ? (
-        <footer className="homeDoctor-navigation">
-          <button disabled={currentPage === 1} onClick={previous}>
-            <img src={leftArrow} alt="leftArrow" />
-          </button>
-          <button className="pageButton">{currentPage}</button>
-          <button disabled={currentPage === max} onClick={next}>
-            <img src={rightArrow} alt="rightArrow" />
-          </button>
-        </footer>
-      ) : null}
-    </main>
+      {
+        dateList.length !== 0 && selectedDate ? (
+          <footer className="homeDoctor-navigation">
+            <button disabled={currentPage === 1} onClick={previous}>
+              <img src={leftArrow} alt="leftArrow" />
+            </button>
+            <button className="pageButton">{currentPage}</button>
+            <button disabled={currentPage === max} onClick={next}>
+              <img src={rightArrow} alt="rightArrow" />
+            </button>
+          </footer>
+        ) : null
+      }
+    </main >
   );
 }
 

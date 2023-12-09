@@ -13,12 +13,12 @@ import Loading from "../../Loading/Loading"
 import { useEffect, useState } from "react";
 //import axios from "axios";
 import HomeDoctor from "./routes/home/homeDoctor";
+import EditDate from "./routes/editDate/EditDate";
 import { useAuth0 } from "@auth0/auth0-react"
 import { useNavigate } from "react-router-dom";
 const routes = {
 
 }
-
 const infoUser = {
   image: imagePrueba,
   name: 'Perico Palotes',
@@ -32,7 +32,7 @@ const infoUser = {
 
 const navigationOptions = [
   { svg: homeSVG, text: 'Home', link: 0 },
-  { svg: newDateSVG, text: 'Crear Doctor', link: 1 },
+  { svg: newDateSVG, text: 'edit Date', link: 1 },
   { svg: editSVG, text: 'Editar perfil', link: 2 },
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]
@@ -42,7 +42,7 @@ function DashboardDoctor() {
   const { isAuthenticated, isLoading } = useAuth0()
   const navigate = useNavigate()
   // console.log({currentPage})
-
+  const id = "0258b824-98ea-47aa-9cb3-8b5a08031d81"
   //_______________Obtencion de informacion
   useEffect(() => {
 
@@ -50,6 +50,7 @@ function DashboardDoctor() {
   //_______________Navegacion en el Dashboard 
   const pageList = [
     <HomeDoctor />,
+    <EditDate id={id} />,
   ];
   const handlePage = (page) => setCurrentPage(page);
 
