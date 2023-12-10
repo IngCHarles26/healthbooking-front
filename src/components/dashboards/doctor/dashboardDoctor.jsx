@@ -34,12 +34,7 @@ const infoUser = {
 
 const navigationOptions = [
   { svg: homeSVG, text: 'Home', link: 0 },
-<<<<<<< HEAD
-  { svg: newDateSVG, text: 'edit Date', link: 1 },
-=======
   { svg: newDateSVG, text: 'Historial Clinico', link: 1 },
->>>>>>> cf424ed39bd8f32ddaab8392a75493d8b6ff7a4d
-  { svg: editSVG, text: 'Editar perfil', link: 2 },
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]
 
@@ -57,11 +52,8 @@ function DashboardDoctor() {
   //_______________Navegacion en el Dashboard 
   const pageList = [
     <HomeDoctor />,
-<<<<<<< HEAD
-    <EditDate id={id} />,
-=======
     <ClinicalHistory />,
->>>>>>> cf424ed39bd8f32ddaab8392a75493d8b6ff7a4d
+    <EditDate />
   ];
   const handlePage = (page) => setCurrentPage(page);
 
@@ -75,7 +67,7 @@ function DashboardDoctor() {
     isAuthenticated ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
-        />
+      />
 
       <div className="dashboard-main">
         {pageList[page]}

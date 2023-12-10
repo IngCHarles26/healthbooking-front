@@ -37,6 +37,7 @@ const UserForm = () => {
   const getUser = async () => {
     const { data } = await healthApi.get('/logging', { params: { email: users } })
     console.log(data.exist);
+    
     if (data.exist) {
       navigate('/patient')
     }

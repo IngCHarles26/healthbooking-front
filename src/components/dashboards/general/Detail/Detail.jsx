@@ -11,12 +11,7 @@ const Detail = () => {
 
   useEffect(() => {
     if (doctor.length === 0) {
-<<<<<<< HEAD
       healthApi.get(`/patient/doctor/${id}`).then(({ data }) => {
-=======
-      healthApi.get(`/patient/doctor/${id}`)
-      .then(({ data }) => {
->>>>>>> cf424ed39bd8f32ddaab8392a75493d8b6ff7a4d
         if (data) setDoctors(data);
       });
       return setDoctors({});
