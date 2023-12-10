@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 
 import leftArrow from '../../../../assets/brands/left-arrow.svg'
 import rightArrow from '../../../../assets/brands/right-arrow.svg'
-
+import Swal from "sweetalert2";
+import "animate.css";
 
 
 function HomeDoctor(props) {
@@ -19,7 +20,7 @@ function HomeDoctor(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await healthApi.get('/doctor/appointment/45289');
+        const response = await healthApi.get('/doctor/appointment/82147');
         console.log(response.data)
         setDatesDoctor(response.data);
 
@@ -121,12 +122,109 @@ function HomeDoctor(props) {
                       <td>{cita.Patient.Sure.name}</td>
                       <td>
                         <button
-                          onClick={() =>
-                            alert("aca iria el detail con un dispatch")
+                          onClick={async () =>{ 
+                            const patientDetail= await healthApi.get(`/doctor/patient/${cita.patientId}`)
+                            // console.log(patientDetail.data)
+                            Swal.fire({
+                              title: "Detail patient",
+                      
+                              html: `<!DOCTYPE html>
+                              <html lang="en">
+                              <head>
+                                  <meta charset="UTF-8">
+                                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                  <title>Document</title>
+                                  <style>
+                                      .swal2-popup {
+                                          width: fit-content; 
+                                          
+                                      }
+                                  </style>
+                              </head>
+                              <body>
+                              <div>
+                              <table >
+                                  <tr >
+                                      <td >
+                                          <div style="display: flex; align-items: center; justify-content: flex-start;">
+                                              <label style="margin-right: 5px;">Name:</label>
+                                              <p style="font-weight: bold;">${patientDetail.data.name}</p>
+                                          </div>
+                                      </td>
+                                      <td >
+                                          <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start; margin-left: 5px;">
+                                              <label style="margin-right: 5px;">Sure:</label>
+                                              <p style="font-weight: bold;">${patientDetail.data.Sure.name}</p>
+                                          </div>
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td >
+                                          <div style="display: flex; align-items: center; justify-content: flex-start;">
+                                              <label style="margin-right: 5px;">Dni:</label>
+                                              <p style="font-weight: bold;">${patientDetail.data.id}</p>
+                                          </div>
+                                      </td>
+                                      <td >
+                                          <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start; margin-left: 5px;">
+                                            
+                                                  <label style="margin-right: 5px;">Weight:</label>
+                                                  <p style="font-weight: bold;">${(patientDetail.data.weight) ? patientDetail.data.weight : "-"}</p>
+                                      
+                                          </div>
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td >
+                                          <div style="display: flex; align-items: center; justify-content: flex-start; ">
+                                              <label style="margin-right: 5px;">Email:</label>
+                                              <p style="font-weight: bold;">${patientDetail.data.email}</p>
+                                          </div>
+                                      </td>
+                                      <td >
+                                          <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start; margin-left: 5px;">
+                                          
+                                                  <label style="margin-right: 5px;">Height:</label>
+                                                  <p style="font-weight: bold;">${(patientDetail.data.height) ? patientDetail.data.height : "-"}</p>
+                                          
+                                          </div>
+                                      </td>
+                                  </tr>
+                                  <tr >
+                                      <td >
+                                          <div style="display: flex; align-items: center; justify-content: flex-start;">
+                                              <label style="margin-right: 5px;">Phone:</label>
+                                              <p style="font-weight: bold;">${patientDetail.data.phone}</p>
+                                          </div>
+                                      </td>
+                                  </tr>
+                              </table>
+                          </div>
+                          </body>
+                      
+                              `,
+                              showClass: {
+                                popup: `
+                                  animate__animated
+                                  animate__fadeInUp
+                                  animate__faster
+                                `
+                              },
+                              hideClass: {
+                                popup: `
+                                  animate__animated
+                                  animate__fadeOutDown
+                                  animate__faster
+                                `
+                              }
+                            });
+                            // alert("aca iria el detail con un dispatch")
                           }
+                        }
+                      
                         >
-                          x
-                        </button>{" "}
+                          Info patient
+                        </button>
                       </td>
                       <td>
                         {cita.Patient.history === null ? (
