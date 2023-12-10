@@ -99,27 +99,27 @@
   text-align: right;
 }
 
-.contBotones{
+.contBotonesD{
   align-items: center;
   justify-content: center;
   display: inline-flex;
-  margin-top: -3.4rem;
+  margin-top: -3.5rem;
 }
 
-.boton{
-  background-color: #42A7C3;
-  padding: 2mm;
-  border-radius: 2mm;
+.botonD{
   width: 22rem;
-  font-family: "DM Sans", Helvetica;
+  border-radius: 0.5rem;
+  background-color: #42A7C3;
+  padding: 0.5rem;
   color: white;
-  font-size: 100%;
-  font-weight: 800;
   cursor: pointer;
 }
 
-.boton:hover{
+.botonD:hover{
   transition: 500ms;
-  background-color: #81e1fc;
-  color: rgb(63, 63, 63);
+  background-color: #348095;
+}
+.botonD:active{
+  scale: 3rem;
+  background-color: #42A7C3;
 }
