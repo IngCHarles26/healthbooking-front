@@ -1,101 +1,144 @@
+.containereditCita {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* Ensure full height of the viewport */
+  margin: 0;
+}
+
+.component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* Ensure full height of the viewport */
+  margin: 0;
+}
+
 .appointment-details {
+  display: flex;
+  flex-direction: column;
+
+  margin: 30px;
+  width: 400px;
+  height: auto;
+  background: white;
+  border-radius: 35px;
+  border: 1px #D7DEDD solid;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  padding: 40px;
+
+
+
+
+  .appointment-info {
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+
+
+
+
+  .appointment-info h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    align-self: flex-start;
+  }
+
+
+
+
+  .edit-cita-time {
     display: flex;
     flex-direction: column;
-   
-    margin: 30px;
-    width: 400px;
-    height: auto;
-    background: white;
-    border-radius: 35px;
-    border: 1px #D7DEDD solid;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    padding: 40px;
-  
-  
-    .appointment-info {
-      margin-bottom: 20px;
-      align-items: flex-start;
-  }
-  
-  
-  .appointment-info h2 {
-      margin-bottom: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      align-self: flex-start;
-  }
-  
-  
-    .edit-cita-time {
+    align-items: flex-start;
+
+
+
+
+
+    input.date-input,
+    input.time-input {
+      width: 300px;
+      padding: 8px;
+      background: linear-gradient(0deg, #EDF5F4 0%, #EDF5F4 100%);
+      box-shadow: 0px -1px 0px #484747 inset;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 8px;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-     
-  
-  
-      input.date-input,
-      input.time-input {
-        width: 300px;
-        padding: 8px;
-        background: linear-gradient(0deg, #EDF5F4 0%, #EDF5F4 100%);
-        box-shadow: 0px -1px 0px #484747 inset;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 8px;
-        display: flex;
-  
-  
-        &:focus {
-          outline: none;
-          border-color: #42A7C3; /* Adjust color as needed */
-          box-shadow: 0px 0px 5px #42A7C3; /* Adjust shadow as needed */
-        }
-      }
-  
-  
-      input.date-input {
-        margin-bottom: 10px;
+
+
+
+
+      &:focus {
+        outline: none;
+        border-color: #42A7C3;
+        /* Adjust color as needed */
+        box-shadow: 0px 0px 5px #42A7C3;
+        /* Adjust shadow as needed */
       }
     }
-  
-  
-    .editCita-buttons {
-      display: flex;
-      justify-content: center;
-      margin: 20px;
+
+
+
+
+    input.date-input {
+      margin-bottom: 10px;
+    }
   }
-  
-  
+
+
+
+
+  .editCita-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+  }
+
+
+
+
   button.submit-button,
   button.cancel-button {
-      background-color: #42A7C3;
-      color: white;
-      padding: 8px 13px;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    background-color: #42A7C3;
+    color: white;
+    padding: 8px 13px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
-  
-  
+
+
+
+
   button.submit-button {
-      margin-right: 10px;
+    margin-right: 10px;
   }
-  
-  
+
+
+
+
   button.cancel-button {
-      margin-left: 10px;
+    margin-left: 10px;
   }
-  
-  
+
+
+
+
   button:hover {
-      background-color: #990000;
+    background-color: #990000;
   }
-  
-  
+
+
+
+
   button.cancel-button:hover {
-      background-color: #990000;
+    background-color: #990000;
   }
-  }
-  
+}
