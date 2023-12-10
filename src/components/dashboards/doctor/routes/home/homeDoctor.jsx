@@ -20,7 +20,7 @@ function HomeDoctor(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await healthApi.get('/doctor/appointment/82147');
+        const response = await healthApi.get('/doctor/appointment/git pu');
         console.log(response.data)
         setDatesDoctor(response.data);
 
@@ -201,8 +201,8 @@ function HomeDoctor(props) {
                               </table>
                           </div>
                           </body>
-                      
-                              `,
+                      `
+                              ,
                               showClass: {
                                 popup: `
                                   animate__animated
