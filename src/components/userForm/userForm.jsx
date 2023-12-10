@@ -1,7 +1,7 @@
+import "./userForm.scss"
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import validator from 'validator';
-import "./PostDoctor.scss"
 import { useAuth0 } from '@auth0/auth0-react'
 //import axios from "axios"
 import { healthApi } from '../../Api/HealthBookingApi';
@@ -151,7 +151,7 @@ const UserForm = () => {
 
             <div className="sectionUserForm">
               <label className="label">
-                <p className="label-text">Nombre Complepto</p>
+                <p className="label-text">Nombre Completo</p>
               </label>
               <div className="input-container">
                 <div className="userForm-input">
@@ -171,7 +171,7 @@ const UserForm = () => {
 
             <div className="sectionUserForm">
               <label className="label">
-                <p className="label-text">Altura</p>{" "}
+                <p className="label-text">Altura (cm)</p>{" "}
               </label>
               <div className="input-container">
                 <div className="userForm-input">
@@ -191,7 +191,7 @@ const UserForm = () => {
 
             <div className="sectionUserForm">
               <label className="label">
-                <p className="label-text">Peso</p>{" "}
+                <p className="label-text">Peso (kg)</p>{" "}
               </label>
               <div className="input-container">
                 <div className="userForm-input">
@@ -238,7 +238,7 @@ const UserForm = () => {
 
             <div className="sectionUserForm">
               <label className="label">
-                <p className="label-text">Obras socialep</p>
+                <p className="label-text">Obras social</p>
               </label>
               <div className="input-container">
                 <div className="userForm-input">

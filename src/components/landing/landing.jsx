@@ -6,8 +6,8 @@ import logoOscuro from "../assets/full-logo-black.svg";
 import linkSVG from "../assets/util/link-clip.svg";
 import linkedInSVG from "../assets/brands/linkedin.svg";
 import { useAuth0, } from "@auth0/auth0-react";
-import { arrowRight } from "../assets/svgs";
-// import gitHubSVG from "../assets/brands/github.svg";
+import { ArrowRight } from "../assets/svgs";
+import gitHubSVG from "../assets/brands/github.svg";
 
 const aboutInfo = [
   { link: "#", text: "Codigo fuente (frontend)" },
@@ -59,7 +59,8 @@ function Landing() {
             Iniciar sesión
           </a>
           <a className="landing-a-tag" href="/signup">
-            UNETE <img className="landings-logo-img" src={arrowRight}></img>
+            UNETE
+            {/* UNETE <img className="landings-logo-img" src={arrowRight}></img> */}
           </a>
         </nav>
       </header>

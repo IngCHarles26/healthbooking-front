@@ -1,4 +1,4 @@
-import './style.scss';
+import './asideLeft.scss';
 
 //_______________SVGS
 import logoOscuro from "../../../assets/full-logo-black.svg";
@@ -21,7 +21,7 @@ function AsideLeft(props) {
   const navigate = useNavigate();
 
   return ( 
-    <aside className="navigation-menu">
+    <aside className="aside-left">
       <img className="site-logo" src={logoOscuro} alt="logoOscuro" onClick={()=>navigate('/')}/>
 
       <nav className="navigation-bar">
@@ -44,9 +44,9 @@ function Navs(props) {
   const dispatch = useDispatch();
   let {svg,text,link} = props
   return ( 
-    <a  className={link === page ? 'navSelected': ''} 
+    <a className={link === page ? 'navSelected option-nav': 'option-nav'} 
       onClick={()=>{dispatch(changePage(link))}}>
-      <img src={svg} alt="altSvg" />
+      <img src={svg} alt="altSvg" className='img-option' />
       {text}
     </a>
   );
