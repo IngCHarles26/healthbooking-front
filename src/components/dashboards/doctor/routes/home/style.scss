@@ -128,6 +128,17 @@
      border-collapse: collapse;
  }
 
+ .botonHC{
+  text-align: center;
+  cursor: pointer;
+  .icono{
+    width: 1rem;  
+    }
+}
+
+ 
+
+
  .homeDoctor-main>article.homeDoctor-summary>.homeDoctor-calendar>.homeDoctor-table>thead {
      /* Box Style */
      height: 2.5rem;
