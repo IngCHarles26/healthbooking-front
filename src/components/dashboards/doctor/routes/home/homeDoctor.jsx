@@ -5,14 +5,24 @@ import 'react-calendar/dist/Calendar.css'
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import { Link } from "react-router-dom";
 
+import iconoHistoriaClinica from "../../../../assets/img/Iconos/historiaClinica.png"
+import iconoDetalle from "../../../../assets/img/Iconos/Agregar.png"
+import iconoReprogramar from "../../../../assets/img/Iconos/Reprogramar.png"
+import iconoNoProgramar from "../../../../assets/img/Iconos/noProgramar.png"
+
 import leftArrow from '../../../../assets/brands/left-arrow.svg'
 import rightArrow from '../../../../assets/brands/right-arrow.svg'
 import { useDispatch } from "react-redux";
 import { changePage } from "../../../../../redux/slices/pageNav";
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf424ed39bd8f32ddaab8392a75493d8b6ff7a4d
 
 
 function HomeDoctor(props) {
+
+  const dispatch = useDispatch();
   const [selectedDate, setSelectedDate] = useState();
   const [datesDoctor, setDatesDoctor] = useState(new Date());
   const [dateList, setDateList] = useState([])
@@ -21,8 +31,13 @@ function HomeDoctor(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
+<<<<<<< HEAD
         const response = await healthApi.get('/doctor/appointment/92737');
         console.log(response.data)
+=======
+        const response = await healthApi.get('/doctor/appointment/45289');
+        //console.log(response.data)
+>>>>>>> cf424ed39bd8f32ddaab8392a75493d8b6ff7a4d
         setDatesDoctor(response.data);
 
       } catch (error) {
@@ -37,14 +52,14 @@ function HomeDoctor(props) {
 
     const formattedDate = date.toISOString().split('T')[0];
     // const dateSelected = new Date(date);
-    console.log(formattedDate)
+    //console.log(formattedDate)
 
     setSelectedDate(formattedDate);
 
     const citasDelDia = datesDoctor.filter((cita) => {
       return cita.date === formattedDate
     });
-    console.log(citasDelDia)
+    //console.log(citasDelDia)
     setDateList(citasDelDia)
   }
 
@@ -123,46 +138,54 @@ function HomeDoctor(props) {
                       <td>{cita.Patient.Sure.name}</td>
                       <td>
                         <button
+                        className="botonHC"
                           onClick={() =>
                             alert("aca iria el detail con un dispatch")
                           }
                         >
-                          x
+                          <img className="icono" src={iconoDetalle} alt="" />
                         </button>{" "}
                       </td>
                       <td>
                         {cita.Patient.history === null ? (
                           <button
+                          className="botonHC"
                             onClick={() =>
-                              alert("aca iria el form con un dispatch")
+                              dispatch(changePage(1))
+                              //alert("aca iria el form con un dispatch")
                             }
                           >
-                            x
+                            <img className="icono" src={iconoHistoriaClinica}></img>
                           </button>
                         ) : (
                           <Link to={cita.Patient.history} target="_blank">
-                            <button>x</button>
+                            <button
+                            className="botonHC">
+                              <img className="icono" src={iconoHistoriaClinica}></img>
+                            </button>
                           </Link>
                         )}
                       </td>
                       <td>
                         {menorHoras(cita.date) ? (
                           <button
+                          className="botonHC"
                             onClick={() =>
                               alert(
                                 "No puedes reprogramar esta cita en menos de 24 horas."
                               )
                             }
                           >
-                            x
+                            <img className="icono" src={iconoNoProgramar} alt="" />
                           </button>
                         ) : (
                           <button
+                          className="botonHC"
                             onClick={() =>
                               dispatch(changePage(1))
                             }
                           >
-                            x
+                            <img className="icono" src={iconoReprogramar} alt="" />
                           </button>
                         )}
                       </td>

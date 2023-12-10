@@ -63,12 +63,18 @@ const EditDate = ({ id }) => {
 
     return (
         Patient && (<div>
-            <h2>{Patient.name}</h2>
-            <h2>{appointment.patientId}</h2>
-            <h2>{appointment.date}</h2>
-            <h2>{appointment.time}</h2>
 
+            <label>Nombre de paciente</label>
+            <h2>{Patient.name}</h2>
+            <label>Paciente DNI</label>
+            <h2>{appointment.patientId}</h2>
+            <label>Fecha de la cita</label>
+            <h2>{appointment.date}</h2>
+            <label>Hora de la cita</label>
+            <h2>{appointment.time}</h2>
+            <label>Nueva fecha de la cita</label>
             <input type="date" onChange={handleDate} />
+            <label>Nueva hora de la cita</label>
             <input type="time" min="08:00" max="16:00" step="3600" value={newDate.time} onChange={handleTime} />
 
 

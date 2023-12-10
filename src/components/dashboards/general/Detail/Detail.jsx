@@ -1,17 +1,22 @@
-import "./Detail.scss";
+import "./Detail.css";
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../Api/HealthBookingApi";
 import { useDispatch, useSelector } from "react-redux";
 import { changePage } from "../../../../redux/slices/pageNav";
 
-const Detail = ({ handlePage }) => {
+const Detail = () => {
   const dispatch = useDispatch();
   const id = useSelector((st) => st.doctorSelected);
   const [doctor, setDoctors] = useState([]);
 
   useEffect(() => {
     if (doctor.length === 0) {
+<<<<<<< HEAD
       healthApi.get(`/patient/doctor/${id}`).then(({ data }) => {
+=======
+      healthApi.get(`/patient/doctor/${id}`)
+      .then(({ data }) => {
+>>>>>>> cf424ed39bd8f32ddaab8392a75493d8b6ff7a4d
         if (data) setDoctors(data);
       });
       return setDoctors({});
@@ -65,8 +70,8 @@ const Detail = ({ handlePage }) => {
             <hr className="hr" />
           </div>
 
-          <div className="contBotones">
-            <button className="boton" onClick={() => dispatch(changePage(1))}>
+          <div className="contBotonesD">
+            <button className="botonD" onClick={() => dispatch(changePage(1))}>
               Regresar
             </button>
           </div>
