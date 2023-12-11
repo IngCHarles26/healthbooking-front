@@ -16,20 +16,21 @@ import Swal from "sweetalert2";
 import "animate.css";
 import { useDispatch } from "react-redux";
 import { changePage } from "../../../../../redux/slices/pageNav";
-
+import { addidDate } from "../../../../../redux/slices/doctor/idDate";
 
 function HomeDoctor(props) {
 
-  const dispatch = useDispatch();
   const [selectedDate, setSelectedDate] = useState();
   const [datesDoctor, setDatesDoctor] = useState(new Date());
   const [dateList, setDateList] = useState([])
+  const dispatch = useDispatch()
 
+  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await healthApi.get('/doctor/appointment/45289');
+        const response = await healthApi.get('/doctor/appointment/37401');
         //console.log(response.data)
         setDatesDoctor(response.data);
 
@@ -40,6 +41,11 @@ function HomeDoctor(props) {
 
     fetchData();
   }, [])
+
+  const handleButton = (id) => {
+    dispatch(addidDate(id))
+    dispatch(changePage(2))
+  }
 
   const handleDateChange = (date) => {   //cambia y filtra el dia en las citas
 
@@ -238,7 +244,7 @@ function HomeDoctor(props) {
                       <td>
                         {cita.Patient.history === null ? (
                           <button
-                          className="botonHC"
+                            className="botonHC"
                             onClick={() =>
                               dispatch(changePage(1))
                               //alert("aca iria el form con un dispatch")
@@ -249,7 +255,7 @@ function HomeDoctor(props) {
                         ) : (
                           <Link to={cita.Patient.history} target="_blank">
                             <button
-                            className="botonHC">
+                              className="botonHC">
                               <img className="icono" src={iconoHistoriaClinica}></img>
                             </button>
                           </Link>
@@ -258,7 +264,7 @@ function HomeDoctor(props) {
                       <td>
                         {menorHoras(cita.date) ? (
                           <button
-                          className="botonHC"
+                            className="botonHC"
                             onClick={() =>
                               alert(
                                 "No puedes reprogramar esta cita en menos de 24 horas."
@@ -269,11 +275,9 @@ function HomeDoctor(props) {
                           </button>
                         ) : (
                           <button
-                          className="botonHC"
+                            className="botonHC"
                             onClick={() =>
-                              console.log(
-                                "aca iria el reprogramar con un dispatch"
-                              )
+                              handleButton(cita.id)
                             }
                           >
                             <img className="icono" src={iconoReprogramar} alt="" />
@@ -294,18 +298,20 @@ function HomeDoctor(props) {
         </article>
       </article>
 
-      {dateList.length !== 0 && selectedDate ? (
-        <footer className="homeDoctor-navigation">
-          <button disabled={currentPage === 1} onClick={previous}>
-            <img src={leftArrow} alt="leftArrow" />
-          </button>
-          <button className="pageButton">{currentPage}</button>
-          <button disabled={currentPage === max} onClick={next}>
-            <img src={rightArrow} alt="rightArrow" />
-          </button>
-        </footer>
-      ) : null}
-    </main>
+      {
+        dateList.length !== 0 && selectedDate ? (
+          <footer className="homeDoctor-navigation">
+            <button disabled={currentPage === 1} onClick={previous}>
+              <img src={leftArrow} alt="leftArrow" />
+            </button>
+            <button className="pageButton">{currentPage}</button>
+            <button disabled={currentPage === max} onClick={next}>
+              <img src={rightArrow} alt="rightArrow" />
+            </button>
+          </footer>
+        ) : null
+      }
+    </main >
   );
 }
 
