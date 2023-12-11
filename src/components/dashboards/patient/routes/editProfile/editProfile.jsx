@@ -76,18 +76,18 @@ function EditProfile() {
   };
 
   return (
-    <main className="editprofileMain">
+    <section className="editprofileMain">
       <header>Dashboard &#62; Editar Perfil</header>
 
       <article className="editprofile-summary">
-        {!edit ? <img src={logo} alt="Logo" /> : null}
+        {!edit ? <img src={logo} alt="Logo" className="logo-edit-profile" /> : null}
 
-        <header>Edit profile</header>
+        <header>EDITAR PERFIL</header>
         {patient && (
-          <div>
+          <div className="editProfile-info">
             <div className="divider">
               <label className="editProfilelabel" htmlFor="name">
-                Name:{" "}
+                NOMBRE:{" "}
               </label>
               {edit ? (
                 <input
@@ -103,19 +103,19 @@ function EditProfile() {
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="id">
-                Dni:{" "}
+                DNI:{" "}
               </label>
               <span>{editPatient.id}</span>
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="email">
-                Email:{" "}
+                EMAIL:{" "}
               </label>
               <span>{editPatient.email}</span>
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="phone">
-                Phone:{" "}
+                TELÉFONO:{" "}
               </label>
               {edit ? (
                 <input
@@ -131,7 +131,7 @@ function EditProfile() {
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="sure">
-                Sure:{" "}
+                OBRA SOCIAL:{" "}
               </label>
               {edit ? (
                 <select
@@ -157,7 +157,7 @@ function EditProfile() {
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="height">
-                Height:{" "}
+                PESO:{" "}
               </label>
               {edit ? (
                 <input
@@ -173,7 +173,7 @@ function EditProfile() {
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="weight">
-                Weight:
+                ESTATURA:
               </label>
               {edit ? (
                 <input
@@ -189,27 +189,27 @@ function EditProfile() {
             </div>
             <div className="divider">
               {edit ? (
-                <div>
+                <div className="double-button-editprofile">
                   <button
                     className="editprofileBtn"
                     onClick={handleSaveChanges}
                   >
-                    Save changes
+                    GUARDAR
                   </button>
                   <button className="editprofileBtn" onClick={handleCancel}>
-                    Cancel
+                    SALIR
                   </button>
                 </div>
               ) : (
                 <button className="editprofileBtn" onClick={handleEdit}>
-                  Edit
+                  EDITAR
                 </button>
               )}
             </div>
           </div>
         )}
       </article>
-    </main>
+    </section>
   );
 }
 

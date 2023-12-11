@@ -141,11 +141,10 @@ function NewDate() {
       <header>Dashboard &#62; Agendar Cita</header>
 
       <article className="forms-wrapper">
-        <header>Agendar cita</header>
 
         <section className="select-doctor">
           <header>
-            <h1>Seleccione el doctor de su preferencia:</h1>
+            <h1 className="title-new-date">Seleccione su médico</h1>
 
             <ul className="tabs-group">
               {specialtys.slice(1).map((el, ix) => (
@@ -342,6 +341,7 @@ function NewDate() {
             />
           </div>
         </section>
+        
       </article>
 
       <section>
