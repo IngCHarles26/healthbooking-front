@@ -55,7 +55,7 @@ function Landing() {
           <img className="landings-logo-img" src={logoClaro} alt="logoClaro" />
         </div>
         <nav className="actions">
-          <a className="landing-a-tag" onClick={() => {}}>
+          <a className="landing-a-tag" style={{ cursor: "pointer" }} onClick={() => loginWithRedirect()}>
             Iniciar sesión
           </a>
           <a className="landing-a-tag" href="/signup">

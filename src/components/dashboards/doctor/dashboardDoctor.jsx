@@ -14,13 +14,13 @@ import ClinicalHistory from "./routes/ClinicalHistory/ClinicalHistory";
 import { useEffect, useState } from "react";
 //import axios from "axios";
 import HomeDoctor from "./routes/home/homeDoctor";
+import EditDate from "./routes/editDate/EditDate";
 import { useAuth0 } from "@auth0/auth0-react"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const routes = {
 
 }
-
 const infoUser = {
   image: imagePrueba,
   name: 'Perico Palotes',
@@ -35,7 +35,6 @@ const infoUser = {
 const navigationOptions = [
   { svg: homeSVG, text: 'Home', link: 0 },
   { svg: newDateSVG, text: 'Historial Clinico', link: 1 },
-  { svg: editSVG, text: 'Editar perfil', link: 2 },
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]
 
@@ -45,7 +44,7 @@ function DashboardDoctor() {
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
   // console.log({currentPage})
-
+  const id = "0258b824-98ea-47aa-9cb3-8b5a08031d81"
   //_______________Obtencion de informacion
   useEffect(() => {
 
@@ -54,6 +53,7 @@ function DashboardDoctor() {
   const pageList = [
     <HomeDoctor />,
     <ClinicalHistory />,
+    <EditDate />
   ];
   const handlePage = (page) => setCurrentPage(page);
 
@@ -67,7 +67,7 @@ function DashboardDoctor() {
     isAuthenticated ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
-        />
+      />
 
       <div className="dashboard-main">
         {pageList[page]}
