@@ -9,9 +9,12 @@ import imagePrueba from '../../assets/img/profile.jpeg'
 import AsideLeft from "../general/asideLeft/asideLeft";
 import AsideRight from "../general/asideRight/asideRight"
 import PostDoctor from "./routes/PostDoctor/PostDoctor";
+
+import HistorialPagos from "./routes/HistorialPagos/HistorialPagos";
+
 import { useEffect, useState } from "react";
 import Loading from "../../Loading/Loading";
-import HistorialPagos from "./routes/HistorialPagos/HistorialPagos";
+
 //import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
 import { useDispatch, useSelector } from "react-redux";

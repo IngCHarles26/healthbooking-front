@@ -56,9 +56,11 @@ function HomeMaster(props) {
 
   return ( 
     <div>
+
       <Statistics/>
       
      
+
     </div>
    
   );
