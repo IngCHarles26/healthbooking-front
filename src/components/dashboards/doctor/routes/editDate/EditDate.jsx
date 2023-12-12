@@ -84,14 +84,14 @@ const EditDate = () => {
 
                     <div className="edit-cita-time">
                         <label>Nueva fecha de la cita</label>
-                        <input type="date" onChange={handleDate} className="date-input" />
+                        <input type="date" onChange={handleDate} value={newDate.date} className="date-input" />
                         <label>Nueva hora de la cita</label>
                         <input
                             type="time"
                             min="08:00"
                             max="16:00"
                             step="3600"
-                            value={appointment.time}
+                            value={newDate.time}
                             onChange={handleTime}
                             className="time-input"
                         />
