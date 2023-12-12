@@ -40,7 +40,7 @@ function HomePatient() {
 
   return (
     <main className="homepatient-main">
-      <header>Dashboard &#62; Home</header>
+      <header>Dashboard &#62; Inicio</header>
 
       <article className="homepatient-summary">
         <header className="homePatient-header">Historial de Turnos</header>

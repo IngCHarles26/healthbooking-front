@@ -116,7 +116,7 @@ function NewDate() {
   function hacerScroll() {
     window.scrollTo({
       top: document.body.scrollHeight,
-      behavior: 'auto' 
+      behavior: 'auto'
     });
   }
 

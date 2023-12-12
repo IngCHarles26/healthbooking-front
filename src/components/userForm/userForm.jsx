@@ -37,7 +37,7 @@ const UserForm = () => {
   const getUser = async () => {
     const { data } = await healthApi.get('/logging', { params: { email: users } })
     console.log(data.exist);
-    
+
     if (data.exist) {
       navigate('/patient')
     }
@@ -169,7 +169,7 @@ const UserForm = () => {
 
           <div className="sectionUserForm">
             <label className="label">
-              <p className="label-text">Nombre Complepto</p>
+              <p className="label-text">Nombre Completo</p>
             </label>
             <div className="input-container">
               <div className="userForm-input">
@@ -256,7 +256,7 @@ const UserForm = () => {
 
           <div className="sectionUserForm">
             <label className="label">
-              <p className="label-text">Obras socialep</p>
+              <p className="label-text">Obras sociales</p>
             </label>
             <div className="input-container">
               <div className="userForm-input">
