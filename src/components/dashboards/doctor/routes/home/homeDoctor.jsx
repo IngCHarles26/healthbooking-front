@@ -137,6 +137,7 @@ function HomeDoctor(props) {
                       <td>{cita.Patient.Sure.name}</td>
                       <td>
                         <button
+                          className="botonHC"
                           onClick={async () => {
                             const patientDetail = await healthApi.get(`/doctor/patient/${cita.patientId}`)
                             // console.log(patientDetail.data)
@@ -238,7 +239,7 @@ function HomeDoctor(props) {
                           }
 
                         >
-                          Info patient
+                          <img className="icono" src={iconoDetalle}></img>
                         </button>
                       </td>
                       <td>

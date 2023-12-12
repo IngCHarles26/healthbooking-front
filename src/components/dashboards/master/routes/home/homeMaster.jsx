@@ -1,68 +1,68 @@
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import "./style.scss";
+import Statistics from "../../statistics";
 
 function HomeMaster(props) {
 
-  const [ dataUsers, setDataUsers] = useState([])
-  const [ aux, setAux] = useState(false)
-  const [ aux2, setAux2] = useState(false)
+  // const [ dataUsers, setDataUsers] = useState([])
+  // const [ aux, setAux] = useState(false)
+  // const [ aux2, setAux2] = useState(false)
 
-  useEffect(()=>{
-    healthApi.get('/master')
-    .then(({data}) => {
-      setDataUsers(data);
-    })
-  },[])
+  // useEffect(()=>{
+  //   healthApi.get('/master')
+  //   .then(({data}) => {
+  //     setDataUsers(data);
+  //   })
+  // },[])
 
-  useEffect(()=>{
-    healthApi.get('/master')
-    .then(({data}) => {
-      setDataUsers(data);
-    })
-  },[aux, aux2])
-  
-  let dataPatients = dataUsers.filter((item)=> item.id.toString().length>5).sort((a, b) => a.name.localeCompare(b.name))
+  // useEffect(()=>{
+  //   healthApi.get('/master')
+  //   .then(({data}) => {
+  //     setDataUsers(data);
+  //   })
+  // },[aux, aux2])
 
-   const disable = (id) => {
+  // let dataPatients = dataUsers.filter((item)=> item.id.toString().length>5).sort((a, b) => a.name.localeCompare(b.name))
 
-    if (aux) setAux(false)
+  //  const disable = (id) => {
 
-    let patient = dataPatients.find((item)=> item.id === id)
+  //   if (aux) setAux(false)
 
-     if (patient.state === "active" ) {
-       healthApi.patch(`/master/toggle/${id}`)
-    .then(({data}) => {
-      alert(data.mensaje);
-      setAux(true)
-    })
-    }
-  }
+  //   let patient = dataPatients.find((item)=> item.id === id)
 
-  const enable = (id) => {
-    if (aux2) setAux2(false)
+  //    if (patient.state === "active" ) {
+  //      healthApi.patch(`/master/toggle/${id}`)
+  //   .then(({data}) => {
+  //     alert(data.mensaje);
+  //     setAux(true)
+  //   })
+  //   }
+  // }
 
-    let patient = dataPatients.find((item)=> item.id === id)
+  // const enable = (id) => {
+  //   if (aux2) setAux2(false)
 
-    if (patient.state === "inactive" ) {
-       healthApi.patch(`/master/toggle/${id}`)
-    .then(({data}) => {
-      alert(data.mensaje);
-      setAux2(true)
-    })
-    }
-  }
+  //   let patient = dataPatients.find((item)=> item.id === id)
 
-  return ( 
-    <div className="ContenedorM">
-    <ol>
-      {dataPatients?.map((item)=>(
-        <li>{item.name}: 
-        ...|<button onClick={()=> enable(item.id)} className={item.state==='active'?"ButonActive":"ButonNotActive"}>✔</button>|...|
-        <button onClick={()=> disable(item.id)} className={item.state==='inactive'? "ButonDisabled" : "ButonNotDisabled"}>❌</button>|</li>  
-      ))}
-    </ol>
+  //   if (patient.state === "inactive" ) {
+  //      healthApi.patch(`/master/toggle/${id}`)
+  //   .then(({data}) => {
+  //     alert(data.mensaje);
+  //     setAux2(true)
+  //   })
+  //   }
+  // }
+
+  return (
+    <div>
+
+      <Statistics />
+
+
+
     </div>
+
   );
 }
 

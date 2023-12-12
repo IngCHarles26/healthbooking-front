@@ -17,7 +17,7 @@ const ClinicalHistory = () => {
   })
   console.log(medicalHistory);
   useEffect(() => {
-    healthApi.get(`/doctor/appointment/${45289}`)
+    healthApi.get(`/doctor/appointment/${37401}`)
       .then(({ data }) => {
         setPatients(data);
       })
