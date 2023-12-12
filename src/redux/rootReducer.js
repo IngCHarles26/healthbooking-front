@@ -6,23 +6,26 @@ import allSpecialtys from "./slices/patient/allSpecialtys";
 import doctorSelected from "./slices/patient/doctorSelected";
 import agendaDoctor from "./slices/patient/agendaDoctor";
 import infoSend from "./slices/patient/infoSend";
+import idDate from "./slices/doctor/idDate";
+
 
 const rootReducer = combineReducers({
   //Comp AsideLeft
-    pageNav,
+  pageNav,
 
   //Comp Dashboard Patient
-    //info User
-    allDoctors,
-    allSures,
-    allSpecialtys,
-    //Comp New Date
-      infoSend,
-      doctorSelected,
-      agendaDoctor,
+  //info User
+
+  allDoctors,
+  allSures,
+  allSpecialtys,
+  //Comp New Date
+  infoSend,
+  doctorSelected,
+  agendaDoctor,
 
   //Comp Dashboard Doctor
-
+  idDate,
   //Comp Dashboard Master
 
 })
