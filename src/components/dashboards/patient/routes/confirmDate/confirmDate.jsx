@@ -3,8 +3,7 @@ import Swal from "sweetalert2";
 import "animate.css";
 import { useEffect } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { changePage } from "../../../../../redux/slices/pageNav";
 
 
@@ -61,12 +60,13 @@ const handleSendInfo = async (buyDate) => {
 
   window.location.href = response.data;
 }
-const preference ={
-  idPatient,
-  idDoctor,
-  date,
-  time
-}
+const preference =infoBase;
+// {
+//   idPatient,
+//   idDoctor,
+//   date,
+//   time
+// }
 useEffect(() => {
   // Verifica que confirmDateData existe antes de mostrar el SweetAlert
   if (infoBase) {

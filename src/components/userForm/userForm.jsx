@@ -1,7 +1,7 @@
+import "./userForm.scss"
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import validator from 'validator';
-import "./PostDoctor.scss"
 import { useAuth0 } from '@auth0/auth0-react'
 //import axios from "axios"
 import { healthApi } from '../../Api/HealthBookingApi';
