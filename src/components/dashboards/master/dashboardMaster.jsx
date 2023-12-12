@@ -9,8 +9,12 @@ import imagePrueba from '../../assets/img/profile.jpeg'
 import AsideLeft from "../general/asideLeft/asideLeft";
 import AsideRight from "../general/asideRight/asideRight"
 import PostDoctor from "./routes/PostDoctor/PostDoctor";
+
+import HistorialPagos from "./routes/HistorialPagos/HistorialPagos";
+
 import { useEffect, useState } from "react";
-import Loading from "../../Loading/Loading"
+import Loading from "../../Loading/Loading";
+
 //import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
 import AdminUsers from "./routes/logical erase/adminUsers";
@@ -38,7 +42,7 @@ const navigationOptions = [
   { svg: homeSVG, text: 'Home', link: 0 },
   { svg: newDateSVG, text: 'Crear Doctor', link: 1 },
   { svg: editSVG, text: 'Administrar usuarios', link: 2 },
-  // {svg:historySVG, text:'Historial Medico', link:3},
+  { svg: editSVG, text: 'Historial pagos', link: 3 },
 ]
 
 function DashboardPatient() {
@@ -59,6 +63,8 @@ function DashboardPatient() {
     <HomeMaster />,
     <PostDoctor />,
     <AdminUsers />,
+    <HistorialPagos />
+
   ];
   const handlePage = (page) => setCurrentPage(page);
 
