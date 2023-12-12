@@ -1,0 +1,28 @@
+.ContenedorM{
+  display: flex;
+  justify-content: center;
+
+  .ButonActive{
+    width: 2rem;
+    background-color: rgb(10, 255, 10);
+    cursor: pointer;
+  }
+
+  .ButonNotActive{
+    width: 2rem;
+    background-color: rgb(1, 117, 1);
+    cursor: pointer;
+  }
+
+  .ButonDisabled{
+    width: 2rem;
+    background-color: rgb(255, 0, 0);
+    cursor: pointer;
+  }
+  .ButonNotDisabled{
+    width: 2rem;
+    background-color: rgb(115, 0, 0);
+    cursor: pointer;
+  }
+}
+
