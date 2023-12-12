@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       domain='dev-friul0qo5xu626s2.us.auth0.com'
       clientId='KiqyFjhoVlLSJHkI4BBF03wcaeoMJIts'
       authorizationParams={{
-        redirect_uri: 'https://healthbooking-front.vercel.app/patientForm'
+        redirect_uri: 'http://localhost:5173/patientForm'
       }}>
       <Provider store={store}>
         <App />
@@ -23,3 +23,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Auth0Provider>
   </React.StrictMode>,
 )
+
+//https://healthbooking-front.vercel.app/patientForm

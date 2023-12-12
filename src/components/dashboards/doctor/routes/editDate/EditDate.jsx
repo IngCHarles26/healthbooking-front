@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "animate.css";
 import { useDispatch, useSelector } from "react-redux";
