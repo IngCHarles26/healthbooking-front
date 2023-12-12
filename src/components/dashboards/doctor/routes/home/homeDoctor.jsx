@@ -25,12 +25,12 @@ function HomeDoctor(props) {
   const [dateList, setDateList] = useState([])
   const dispatch = useDispatch()
 
-  
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await healthApi.get('/doctor/appointment/37401');
+        const response = await healthApi.get('/doctor/appointment/98501');
         //console.log(response.data)
         setDatesDoctor(response.data);
 
@@ -137,12 +137,12 @@ function HomeDoctor(props) {
                       <td>{cita.Patient.Sure.name}</td>
                       <td>
                         <button
-                          onClick={async () =>{ 
-                            const patientDetail= await healthApi.get(`/doctor/patient/${cita.patientId}`)
+                          onClick={async () => {
+                            const patientDetail = await healthApi.get(`/doctor/patient/${cita.patientId}`)
                             // console.log(patientDetail.data)
                             Swal.fire({
                               title: "Detail patient",
-                      
+
                               html: `<!DOCTYPE html>
                               <html lang="en">
                               <head>
@@ -235,8 +235,8 @@ function HomeDoctor(props) {
                             });
                             // alert("aca iria el detail con un dispatch")
                           }
-                        }
-                      
+                          }
+
                         >
                           Info patient
                         </button>
