@@ -6,6 +6,8 @@ import axios from 'axios';
 import leftArrow from '../../../../assets/brands/left-arrow.svg';
 import rightArrow from '../../../../assets/brands/right-arrow.svg';
 
+import { healthApi } from "../../../../../Api/HealthBookingApi";
+
 const HistorialPagos = () => {
   const [data, setData] = useState([]);
 
@@ -13,7 +15,7 @@ const HistorialPagos = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/master/appointment');
+        const response = await healthApi.get('/master/appointment');
         const filterData = response.data.filter(cita => cita.status === 'pending');
         setData(filterData);
 
@@ -81,7 +83,7 @@ const HistorialPagos = () => {
           <img src={rightArrow} alt="rightArrow" />
         </button>
       </footer>
-     
+
     </main>
   );
 };

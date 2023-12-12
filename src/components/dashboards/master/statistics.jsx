@@ -7,6 +7,8 @@ import {
   ResponsiveContainer, BarChart, Bar
 } from 'recharts';
 
+import { healthApi } from "../../../Api/HealthBookingApi";
+
 const Statistics = () => {
 
   const [data, setData] = useState([]);
@@ -16,7 +18,7 @@ const Statistics = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/master/appointment');
+        const response = await healthApi.get('/master/appointment');
         const filterData = response.data.filter(cita => cita.status === 'pending');
         setData(filterData);
 
@@ -82,27 +84,27 @@ const Statistics = () => {
     return formattedDate;
   };
 
-      return (
-       <main>
-          <h1>Ingresos por especialidad</h1>
+  return (
+    <main>
+      <h1>Ingresos por especialidad</h1>
       <ResponsiveContainer width="100%" aspect={2}>
-        
-          <BarChart
-            data={totalAmountPerSpecialty}
-            width={500}
-            height={300}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="4 1 2" />
-            <XAxis dataKey="name" fill='#6b48ff' />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="value" fill='#1ee3cf' />
-          </BarChart>
-        
-        
-          
+
+        <BarChart
+          data={totalAmountPerSpecialty}
+          width={500}
+          height={300}
+          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="4 1 2" />
+          <XAxis dataKey="name" fill='#6b48ff' />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="value" fill='#1ee3cf' />
+        </BarChart>
+
+
+
         <h1>Ingresos por semana</h1>
         <BarChart
           data={montoPorSemana}
@@ -116,8 +118,8 @@ const Statistics = () => {
           <Bar dataKey="monto" fill='#1ee3cf' />
         </BarChart>
       </ResponsiveContainer>
-       </main>
-      );
+    </main>
+  );
 };
 
 export default Statistics;
