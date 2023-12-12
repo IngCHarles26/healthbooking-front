@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import "./style.scss";
+import Statistics from "../../statistics";
 
 function HomeMaster(props) {
 
@@ -54,15 +55,14 @@ function HomeMaster(props) {
   }
 
   return ( 
-    <div className="ContenedorM">
-    <ol>
-      {dataPatients?.map((item)=>(
-        <li>{item.name}: 
-        ...|<button onClick={()=> enable(item.id)} className={item.state==='active'?"ButonActive":"ButonNotActive"}>✔</button>|...|
-        <button onClick={()=> disable(item.id)} className={item.state==='inactive'? "ButonDisabled" : "ButonNotDisabled"}>❌</button>|</li>  
-      ))}
-    </ol>
+    <div>
+
+      <Statistics/>
+      
+     
+
     </div>
+   
   );
 }
 
