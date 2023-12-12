@@ -42,7 +42,7 @@ const routes = {
 }
 
 const navigationOptions = [
-  { svg: homeSVG, text: 'Home', link: 0 },
+  { svg: homeSVG, text: 'Inicio', link: 0 },
   { svg: newDateSVG, text: 'Nueva cita', link: 1 },
   { svg: editSVG, text: 'Editar perfil', link: 2 },
 ]

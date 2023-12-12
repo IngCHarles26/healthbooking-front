@@ -33,7 +33,7 @@ const infoUser = {
 }
 
 const navigationOptions = [
-  { svg: homeSVG, text: 'Home', link: 0 },
+  { svg: homeSVG, text: 'Inicio', link: 0 },
   { svg: newDateSVG, text: 'Historial Clinico', link: 1 },
   // {svg:historySVG, text:'Historial Medico', link:3},
 ]

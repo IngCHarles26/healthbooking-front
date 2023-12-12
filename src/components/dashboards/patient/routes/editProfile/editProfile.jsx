@@ -28,8 +28,8 @@ function EditProfile() {
     );
   }, [id]);
 
-  console.log("Paciente ", patient);
-  console.log("A Editar", editPatient);
+  // console.log("Paciente ", patient);
+  // console.log("A Editar", editPatient);
 
   const handleEdit = () => {
     setEdit(true);
