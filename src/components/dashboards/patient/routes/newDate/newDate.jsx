@@ -24,7 +24,7 @@ import {
   getPlan,
   weeksPlan,
 } from "../../../../../redux/slices/patient/agendaDoctor";
-const cardsPerPage = 14;
+const cardsPerPage = 12;
 const weeksAgenda = weeksPlan;
 
 const initialPreference = {
@@ -62,7 +62,7 @@ function NewDate() {
   const [agendaPage, setAgendaPage] = useState(1);
 
   const [doctorSelected, setDoctorSelected] = useState(0);
-
+  console.log(doctorSelect);
   const [hourSelected, setHourSelected] = useState(0);
   const [preference, setPreference] = useState(initialPreference);
   // const [agenda, setAgenda] = useState([]);
@@ -112,6 +112,15 @@ function NewDate() {
       window.location.href = response.data;
     }
   };
+
+  function hacerScroll() {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'auto' 
+    });
+  }
+
+  if (doctorSelected > 0) hacerScroll()
 
   const handlePageAgenda = (one) => {
     let newPage = agendaPage + one;
@@ -285,7 +294,7 @@ function NewDate() {
           </footer>
         </section>
 
-        <section className="agenda-doctor">
+        {doctorSelected > 0 && (<section className="agenda-doctor">
           <table className="table-disponibility">
             <thead>
               <tr>
@@ -309,13 +318,13 @@ function NewDate() {
                         className={
                           !col
                             ? ["Dom", "Sab"].includes(
-                                agenda[0][icol].slice(0, 3)
-                              )
+                              agenda[0][icol].slice(0, 3)
+                            )
                               ? "endWeek-hour"
                               : "ocupied-hour"
                             : !(col - hourSelected) && doctorSelect
-                            ? "selected-hour"
-                            : "free-hour"
+                              ? "selected-hour"
+                              : "free-hour"
                         }
                       >
                         {!icol ? col : !col ? "NO DISP." : ""}
@@ -337,7 +346,7 @@ function NewDate() {
               onClick={() => handlePageAgenda(1)}
             />
           </div>
-        </section>
+        </section>)}
       </article>
 
       <section>

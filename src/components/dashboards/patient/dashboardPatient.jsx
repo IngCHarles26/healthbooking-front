@@ -3,7 +3,7 @@ import "./style.scss";
 import homeSVG from '../../assets/brands/home.svg';
 import editSVG from '../../assets/brands/edit-profile.svg';
 import newDateSVG from '../../assets/brands/make-date.svg';
-import historySVG from '../../assets/brands/history.svg';
+//import historySVG from '../../assets/brands/history.svg';
 import NewDate from "./routes/newDate/newDate";
 import imagePrueba from '../../assets/img/profile.jpeg'
 
@@ -21,7 +21,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import ConfirmDate from "./routes/confirmDate/confirmDate";
 
 //_______________REACT
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { healthApi } from "../../../Api/HealthBookingApi";
 import { useNavigate } from "react-router-dom";
 import Detail from "../general/Detail/Detail";
@@ -32,7 +32,7 @@ import { addAllDoctors } from "../../../redux/slices/patient/allDoctors";
 import { addAllSpecialtys } from "../../../redux/slices/patient/allSpecialtys";
 import { addAllSures } from "../../../redux/slices/patient/allSures";
 //import Detail from "../general/Detail/Detail";
-import { changePage } from "../../../redux/slices/pageNav";
+//import { changePage } from "../../../redux/slices/pageNav";
 
 const routes = {
   doctors: '/patient/doctors',
@@ -103,6 +103,12 @@ function DashboardPatient() {
     <Detail />,
     <ConfirmDate />
   ];
+
+  if (isLoading) {
+    return (
+      <Loading />
+    )
+  }
 
   return (
     isAuthenticated ? (<div className="wrapper-PatientHome">
