@@ -79,15 +79,15 @@ function EditProfile() {
   };
 
   return (
-    <main className="editprofileMain">
+    <section className="editprofileMain">
       <header>Dashboard &#62; Editar Perfil</header>
 
       <article className="editprofile-summary">
-        {!edit ? <img src={logo} alt="Logo" /> : null}
+        {!edit ? <img src={logo} alt="Logo" className="logo-edit-profile" /> : null}
 
         <header>Editar perfil</header>
         {patient && (
-          <div>
+          <div className="editProfile-info">
             <div className="divider">
               <label className="editProfilelabel" htmlFor="name">
                 Nombre:{" "}
@@ -106,13 +106,13 @@ function EditProfile() {
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="id">
-                Dni:{" "}
+                DNI:{" "}
               </label>
               <span>{editPatient.id}</span>
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="email">
-                Email:{" "}
+                EMAIL:{" "}
               </label>
               <span>{editPatient.email}</span>
             </div>
@@ -192,7 +192,7 @@ function EditProfile() {
             </div>
             <div className="divider">
               {edit ? (
-                <div>
+                <div className="double-button-editprofile">
                   <button
                     className="editprofileBtn"
                     onClick={handleSaveChanges}
@@ -212,7 +212,7 @@ function EditProfile() {
           </div>
         )}
       </article>
-    </main>
+    </section>
   );
 }
 

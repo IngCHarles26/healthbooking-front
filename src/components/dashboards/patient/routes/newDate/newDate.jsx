@@ -24,7 +24,7 @@ import {
   getPlan,
   weeksPlan,
 } from "../../../../../redux/slices/patient/agendaDoctor";
-const cardsPerPage = 12;
+const cardsPerPage = 10;
 const weeksAgenda = weeksPlan;
 
 const initialPreference = {
@@ -104,14 +104,18 @@ function NewDate() {
     if (0 < newPage && newPage <= maxPage) setCurrentPage(newPage);
   };
 
-  const handleSendInfo = async (buyDate) => {
-    if (hourSelected && infoSend.idDoctor) {
-      const response = await healthApi.post("/pay", buyDate);
-      // console.log(response);
-
-      window.location.href = response.data;
-    }
-  };
+  const handleSendInfo = () => {
+    if(hourSelected && infoSend.idDoctor){
+      dispatch(changePage(4))
+      // const response = await healthApi.post(
+      //   "/pay",
+      //   buyDate
+      //   );
+      //   console.log(response)
+        
+      //   window.location.href = response.data;
+      }
+  }
 
   function hacerScroll() {
     window.scrollTo({
@@ -146,11 +150,10 @@ function NewDate() {
       <header>Dashboard &#62; Agendar Cita</header>
 
       <article className="forms-wrapper">
-        <header>Agendar cita</header>
 
         <section className="select-doctor">
           <header>
-            <h1>Seleccione el doctor de su preferencia:</h1>
+            <h1 className="title-new-date">Seleccione su médico</h1>
 
             <ul className="tabs-group">
               {specialtys.slice(1).map((el, ix) => (
@@ -349,12 +352,11 @@ function NewDate() {
         </section>)}
       </article>
 
-      <section>
+      <section className="send-info-to">
         {/* <Wallet initialization={{ preferenceId: preference.id }} /> */}
         {/* {console.log(preference)} handleSendInfo(infoSend)*/}
-        <button className="btnBuy" onClick={() => dispatch(changePage(4))}>
-          Generar Cita
-        </button>
+        <button className="btnBuy" onClick={() => handleSendInfo()}>GENERAR CITA</button>
+
       </section>
     </main>
   );

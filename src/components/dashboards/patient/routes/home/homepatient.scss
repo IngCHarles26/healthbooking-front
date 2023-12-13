@@ -1,160 +1,246 @@
-.homepatient-main {
-  /*
-  * -- Box model and Layout definitions ---------------------------------------------
-  */
+@import '../../../../../variables';
+
+div.homepatient-main{
+  height: 100vh;
+  width: 100%;
+
+  padding: 3rem;
+
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
-  align-content: space-between;
-  padding: 1.5rem 1.5rem;
-  gap: 1rem;
-  width: 74%;
-  height: 100%;
-  // grid-template-rows: 1fr 15fr 1fr;
+  gap: 2rem;
 
-  @media only screen and (max-width: 767px) {/* mobile */
-
+  & *{
+    font-family: 'DM sans', sans-serif;
   }
 
-  @media only screen and (min-width: 767px) {
-    /* desktop */
-    margin-left: 11%; // sidebar width
-    margin-right: 15%; // sidebar width
+  header{
+    color: $font-main;
+    font-size: 2rem;
   }
 
-  /*
-  * -- Box and text styles definitions ----------------------------------------------
-  */
+  article.homepatient-summary{
+    height: 100%;
 
-  /*
-  * -- Subcomponents and behaviours definitions -------------------------------------
-  */
-  > .homePatient-header {
-    color: rgba(165, 162, 184, 0.60);
-    font-family: DM Sans;
-    font-size: 0.9rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.00875rem;
+    header{
+      font-size: 3rem;
+      padding-bottom: 2rem;
+    }
+
+    article.table-wrapper{
+      width: 100%;
+
+      table.table-table-wrapper{
+        width: 100%;
+        border-radius: 1rem;
+        background-color: $back-main-color;
+        table-layout: auto;
+        border-collapse: collapse;
+        color: $font-white;
+        padding: 2rem;
+        
+        thead{
+          height: 5rem;
+          font-size: 2rem;
+          border-bottom: 1px solid white;
+          padding: 0 2rem;
+          
+        }
+        
+        tbody{
+          font-size: 1.5rem;
+          text-align: center;
+          border-width: 2rem;
+
+          tr{
+            height: 4rem;
+          }
+        }
+      }
+    }
   }
 
-  > .homepatient-footer {
-    width: 100%;
+  footer.homepatient-footer{
+    height: 4rem;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
-    gap: 1rem;
+    gap: 3rem;
     align-items: center;
 
-    .pageButton {
-      background-color: #8A898B40;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 25%;
+    p{
+      padding: 0 2rem;
+      font-size: 2rem;
+      
+    }
+
+    button{
+      height: 100%;
+      background-color: transparent;
+      border: none;
     }
   }
 }
 
-.homepatient-main .homepatient-summary {
-  /*
-  * -- Box model and Layout definitions ---------------------------------------------
-  */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
 
-  @media only screen and (max-width: 767px) {/* mobile */
-  }
 
-  @media only screen and (min-width: 767px) {/* desktop */
+// .homepatient-main {
+//   /*
+//   * -- Box model and Layout definitions ---------------------------------------------
+//   */
+//   display: flex;
+//   flex-direction: column;
+//   align-content: space-between;
+//   padding: 1.5rem 1.5rem;
+//   gap: 1rem;
+//   width: 74%;
+//   height: 100%;
+//   grid-template-rows: 1fr 15fr 1fr;
 
-  }
+//   @media only screen and (max-width: 767px) {/* mobile */
 
-  /*
-  * -- Box and text styles definitions ----------------------------------------------
-  */
+//   }
 
-  /*
-  * -- Subcomponents and behaviours definitions -------------------------------------
-  */
-  > .homepatient-main {
-    color: #352E5B;
-    font-family: DM Sans;
-    font-size: 1.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-transform: uppercase;
-  }
-}
+//   @media only screen and (min-width: 767px) {
+//     /* desktop */
+//     margin-left: 11%; // sidebar width
+//     margin-right: 15%; // sidebar width
+//   }
 
-.homepatient-main .homepatient-summary .table-wrapper {
-  /* Box Style */
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  background: #42A7C3;
-  width: 100%;
-}
+//   /*
+//   * -- Box and text styles definitions ----------------------------------------------
+//   */
 
-.homepatient-main .homepatient-summary .table-wrapper table {
-  /* Box Style */
-  width: 100%;
-  table-layout: auto;
-  border-collapse: collapse;
-}
+//   /*
+//   * -- Subcomponents and behaviours definitions -------------------------------------
+//   */
+//   > .homePatient-header {
+//     color: rgba(165, 162, 184, 0.60);
+//     font-family: DM Sans;
+//     font-size: 0.9rem;
+//     font-style: normal;
+//     font-weight: 400;
+//     line-height: normal;
+//     letter-spacing: 0.00875rem;
+//   }
 
-.homepatient-main .homepatient-summary .table-wrapper table thead {
-  /* Box Style */
-  height: 2.5rem;
-  border-bottom: 1px solid #F8F7FF;
+//   > .homepatient-footer {
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     gap: 1rem;
+//     align-items: center;
 
-  /* Children */
-  th {
-    /* Text Style */
-    color: #F6F4FF;
-    font-family: DM Sans;
-    font-size: 1.1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-  }
+//     .pageButton {
+//       background-color: #8A898B40;
+//       width: 2rem;
+//       height: 2rem;
+//       border-radius: 25%;
+//     }
+//   }
+// }
+
+// .homepatient-main .homepatient-summary {
+//   /*
+//   * -- Box model and Layout definitions ---------------------------------------------
+//   */
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+//   gap: 1.5rem;
+
+//   @media only screen and (max-width: 767px) {/* mobile */
+//   }
+
+//   @media only screen and (min-width: 767px) {/* desktop */
+
+//   }
+
+//   /*
+//   * -- Box and text styles definitions ----------------------------------------------
+//   */
+
+//   /*
+//   * -- Subcomponents and behaviours definitions -------------------------------------
+//   */
+//   > .homepatient-main {
+//     color: #352E5B;
+//     font-family: DM Sans;
+//     font-size: 1.75rem;
+//     font-style: normal;
+//     font-weight: 700;
+//     line-height: normal;
+//     text-transform: uppercase;
+//   }
+// }
+
+// .homepatient-main .homepatient-summary .table-wrapper {
+//   /* Box Style */
+//   padding: 0.5rem 1rem;
+//   border-radius: 0.5rem;
+//   background: #42A7C3;
+//   width: 100%;
+// }
+
+// .homepatient-main .homepatient-summary .table-wrapper table {
+//   /* Box Style */
+//   width: 100%;
+//   table-layout: auto;
+//   border-collapse: collapse;
+// }
+
+// .homepatient-main .homepatient-summary .table-wrapper table thead {
+//   /* Box Style */
+//   height: 2.5rem;
+//   border-bottom: 1px solid #F8F7FF;
+
+//   /* Children */
+//   th {
+//     /* Text Style */
+//     color: #F6F4FF;
+//     font-family: DM Sans;
+//     font-size: 1.1rem;
+//     font-style: normal;
+//     font-weight: 600;
+//     line-height: normal;
+//   }
  
  
-  }
+//   }
 
 
-.homepatient-main .homepatient-summary .table-wrapper table tbody {
+// .homepatient-main .homepatient-summary .table-wrapper table tbody {
 
-  td {
-    /* Text Style */
-    min-width: 2rem;
-    height: 2rem;
-    font-variant: all-small-caps;
-    text-align: left;
-    padding: 0 0.1rem;
+//   td {
+//     /* Text Style */
+//     min-width: 2rem;
+//     height: 2rem;
+//     font-variant: all-small-caps;
+//     text-align: left;
+//     padding: 0 0.1rem;
 
-    color: #F6F4FF;
-    font-family: DM Sans;
-    font-size: 0.95rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-}
-@media (max-width: 769px) {
-  .homepatient-main .homepatient-summary .table-wrapper table thead th {
-    font-size: 0.7rem;
-  }
-  .homepatient-main .homepatient-summary .table-wrapper table tbody td {
-    font-size: 0.9rem;
-  }
-}
+//     color: #F6F4FF;
+//     font-family: DM Sans;
+//     font-size: 0.95rem;
+//     font-style: normal;
+//     font-weight: 500;
+//     line-height: normal;
+//   }
+// }
+// @media (max-width: 769px) {
+//   .homepatient-main .homepatient-summary .table-wrapper table thead th {
+//     font-size: 0.7rem;
+//   }
+//   .homepatient-main .homepatient-summary .table-wrapper table tbody td {
+//     font-size: 0.9rem;
+//   }
+// }
 
-@media (max-width: 567px) {
-  .homepatient-main .homepatient-summary .table-wrapper table thead th {
-    font-size: 0.4rem;
-  }
-  .homepatient-main .homepatient-summary .table-wrapper table tbody td {
-    font-size: 0.4rem;
-  }
-}
+// @media (max-width: 567px) {
+//   .homepatient-main .homepatient-summary .table-wrapper table thead th {
+//     font-size: 0.4rem;
+//   }
+//   .homepatient-main .homepatient-summary .table-wrapper table tbody td {
+//     font-size: 0.4rem;
+//   }
+// }

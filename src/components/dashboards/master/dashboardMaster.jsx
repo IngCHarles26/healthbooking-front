@@ -89,7 +89,7 @@ function DashboardPatient() {
         menuData={navigationOptions}
         handlePage={handlePage} />
 
-      <div className="dashboard-main">
+      <div className="dashboard-main-master">
 
         {pageList[algo]}
 
