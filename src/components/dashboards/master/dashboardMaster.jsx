@@ -87,22 +87,17 @@ function DashboardPatient() {
     <div className="dashboard-master">
       <AsideLeft menuData={navigationOptions} handlePage={handlePage} />
 
-      <div className="dashboard-main-master">
+      <div className="dashboard-main-master">{pageList[algo]}</div>
 
-        {pageList[algo]}
-
-      </div>
-
-      <aside className="user-menu">
-        {/* <AsideRight
-          type='Master'
-          image={infoUser.image}
-          name={infoUser.name}
-          info={infoUser.info}
-        /> */}
-      </aside>
-
-    </div>) : navigate("/")
+      <AsideRight
+        type="Master"
+        image={infoUser.image}
+        name={infoUser.name}
+        info={infoUser.info}
+      />
+    </div>
+  ) : (
+    navigate("/")
   );
 
 }

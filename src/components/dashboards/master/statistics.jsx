@@ -100,47 +100,46 @@ const Statistics = () => {
   };
 
   return (
-    <main>
-      {data.length > 0 ? (
-        <>
+    <div>
+      <header className="statistics-header">Dashboard &#62; Statistics</header>
+      <div className="statistics-master">
+        <ResponsiveContainer width="40%" aspect={1.5}>
+          <h1>Ingresos por semana</h1>
+          <BarChart
+            data={montoPorSemana}
+            width={"50%"}
+            height={"30%"}
+            margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="4 1 2" />
+            <XAxis dataKey="semana" fill="#6b48ff" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="monto" fill="#1ee3cf" />
+          </BarChart>
+        </ResponsiveContainer>
+
+        <ResponsiveContainer width="40%" aspect={1.5}>
           <h1>Ingresos por especialidad</h1>
-          <ResponsiveContainer width="100%" aspect={2}>
-
-            <BarChart
-              data={totalAmountPerSpecialty}
-              width={500}
-              height={300}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="4 1 2" />
-              <XAxis dataKey="name" fill='#6b48ff' />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="value" fill='#1ee3cf' />
-            </BarChart>
-
-
-
-            <h1>Ingresos por semana</h1>
-            <BarChart
-              data={montoPorSemana}
-              margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="4 1 2" />
-              <XAxis dataKey="semana" fill='#6b48ff' />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="monto" fill='#1ee3cf' />
-            </BarChart>
-          </ResponsiveContainer>
-        </>
-      ) : (<p>Cargando datos...</p>)
-      }
-
-    </main>
+          <BarChart
+            data={totalAmountPerSpecialty}
+            width={"50%"}
+            height={"30%"}
+            // margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="4 1 2" />
+            <XAxis dataKey="name" fill="#6b48ff" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="value" fill="#1ee3cf" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
   );
+
 };
 
 export default Statistics;
