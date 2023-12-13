@@ -62,7 +62,7 @@ function NewDate() {
   const [agendaPage, setAgendaPage] = useState(1);
 
   const [doctorSelected, setDoctorSelected] = useState(0);
-  console.log(doctorSelect);
+  // console.log(doctorSelect);
   const [hourSelected, setHourSelected] = useState(0);
   const [preference, setPreference] = useState(initialPreference);
   // const [agenda, setAgenda] = useState([]);
@@ -107,7 +107,7 @@ function NewDate() {
   const handleSendInfo = async (buyDate) => {
     if (hourSelected && infoSend.idDoctor) {
       const response = await healthApi.post("/pay", buyDate);
-      console.log(response);
+      // console.log(response);
 
       window.location.href = response.data;
     }
@@ -116,7 +116,7 @@ function NewDate() {
   function hacerScroll() {
     window.scrollTo({
       top: document.body.scrollHeight,
-      behavior: 'auto' 
+      behavior: 'auto'
     });
   }
 
