@@ -1,3 +1,5 @@
+@import '../../variables';
+
 .wrapper-LandingPage {
 
   /* ---------------------------------------------------------------------------------------------- */
@@ -24,7 +26,7 @@
     * -- Box and text styles definitions ----------------------------------------------
     */
     // padding-top: 1.5rem;
-    background-color: #26335d;
+    background-color: $back-hero-background;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.25' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 
     /*
@@ -47,11 +49,15 @@
       padding: 0.7rem;
       justify-content: center;
       align-items: center;
-      color: #FFF;
+      color: $back-white;
       font-family: Montserrat;
       text-decoration: none;
       font-weight: 700;
-      font-size: 0.875rem;
+      font-size: 1.9rem;
+
+      &:hover{
+        cursor: pointer;
+      }
     }
 
    /*  a.signup-button {
@@ -96,6 +102,7 @@
       /* desktop */
       padding: 1rem;
       grid-template-columns: 5vw clamp(25rem, 42vw, 40rem) clamp(25rem, 48vw, 40rem) 5vw;
+      grid-template-columns: 1fr 3fr 3fr 1fr;
       grid-template-areas:
         ". description img .";
     }
@@ -103,7 +110,7 @@
     /*
     * -- Box and text styles definitions ----------------------------------------------
     */
-    background-color: #26335d;
+    background-color: $back-hero-background;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.25' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 
     /*
@@ -143,7 +150,7 @@
     gap: 1.5rem;
 
     .slogan {
-      color: #42B8C3;
+      color:$font-second;
       font-family: Montserrat;
       font-size: 1.125rem;
       font-weight: 700;
@@ -153,16 +160,16 @@
     }
 
     .title {
-      color: #FFF;
+      color: $font-white;
       font-family: Montserrat;
-      font-size: 3.1rem;
+      font-size: 5rem;
       font-weight: 700;
     }
 
     .comment {
-      color: #FFF;
+      color: $font-white;
       font-family: Montserrat;
-      font-size: 1.25rem;
+      font-size: 2.25rem;
       font-weight: 400;
       line-height: 1.875rem;
       /* 150% */
@@ -184,7 +191,7 @@
     >button.login,
     >.landing-a-tag.signup {
 
-      background-color: #42A7C3;
+      background-color: $back-main-color;
       /* Adjust color as needed */
       color: white;
       padding: 10px 20px;
@@ -194,7 +201,7 @@
       cursor: pointer;
 
       &:hover {
-        background-color: #36758E;
+        background-color: $back-hover-main-color;
         /* Adjust hover color as needed */
       }
 
@@ -203,11 +210,11 @@
     }
 
     >.landing-a-tag.login {
-      border: 1px solid #42B8C3;
+      border: 1px solid $font-second;
     }
 
     >.landing-a-tag.signup {
-      background: #42B8C3;
+      background: $font-second;
     }
   }
 
@@ -220,8 +227,13 @@
     */
     display: grid;
     gap: 3rem;
-    padding: 4rem 3rem;
-    background: #FFF;
+    padding: 2rem;
+    background: $back-white;
+    height: 25rem;
+    align-content: center;
+    justify-items: center;
+    max-width: 120rem;
+    margin: 0 auto;
 
     @media only screen and (max-width: 767px) {
       /* mobile */
@@ -235,7 +247,7 @@
 
     @media only screen and (min-width: 767px) {
       /* desktop */
-      grid-template-columns: 2fr 0.8fr 0.8fr;
+      grid-template-columns: 1fr 1fr 1fr;
       grid-template-areas: "banner about contact";
     }
 
@@ -264,16 +276,18 @@
     /*
     * -- Box and text styles definitions ----------------------------------------------
     */
-    color: var(--neutural-grey-1, #86898B);
+    color: $font-main;
     font-family: Inter;
-    font-size: 1.1rem;
-    line-height: 1.5rem;
+    font-size: 1.5rem;
+    // line-height: 1.5rem;
+    text-align: center;
 
     /*
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
     .landings-logo-img {
       width: 18rem;
+      margin: 0 auto;
     }
   }
 
@@ -289,9 +303,9 @@
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
     >.landing-h1 {
-      color: var(--neutural-black, #081B2F);
+      color: $font-titles;
       font-family: Inter;
-      font-size: 1.1rem;
+      font-size: 1.8rem;
       font-weight: 500;
     }
 
@@ -307,17 +321,17 @@
         gap: 0.4rem;
 
         text-decoration: none;
-        color: var(--neutural-grey-1, #86898B);
+        color: $font-main;
         font-family: Inter;
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         line-height: 1.5rem;
         /* 133.333% */
       }
     }
 
     &.contact>nav {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       flex-wrap: wrap;
       max-height: 9rem;
       width: min(95vw, 26rem);
@@ -326,12 +340,12 @@
   }
 
   .landing-footer>.copyright {
-    color: var(--neutural-grey-1, #86898B);
+    color: $font-main;
     background: #F4F7FB;
     padding: 1.5rem 0rem;
     text-align: center;
     font-family: Montserrat;
-    font-size: 0.95rem;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 400;
   }

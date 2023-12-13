@@ -39,7 +39,7 @@ const infoUser = {
 }
 
 const navigationOptions = [
-  { svg: homeSVG, text: 'Home', link: 0 },
+  { svg: homeSVG, text: 'Inicio', link: 0 },
   { svg: newDateSVG, text: 'Crear Doctor', link: 1 },
   { svg: editSVG, text: 'Administrar usuarios', link: 2 },
   { svg: editSVG, text: 'Historial pagos', link: 3 },
@@ -87,18 +87,24 @@ function DashboardPatient() {
     <div className="dashboard-master">
       <AsideLeft menuData={navigationOptions} handlePage={handlePage} />
 
-      <div className="dashboard-main-master">{pageList[algo]}</div>
+      <div className="dashboard-main-master">
 
-      <AsideRight
-        type={"Master"}
-        image={infoUser.image}
-        name={infoUser.name}
-        info={infoUser.info}
-      />
-    </div>
-  ) : (
-    navigate("/")
+        {pageList[algo]}
+
+      </div>
+
+      <aside className="user-menu">
+        {/* <AsideRight
+          type='Master'
+          image={infoUser.image}
+          name={infoUser.name}
+          info={infoUser.info}
+        /> */}
+      </aside>
+
+    </div>) : navigate("/")
   );
+
 }
 
 export default DashboardPatient;

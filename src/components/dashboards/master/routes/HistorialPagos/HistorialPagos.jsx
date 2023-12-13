@@ -12,17 +12,15 @@ const HistorialPagos = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await healthApi.get("/master/appointment");
-        const filterData = response.data.filter(
-          (cita) => cita.status === "pending"
-        );
+        const response = await healthApi.get('/master/appointment');
+        const filterData = response.data.filter(cita => cita.status === 'pendiente');
         setData(filterData);
       } catch (error) {
         console.error({ message: "Error al cargar los datos", error });
       }
     };
     fetchData();
-  }, [data]);
+  }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(5);
@@ -36,41 +34,40 @@ const HistorialPagos = () => {
   };
 
   return (
-    <main className="historialPagos-main">
-      <header className="historialPagos-header">
-        Dashboard &#62; Historial de pago
-      </header>
+    <main >
+      <header>Dashboard &#62; Inicio</header>
 
-      <article className="historialPagos-article">
-        <header className="historialPagos-header2">Historial de pagos</header>
-
-        <article className="historialPagos-table-wrapper">
-          <table className="historialPagos-table">
-            <thead>
-              <tr>
-                <th>Transacciones</th>
-                <th>Monto</th>
-                <th>Estado</th>
-                <th>Fecha</th>
-              </tr>
-            </thead>
-            <tbody className="historialPagos-tbody">
-              {data
-                ?.slice(
-                  (currentPage - 1) * perPage,
-                  (currentPage - 1) * perPage + perPage
-                )
-                .map((cita) => (
-                  <tr key={cita.id}>
-                    <td>Pago turno médico</td>
-                    <td>{cita.finalAmount}</td>
-                    <td>{cita.status}</td>
-                    <td>{cita.paymentDay}</td>
+      <article className="summary">
+        <header >Historial de pagos</header>
+        {data.length > 0 ? (
+          <>
+            <article className="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Transacciones</th>
+                    <th>Monto</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
                   </tr>
-                ))}
-            </tbody>
-          </table>
-        </article>
+                </thead>
+                <tbody>
+                  {data?.slice(
+                    (currentPage - 1) * perPage,
+                    (currentPage - 1) * perPage + perPage
+                  ).map((cita) => (
+                    <tr key={cita.id}>
+                      <td>Pago turno médico</td>
+                      <td>{cita.finalAmount}</td>
+                      <td>{cita.status}</td>
+                      <td>{cita.paymentDay}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </article>
+          </>) : (<p>Cargando datos...</p>)
+        }
       </article>
 
       <footer className="historialPagos-navigation">
