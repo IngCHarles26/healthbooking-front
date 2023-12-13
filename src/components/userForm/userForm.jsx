@@ -9,10 +9,14 @@ import Loading from "../Loading/Loading"
 import logo from "../assets/full-logo-black.svg";
 import Swal from "sweetalert2";
 import "animate.css";
+import { useDispatch } from 'react-redux';
+import { adduser } from '../../redux/slices/user/user';
+
 
 const UserForm = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [sures, setSures] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,12 +39,15 @@ const UserForm = () => {
     setSures(data)
   }
   const getUser = async () => {
-    const { data } = await healthApi.get('/logging', { params: { email: users } })
-    console.log(data.exist);
-    console.log(user);
-    const { user } = data
-    if (data.exist) {
-      navigate(`/${user.rol}`)
+    if (user) {
+
+      const { data } = await healthApi.get('/logging', { params: { email: user.email } })
+      console.log(data.exist);
+      dispatch(adduser(data.user))
+
+      if (data.exist) {
+        navigate(`/${data.user.rol}`)
+      }
     }
   }
 
@@ -52,7 +59,7 @@ const UserForm = () => {
     }, 2000);
     getSure()
     return () => clearTimeout(timeoutId);
-  }, [])
+  }, [user])
 
   const [errors, setErrors] = useState({});
   const indicativos = ["+1", "+54", "+57", "+51", "+52"];

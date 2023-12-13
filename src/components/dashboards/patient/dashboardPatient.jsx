@@ -72,6 +72,7 @@ const infoFinishDate = {
 
 function DashboardPatient() {
   const { isAuthenticated, isLoading } = useAuth0();
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch();
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
@@ -111,7 +112,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated ? (<div className="wrapper-PatientHome">
+    isAuthenticated && user.rol === "patient" ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
       />

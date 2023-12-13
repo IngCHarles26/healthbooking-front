@@ -39,6 +39,7 @@ const navigationOptions = [
 ]
 
 function DashboardDoctor() {
+  const user = useSelector(state => state.user)
   //const [currentPage, setCurrentPage] = useState(0);
   const { isAuthenticated, isLoading } = useAuth0()
   const page = useSelector(st => st.pageNav);
@@ -62,9 +63,10 @@ function DashboardDoctor() {
       <Loading />
     )
   }
+  console.log(user.rol);
 
   return (
-    isAuthenticated ? (<div className="wrapper-PatientHome">
+    isAuthenticated && user.rol === "doctor" ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
       />
