@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "animate.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,11 +44,11 @@ const EditDate = () => {
     const handleCancel = () => {
         dispatch(changePage(1))
     }
-    console.log(newDate);
+    // console.log(newDate);
     const handleSubmit = async () => {
         const newAppointment = await healthApi.patch(`/doctor/updateAppointment/${id}`, newDate)
         //notificacion
-        console.log(newAppointment);
+        // console.log(newAppointment);
         if (newAppointment) {
             Swal.fire("Se camio la fecha de la cita con exito!");
             dispatch(changePage(0))

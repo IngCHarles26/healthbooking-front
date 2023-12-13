@@ -31,11 +31,11 @@ const infoParticipants = [
 function Landing() {
   const navigate = useNavigate();
   const { loginWithRedirect, user, isAuthenticated } = useAuth0();
-  console.log(user);
-  console.log(isAuthenticated);
+  // console.log(user);
+  // console.log(isAuthenticated);
 
   if (isAuthenticated) {
-    console.log("localstorage");
+    // console.log("localstorage");
     localStorage.setItem("bool", JSON.stringify(isAuthenticated));
     localStorage.setItem("user", JSON.stringify(user.email));
   }
