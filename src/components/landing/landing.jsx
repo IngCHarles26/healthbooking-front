@@ -10,22 +10,22 @@ import { ArrowRight } from "../assets/svgs";
 import gitHubSVG from "../assets/brands/github.svg";
 
 const aboutInfo = [
-  { link: "#", text: "Codigo fuente (frontend)" },
-  { link: "#", text: "Codigo fuente (backend)" },
-  { link: "#", text: "Henry Bootcamp" },
+  { link: "https://github.com/IngCHarles26/healthbooking-front", text: "Front-end" },
+  { link: "https://github.com/cristiancapobianco/HealtBooking-Back-end", text: "Back-end" },
+  { link: "https://www.soyhenry.com", text: "Soy Henry" },
 ];
 const infoParticipants = [
-  { linkedin: "", github: "", name: "Andres Soria" },
-  { linkedin: "", github: "", name: "El Aldo" },
-  { linkedin: "", github: "", name: "Carlos Condori" },
+  { linkedin: "", github: "https://github.com/AndSoria", name: "Andres S." },
+  { linkedin: "", github: "https://github.com/baldo8", name: "Aldo" },
+  { linkedin: "", github: "https://github.com/IngCHarles26", name: "Carlos C." },
   {
     linkedin: "http://www.linkedin.com/in/jose-abel-aguilar-cepeda-8a3924284",
     github: "https://github.com/JAAC2023",
-    name: "José Aguilar",
+    name: "José A.",
   },
-  { linkedin: "", github: "", name: "Cristian Capobianco" },
-  { linkedin: "", github: "", name: "Santi Paz" },
-  { linkedin: "", github: "", name: "Santi Chaparro" },
+  { linkedin: "", github: "https://github.com/cristiancapobianco", name: "Cristian C." },
+  { linkedin: "", github: "https://github.com/santipaz19", name: "Santi P." },
+  { linkedin: "", github: "https://github.com/SantiChaparro", name: "Santi C." },
 ];
 
 function Landing() {
@@ -71,12 +71,10 @@ function Landing() {
             <div className="description">
               <span className="slogan">Conecta con tu salud</span>
               <span className="title">
-                {" "}
                 HealthBooking es la web que te facilita la salud
                 
               </span>
               <span className="comment">
-                {" "}
                 Regístrate ya y conecta con tu salud
               </span>
             </div>
@@ -115,10 +113,9 @@ function Landing() {
               alt="logoClaroOscuro"
             />
             <span>
-              {" "}
               <strong>HealthBooking</strong> es un proyecto desarrollado por
               estudiantes del bootcamp Henry, una academia online que forma
-              desarrolladores web full stack.{" "}
+              desarrolladores web full stack.
             </span>
           </div>
           <div className="links-group about">
@@ -142,6 +139,7 @@ function Landing() {
                   key={"participant_" + el.name}
                   name={el.name}
                   linkedin={el.linkedin}
+                  github={el.github}
                 />
               ))}
             </nav>
@@ -172,7 +170,7 @@ function LinkAbout(props) {
 function LinkParticipants(props) {
   const { linkedin, github, name } = props;
   return (
-    <a className="landing-a-tag" href={linkedin}>
+    <a className="landing-a-tag" href={github} target='_blank'>
       <img className="landings-logo-img" src={linkedInSVG} />
       {name}
     </a>

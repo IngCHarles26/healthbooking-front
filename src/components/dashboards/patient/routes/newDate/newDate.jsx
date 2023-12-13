@@ -24,7 +24,7 @@ import {
   getPlan,
   weeksPlan,
 } from "../../../../../redux/slices/patient/agendaDoctor";
-const cardsPerPage = 12;
+const cardsPerPage = 10;
 const weeksAgenda = weeksPlan;
 
 const initialPreference = {
@@ -352,10 +352,10 @@ function NewDate() {
         </section>)}
       </article>
 
-      <section>
+      <section className="send-info-to">
         {/* <Wallet initialization={{ preferenceId: preference.id }} /> */}
         {/* {console.log(preference)} handleSendInfo(infoSend)*/}
-        <button className="btnBuy" onClick={() => handleSendInfo()}>Generar Cita</button>
+        <button className="btnBuy" onClick={() => handleSendInfo()}>GENERAR CITA</button>
 
       </section>
     </main>

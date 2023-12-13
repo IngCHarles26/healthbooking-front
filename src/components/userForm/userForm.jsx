@@ -163,13 +163,13 @@ const UserForm = () => {
                   onChange={handleChange}
                 />
               </div>
+              {errors.dni && <p className="message-error">{errors.dni}</p>}
             </div>
-            {errors.dni && <p className="message-error">{errors.dni}</p>}
           </div>
 
           <div className="sectionUserForm">
             <label className="label">
-              <p className="label-text">Nombre Complepto</p>
+              <p className="label-text">Nombre Completo</p>
             </label>
             <div className="input-container">
               <div className="userForm-input">
@@ -181,15 +181,15 @@ const UserForm = () => {
                   onChange={handleChange}
                 />
               </div>
+              {errors.nombreCompleto && (
+                <p className="message-error">{errors.nombreCompleto}</p>
+                )}
             </div>
-            {errors.nombreCompleto && (
-              <p className="message-error">{errors.nombreCompleto}</p>
-            )}
           </div>
 
           <div className="sectionUserForm">
             <label className="label">
-              <p className="label-text">Altura</p>{" "}
+              <p className="label-text">Estatura</p>{" "}
             </label>
             <div className="input-container">
               <div className="userForm-input">
@@ -201,10 +201,10 @@ const UserForm = () => {
                   onChange={handleChange}
                 />
               </div>
-            </div>
             {errors.altura && (
               <p className="message-error">{errors.altura}</p>
-            )}
+              )}
+            </div>
           </div>
 
           <div className="sectionUserForm">
@@ -221,8 +221,8 @@ const UserForm = () => {
                   onChange={handleChange}
                 />
               </div>
-            </div>
             {errors.peso && <p className="message-error">{errors.peso}</p>}
+            </div>
           </div>
 
           <div className="sectionUserForm">
@@ -248,15 +248,15 @@ const UserForm = () => {
                   />
                 </div>
               </div>
+              {errors.telefono && (
+                <p className="message-error">{errors.telefono}</p>
+                )}
             </div>
-            {errors.telefono && (
-              <p className="message-error">{errors.telefono}</p>
-            )}
           </div>
 
           <div className="sectionUserForm">
             <label className="label">
-              <p className="label-text">Obras socialep</p>
+              <p className="label-text">Obra social</p>
             </label>
             <div className="input-container">
               <div className="userForm-input">

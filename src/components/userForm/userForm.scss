@@ -12,7 +12,7 @@
 /* Form styles */
 .form {
   margin: 3rem;
-  width: 50%;
+  width: 55%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
   /* Rest of your form styles go here */
 }
 .label-text {
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: $font-label-patient-form;
 }
@@ -49,13 +49,14 @@
   justify-content: flex-start;
   align-items: flex-start;
   display: inline-flex;
+  gap: 1rem;
 
   /* Rest of your section styles go here */
 }
 
 /* Label styles */
 .label {
-  width: 7rem;
+  width: 9rem;
   height: 2rem;
   // padding: 8px;
   justify-content: flex-start;
@@ -171,9 +172,9 @@
   }
 }
 @media screen and (max-width: 630px) {
-  .label-text {
-    font-size: 65%;
-  }
+  // .label-text {
+  //   font-size: 65%;
+  // }
 
   .input-field {
     font-size: 65%;

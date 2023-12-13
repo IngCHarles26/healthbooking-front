@@ -53,7 +53,11 @@
       font-family: Montserrat;
       text-decoration: none;
       font-weight: 700;
-      font-size: 1.5rem;
+      font-size: 1.9rem;
+
+      &:hover{
+        cursor: pointer;
+      }
     }
 
    /*  a.signup-button {
@@ -158,14 +162,14 @@
     .title {
       color: $font-white;
       font-family: Montserrat;
-      font-size: 3.1rem;
+      font-size: 5rem;
       font-weight: 700;
     }
 
     .comment {
       color: $font-white;
       font-family: Montserrat;
-      font-size: 1.25rem;
+      font-size: 2.25rem;
       font-weight: 400;
       line-height: 1.875rem;
       /* 150% */
@@ -223,9 +227,9 @@
     */
     display: grid;
     gap: 3rem;
-    padding: 3rem 6rem;
+    padding: 2rem;
     background: $back-white;
-    height: 20rem;
+    height: 25rem;
     align-content: center;
     justify-items: center;
     max-width: 120rem;
@@ -274,14 +278,16 @@
     */
     color: $font-main;
     font-family: Inter;
-    font-size: 1.1rem;
-    line-height: 1.5rem;
+    font-size: 1.5rem;
+    // line-height: 1.5rem;
+    text-align: center;
 
     /*
     * -- Subcomponents and behaviours definitions -------------------------------------
     */
     .landings-logo-img {
       width: 18rem;
+      margin: 0 auto;
     }
   }
 
@@ -299,7 +305,7 @@
     >.landing-h1 {
       color: $font-titles;
       font-family: Inter;
-      font-size: 1.1rem;
+      font-size: 1.8rem;
       font-weight: 500;
     }
 
@@ -317,15 +323,15 @@
         text-decoration: none;
         color: $font-main;
         font-family: Inter;
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         line-height: 1.5rem;
         /* 133.333% */
       }
     }
 
     &.contact>nav {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       flex-wrap: wrap;
       max-height: 9rem;
       width: min(95vw, 26rem);

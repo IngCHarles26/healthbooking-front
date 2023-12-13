@@ -88,7 +88,7 @@
   main>article.forms-wrapper>section.select-doctor>header>.tabs-group {
     display: flex;
     flex-wrap: wrap;
-    overflow-y: scroll;
+    overflow-y: none;
     // height: 5rem;
     justify-content: center;
     align-items: center;
@@ -104,6 +104,7 @@
       align-self: stretch;
       border-radius: 0.56rem;
       border-left: 1px solid #e9e9e9;
+      font-size: 1.5rem;
 
       &:last-child {
         border-right: 1px solid #e9e9e9;
@@ -169,6 +170,7 @@
 
         select {
           width: 1rem;
+          border: none;
         }
 
         label {
@@ -219,7 +221,7 @@
   * -- Box model and Layout definitions ---------------------------------------------
   */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     grid-template-rows: masonry;
     justify-items: center;
     gap: 1rem;
@@ -231,10 +233,12 @@
   */
     display: flex;
     width: 11.3125rem;
-    height: 14.5625rem;
+    width: 15rem;
+    // height: 14.5625rem;
+    // height: 22rem;
     padding: 0.625rem;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 0.625rem;
 
@@ -248,14 +252,14 @@
     img {
       object-fit: cover;
       border-radius: 100%;
-      width: 8rem;
-      height: 8rem;
+      width: 10rem;
+      height: 10rem;
     }
 
     h1 {
       color: #352e5b;
       font-family: DM Sans;
-      font-size: 0.85rem;
+      font-size: 1.85rem;
       font-weight: 700;
       text-align: center;
     }
@@ -264,7 +268,7 @@
       color: #6b779a;
       text-align: center;
       font-family: DM Sans;
-      font-size: 0.8rem;
+      font-size: 1.3rem;
       font-weight: 700;
       letter-spacing: 0.0125rem;
     }
@@ -283,24 +287,6 @@
   /*  */
   /* ---------------------------------------------------------------------------------------------- */
 
-  .btnBuy {
-    padding: 10px;
-    padding-left: 45%;
-    padding-right: 45%;
-    background-color: #009ee3;
-    display: flex;
-    align-self: center;
-    cursor: pointer;
-    color: white;
-    border-radius: 4px;
-    align-items: center;
-    transition: ease 0.3s;
-    margin-bottom: 30px;
-  }
-
-  .btnBuy:hover {
-    background-color: #005E88;
-  }
 
   /* ---------------------------------------------------------------------------------------------- */
   /*  */
@@ -327,11 +313,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #8A898B40;
     width: auto;
     padding: 0 0.75rem;
     height: 2rem;
     border-radius: 25%;
+    font-size: 1.5rem;
   }
 
   main>article.forms-wrapper>section.select-doctor>footer>nav>.pagination>.page-item {
@@ -446,7 +432,8 @@
   .table-disponibility{
     margin: 0 auto;
     width: 100%;
-    max-width: 60rem;
+    height: 40rem;
+    max-width: 80rem;
     outline: none;
     border: none;
 
@@ -459,9 +446,11 @@
     }
 
     thead{
+      font-size: 1.5rem;
       background-color: #3498db;
     }
     .ocupied-hour{
+      font-size: 1.5rem;
       background-color: #ff000099;
       color: #ff0000;
     }
@@ -473,6 +462,7 @@
       }
     }
     .endWeek-hour{
+      font-size: 1.5rem;
       background-color: #74747470;
       color: #74747450;
     }
@@ -482,6 +472,7 @@
 
       &::after{
         content: "X";
+        font-size: 2rem;
         color: black;
       }
       &:hover{
@@ -491,6 +482,7 @@
 
      
     tr td:first-child{
+      font-size: 1.5rem;
       background-color: #3498db70;
       &::after{
         content: "";
@@ -521,6 +513,31 @@
     font-size: 2rem;
   }
 
+  .send-info-to{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .btnBuy {
+    font-size: 2rem;
+    margin-top: 3rem;
+    border: none;
+    padding: 10px;
+    padding-left: 30%;
+    padding-right: 30%;
+    background-color: #009ee3;
+    text-align: center;
+    color: white;
+    border-radius: 4px;
+    transition: ease 0.3s;
+  }
+
+  .btnBuy:hover {
+    background-color: #005E88;
+  }
   
   // section.new-date{
   //   width: 100%;
