@@ -83,28 +83,21 @@ function DashboardPatient() {
     )
   }
 
-  return (
-    isAuthenticated ? (<div className="wrapper-PatientHome">
-      <AsideLeft
-        menuData={navigationOptions}
-        handlePage={handlePage} />
+  return isAuthenticated ? (
+    <div className="dashboard-master">
+      <AsideLeft menuData={navigationOptions} handlePage={handlePage} />
 
-      <div className="dashboard-main">
+      <div className="dashboard-main-master">{pageList[algo]}</div>
 
-        {pageList[algo]}
-
-      </div>
-
-      <aside className="user-menu">
-        {/* <AsideRight
-          type='Master'
-          image={infoUser.image}
-          name={infoUser.name}
-          info={infoUser.info}
-        /> */}
-      </aside>
-
-    </div>) : navigate("/")
+      <AsideRight
+        type={"Master"}
+        image={infoUser.image}
+        name={infoUser.name}
+        info={infoUser.info}
+      />
+    </div>
+  ) : (
+    navigate("/")
   );
 }
 
