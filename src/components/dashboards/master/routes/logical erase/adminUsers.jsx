@@ -12,14 +12,14 @@ function AdminUsers(props) {
     const [filterUsers, setfilterUsers] = useState([]);
     const [aux, setAux] = useState(false)
     const [aux2, setAux2] = useState(false)
-    const [filterRol, setfilterRol] = useState()
-    console.log(dataUsers);
-    console.log(filterUsers);
+    const [filterRol, setfilterRol] = useState("all")
+    const [filterStatus, setfilterStatus] = useState("all")
+    const [searchTerm, setSearchTerm] = useState('');
 
     // paginacion
     const [currentPage, setCurrentPage] = useState(1);
-    const [perPage, setPerPage] = useState(15);
-    const max = Math.ceil(dataUsers.length / perPage);
+    const [perPage, setPerPage] = useState(12);
+    const max = Math.ceil(filterUsers.length / perPage);
 
     const next = () => {
         setCurrentPage(currentPage + 1);
@@ -28,20 +28,21 @@ function AdminUsers(props) {
         setCurrentPage(currentPage - 1);
     };
 
-    useEffect(() => {
+    const fetchData = () => {
         healthApi.get('/master')
             .then(({ data }) => {
                 setDataUsers(data);
-                setfilterUsers(data)
-            })
-    }, [])
+                setfilterUsers(data.filter(user =>
+                    (filterRol === "all" || user.rol === filterRol) &&
+                    (searchTerm === '' || user.name.toLowerCase().includes(searchTerm.toLowerCase())) && (filterStatus === "all" || user.state === filterStatus)))
+                setCurrentPage(1)
+                console.log(data)
+            });
+    };
 
     useEffect(() => {
-        healthApi.get('/master')
-            .then(({ data }) => {
-                setDataUsers(data);
-            })
-    }, [aux, aux2])
+        fetchData();
+    }, [filterRol, aux, aux2, searchTerm, filterStatus]);
 
     // let dataPatients = dataUsers.filter((item) => item.id.toString().length > 5).sort((a, b) => a.name.localeCompare(b.name))
     let dataPatients = dataUsers.sort((a, b) => a.name.localeCompare(b.name))
@@ -76,15 +77,6 @@ function AdminUsers(props) {
     }
 
     return (
-        // <div className="ContenedorM">
-        //     <ol>
-        //         {dataPatients?.map((item) => (
-        //             <li>{item.name}:
-        //                 ...|<button onClick={() => enable(item.id)} className={item.state === 'active' ? "ButonActive" : "ButonNotActive"}>✔</button>|...|
-        //                 <button onClick={() => disable(item.id)} className={item.state === 'inactive' ? "ButonDisabled" : "ButonNotDisabled"}>❌</button>|</li>
-        //         ))}
-        //     </ol>
-        // </div>
         <main className="homemaster-main">
             <header>Dashboard &#62; Adminiastracion de usuarios</header>
 
@@ -92,11 +84,26 @@ function AdminUsers(props) {
                 <header className="homeMaster-header">Administrar usuarios</header>
                 <div >
                     <label>Filtrar por rol: </label>
-                    <select value={filterRol} name="name" >
+                    <select value={filterRol} name="name" onChange={(e) => setfilterRol(e.target.value)} >
                         <option value="all">Sin filtrar</option>
-                        <option value="Paciente" >Paciente</option>
-                        <option value="Medico" >Medico</option>
+                        <option value="patient" >Paciente</option>
+                        <option value="doctor" >Doctor</option>
                     </select>
+                </div>
+                <div >
+                    <label>Filtrar por estado: </label>
+                    <select value={filterStatus} name="name" onChange={(e) => setfilterStatus(e.target.value)} >
+                        <option value="all">Sin filtrar</option>
+                        <option value="activo" >Activo</option>
+                        <option value="inactivo" >Inactivo</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Búsqueda: </label>
+                    <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                    <button onClick={(e) => setSearchTerm("")}>
+                        x
+                    </button>
                 </div>
 
                 <article className="table-wrapper">
@@ -112,7 +119,7 @@ function AdminUsers(props) {
                         </thead>
                         {/* {console.log(dataPatients)} */}
                         <tbody>
-                            {dataUsers?.slice(
+                            {filterUsers?.slice(
                                 (currentPage - 1) * perPage,
                                 (currentPage - 1) * perPage + perPage
                             )
@@ -120,7 +127,7 @@ function AdminUsers(props) {
                                     <tr key={user.id}>
                                         <td>{user.name}</td>
                                         <td>{user.id}</td>
-                                        <td>{user.rol}</td>
+                                        <td>{user.rol === 'patient' ? 'Paciente' : user.rol}</td>
                                         <td>{user.state}</td>
                                         <td>
                                             {user.state === "activo" ? (
