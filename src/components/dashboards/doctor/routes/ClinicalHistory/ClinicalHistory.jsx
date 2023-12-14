@@ -1,4 +1,4 @@
-import "./ClinicalHistory.css";
+import "./ClinicalHistory.scss";
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import { useDispatch } from "react-redux";

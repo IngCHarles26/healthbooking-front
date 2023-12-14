@@ -64,23 +64,21 @@ function DashboardDoctor() {
   }
 
   return (
-    isAuthenticated ? (<div className="wrapper-PatientHome">
+    isAuthenticated ? (<div className="dashboard-doctor">
       <AsideLeft
         menuData={navigationOptions}
       />
 
-      <div className="dashboard-main">
+      <div className="dashboard-main-doctor">
         {pageList[page]}
       </div>
 
-      <aside className="user-menu">
-        <AsideRight
-          type='Doctor'
-          image={infoUser.image}
-          name={infoUser.name}
-          info={infoUser.info}
-        />
-      </aside>
+      <AsideRight
+        type='Doctor'
+        image={infoUser.image}
+        name={infoUser.name}
+        info={infoUser.info}
+      />
 
     </div>) : navigate("/")
   );

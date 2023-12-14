@@ -1,0 +1,130 @@
+.formHC{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.containerHC {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 35rem;
+  height: auto;
+  padding-bottom: -1rem;
+  // background: #e4f8f3;
+  gap: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 20px;
+}
+
+
+  .headerHC {
+    width: 30rem;
+    background: white;
+    margin-top: 2rem;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    border-radius: 1rem;
+  }
+
+
+  .titleHC {
+    color: #3b3b3b;
+    font-size: 28px;
+     
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+  
+
+  .contentHC {
+    width: 30rem;
+    height: 17rem;
+    border-radius: 1rem;
+    background: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    display: flex;
+    
+  }
+
+
+    .sectionHC {
+      width: 25rem;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+      display: flex;
+    }
+
+
+      .labelHC {
+        width: 25rem;
+        height: 2rem;
+        color: black;
+        font-size: 20px;
+        font-weight: 500;
+        word-wrap: break-word;
+      }
+
+
+      .selectorHC {
+        width: 25rem;
+        height: 2.5rem;
+        position: relative;
+        background: #e1e1e1;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      .inputHC {
+        width: 25rem;
+        height: 2.5rem;
+        position: relative;
+        background: #e1e1e1;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1.5rem;
+      }
+  
+  .footerHC {
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    display: inline-flex;
+    width: 30rem;
+    background: white;
+  }
+
+    .botonesHC{
+      width: 10rem;
+      height: 4rem;
+      border-radius: 0.5rem;
+      background-color: #42A7C3;
+      border: none;
+      padding: 0.5rem;
+      color: white;
+      cursor: pointer;
+    }
+    .botonesHC:hover{
+      transition: 500ms;
+      background-color: #348095;
+    }
+    .botonesHC:active{
+      background-color: #42A7C3;
+    }
+
+  

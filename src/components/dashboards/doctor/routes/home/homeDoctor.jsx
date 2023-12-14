@@ -1,4 +1,5 @@
-import "./style.scss";
+// import "./style.scss";
+import './homeDoctor.scss'
 import { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'
@@ -95,8 +96,8 @@ function HomeDoctor(props) {
 
 
   return (
-    <main className="homeDoctor-main">
-      <header className="homeDoctor-title">Calendario de citas</header>
+    <div className="homeDoctor-main">
+      <header className="homeDoctor-title">Dashboard &#62; Calendario de citas</header>
       <div className="custom-calendar-container">
         <Calendar
           className="custom-calendar-style"
@@ -305,14 +306,14 @@ function HomeDoctor(props) {
             <button disabled={currentPage === 1} onClick={previous}>
               <img src={leftArrow} alt="leftArrow" />
             </button>
-            <button className="pageButton">{currentPage}</button>
+            <button className="pageButton">Pág. {currentPage}</button>
             <button disabled={currentPage === max} onClick={next}>
               <img src={rightArrow} alt="rightArrow" />
             </button>
           </footer>
         ) : null
       }
-    </main >
+    </div >
   );
 }
 
