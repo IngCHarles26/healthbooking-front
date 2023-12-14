@@ -58,10 +58,10 @@ function Landing() {
           <a className="landing-a-tag" style={{ cursor: "pointer" }} onClick={() => loginWithRedirect()}>
             Iniciar sesión
           </a>
-          <a className="landing-a-tag" href="/signup">
+          {/* <a className="landing-a-tag" href="/signup">
             UNETE
-            {/* UNETE <img className="landings-logo-img" src={arrowRight}></img> */}
-          </a>
+            
+          </a> */}
         </nav>
       </header>
 

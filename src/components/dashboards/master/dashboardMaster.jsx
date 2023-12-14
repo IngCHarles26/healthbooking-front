@@ -53,6 +53,8 @@ function DashboardPatient() {
   const navigate = useNavigate()
   // console.log({currentPage})
 
+  if (user.rol !== "master") navigate("/")
+
   //_______________Obtencion de informacion
   useEffect(() => {
 
@@ -85,7 +87,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated && user.rol === "master" ? (<div className="wrapper-PatientHome">
+    isAuthenticated ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
         handlePage={handlePage} />

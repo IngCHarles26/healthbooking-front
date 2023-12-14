@@ -80,7 +80,9 @@ function DashboardPatient() {
 
 
   if (user.state === "inactivo") navigate("/")
-  
+  if (user.rol !== "patient") navigate("/")
+
+
   useEffect(() => {
     healthApi.get(routes.doctors)
       .then(({ data }) => {
@@ -96,10 +98,6 @@ function DashboardPatient() {
       })
     //.catch((err) => console.log(err.message))
   }, [])
-  //_______________Navegacion en el Dashboard 
-  const handlePage = (page) => setCurrentPage(page);
-
-  const handleIdDoctor = (id) => setIdDetailDoctor(id);
 
   const pageList = [
     <HomePatient />,
@@ -116,7 +114,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated && user.rol === "patient" ? (
+    isAuthenticated ? (
 
       <div className="dashboard-patient">
         <AsideLeft
@@ -130,13 +128,13 @@ function DashboardPatient() {
         <AsideRight
           type={'Paciente'}
           image={infoUser.image}
-          name={infoUser.name}
+          name={user.name}
           info={infoUser.info}
         />
 
-      </div>)
-
-      : navigate('/')
+      </div>) : (
+      navigate("/")
+    )
   );
 }
 

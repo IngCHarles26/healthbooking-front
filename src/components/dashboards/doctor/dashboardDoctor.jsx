@@ -40,15 +40,14 @@ const navigationOptions = [
 
 function DashboardDoctor() {
   const user = useSelector(state => state.user)
-  //const [currentPage, setCurrentPage] = useState(0);
   const { isAuthenticated, isLoading } = useAuth0()
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
-  // console.log({currentPage})
   const id = "0258b824-98ea-47aa-9cb3-8b5a08031d81"
   //_______________Obtencion de informacion
 
   if (user.state === "inactivo") navigate("/")
+  if (user.rol !== "doctor") navigate("/")
 
   useEffect(() => {
 
@@ -59,7 +58,6 @@ function DashboardDoctor() {
     <ClinicalHistory />,
     <EditDate />
   ];
-  const handlePage = (page) => setCurrentPage(page);
 
   if (isLoading) {
     return (
@@ -68,7 +66,7 @@ function DashboardDoctor() {
   }
 
   return (
-    isAuthenticated && user.rol === "doctor" ? (<div className="wrapper-PatientHome">
+    isAuthenticated ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
       />

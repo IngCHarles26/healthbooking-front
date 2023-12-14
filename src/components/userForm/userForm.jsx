@@ -38,13 +38,13 @@ const UserForm = () => {
     const { data } = await healthApi.get('/doctor/sure')
     setSures(data)
   }
-  console.log(user);
+  
   const getUser = async () => {
     if (user) {
 
       const { data } = await healthApi.get('/logging', { params: { email: user.email } })
       dispatch(adduser(data.user))
-      console.log(data.exist);
+
       if (data.user.state === "inactivo") navigate("/")
 
       if (data.exist) {
@@ -149,9 +149,6 @@ const UserForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  if (!isAuthenticated) {
-    return navigate("/")
-  }
 
   if (isLoading) {
     return (
