@@ -18,13 +18,13 @@ function ConfirmDate(props) {
   const doctors = useSelector(st => st.allDoctors);
   const specialtys = useSelector(st => st.allSpecialtys);
   const sures = useSelector(st => st.allSures);
-  const user = useSelector(state => state.user)
+  const users = useSelector(state => state.user)
 
   const { idDoctor, idPatient, date, time, price } = infoBase;
   const infoDoctor = doctors.find(el => +el.id === +idDoctor);
   const nameDoctor = infoDoctor.name;
   const specialty = specialtys[infoDoctor.Specialty];
-  const namePatient = user.name;
+  const namePatient = users.name;
   const costo = price;
 
   //console.log(props.infoFinishDate)
