@@ -72,10 +72,17 @@ const infoFinishDate = {
 
 function DashboardPatient() {
   const { isAuthenticated, isLoading } = useAuth0();
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch();
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
   //_______________Obtencion de informacion
+
+
+  if (user.state === "inactivo") navigate("/")
+  if (user.rol !== "patient") navigate("/")
+
+
   useEffect(() => {
     healthApi.get(routes.doctors)
       .then(({ data }) => {
@@ -91,10 +98,6 @@ function DashboardPatient() {
       })
     //.catch((err) => console.log(err.message))
   }, [])
-  //_______________Navegacion en el Dashboard 
-  const handlePage = (page) => setCurrentPage(page);
-
-  const handleIdDoctor = (id) => setIdDetailDoctor(id);
 
   const pageList = [
     <HomePatient />,
@@ -112,26 +115,26 @@ function DashboardPatient() {
 
   return (
     isAuthenticated ? (
-    
-    <div className="dashboard-patient">
-      <AsideLeft
-        menuData={navigationOptions}
-      />
 
-      <div className="dashboard-main-patient">
-        {pageList[page]}
-      </div>
+      <div className="dashboard-patient">
+        <AsideLeft
+          menuData={navigationOptions}
+        />
 
-      <AsideRight
-        type={'Paciente'}
-        image={infoUser.image}
-        name={infoUser.name}
-        info={infoUser.info}
-      />
+        <div className="dashboard-main-patient">
+          {pageList[page]}
+        </div>
 
-    </div>) 
-    
-    : navigate('/')
+        <AsideRight
+          type={'Paciente'}
+          image={infoUser.image}
+          name={user.name}
+          info={infoUser.info}
+        />
+
+      </div>) : (
+      navigate("/")
+    )
   );
 }
 

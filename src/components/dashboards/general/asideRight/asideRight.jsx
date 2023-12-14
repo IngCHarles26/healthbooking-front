@@ -28,6 +28,9 @@ const AsideRight = (props) => {
           <h3 className="Info">Informacion</h3>
           {info.map((item, index) => infor(item, index))}
         </div>
+        <div className="botonSalir">
+          <button className="salir" onClick={()=>alert("falta la logica, Crisss!!")}>Cerrar Sesión</button>
+        </div>
     </aside>
 
   )

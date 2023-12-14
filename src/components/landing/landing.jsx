@@ -42,7 +42,7 @@ function Landing() {
 
   const loginAuthenticate = () => {
     if (isAuthenticated) {
-      navigate("/patient");
+      navigate("/patientForm");
     } else {
       loginWithRedirect();
     }
@@ -58,10 +58,10 @@ function Landing() {
           <a className="landing-a-tag" style={{ cursor: "pointer" }} onClick={() => loginWithRedirect()}>
             Iniciar sesión
           </a>
-          <a className="landing-a-tag" href="/signup">
+          {/* <a className="landing-a-tag" href="/signup">
             UNETE
-            {/* UNETE <img className="landings-logo-img" src={arrowRight}></img> */}
-          </a>
+            
+          </a> */}
         </nav>
       </header>
 
@@ -72,7 +72,7 @@ function Landing() {
               <span className="slogan">Conecta con tu salud</span>
               <span className="title">
                 HealthBooking es la web que te facilita la salud
-                
+
               </span>
               <span className="comment">
                 Regístrate ya y conecta con tu salud

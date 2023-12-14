@@ -48,7 +48,7 @@ function EditProfile() {
 
   const handleSaveChanges = async () => {
     try {
-      await axios.put(`http://localhost:3001/patient/${id}`, editPatient);
+      await healthApi.put(`/patient/${id}`, editPatient);
 
       setEdit(false);
     } catch (error) {

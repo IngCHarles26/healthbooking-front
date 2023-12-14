@@ -1,32 +1,28 @@
+
 import "./homepatient.scss";
-
 import { useState, useEffect } from "react";
-import axios from "axios";
-
-//_____________SVGs
 import leftArrow from "../../../../assets/brands/left-arrow.svg";
 import rightArrow from "../../../../assets/brands/right-arrow.svg";
-
+import starYellow from "../../../../assets/img/Iconos/star-yellow.png";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
+import ModalStar from "./ModalStar";
 
 function HomePatient() {
   const [data, setData] = useState([]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await healthApi.get("/patient/appointment/39421857");
+        const response = await healthApi.get("/patient/appointment/35576770");
         setData(response.data);
-        // console.log(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        throw alert("Error fetching data:", error);
       }
     };
 
     fetchData();
   }, []);
 
-  // paginacion
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(5);
   const max = Math.ceil(data.length / perPage);
@@ -36,6 +32,31 @@ function HomePatient() {
   };
   const previous = () => {
     setCurrentPage(currentPage - 1);
+  };
+
+
+  const renderButton = (cita) => {
+
+    if(cita.status==='pago'){
+      if (cita.score) {
+        return <div className="score"> <img src={starYellow} className='starPuntaje' alt='Estrella'/> {cita.score}/5 </div>;
+    
+      } else {
+        return <ModalStar idAppointment={cita.id} onScoreSubmitted={handleScoreSubmitted} />
+      }
+    }
+    else{
+      return <div className="score"> - </div>;
+    }
+  };
+
+  const handleScoreSubmitted = async() => {
+    try {
+      const response = await healthApi.get(`/patient/appointment/35576770`);
+      setData(response.data);
+    } catch (error) {
+      throw alert("Error fetching data:", error);
+    }
   };
 
   return (
@@ -51,15 +72,16 @@ function HomePatient() {
               <tr>
                 <th>Fecha</th>
                 <th>Hora</th>
-                <th>Medico</th>
+                <th>Médico</th>
                 <th>Especialidad</th>
                 <th>Valor</th>
                 <th>Estado</th>
+                <th>Calificación</th>
+          
               </tr>
             </thead>
             <tbody>
-              {data
-                ?.slice(
+              {(Array.isArray(data) && data.length > 0)  ? (data.slice(
                   (currentPage - 1) * perPage,
                   (currentPage - 1) * perPage + perPage
                 )
@@ -71,8 +93,15 @@ function HomePatient() {
                     <td>{cita.Doctor.Specialty.name}</td>
                     <td>{cita.finalAmount}</td>
                     <td>{cita.status}</td>
+                    <td>{renderButton(cita)}</td>
                   </tr>
-                ))}
+                ))) : (
+                  <tr>
+                    <td>
+                    <span>No hay citas registradas</span>
+                    </td>
+                  </tr>
+                )}
             </tbody>
           </table>
         </article>
