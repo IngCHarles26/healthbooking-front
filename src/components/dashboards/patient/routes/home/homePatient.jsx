@@ -81,8 +81,7 @@ function HomePatient() {
               </tr>
             </thead>
             <tbody>
-              {data
-                ?.slice(
+              {(Array.isArray(data) && data.length > 0)  ? (data.slice(
                   (currentPage - 1) * perPage,
                   (currentPage - 1) * perPage + perPage
                 )
@@ -96,7 +95,13 @@ function HomePatient() {
                     <td>{cita.status}</td>
                     <td>{renderButton(cita)}</td>
                   </tr>
-                ))}
+                ))) : (
+                  <tr>
+                    <td>
+                    <span>No hay citas registradas</span>
+                    </td>
+                  </tr>
+                )}
             </tbody>
           </table>
         </article>
