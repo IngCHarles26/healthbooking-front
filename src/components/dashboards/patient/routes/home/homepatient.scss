@@ -11,6 +11,19 @@
   height: 100%;
   // grid-template-rows: 1fr 15fr 1fr;
 
+  .starPuntaje{
+    width: auto;
+    height: 10px;
+    margin-right: 2px;
+  }
+  .score{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
+
+ }
+
   @media only screen and (max-width: 767px) {/* mobile */
 
   }
@@ -158,3 +171,5 @@
     font-size: 0.4rem;
   }
 }
+
+

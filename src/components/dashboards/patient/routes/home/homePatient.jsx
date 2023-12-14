@@ -1,33 +1,28 @@
-import "./homepatient.scss";
 
+import "./homepatient.scss";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
-//_____________SVGs
 import leftArrow from "../../../../assets/brands/left-arrow.svg";
 import rightArrow from "../../../../assets/brands/right-arrow.svg";
-import star from "../../../../assets/img/Iconos/star-fill-svg";
-
+import starYellow from "../../../../assets/img/Iconos/star-yellow.png";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
+import ModalStar from "./ModalStar";
 
 function HomePatient() {
   const [data, setData] = useState([]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await healthApi.get("/patient/appointment/39421857");
+        const response = await healthApi.get("/patient/appointment/35576770");
         setData(response.data);
-        // console.log(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        throw alert("Error fetching data:", error);
       }
     };
 
     fetchData();
   }, []);
 
-  // paginacion
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(5);
   const max = Math.ceil(data.length / perPage);
@@ -40,64 +35,26 @@ function HomePatient() {
   };
 
 
-  const handleQualify= (id)=>{
-    Swal.fire({
-      title:"¿Como valoras la atención de tu doctor?",
-      html: `<input type="number" id="score" placerholder="Ingresa un puntaje" min="1" max="5"/>
-            <button id="submitScore">Enviar</button>
-      `,
-      showClass:{
-        popup:`
-          animate__animated
-          animate__fadeInUp
-          animate__faster
-        `
-      },
-      hideClass:{
-        popup:`
-        animate__animated
-        animate__fadeOutDown
-        animate__faster
-        `
-      },
-      didOpen:  ()=>{
-        const buttonEnviar= document.getElementById('submitScore');
-        buttonEnviar.addEventListener('click', async ()=>{
+  const renderButton = (cita) => {
 
-          const score= document.getElementById('score').value;
+    if(cita.status==='pendiente'){
+      if (cita.score) {
+        return <div className="score"> <img src={starYellow} className='starPuntaje' alt='Estrella'/> {cita.score}/5 </div>;
+    
+      } else {
+        return <ModalStar idAppointment={cita.id} onScoreSubmitted={handleScoreSubmitted} />
+      }
+    }
+  };
 
-          try{
-              const bodyScore={
-                idAppoinment:id,
-                score:score,
-              }
-              const patchScore = await healthApi.patch(`/patient/appointment`, bodyScore)
-
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title:"¡Calificación enviada!",
-                showConfirmButton: false,
-                timer:1200
-              });
-
-              Swal.close()
-          }
-
-          catch(error){
-              Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title:"Tuvimos un problema",
-                text:error.response.data,
-                showConfirmButton: false,
-                timer:1600
-              });
-          }
-        })
-     }
-    });
-  }
+  const handleScoreSubmitted = async() => {
+    try {
+      const response = await healthApi.get(`/patient/appointment/35576770`);
+      setData(response.data);
+    } catch (error) {
+      throw alert("Error fetching data:", error);
+    }
+  };
 
   return (
     <main className="homepatient-main">
@@ -112,11 +69,12 @@ function HomePatient() {
               <tr>
                 <th>Fecha</th>
                 <th>Hora</th>
-                <th>Medico</th>
+                <th>Médico</th>
                 <th>Especialidad</th>
                 <th>Valor</th>
                 <th>Estado</th>
                 <th>Calificación</th>
+          
               </tr>
             </thead>
             <tbody>
@@ -133,7 +91,7 @@ function HomePatient() {
                     <td>{cita.Doctor.Specialty.name}</td>
                     <td>{cita.finalAmount}</td>
                     <td>{cita.status}</td>
-                    <td>{cita.score ? (<div className="score"> <img src={star}/> {cita.score} </div>): <button onClick={()=>handleQualify(cita.id)}>Qualify</button> }</td>
+                    <td>{renderButton(cita)}</td>
                   </tr>
                 ))}
             </tbody>
