@@ -46,11 +46,14 @@ const navigationOptions = [
 ]
 
 function DashboardPatient() {
+  const user = useSelector(state => state.user)
   const algo = useSelector((st) => st.pageNav)
   const [currentPage, setCurrentPage] = useState(0);
   const { isAuthenticated, isLoading } = useAuth0()
   const navigate = useNavigate()
   // console.log({currentPage})
+
+  if (user.rol !== "master") navigate("/")
 
   //_______________Obtencion de informacion
   useEffect(() => {
@@ -83,23 +86,29 @@ function DashboardPatient() {
     )
   }
 
-  return isAuthenticated ? (
-    <div className="dashboard-master">
-      <AsideLeft menuData={navigationOptions} handlePage={handlePage} />
+  return (
+    isAuthenticated ? (<div className="dashboard-master">
+      <AsideLeft
+        menuData={navigationOptions}
+        handlePage={handlePage} />
 
-      <div className="dashboard-main-master">{pageList[algo]}</div>
+      <div className="dashboard-main-master">
 
-      <AsideRight
-        type="Master"
-        image={infoUser.image}
-        name={infoUser.name}
-        info={infoUser.info}
-      />
-    </div>
-  ) : (
-    navigate("/")
+        {pageList[algo]}
+
+      </div>
+
+      
+        <AsideRight
+          type='Master'
+          image={infoUser.image}
+          name={infoUser.name}
+          info={infoUser.info}
+        />
+    
+
+    </div>) : navigate("/")
   );
-
 }
 
 export default DashboardPatient;

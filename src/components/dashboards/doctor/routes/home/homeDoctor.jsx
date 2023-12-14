@@ -30,7 +30,7 @@ function HomeDoctor(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await healthApi.get('/doctor/appointment/98501');
+        const response = await healthApi.get('/doctor/appointment/12345');
         //console.log(response.data)
         setDatesDoctor(response.data);
 
