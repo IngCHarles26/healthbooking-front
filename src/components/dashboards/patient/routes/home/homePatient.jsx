@@ -60,14 +60,14 @@ function HomePatient() {
   };
 
   return (
-    <main className="homepatient-main">
+    <div className="homepatient-main">
       <header>Dashboard &#62; Home</header>
 
       <article className="homepatient-summary">
         <header className="homePatient-header">Historial de Turnos</header>
 
         <article className="table-wrapper">
-          <table>
+          <table className="table-table-wrapper">
             <thead>
               <tr>
                 <th>Fecha</th>
@@ -111,12 +111,12 @@ function HomePatient() {
         <button disabled={currentPage === 1} onClick={previous}>
           <img src={leftArrow} alt="leftArrow" />
         </button>
-        <button className="pageButton">{currentPage}</button>
+        <p className="">Pag. {currentPage}</p>
         <button disabled={currentPage === max} onClick={next}>
           <img src={rightArrow} alt="rightArrow" />
         </button>
       </footer>
-    </main>
+    </div>
   );
 }
 

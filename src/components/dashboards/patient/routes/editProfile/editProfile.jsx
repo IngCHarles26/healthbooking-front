@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
+import { healthApi } from "../../../../../Api/HealthBookingApi";
+import he from "date-fns/esm/locale/he/index.js";
+
 function EditProfile() {
   //analizar si traer el id por parametro y realizar la busqueda en la base de datos o si existe un estado global que almacena esa informacion
   const id = useSelector((state) => state.infoSend.idPatient);
@@ -17,7 +20,7 @@ function EditProfile() {
   const [editPatient, setEditPatient] = useState({});
 
   useEffect(() => {
-    const searchPatient = axios(`http://localhost:3001/patient/${id}`).then(
+    const searchPatient = healthApi.get(`/patient/${id}`).then(
       ({ data }) => {
         setPatient(data);
         setEditPatient(data);
@@ -25,8 +28,8 @@ function EditProfile() {
     );
   }, [id]);
 
-  console.log("Paciente ", patient);
-  console.log("A Editar", editPatient);
+  // console.log("Paciente ", patient);
+  // console.log("A Editar", editPatient);
 
   const handleEdit = () => {
     setEdit(true);
@@ -76,18 +79,18 @@ function EditProfile() {
   };
 
   return (
-    <main className="editprofileMain">
+    <section className="editprofileMain">
       <header>Dashboard &#62; Editar Perfil</header>
 
       <article className="editprofile-summary">
-        {!edit ? <img src={logo} alt="Logo" /> : null}
+        {!edit ? <img src={logo} alt="Logo" className="logo-edit-profile" /> : null}
 
-        <header>Edit profile</header>
+        <header>Editar perfil</header>
         {patient && (
-          <div>
+          <div className="editProfile-info">
             <div className="divider">
               <label className="editProfilelabel" htmlFor="name">
-                Name:{" "}
+                Nombre:{" "}
               </label>
               {edit ? (
                 <input
@@ -103,19 +106,19 @@ function EditProfile() {
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="id">
-                Dni:{" "}
+                DNI:{" "}
               </label>
               <span>{editPatient.id}</span>
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="email">
-                Email:{" "}
+                EMAIL:{" "}
               </label>
               <span>{editPatient.email}</span>
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="phone">
-                Phone:{" "}
+                Telefono:{" "}
               </label>
               {edit ? (
                 <input
@@ -131,7 +134,7 @@ function EditProfile() {
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="sure">
-                Sure:{" "}
+                Obra social:{" "}
               </label>
               {edit ? (
                 <select
@@ -142,14 +145,14 @@ function EditProfile() {
                   onChange={handleInputChange}
                 >
                   <option default value>
-                    Select an option
+                    Seleccione una opcion
                   </option>
                   <option value="1">OSDE</option>
                   <option value="2">Sweet Medical</option>
                   <option value="3">Medifé</option>
                   <option value="4">Galeno</option>
                   <option value="5">Sancor Salud</option>
-                  <option value="">None</option>
+                  <option value="">Ninguna</option>
                 </select>
               ) : (
                 <span>{sureString()}</span>
@@ -157,7 +160,7 @@ function EditProfile() {
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="height">
-                Height:{" "}
+                Altura:{" "}
               </label>
               {edit ? (
                 <input
@@ -173,7 +176,7 @@ function EditProfile() {
             </div>
             <div className="divider">
               <label className="editProfilelabel" htmlFor="weight">
-                Weight:
+                Peso:
               </label>
               {edit ? (
                 <input
@@ -189,27 +192,27 @@ function EditProfile() {
             </div>
             <div className="divider">
               {edit ? (
-                <div>
+                <div className="double-button-editprofile">
                   <button
                     className="editprofileBtn"
                     onClick={handleSaveChanges}
                   >
-                    Save changes
+                    Guardar cambios
                   </button>
                   <button className="editprofileBtn" onClick={handleCancel}>
-                    Cancel
+                    Cancelar
                   </button>
                 </div>
               ) : (
                 <button className="editprofileBtn" onClick={handleEdit}>
-                  Edit
+                  Editar
                 </button>
               )}
             </div>
           </div>
         )}
       </article>
-    </main>
+    </section>
   );
 }
 

@@ -1,4 +1,4 @@
-import "./style.scss";
+import "./dashboardPatient.scss";
 //_______________SVGS
 import homeSVG from '../../assets/brands/home.svg';
 import editSVG from '../../assets/brands/edit-profile.svg';
@@ -42,7 +42,7 @@ const routes = {
 }
 
 const navigationOptions = [
-  { svg: homeSVG, text: 'Home', link: 0 },
+  { svg: homeSVG, text: 'Inicio', link: 0 },
   { svg: newDateSVG, text: 'Nueva cita', link: 1 },
   { svg: editSVG, text: 'Editar perfil', link: 2 },
 ]
@@ -111,26 +111,27 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated ? (<div className="wrapper-PatientHome">
+    isAuthenticated ? (
+    
+    <div className="dashboard-patient">
       <AsideLeft
         menuData={navigationOptions}
       />
 
-      <div className="dashboard-main">
+      <div className="dashboard-main-patient">
         {pageList[page]}
       </div>
 
-      <aside className="user-menu">
+      <AsideRight
+        type={'Paciente'}
+        image={infoUser.image}
+        name={infoUser.name}
+        info={infoUser.info}
+      />
 
-        <AsideRight
-          type={'Paciente'}
-          image={infoUser.image}
-          name={infoUser.name}
-          info={infoUser.info}
-        />
-      </aside>
-
-    </div>) : navigate('/')
+    </div>) 
+    
+    : navigate('/')
   );
 }
 

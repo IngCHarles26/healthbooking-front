@@ -1,0 +1,66 @@
+@import '../../../../variables' ;
+
+aside.aside-right{
+  background-color: $back-aside;
+  
+  height: 100vh;
+  width: 15vw;
+  padding: 1rem;
+  padding-top: 4rem;
+  max-width: 30rem;
+  min-width: 20rem;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+
+  & *{
+    color: $font-main;
+    font-weight: 500;
+  }
+
+  h2.type{
+    font-size: 3rem;
+    text-transform: uppercase ;
+  }
+
+  img.foto{
+    width: 90%;
+    border-radius: 50%;
+    margin: 0;
+  }
+
+  div.contNombre{
+    font-size: 1.5rem;
+  }
+
+  div.contInfo{
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    h3.Info{
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0 auto;
+    }
+
+    div.data-user{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h3.label{
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      h3.info{
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

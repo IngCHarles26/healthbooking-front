@@ -25,12 +25,12 @@ function HomeDoctor(props) {
   const [dateList, setDateList] = useState([])
   const dispatch = useDispatch()
 
-  
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await healthApi.get('/doctor/appointment/37401');
+        const response = await healthApi.get('/doctor/appointment/98501');
         //console.log(response.data)
         setDatesDoctor(response.data);
 
@@ -137,12 +137,13 @@ function HomeDoctor(props) {
                       <td>{cita.Patient.Sure.name}</td>
                       <td>
                         <button
-                          onClick={async () =>{ 
-                            const patientDetail= await healthApi.get(`/doctor/patient/${cita.patientId}`)
+                          className="botonHC"
+                          onClick={async () => {
+                            const patientDetail = await healthApi.get(`/doctor/patient/${cita.patientId}`)
                             // console.log(patientDetail.data)
                             Swal.fire({
-                              title: "Detail patient",
-                      
+                              title: "Detalle paciente",
+
                               html: `<!DOCTYPE html>
                               <html lang="en">
                               <head>
@@ -162,13 +163,13 @@ function HomeDoctor(props) {
                                   <tr >
                                       <td >
                                           <div style="display: flex; align-items: center; justify-content: flex-start;">
-                                              <label style="margin-right: 5px;">Name:</label>
+                                              <label style="margin-right: 5px;">Nombre:</label>
                                               <p style="font-weight: bold;">${patientDetail.data.name}</p>
                                           </div>
                                       </td>
                                       <td >
                                           <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start; margin-left: 5px;">
-                                              <label style="margin-right: 5px;">Sure:</label>
+                                              <label style="margin-right: 5px;">Obra social:</label>
                                               <p style="font-weight: bold;">${patientDetail.data.Sure.name}</p>
                                           </div>
                                       </td>
@@ -183,7 +184,7 @@ function HomeDoctor(props) {
                                       <td >
                                           <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start; margin-left: 5px;">
                                             
-                                                  <label style="margin-right: 5px;">Weight:</label>
+                                                  <label style="margin-right: 5px;">Peso:</label>
                                                   <p style="font-weight: bold;">${(patientDetail.data.weight) ? patientDetail.data.weight : "-"}</p>
                                       
                                           </div>
@@ -199,7 +200,7 @@ function HomeDoctor(props) {
                                       <td >
                                           <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start; margin-left: 5px;">
                                           
-                                                  <label style="margin-right: 5px;">Height:</label>
+                                                  <label style="margin-right: 5px;">Altura:</label>
                                                   <p style="font-weight: bold;">${(patientDetail.data.height) ? patientDetail.data.height : "-"}</p>
                                           
                                           </div>
@@ -208,7 +209,7 @@ function HomeDoctor(props) {
                                   <tr >
                                       <td >
                                           <div style="display: flex; align-items: center; justify-content: flex-start;">
-                                              <label style="margin-right: 5px;">Phone:</label>
+                                              <label style="margin-right: 5px;">Telefono:</label>
                                               <p style="font-weight: bold;">${patientDetail.data.phone}</p>
                                           </div>
                                       </td>
@@ -235,10 +236,10 @@ function HomeDoctor(props) {
                             });
                             // alert("aca iria el detail con un dispatch")
                           }
-                        }
-                      
+                          }
+
                         >
-                          Info patient
+                          <img className="icono" src={iconoDetalle}></img>
                         </button>
                       </td>
                       <td>
