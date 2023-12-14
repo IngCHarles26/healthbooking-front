@@ -47,6 +47,9 @@ function DashboardDoctor() {
   // console.log({currentPage})
   const id = "0258b824-98ea-47aa-9cb3-8b5a08031d81"
   //_______________Obtencion de informacion
+
+  if (user.state === "inactivo") navigate("/")
+
   useEffect(() => {
 
   }, [])
@@ -63,7 +66,6 @@ function DashboardDoctor() {
       <Loading />
     )
   }
-  console.log(user.rol);
 
   return (
     isAuthenticated && user.rol === "doctor" ? (<div className="wrapper-PatientHome">

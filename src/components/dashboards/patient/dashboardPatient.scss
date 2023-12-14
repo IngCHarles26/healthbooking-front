@@ -1,5 +1,15 @@
+@import '../../../variables';
 
-  // .wrapper-PatientHome{
+div.dashboard-patient{
+  display: flex;
+
+  div.dashboard-main-patient{
+    width: 100%;
+  }
+}
+
+
+// .wrapper-PatientHome{
 //   /* ---------------------------------------------------------------------------------------------- */
 //   /*  */
 //   /* ---------------------------------------------------------------------------------------------- */
@@ -43,6 +53,9 @@
 //       width: 90%;
 //       justify-self: center;
 //     }
+//     .site-logo:hover{
+//       cursor: pointer;
+//     }
 //   }
   
 //   aside.navigation-menu > .navigation-bar{
@@ -75,6 +88,7 @@
 //       align-items: center;
 //       gap: 1.5rem;
 //       align-self: stretch;
+//       height:3rem;
   
 //       color: #8A898B;
 //       font-family: DM Sans;
@@ -125,6 +139,8 @@
 //     */
 //     top: 0;
 //     position: fixed;
+//     display: flex;
+//     justify-content: center;
 //     height: 100vh;
 //     display: grid;
 //     animation: 1s slide-in-from-right, 1s fade-in;
@@ -135,7 +151,7 @@
   
 //     @media only screen and (min-width: 767px) {/* desktop */
 //       right: 0;
-//       width: 15%;
+//       width: 10%;
 //     }
   
 //     /*
@@ -154,10 +170,13 @@
 //   /* ---------------------------------------------------------------------------------------------- */
 
 
-//   .dashboard-main{
-//     height: 100vh;
-//   }
+//   // .dashboard-main{
+//   //   height: 100vh;
+//   // }
 
-
+//   // .navSelected{
+//   //   background-color: #42A7C380;
+//   //   border-radius: 0.5rem;
+//   // }
 
 // }

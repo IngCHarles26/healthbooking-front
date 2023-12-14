@@ -1,7 +1,7 @@
+import "./userForm.scss"
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import validator from 'validator';
-import "./PostDoctor.scss"
 import { useAuth0 } from '@auth0/auth0-react'
 //import axios from "axios"
 import { healthApi } from '../../Api/HealthBookingApi';
@@ -18,10 +18,9 @@ const UserForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const [sures, setSures] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   // const [userExist, setUserExist] = useState(false)
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [formData, setFormData] = useState({
     dni: '',
     nombreCompleto: '',
@@ -34,16 +33,19 @@ const UserForm = () => {
   const bool = JSON.parse(boolstorage);
   const userstorage = localStorage.getItem('user');
   const users = JSON.parse(userstorage);
+
   const getSure = async () => {
     const { data } = await healthApi.get('/doctor/sure')
     setSures(data)
   }
+  console.log(user);
   const getUser = async () => {
     if (user) {
 
       const { data } = await healthApi.get('/logging', { params: { email: user.email } })
-      console.log(data.exist);
       dispatch(adduser(data.user))
+      console.log(data.exist);
+      if (data.user.state === "inactivo") navigate("/")
 
       if (data.exist) {
         navigate(`/${data.user.rol}`)
@@ -83,24 +85,25 @@ const UserForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const createuser = { id: formData.dni, name: formData.nombreCompleto, phone: formData.telefono, email: user.email, sure: formData.obrasocial }
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
-      }
-    });
-    Toast.fire({
-      icon: "success",
-      title: "Signed in successfully"
-    });
+    const createuser = { id: formData.dni, name: formData.nombreCompleto, phone: formData.telefono, email: user.email, sure: formData.obrasocial, weight: formData.peso, height: formData.altura }
+
     if (validateForm()) {
       const newUser = await healthApi.post('/patient/register', createuser)
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Signed in successfully"
+      });
       navigate('/patient');
     } else {
       console.log('Formulario no válido');
@@ -146,149 +149,157 @@ const UserForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  if (!isAuthenticated) {
+    return navigate("/")
+  }
+
   if (isLoading) {
     return (
       <Loading />
     )
   }
 
-  return isAuthenticated ? (
-    <div className="container">
-      <form className="form" onSubmit={handleSubmit}>
-        <img src={logo} alt="Logo" />
-        <div className="form-wrapper">
-          <div className="sectionUserForm">
-            <label for="dni" className="label">
-              <p className="label-text">DNI</p>{" "}
-            </label>
-            <div className="input-container">
-              <div className="userForm-input">
-                <input
-                  type="text"
-                  name="dni"
-                  className="input-field"
-                  value={formData.dni}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            {errors.dni && <p className="message-error">{errors.dni}</p>}
-          </div>
+  return (
 
-          <div className="sectionUserForm">
-            <label className="label">
-              <p className="label-text">Nombre Complepto</p>
-            </label>
-            <div className="input-container">
-              <div className="userForm-input">
-                <input
-                  type="text"
-                  name="nombreCompleto"
-                  className="input-field"
-                  value={formData.nombreCompleto}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            {errors.nombreCompleto && (
-              <p className="message-error">{errors.nombreCompleto}</p>
-            )}
-          </div>
-
-          <div className="sectionUserForm">
-            <label className="label">
-              <p className="label-text">Altura</p>{" "}
-            </label>
-            <div className="input-container">
-              <div className="userForm-input">
-                <input
-                  type="text"
-                  name="altura"
-                  className="input-field"
-                  value={formData.altura}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            {errors.altura && (
-              <p className="message-error">{errors.altura}</p>
-            )}
-          </div>
-
-          <div className="sectionUserForm">
-            <label className="label">
-              <p className="label-text">Peso</p>{" "}
-            </label>
-            <div className="input-container">
-              <div className="userForm-input">
-                <input
-                  type="text"
-                  name="peso"
-                  className="input-field"
-                  value={formData.peso}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            {errors.peso && <p className="message-error">{errors.peso}</p>}
-          </div>
-
-          <div className="sectionUserForm">
-            <label className="label">
-              <p className="label-text">Teléfono</p>{" "}
-            </label>
-            <div className="input-container">
-              <div className="userForm-input">
-                <div className="userForm-select">
-                  <select onChange={handleSure}>
-                    {indicativos.map((ind, index) => (
-                      <option key={index}>{ind}</option>
-                    ))}
-                  </select>
-                </div>
+    isAuthenticated ? (
+      <div className="container">
+        <form className="form" onSubmit={handleSubmit}>
+          <img src={logo} alt="Logo" />
+          <div className="form-wrapper">
+            <div className="sectionUserForm">
+              <label for="dni" className="label">
+                <p className="label-text">DNI</p>{" "}
+              </label>
+              <div className="input-container">
                 <div className="userForm-input">
                   <input
                     type="text"
-                    name="telefono"
+                    name="dni"
                     className="input-field"
-                    value={formData.telefono}
+                    value={formData.dni}
                     onChange={handleChange}
                   />
                 </div>
               </div>
+              {errors.dni && <p className="message-error">{errors.dni}</p>}
             </div>
-            {errors.telefono && (
-              <p className="message-error">{errors.telefono}</p>
-            )}
-          </div>
 
-          <div className="sectionUserForm">
-            <label className="label">
-              <p className="label-text">Obras socialep</p>
-            </label>
-            <div className="input-container">
-              <div className="userForm-input">
-                <select className="userForm-select" onChange={handleSure}>
-                  <option>Obra social</option>
-                  {sures.map((opcion) => (
-                    <option key={opcion.id} value={opcion.name}>
-                      {opcion.name}
-                    </option>
-                  ))}
-                </select>
+            <div className="sectionUserForm">
+              <label className="label">
+                <p className="label-text">Nombre Completo</p>
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <input
+                    type="text"
+                    name="nombreCompleto"
+                    className="input-field"
+                    value={formData.nombreCompleto}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              {errors.nombreCompleto && (
+                <p className="message-error">{errors.nombreCompleto}</p>
+              )}
+            </div>
+
+            <div className="sectionUserForm">
+              <label className="label">
+                <p className="label-text">Altura</p>{" "}
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <input
+                    type="text"
+                    name="altura"
+                    className="input-field"
+                    value={formData.altura}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              {errors.altura && (
+                <p className="message-error">{errors.altura}</p>
+              )}
+            </div>
+
+            <div className="sectionUserForm">
+              <label className="label">
+                <p className="label-text">Peso</p>{" "}
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <input
+                    type="text"
+                    name="peso"
+                    className="input-field"
+                    value={formData.peso}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              {errors.peso && <p className="message-error">{errors.peso}</p>}
+            </div>
+
+            <div className="sectionUserForm">
+              <label className="label">
+                <p className="label-text">Teléfono</p>{" "}
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <div className="userForm-select">
+                    <select onChange={handleSure}>
+                      {indicativos.map((ind, index) => (
+                        <option key={index}>{ind}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="userForm-input">
+                    <input
+                      type="text"
+                      name="telefono"
+                      className="input-field"
+                      value={formData.telefono}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+              </div>
+              {errors.telefono && (
+                <p className="message-error">{errors.telefono}</p>
+              )}
+            </div>
+
+            <div className="sectionUserForm">
+              <label className="label">
+                <p className="label-text">Obras sociales</p>
+              </label>
+              <div className="input-container">
+                <div className="userForm-input">
+                  <select className="userForm-select" onChange={handleSure}>
+                    <option>Obra social</option>
+                    {sures.map((opcion) => (
+                      <option key={opcion.id} value={opcion.name}>
+                        {opcion.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
 
-          <button type="submit" className="userform-submit-button">
-            Enviar
-          </button>
-        </div>
-      </form>
-    </div>
-  ) : (
-    navigate("/")
-  );
+            <button type="submit" className="userform-submit-button">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    ) : (
+      navigate("/")
+    )
+
+  )
 
 };
 

@@ -13,6 +13,8 @@ function AdminUsers(props) {
     const [aux, setAux] = useState(false)
     const [aux2, setAux2] = useState(false)
     const [filterRol, setfilterRol] = useState()
+    console.log(dataUsers);
+    console.log(filterUsers);
 
     // paginacion
     const [currentPage, setCurrentPage] = useState(1);
@@ -50,7 +52,7 @@ function AdminUsers(props) {
 
         let patient = dataPatients.find((item) => item.id === id)
 
-        if (patient.state === "active") {
+        if (patient.state === "activo") {
             healthApi.patch(`/master/toggle/${id}`)
                 .then(({ data }) => {
                     alert(data.mensaje);
@@ -64,7 +66,7 @@ function AdminUsers(props) {
 
         let patient = dataPatients.find((item) => item.id === id)
 
-        if (patient.state === "inactive") {
+        if (patient.state === "inactivo") {
             healthApi.patch(`/master/toggle/${id}`)
                 .then(({ data }) => {
                     alert(data.mensaje);
@@ -108,7 +110,7 @@ function AdminUsers(props) {
                                 <th>Cambiar</th>
                             </tr>
                         </thead>
-                        {console.log(dataPatients)}
+                        {/* {console.log(dataPatients)} */}
                         <tbody>
                             {dataUsers?.slice(
                                 (currentPage - 1) * perPage,
@@ -121,7 +123,7 @@ function AdminUsers(props) {
                                         <td>{user.rol}</td>
                                         <td>{user.state}</td>
                                         <td>
-                                            {user.state === "active" ? (
+                                            {user.state === "activo" ? (
                                                 <button
                                                     // className="botonHC"
                                                     onClick={() =>

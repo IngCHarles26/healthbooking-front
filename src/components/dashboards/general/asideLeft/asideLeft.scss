@@ -1,0 +1,58 @@
+@import '../../../../variables' ;
+
+aside.aside-left{
+  background-color: $back-aside;
+  
+  height: 100vh;
+  width: 15vw;
+  padding: 1rem;
+  max-width: 30rem;
+  min-width: 15rem;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  img.site-logo{
+    width: 100%;
+  }
+
+  nav.navigation-bar{
+    width: 100%;
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+
+    a{
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem;
+      border-radius: 0.5rem;
+      padding-left: 1.5rem;
+      text-decoration: none;
+
+      color: $font-main;
+      font-size: 1.8rem;
+      font-family: DM Sans;
+
+      img.img-option{
+        height: 4rem;
+      }
+
+      &:hover{
+        cursor: pointer;
+        background-color: $back-main-color;
+        color: $font-white;
+      }
+
+      &.navSelected{
+        background-color: $back-main-color-80;
+      }
+    }
+
+  }
+}

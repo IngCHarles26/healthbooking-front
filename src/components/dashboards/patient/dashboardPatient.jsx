@@ -1,4 +1,4 @@
-import "./style.scss";
+import "./dashboardPatient.scss";
 //_______________SVGS
 import homeSVG from '../../assets/brands/home.svg';
 import editSVG from '../../assets/brands/edit-profile.svg';
@@ -42,7 +42,7 @@ const routes = {
 }
 
 const navigationOptions = [
-  { svg: homeSVG, text: 'Home', link: 0 },
+  { svg: homeSVG, text: 'Inicio', link: 0 },
   { svg: newDateSVG, text: 'Nueva cita', link: 1 },
   { svg: editSVG, text: 'Editar perfil', link: 2 },
 ]
@@ -77,6 +77,10 @@ function DashboardPatient() {
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
   //_______________Obtencion de informacion
+
+
+  if (user.state === "inactivo") navigate("/")
+  
   useEffect(() => {
     healthApi.get(routes.doctors)
       .then(({ data }) => {
@@ -112,16 +116,16 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated && user.rol === "patient" ? (<div className="wrapper-PatientHome">
-      <AsideLeft
-        menuData={navigationOptions}
-      />
+    isAuthenticated ? (
 
-      <div className="dashboard-main">
-        {pageList[page]}
-      </div>
+      <div className="dashboard-patient">
+        <AsideLeft
+          menuData={navigationOptions}
+        />
 
-      <aside className="user-menu">
+        <div className="dashboard-main-patient">
+          {pageList[page]}
+        </div>
 
         <AsideRight
           type={'Paciente'}
@@ -129,9 +133,10 @@ function DashboardPatient() {
           name={infoUser.name}
           info={infoUser.info}
         />
-      </aside>
 
-    </div>) : navigate('/')
+      </div>)
+
+      : navigate('/')
   );
 }
 

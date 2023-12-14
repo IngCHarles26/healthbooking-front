@@ -39,7 +39,7 @@ const infoUser = {
 }
 
 const navigationOptions = [
-  { svg: homeSVG, text: 'Home', link: 0 },
+  { svg: homeSVG, text: 'Inicio', link: 0 },
   { svg: newDateSVG, text: 'Crear Doctor', link: 1 },
   { svg: editSVG, text: 'Administrar usuarios', link: 2 },
   { svg: editSVG, text: 'Historial pagos', link: 3 },
@@ -89,7 +89,7 @@ function DashboardPatient() {
         menuData={navigationOptions}
         handlePage={handlePage} />
 
-      <div className="dashboard-main">
+      <div className="dashboard-main-master">
 
         {pageList[algo]}
 

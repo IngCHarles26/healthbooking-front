@@ -16,7 +16,7 @@ const HistorialPagos = () => {
     const fetchData = async () => {
       try {
         const response = await healthApi.get('/master/appointment');
-        const filterData = response.data.filter(cita => cita.status === 'pending');
+        const filterData = response.data.filter(cita => cita.status === 'pendiente');
         setData(filterData);
 
       } catch (error) {
@@ -24,7 +24,7 @@ const HistorialPagos = () => {
       }
     };
     fetchData();
-  }, [data]);
+  }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(5);
@@ -40,36 +40,39 @@ const HistorialPagos = () => {
 
   return (
     <main >
-      <header>Dashboard &#62; Home</header>
+      <header>Dashboard &#62; Inicio</header>
 
       <article className="summary">
         <header >Historial de pagos</header>
-
-        <article className="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Transacciones</th>
-                <th>Monto</th>
-                <th>Estado</th>
-                <th>Fecha</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data?.slice(
-                (currentPage - 1) * perPage,
-                (currentPage - 1) * perPage + perPage
-              ).map((cita) => (
-                <tr key={cita.id}>
-                  <td>Pago turno médico</td>
-                  <td>{cita.finalAmount}</td>
-                  <td>{cita.status}</td>
-                  <td>{cita.paymentDay}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </article>
+        {data.length > 0 ? (
+          <>
+            <article className="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Transacciones</th>
+                    <th>Monto</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.slice(
+                    (currentPage - 1) * perPage,
+                    (currentPage - 1) * perPage + perPage
+                  ).map((cita) => (
+                    <tr key={cita.id}>
+                      <td>Pago turno médico</td>
+                      <td>{cita.finalAmount}</td>
+                      <td>{cita.status}</td>
+                      <td>{cita.paymentDay}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </article>
+          </>) : (<p>Cargando datos...</p>)
+        }
       </article>
 
       <footer className="navigation">
