@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import "./style.scss";
-import Statistics from "../../statistics";
+import Statistics from "../statistics/statistics";
 
 function HomeMaster(props) {
 

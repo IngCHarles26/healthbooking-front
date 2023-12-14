@@ -47,16 +47,7 @@ const navigationOptions = [
   { svg: editSVG, text: 'Editar perfil', link: 2 },
 ]
 
-const infoUser = {
-  image: imagePrueba,
-  name: 'Perico Palotes',
-  info: [
-    { text: 'Altura', info: '190cm' },
-    { text: 'Peso', info: '79kg' },
-    { text: 'Nacimiento', info: 'Sep 04, 1996' },
-    { text: 'RH', info: 'O+' },
-  ],
-}
+
 
 const infoFinishDate = {
   idPatient: 39421857,
@@ -82,6 +73,17 @@ function DashboardPatient() {
   if (user.state === "inactivo") navigate("/")
   if (user.rol !== "patient") navigate("/")
 
+  console.log(user);
+  
+  const infoUser = {
+    image: imagePrueba,
+    name: user.name,
+    info: [
+      { text: 'Altura', info: user.height },
+      { text: 'Peso', info: user.weight },
+    
+    ],
+  }
 
   useEffect(() => {
     healthApi.get(routes.doctors)
@@ -128,7 +130,7 @@ function DashboardPatient() {
         <AsideRight
           type={'Paciente'}
           image={infoUser.image}
-          name={user.name}
+          name={infoUser.name}
           info={infoUser.info}
         />
 

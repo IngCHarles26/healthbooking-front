@@ -1,4 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from 'react-redux';
 // import "./AsideRight.css";
 import './asideRight.scss';
 //import foto from "../../../imagenes/Image.png"
@@ -7,8 +8,9 @@ import './asideRight.scss';
 const AsideRight = (props) => {
   const {image,name,info,type} = props;
   const {user} = useAuth0();
+  const userData = useSelector(state => state.user)
 // console.log({image})
-
+console.log(info)
   //console.log(user);
 
   return (
@@ -20,7 +22,7 @@ const AsideRight = (props) => {
             : <div className="marco" />}
 
         <div className="contNombre">
-          <h3 className="Info" >{user.name}</h3>
+          <h3 className="Info" >{userData.name}</h3>
           <h4 className="editPer"></h4>
         </div>
       
