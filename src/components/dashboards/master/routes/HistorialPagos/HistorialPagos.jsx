@@ -35,10 +35,11 @@ const HistorialPagos = () => {
 
   return (
     <main className="historialPagos-main">
-      <header className="historialPagos-header">Dashboard &#62; Inicio</header>
+      <header className="historialPagos-header">
+        Dashboard &#62; Historial de pagos
+      </header>
 
       <article className="historialPagos-article">
-        <header className="historialPagos-header2">Historial de pagos</header>
         {data.length > 0 ? (
           <>
             <article className="historialPagos-table-wrapper">
