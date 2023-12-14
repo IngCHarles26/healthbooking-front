@@ -1,0 +1,84 @@
+main.historialPagos-main {
+    padding: 20px; // Adjust the padding as needed
+    background-color: #f4f4f4; // Set a background color if desired
+ 
+    header.historialPagos-header {
+        font-size: 2rem;
+     
+      margin-bottom: 20px;
+    }
+ 
+    article.historialPagos-article {
+      background-color: #fff; // Card background color
+      border-radius: 8px; // Add border-radius for rounded corners
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Add a subtle box shadow for depth
+      padding: 20px;
+ 
+      header.historialPagos-header2 {
+        font-size: 20px;
+        
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+       
+      }
+ 
+      article.historialPagos-table-wrapper {
+        overflow-x: auto;
+        justify-content: space-around;
+        display: flex;
+ 
+        table.historialPagos-table {
+          width: 70%;
+          border-collapse: collapse;
+ 
+          th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+            font-size: 20px;
+          }
+ 
+          th {
+            background-color: #f2f2f2; // Header background color
+          }
+ 
+          tbody.historialPagos-tbody {
+            tr {
+              &:nth-child(even) {
+                background-color: #f9f9f9; // Alternate row background color
+              }
+            }
+          }
+        }
+      }
+    }
+ 
+    footer.historialPagos-navigation {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+ 
+      button.historialPagos-pageButton {
+        background-color: #42B8C3; // Button background color
+        color: #fff; // Button text color
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+   
+    button.historialPagos-pageButton:disabled {
+        opacity: 0.5; // Dim the button if disabled
+        cursor: not-allowed;
+    }
+   
+    button.historialPagos-pageButton img {
+        width: 35px; // Adjust the size of the arrow icon
+        filter: invert(1); // Change the color of the arrow to white
+    }
+    }
+  }
