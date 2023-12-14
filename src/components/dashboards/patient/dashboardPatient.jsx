@@ -71,13 +71,13 @@ const infoFinishDate = {
 }
 
 function DashboardPatient() {
+
   const { isAuthenticated, isLoading } = useAuth0();
   const user = useSelector(state => state.user)
   const dispatch = useDispatch();
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
   //_______________Obtencion de informacion
-
 
   if (user.state === "inactivo") navigate("/")
   if (user.rol !== "patient") navigate("/")

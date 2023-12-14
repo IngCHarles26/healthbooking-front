@@ -14,7 +14,7 @@ import leftArrow from '../../../../assets/brands/left-arrow.svg'
 import rightArrow from '../../../../assets/brands/right-arrow.svg'
 import Swal from "sweetalert2";
 import "animate.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changePage } from "../../../../../redux/slices/pageNav";
 import { addidDate } from "../../../../../redux/slices/doctor/idDate";
 
@@ -24,23 +24,26 @@ function HomeDoctor(props) {
   const [datesDoctor, setDatesDoctor] = useState(new Date());
   const [dateList, setDateList] = useState([])
   const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
 
 
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await healthApi.get('/doctor/appointment/12345');
-        //console.log(response.data)
-        setDatesDoctor(response.data);
+    if (user) {
+      const fetchData = async () => {
+        try {
+          const response = await healthApi.get(`/doctor/appointment/${user.id}`);
+          //console.log(response.data)
+          setDatesDoctor(response.data);
 
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
 
-    fetchData();
-  }, [])
+      fetchData();
+    }
+  }, [user])
 
   const handleButton = (id) => {
     dispatch(addidDate(id))
@@ -286,9 +289,10 @@ function HomeDoctor(props) {
                         )}
                       </td>
                     </tr>
-                  ))}
-              </tbody>
-            </table>
+                  ))
+                }
+              </tbody >
+            </table >
           ) : (
             <p>
               {dateList.length === 0 && selectedDate
@@ -296,8 +300,8 @@ function HomeDoctor(props) {
                 : "Seleccione un día para ver las citas."}
             </p>
           )}
-        </article>
-      </article>
+        </article >
+      </article >
 
       {
         dateList.length !== 0 && selectedDate ? (
