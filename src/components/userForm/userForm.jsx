@@ -18,9 +18,9 @@ const UserForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const [sures, setSures] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   // const [userExist, setUserExist] = useState(false)
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [formData, setFormData] = useState({
     dni: '',
     nombreCompleto: '',
@@ -29,10 +29,7 @@ const UserForm = () => {
     telefono: '',
     obrasocial: '',
   });
-  const boolstorage = localStorage.getItem('bool');
-  const bool = JSON.parse(boolstorage);
-  const userstorage = localStorage.getItem('user');
-  const users = JSON.parse(userstorage);
+
 
   const getSure = async () => {
     const { data } = await healthApi.get('/doctor/sure')
@@ -43,9 +40,13 @@ const UserForm = () => {
     if (user) {
 
       const { data } = await healthApi.get('/logging', { params: { email: user.email } })
-      dispatch(adduser(data.user))
+      if (data.user) {
+        dispatch(adduser(data.user))
 
-      if (data.user.state === "inactivo") navigate("/")
+        if (data.user.state === "inactivo") navigate("/")
+      }
+      console.log(data);
+
 
       if (data.exist) {
         navigate(`/${data.user.rol}`)
@@ -86,6 +87,7 @@ const UserForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const createuser = { id: formData.dni, name: formData.nombreCompleto, phone: formData.telefono, email: user.email, sure: formData.obrasocial, weight: formData.peso, height: formData.altura }
+    dispatch(adduser(createuser))
 
     if (validateForm()) {
       const newUser = await healthApi.post('/patient/register', createuser)
@@ -158,13 +160,13 @@ const UserForm = () => {
 
   return (
 
-    isAuthenticated ? (
+    isAuthenticated && (
       <div className="container">
         <form className="form" onSubmit={handleSubmit}>
           <img src={logo} alt="Logo" />
           <div className="form-wrapper">
             <div className="sectionUserForm">
-              <label for="dni" className="label">
+              <label className="label">
                 <p className="label-text">DNI</p>{" "}
               </label>
               <div className="input-container">
@@ -292,8 +294,6 @@ const UserForm = () => {
           </div>
         </form>
       </div>
-    ) : (
-      navigate("/")
     )
 
   )

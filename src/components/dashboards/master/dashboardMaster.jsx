@@ -14,7 +14,7 @@ import HistorialPagos from "./routes/HistorialPagos/HistorialPagos";
 
 import { useEffect, useState } from "react";
 import Loading from "../../Loading/Loading";
-
+import { healthApi } from "../../../Api/HealthBookingApi";
 //import axios from "axios";
 import HomeMaster from "./routes/home/homeMaster";
 import AdminUsers from "./routes/logical erase/adminUsers";
@@ -46,19 +46,35 @@ const navigationOptions = [
 ]
 
 function DashboardPatient() {
-  const user = useSelector(state => state.user)
+  //const user = useSelector(state => state.user)
   const algo = useSelector((st) => st.pageNav)
   const [currentPage, setCurrentPage] = useState(0);
-  const { isAuthenticated, isLoading } = useAuth0()
+  const { user, isAuthenticated, isLoading } = useAuth0()
   const navigate = useNavigate()
   // console.log({currentPage})
 
-  if (user.rol !== "master") navigate("/")
+  const validateId = async () => {
+    if (user) {
+      let { data } = await healthApi.get('/logging', { params: { email: user.email } })
+      if (data.user) {
+        if (data.user.state === "inactivo") navigate("/")
+        if (data.user.rol !== "master") navigate("/")
+
+      }
+    }
+  }
+
 
   //_______________Obtencion de informacion
   useEffect(() => {
 
-  }, [])
+    if (isAuthenticated === false && !isLoading) {
+      navigate("/")
+    }
+
+    validateId()
+
+  }, [isLoading])
   //_______________Navegacion en el Dashboard 
 
 
@@ -87,7 +103,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated ? (<div className="dashboard-master">
+    isAuthenticated && (<div className="dashboard-master">
       <AsideLeft
         menuData={navigationOptions}
         handlePage={handlePage} />
@@ -98,16 +114,16 @@ function DashboardPatient() {
 
       </div>
 
-      
-        <AsideRight
-          type='Master'
-          image={infoUser.image}
-          name={infoUser.name}
-          info={infoUser.info}
-        />
-    
 
-    </div>) : navigate("/")
+      <AsideRight
+        type='Master'
+        image={infoUser.image}
+        name={infoUser.name}
+        info={infoUser.info}
+      />
+
+
+    </div>)
   );
 }
 

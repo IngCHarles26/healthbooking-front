@@ -71,19 +71,39 @@ const infoFinishDate = {
 }
 
 function DashboardPatient() {
-  const { isAuthenticated, isLoading } = useAuth0();
-  const user = useSelector(state => state.user)
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const dataUser = useSelector(state => state.user)
   const dispatch = useDispatch();
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
   //_______________Obtencion de informacion
+  console.log(user);
+  console.log(isAuthenticated);
+  console.log(isLoading);
 
+  const validateId = async () => {
+    if (user) {
 
-  if (user.state === "inactivo") navigate("/")
-  if (user.rol !== "patient") navigate("/")
+      let { data } = await healthApi.get('/logging', { params: { email: user.email } })
+      if (data.user) {
+        if (data.user.state === "inactivo") navigate("/")
+        console.log(`lala`);
+        if (data.user.rol !== "patient") navigate("/")
+        console.log(`po`);
+
+      }
+    }
+  }
 
 
   useEffect(() => {
+
+    if (isAuthenticated === false && !isLoading) {
+      navigate("/")
+    }
+
+    validateId()
+
     healthApi.get(routes.doctors)
       .then(({ data }) => {
         dispatch(addAllDoctors(convertDoctors(data)));
@@ -97,7 +117,7 @@ function DashboardPatient() {
         dispatch(addAllSures(convertOptions(data)));
       })
     //.catch((err) => console.log(err.message))
-  }, [])
+  }, [isLoading, dataUser])
 
   const pageList = [
     <HomePatient />,
@@ -107,6 +127,7 @@ function DashboardPatient() {
     <ConfirmDate />
   ];
 
+
   if (isLoading) {
     return (
       <Loading />
@@ -114,7 +135,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated ? (
+    isAuthenticated && (
 
       <div className="dashboard-patient">
         <AsideLeft
@@ -128,13 +149,11 @@ function DashboardPatient() {
         <AsideRight
           type={'Paciente'}
           image={infoUser.image}
-          name={user.name}
+          name={infoUser.name}
           info={infoUser.info}
         />
 
-      </div>) : (
-      navigate("/")
-    )
+      </div>)
   );
 }
 
