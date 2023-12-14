@@ -83,29 +83,31 @@ function DashboardPatient() {
     )
   }
 
+<<<<<<< HEAD
   return (
     isAuthenticated && user.rol === "master" ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
         handlePage={handlePage} />
+=======
+  return isAuthenticated ? (
+    <div className="dashboard-master">
+      <AsideLeft menuData={navigationOptions} handlePage={handlePage} />
+>>>>>>> af0e648f4c0c536589c1e69ecbef66de21183b5f
 
-      <div className="dashboard-main-master">
+      <div className="dashboard-main-master">{pageList[algo]}</div>
 
-        {pageList[algo]}
-
-      </div>
-
-      <aside className="user-menu">
-        {/* <AsideRight
-          type='Master'
-          image={infoUser.image}
-          name={infoUser.name}
-          info={infoUser.info}
-        /> */}
-      </aside>
-
-    </div>) : navigate("/")
+      <AsideRight
+        type="Master"
+        image={infoUser.image}
+        name={infoUser.name}
+        info={infoUser.info}
+      />
+    </div>
+  ) : (
+    navigate("/")
   );
+
 }
 
 export default DashboardPatient;
