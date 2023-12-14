@@ -116,7 +116,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated ? (
+    isAuthenticated && user.rol === "patient" ? (
 
       <div className="dashboard-patient">
         <AsideLeft

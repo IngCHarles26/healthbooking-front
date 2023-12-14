@@ -84,7 +84,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated ? (<div className="wrapper-PatientHome">
+    isAuthenticated && user.rol === "master" ? (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
         handlePage={handlePage} />
