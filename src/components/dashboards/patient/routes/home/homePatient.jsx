@@ -10,14 +10,14 @@ import { useSelector } from "react-redux";
 
 function HomePatient() {
   const [data, setData] = useState([]);
-  const user = useSelector(state => state.user)
+  const users = useSelector(state => state.user)
 
   useEffect(() => {
-    if (user) {
+    if (users) {
       const fetchData = async () => {
         try {
-          const response = await healthApi.get(`/patient/appointment/${user.id}`);
-          console.log(user)
+          const response = await healthApi.get(`/patient/appointment/${users.id}`);
+          console.log(users)
           setData(response.data);
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -27,7 +27,7 @@ function HomePatient() {
 
       fetchData();
     }
-  }, [user]);
+  }, [users]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(5);
@@ -58,7 +58,7 @@ function HomePatient() {
 
   const handleScoreSubmitted = async () => {
     try {
-      const response = await healthApi.get(`/patient/appointment/${user.id}`);
+      const response = await healthApi.get(`/patient/appointment/${users.id}`);
       setData(response.data);
     } catch (error) {
       throw alert("Error fetching data:", error);
