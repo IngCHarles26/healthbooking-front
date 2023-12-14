@@ -1,12 +1,13 @@
 import "./ClinicalHistory.css";
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changePage } from "../../../../../redux/slices/pageNav";
 
 const ClinicalHistory = () => {
 
   const dispatch = useDispatch();
+  const users = useSelector(state => state.user)
 
   const [patients, setPatients] = useState([])
   const [selectName, setSelectName] = useState('')
@@ -17,7 +18,8 @@ const ClinicalHistory = () => {
   })
   // console.log(medicalHistory);
   useEffect(() => {
-    healthApi.get(`/doctor/appointment/${37401}`)
+
+    healthApi.get(`/doctor/appointment/${users.id}`)
       .then(({ data }) => {
         setPatients(data);
       })

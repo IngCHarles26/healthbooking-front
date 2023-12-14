@@ -13,7 +13,7 @@ const HistorialPagos = () => {
     const fetchData = async () => {
       try {
         const response = await healthApi.get('/master/appointment');
-        const filterData = response.data.filter(cita => cita.status === 'pendiente');
+        const filterData = response.data.filter(cita => cita.status === 'pago');
         setData(filterData);
       } catch (error) {
         console.error({ message: "Error al cargar los datos", error });
@@ -77,9 +77,8 @@ const HistorialPagos = () => {
 
       <footer className="historialPagos-navigation">
         <button
-          className={`historialPagos-pageButton ${
-            currentPage === 1 ? "disabled" : ""
-          }`}
+          className={`historialPagos-pageButton ${currentPage === 1 ? "disabled" : ""
+            }`}
           disabled={currentPage === 1}
           onClick={previous}
         >
@@ -87,9 +86,8 @@ const HistorialPagos = () => {
         </button>
         <button className="historialPagos-pageButton">{currentPage}</button>
         <button
-          className={`historialPagos-pageButton ${
-            currentPage === max ? "disabled" : ""
-          }`}
+          className={`historialPagos-pageButton ${currentPage === max ? "disabled" : ""
+            }`}
           disabled={currentPage === max}
           onClick={next}
         >

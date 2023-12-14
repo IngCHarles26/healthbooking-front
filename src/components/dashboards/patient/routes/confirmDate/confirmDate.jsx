@@ -3,8 +3,9 @@ import Swal from "sweetalert2";
 import "animate.css";
 import { useEffect } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { changePage } from "../../../../../redux/slices/pageNav";
+import infoSend from "../../../../../redux/slices/patient/infoSend";
 
 
 //_____________SVGs
@@ -17,31 +18,20 @@ function ConfirmDate(props) {
   const doctors = useSelector(st => st.allDoctors);
   const specialtys = useSelector(st => st.allSpecialtys);
   const sures = useSelector(st => st.allSures);
+  const users = useSelector(state => state.user)
 
-  const { idDoctor, idPatient, date, time } = infoBase;
+  const { idDoctor, idPatient, date, time, price } = infoBase;
   const infoDoctor = doctors.find(el => +el.id === +idDoctor);
   const nameDoctor = infoDoctor.name;
   const specialty = specialtys[infoDoctor.Specialty];
-  const namePatient = "Santiago Chaparro";
-  const costo = 4500;
+  const namePatient = users.name;
+  const costo = price;
 
   //console.log(props.infoFinishDate)
 
 
 
-  const infoFinishDate = {
-    idPatient: 28271453,
-    namePatient: "Santiago Chaparro",
-    idDoctor: 89657,
-    nameDoctor: "Santiago paz",
-    specialty: "Cardiología",
-    date: "2023-11-11",
-    time: "11:00",
-    costo: 4500
 
-
-
-  }
 
   /*
    const data = infoFinishDate;
@@ -69,7 +59,7 @@ function ConfirmDate(props) {
   useEffect(() => {
     // Verifica que confirmDateData existe antes de mostrar el SweetAlert
     if (infoBase) {
-      // console.log(infoBase)
+      console.log(infoBase)
       // console.log(specialtys)
       const htmlContent = `
 
@@ -88,6 +78,7 @@ function ConfirmDate(props) {
         <p>Hora: ${time}</p>
         
         <p>Monto a pagar: ${costo}</p>
+        <p>El descuento se efectuara en el momento del pago</p>
       </div>
       
     `;

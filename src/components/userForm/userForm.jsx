@@ -47,7 +47,7 @@ const UserForm = () => {
 
       if (data.user.state === "inactivo") navigate("/")
 
-      if (data.exist) {
+      else if (data.exist) {
         navigate(`/${data.user.rol}`)
       }
     }

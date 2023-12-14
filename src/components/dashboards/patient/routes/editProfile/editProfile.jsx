@@ -14,7 +14,7 @@ import he from "date-fns/esm/locale/he/index.js";
 
 function EditProfile() {
   //analizar si traer el id por parametro y realizar la busqueda en la base de datos o si existe un estado global que almacena esa informacion
-  const id = useSelector((state) => state.infoSend.idPatient);
+  const { id } = useSelector((state) => state.user);
   const [patient, setPatient] = useState({}); //esto puede ser un estado global o cargalo a traves del useEffect
   const [edit, setEdit] = useState(false);
   const [editPatient, setEditPatient] = useState({});

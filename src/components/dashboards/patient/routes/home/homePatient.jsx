@@ -6,22 +6,28 @@ import rightArrow from "../../../../assets/brands/right-arrow.svg";
 import starYellow from "../../../../assets/img/Iconos/star-yellow.png";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import ModalStar from "./ModalStar";
+import { useSelector } from "react-redux";
 
 function HomePatient() {
   const [data, setData] = useState([]);
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await healthApi.get("/patient/appointment/35576770");
-        setData(response.data);
-      } catch (error) {
-        throw alert("Error fetching data:", error);
-      }
-    };
+  const users = useSelector(state => state.user)
 
-    fetchData();
-  }, []);
+  useEffect(() => {
+    if (users) {
+      const fetchData = async () => {
+        try {
+          const response = await healthApi.get(`/patient/appointment/${users.id}`);
+          console.log(users)
+          setData(response.data);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          // Lógica para manejar errores
+        }
+      };
+
+      fetchData();
+    }
+  }, [users]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(5);
@@ -37,22 +43,22 @@ function HomePatient() {
 
   const renderButton = (cita) => {
 
-    if(cita.status==='pago'){
+    if (cita.status === 'pago') {
       if (cita.score) {
-        return <div className="score"> <img src={starYellow} className='starPuntaje' alt='Estrella'/> {cita.score}/5 </div>;
-    
+        return <div className="score"> <img src={starYellow} className='starPuntaje' alt='Estrella' /> {cita.score}/5 </div>;
+
       } else {
         return <ModalStar idAppointment={cita.id} onScoreSubmitted={handleScoreSubmitted} />
       }
     }
-    else{
+    else {
       return <div className="score"> - </div>;
     }
   };
 
-  const handleScoreSubmitted = async() => {
+  const handleScoreSubmitted = async () => {
     try {
-      const response = await healthApi.get(`/patient/appointment/35576770`);
+      const response = await healthApi.get(`/patient/appointment/${users.id}`);
       setData(response.data);
     } catch (error) {
       throw alert("Error fetching data:", error);
@@ -77,14 +83,14 @@ function HomePatient() {
                 <th>Valor</th>
                 <th>Estado</th>
                 <th>Calificación</th>
-          
+
               </tr>
             </thead>
             <tbody>
-              {(Array.isArray(data) && data.length > 0)  ? (data.slice(
-                  (currentPage - 1) * perPage,
-                  (currentPage - 1) * perPage + perPage
-                )
+              {(Array.isArray(data) && data.length > 0) ? (data.slice(
+                (currentPage - 1) * perPage,
+                (currentPage - 1) * perPage + perPage
+              )
                 .map((cita) => (
                   <tr key={cita.id}>
                     <td>{cita.date}</td>
@@ -96,12 +102,12 @@ function HomePatient() {
                     <td>{renderButton(cita)}</td>
                   </tr>
                 ))) : (
-                  <tr>
-                    <td>
+                <tr>
+                  <td>
                     <span>No hay citas registradas</span>
-                    </td>
-                  </tr>
-                )}
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </article>
