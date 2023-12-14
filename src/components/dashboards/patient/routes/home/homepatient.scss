@@ -1,5 +1,18 @@
 @import '../../../../../variables';
 
+.starPuntaje{
+    width: auto;
+    height: 10px;
+    margin-right: 2px;
+  }
+  .score{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
+
+ }
+
 div.homepatient-main{
   height: 100vh;
   width: 100%;
