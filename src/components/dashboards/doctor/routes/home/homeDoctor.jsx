@@ -24,15 +24,15 @@ function HomeDoctor(props) {
   const [datesDoctor, setDatesDoctor] = useState(new Date());
   const [dateList, setDateList] = useState([])
   const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
+  const users = useSelector(state => state.user)
 
 
 
   useEffect(() => {
-    if (user) {
+    if (users) {
       const fetchData = async () => {
         try {
-          const response = await healthApi.get(`/doctor/appointment/${user.id}`);
+          const response = await healthApi.get(`/doctor/appointment/${users.id}`);
           //console.log(response.data)
           setDatesDoctor(response.data);
 
@@ -43,7 +43,7 @@ function HomeDoctor(props) {
 
       fetchData();
     }
-  }, [user])
+  }, [users])
 
   const handleButton = (id) => {
     dispatch(addidDate(id))
