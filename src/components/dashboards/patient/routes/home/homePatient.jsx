@@ -37,7 +37,7 @@ function HomePatient() {
 
   const renderButton = (cita) => {
 
-    if(cita.status==='pagado'){
+    if(cita.status==='pago'){
       if (cita.score) {
         return <div className="score"> <img src={starYellow} className='starPuntaje' alt='Estrella'/> {cita.score}/5 </div>;
     
