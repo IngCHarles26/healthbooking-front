@@ -87,7 +87,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated ? (<div className="wrapper-PatientHome">
+    isAuthenticated ? (<div className="dashboard-master">
       <AsideLeft
         menuData={navigationOptions}
         handlePage={handlePage} />
@@ -98,14 +98,14 @@ function DashboardPatient() {
 
       </div>
 
-      <aside className="user-menu">
-        {/* <AsideRight
+      
+        <AsideRight
           type='Master'
           image={infoUser.image}
           name={infoUser.name}
           info={infoUser.info}
-        /> */}
-      </aside>
+        />
+    
 
     </div>) : navigate("/")
   );
