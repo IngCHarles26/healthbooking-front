@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Rating from '@mui/material/Rating';
 import  {healthApi}  from '../../../../../Api/HealthBookingApi';
+import Swal from 'sweetalert2';
 
 
 const ModalStar = (props) => {
@@ -27,12 +28,47 @@ const ModalStar = (props) => {
             if (onScoreSubmitted) {
 
              await onScoreSubmitted(idAppointment);
+
+             const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Carga exitosa"
+            });
+
             }
 
           } catch (error) {
-            console.error('Error submitting score:', error);
+            
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "error",
+              title: "Tuvimos un problema"
+            });
+
           }
-  
+          
+          
+
             handleClose()
     }
 
@@ -72,9 +108,8 @@ const ModalStar = (props) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h4" component="h1">
+          <Typography id="modal-modal-title" variant="h5" component="h2">
             Valora nuestra atención
-         
           </Typography>
     
           <Rating name="simple-controlled" value={score} onChange={handleRatingChange} style={{fontSize: '4em', width:'80%', alignItems:'center', justifyContent:'center'}} />

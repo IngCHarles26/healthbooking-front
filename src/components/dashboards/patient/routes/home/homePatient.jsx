@@ -37,13 +37,16 @@ function HomePatient() {
 
   const renderButton = (cita) => {
 
-    if(cita.status==='pendiente'){
+    if(cita.status==='pagado'){
       if (cita.score) {
         return <div className="score"> <img src={starYellow} className='starPuntaje' alt='Estrella'/> {cita.score}/5 </div>;
     
       } else {
         return <ModalStar idAppointment={cita.id} onScoreSubmitted={handleScoreSubmitted} />
       }
+    }
+    else{
+      return <div className="score"> - </div>;
     }
   };
 
