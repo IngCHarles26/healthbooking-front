@@ -7,7 +7,7 @@ import { changePage } from "../../../../../redux/slices/pageNav";
 const ClinicalHistory = () => {
 
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user)
+  const users = useSelector(state => state.user)
 
   const [patients, setPatients] = useState([])
   const [selectName, setSelectName] = useState('')
@@ -19,7 +19,7 @@ const ClinicalHistory = () => {
   // console.log(medicalHistory);
   useEffect(() => {
 
-    healthApi.get(`/doctor/appointment/${user.id}`)
+    healthApi.get(`/doctor/appointment/${users.id}`)
       .then(({ data }) => {
         setPatients(data);
       })
