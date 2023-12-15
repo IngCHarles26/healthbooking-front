@@ -83,7 +83,7 @@ function EditProfile() {
       <header>Dashboard &#62; Editar Perfil</header>
 
       <article className="editprofile-summary">
-        {!edit ? <img src={logo} alt="Logo" className="logo-edit-profile" /> : null}
+        <img src={logo} alt="Logo" className="logo-edit-profile" />
 
         <header>Editar perfil</header>
         {patient && (

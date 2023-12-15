@@ -7,8 +7,9 @@
 
 .contDetail {
   max-width: 40rem;
+  width: 50%;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: white;
   border-radius: 5mm;
   box-shadow: 0px 0px 20px;
   display: flex;
@@ -18,7 +19,7 @@
 }
 
 .subConten {
-  width: 30rem;
+  width: 100%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -28,10 +29,10 @@
 }
 
 .fotoDetail {
-  width: 12rem;
+  width: 50%;
   border-radius: 3rem;
   margin: 0 auto;
-  height: 12rem;
+  // height: 12rem;
   object-fit: cover;
   border: 1px solid;
 }
@@ -100,14 +101,14 @@
   
 }
 
-.boton {
+.botonD {
   background-color: #42A7C3;
+  border: none;
   padding: 4mm;
   border-radius: 2mm;
-  width: 10rem;
   font-family: "DM Sans", Helvetica;
   color: white;
-  font-size: 110%;
+  font-size: 2rem;
   font-weight: 800;
   cursor: pointer;
 
