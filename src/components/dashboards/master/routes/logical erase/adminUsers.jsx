@@ -36,7 +36,6 @@ function AdminUsers(props) {
                     (filterRol === "all" || user.rol === filterRol) &&
                     (searchTerm === '' || user.name.toLowerCase().includes(searchTerm.toLowerCase())) && (filterStatus === "all" || user.state === filterStatus)))
                 setCurrentPage(1)
-                console.log(data)
             });
     };
 
