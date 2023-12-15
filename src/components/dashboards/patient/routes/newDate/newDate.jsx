@@ -50,6 +50,7 @@ function NewDate() {
   const sures = useSelector((st) => st.allSures);
   const agenda = useSelector((st) => st.agendaDoctor);
   const infoSend = useSelector((st) => st.infoSend);
+  const users = useSelector((st) => st.user);
 
   const doctorSelect = useSelector((st) => st.doctorSelected);
 
@@ -105,16 +106,17 @@ function NewDate() {
   };
 
   const handleSendInfo = () => {
-    if(hourSelected && infoSend.idDoctor){
+    if (hourSelected && infoSend.idDoctor) {
+      dispatch(setInfo({ ...infoSend, idPatient: users.id }))
       dispatch(changePage(4))
       // const response = await healthApi.post(
       //   "/pay",
       //   buyDate
       //   );
       //   console.log(response)
-        
+
       //   window.location.href = response.data;
-      }
+    }
   }
 
   function hacerScroll() {
@@ -382,9 +384,9 @@ function DoctorCard(props) {
   const doctorSelect = useSelector((st) => st.doctorSelected);
   const infoSend = useSelector((st) => st.infoSend);
 
-  const handleDoctorSelection = (id) => {
+  const handleDoctorSelection = (id, price) => {
     dispatch(setId(id == doctorSelected ? 0 : id));
-    dispatch(setInfo({ ...infoSend, idDoctor: id == doctorSelected ? 0 : id }));
+    dispatch(setInfo({ ...infoSend, idDoctor: id == doctorSelected ? 0 : id, price: price }));
     setDoctorSelected(id == doctorSelected ? 0 : id);
 
     setPreference({ ...preference, idDoctor: doctorSelect });
@@ -409,7 +411,7 @@ function DoctorCard(props) {
     <article
       className={style}
       onClick={() => {
-        handleDoctorSelection(id);
+        handleDoctorSelection(id, price);
       }}
     >
       <img

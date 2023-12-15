@@ -1,12 +1,8 @@
 main.historialPagos-main {
     padding: 20px; // Adjust the padding as needed
-    background-color: #f4f4f4; // Set a background color if desired
+    background-color: #fff; // Set a background color if desired
  
-    header.historialPagos-header {
-        font-size: 2rem;
-     
-      margin-bottom: 20px;
-    }
+    
  
     article.historialPagos-article {
       background-color: #fff; // Card background color
@@ -57,13 +53,17 @@ main.historialPagos-main {
     }
  
     footer.historialPagos-navigation {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 20px;
+      margin-bottom: 20px;
  
       button.historialPagos-pageButton {
-        background-color: #42B8C3; // Button background color
+        background-color: #e6e7e7; // Button background color
         color: #fff; // Button text color
         border: none;
         padding: 5px;

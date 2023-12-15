@@ -7,7 +7,7 @@ import doctorSelected from "./slices/patient/doctorSelected";
 import agendaDoctor from "./slices/patient/agendaDoctor";
 import infoSend from "./slices/patient/infoSend";
 import idDate from "./slices/doctor/idDate";
-
+import user from "./slices/user/user";
 
 const rootReducer = combineReducers({
   //Comp AsideLeft
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 
   //Comp Dashboard Patient
   //info User
-
+  user,
   allDoctors,
   allSures,
   allSpecialtys,

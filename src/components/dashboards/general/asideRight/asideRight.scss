@@ -63,4 +63,27 @@ aside.aside-right{
       }
     }
   }
+  div.botonSalir{
+    text-align: center;
+    
+
+    button.salir{
+      background-color: $back-main-color-80;
+      border: none;
+      width:15rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: DM Sans;
+      color: $font-main;
+      font-size: 1.8rem;
+    }
+    button.salir:hover{
+      background-color: $back-main-color;
+      transition: 200ms;
+      color: white;
+    }
+  }
+  
 }
