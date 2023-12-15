@@ -94,7 +94,7 @@ const UserForm = () => {
       [e.target.name]: e.target.value,
     });
 
-    setErrors(validateForm({...formData, [e.target.name]: e.target.value,}))
+    setErrors(validateForm({ ...formData, [e.target.name]: e.target.value, }))
   };
 
   const handleSure = (event) => {
@@ -109,11 +109,14 @@ const UserForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const createuser = { id: formData.dni, name: formData.nombreCompleto, phone: formData.telefono, email: user.email, sure: formData.obrasocial, weight: formData.peso, height: formData.altura }
 
     if (validateForm()) {
       const newUser = await healthApi.post('/patient/register', createuser)
+
       if (newUser.data === true) {
+        setIsLoading(false)
         const Toast = Swal.mixin({
           toast: true,
           position: "top-end",
@@ -149,6 +152,8 @@ const UserForm = () => {
         navigate('/patient');
       }
     } else {
+      // clearTimeout(timeoutId);
+      setIsLoading(false)
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -174,15 +179,15 @@ const UserForm = () => {
     let rxNoSimNum = /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/
 
     if (dni) {
-       if(!rxNoLet.test(dni)) {
+      if (!rxNoLet.test(dni)) {
         newErrors.dni = 'El DNI debe contener solo numeros'
       } else if (!validator.isNumeric(dni) || !validator.isLength(dni, { min: 8, max: 8 })) {
         newErrors.dni = 'El DNI debe ser un número de 8 dígitos';
-      } 
+      }
     } else newErrors.dni = 'El DNI es obligatorio';
 
     if (nombreCompleto) {
-      if(!rxNoSimNum.test(nombreCompleto)) {
+      if (!rxNoSimNum.test(nombreCompleto)) {
         newErrors.nombreCompleto = 'El nombre no debe contener numeros ni simbolos'
       } else if (!validator.isLength(nombreCompleto, { max: 30 })) {
         newErrors.nombreCompleto = 'El nombre completo debe tener como máximo 30 caracteres';
@@ -190,29 +195,29 @@ const UserForm = () => {
     } else newErrors.nombreCompleto = 'El nombre completo es obligatorio';
 
     if (altura) {
-      if(!rxNoLet.test(altura)) {
+      if (!rxNoLet.test(altura)) {
         newErrors.altura = 'La altura debe contener solo numeros'
       } else if (!validator.isNumeric(altura) || !validator.isLength(altura, { max: 4 })) {
-      newErrors.altura = 'La altura debe ser un número de máximo 4 dígitos';
+        newErrors.altura = 'La altura debe ser un número de máximo 4 dígitos';
       }
     } else newErrors.altura = 'La altura es obligatoria';
 
     if (peso) {
-      if(!rxNoLet.test(peso)) {
+      if (!rxNoLet.test(peso)) {
         newErrors.peso = 'El peso debe contener solo numeros'
       } else if (!validator.isNumeric(peso) || !validator.isLength(peso, { max: 4 })) {
-      newErrors.peso = 'El peso debe ser un número de máximo 4 dígitos';
-     }
+        newErrors.peso = 'El peso debe ser un número de máximo 4 dígitos';
+      }
     } else newErrors.peso = 'El peso es obligatorio';
 
     if (telefono) {
-      if(!rxNoLet.test(telefono)) {
+      if (!rxNoLet.test(telefono)) {
         newErrors.telefono = 'El telefono debe contener solo numeros'
       }
-     else if (!validator.isNumeric(telefono) || !validator.isLength(telefono, { max: 10 })) {
-      newErrors.telefono = 'El teléfono debe ser un número de máximo 10 dígitos';
-    }
-  } else newErrors.telefono = 'El teléfono es obligatorio';
+      else if (!validator.isNumeric(telefono) || !validator.isLength(telefono, { max: 10 })) {
+        newErrors.telefono = 'El teléfono debe ser un número de máximo 10 dígitos';
+      }
+    } else newErrors.telefono = 'El teléfono es obligatorio';
 
     //setErrors(newErrors);
     if (!dni && !nombreCompleto && !altura && !peso && !telefono) {

@@ -8,7 +8,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const id = useSelector((st) => st.doctorSelected);
   const [doctor, setDoctors] = useState([]);
-  console.log(doctor)
+  // console.log(doctor)
   useEffect(() => {
     if (doctor.length === 0) {
       healthApi.get(`/patient/doctor/${id}`).then(({ data }) => {
@@ -63,7 +63,7 @@ const Detail = () => {
 
             <div className="textos">
               <div className="textoIzq">Puntuacion</div>
-              <label className="textoDer">{doctor?.reviews.average} / 5.00</label>
+              <label className="textoDer">{doctor?.reviews?.average} / 5.00</label>
             </div>
 
             <hr className="hr" />
