@@ -50,7 +50,7 @@ const EditDate = () => {
         //notificacion
         // console.log(newAppointment);
         if (newAppointment) {
-            Swal.fire("Se camio la fecha de la cita con exito!");
+            Swal.fire("Se cambio la fecha de la cita con exito!");
             dispatch(changePage(0))
         }
 

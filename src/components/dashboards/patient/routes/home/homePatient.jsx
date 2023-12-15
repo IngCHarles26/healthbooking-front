@@ -11,9 +11,13 @@ import { useSelector } from "react-redux";
 function HomePatient() {
   const [data, setData] = useState([]);
   const users = useSelector(state => state.user)
-
+  const [realUser, setRealUser] = useState({})
+  console.log(users);
   useEffect(() => {
-    if (users) {
+
+
+
+    if (users.id) {
       const fetchData = async () => {
         try {
           const response = await healthApi.get(`/patient/appointment/${users.id}`);
@@ -28,7 +32,6 @@ function HomePatient() {
       fetchData();
     }
   }, [users]);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(5);
   const max = Math.ceil(data.length / perPage);
@@ -58,8 +61,10 @@ function HomePatient() {
 
   const handleScoreSubmitted = async () => {
     try {
-      const response = await healthApi.get(`/patient/appointment/${users.id}`);
-      setData(response.data);
+      if (users) {
+        const response = await healthApi.get(`/patient/appointment/${users.id}`);
+        setData(response.data);
+      }
     } catch (error) {
       throw alert("Error fetching data:", error);
     }

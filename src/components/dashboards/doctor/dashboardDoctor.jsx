@@ -11,6 +11,7 @@ import AsideRight from "../general/asideRight/asideRight";
 import Loading from "../../Loading/Loading"
 import ClinicalHistory from "./routes/ClinicalHistory/ClinicalHistory";
 
+import { healthApi } from "../../../Api/HealthBookingApi";
 import { useEffect, useState } from "react";
 //import axios from "axios";
 import HomeDoctor from "./routes/home/homeDoctor";
@@ -18,6 +19,8 @@ import EditDate from "./routes/editDate/EditDate";
 import { useAuth0 } from "@auth0/auth0-react"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { adduser } from "../../../redux/slices/user/user";
+
 const routes = {
 
 }
@@ -39,25 +42,54 @@ const navigationOptions = [
 ]
 
 function DashboardDoctor() {
-  const user = useSelector(state => state.user)
-  const { isAuthenticated, isLoading } = useAuth0()
+
+  //const user = useSelector(state => state.user)
+  const { user, isAuthenticated, isLoading } = useAuth0()
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
-  const id = "0258b824-98ea-47aa-9cb3-8b5a08031d81"
   //_______________Obtencion de informacion
 
-  if (user.state === "inactivo") navigate("/")
-  if (user.rol !== "doctor") navigate("/")
+  const validateId = async () => {
+    if (user) {
+
+      let { data } = await healthApi.get('/logging', { params: { email: user.email } })
+      if (data.user) {
+        if (data.user.state === "inactivo") navigate("/")
+        if (data.user.rol !== "doctor") navigate("/")
+
+      }
+    }
+
+  }
+
+  const getUser = async () => {
+    if (user) {
+
+      const { data } = await healthApi.get('/logging', { params: { email: userEmail } })
+      if (data.user) {
+        dispatch(adduser(data.user))
+      }
+    }
+  }
+
 
   useEffect(() => {
 
-  }, [])
+    if (isAuthenticated === false && !isLoading) {
+      navigate("/")
+    }
+    getUser()
+    validateId()
+
+  }, [isLoading])
   //_______________Navegacion en el Dashboard 
   const pageList = [
     <HomeDoctor />,
     <ClinicalHistory />,
     <EditDate />
   ];
+
+
 
   if (isLoading) {
     return (
@@ -66,7 +98,8 @@ function DashboardDoctor() {
   }
 
   return (
-    isAuthenticated ? (<div className="dashboard-doctor">
+    isAuthenticated && (<div className="dashboard-doctor">
+
       <AsideLeft
         menuData={navigationOptions}
       />
@@ -82,7 +115,7 @@ function DashboardDoctor() {
         info={infoUser.info}
       />
 
-    </div>) : navigate("/")
+    </div>)
   );
 }
 

@@ -5,6 +5,7 @@ import "./style.scss";
 //_____________SVGs
 import leftArrow from "../../../../assets/brands/left-arrow.svg";
 import rightArrow from "../../../../assets/brands/right-arrow.svg";
+import Swal from "sweetalert2";
 
 function AdminUsers(props) {
 
@@ -36,7 +37,6 @@ function AdminUsers(props) {
                     (filterRol === "all" || user.rol === filterRol) &&
                     (searchTerm === '' || user.name.toLowerCase().includes(searchTerm.toLowerCase())) && (filterStatus === "all" || user.state === filterStatus)))
                 setCurrentPage(1)
-                console.log(data)
             });
     };
 
@@ -50,13 +50,16 @@ function AdminUsers(props) {
     const disable = (id) => {
 
         if (aux) setAux(false)
-
         let patient = dataPatients.find((item) => item.id === id)
 
         if (patient.state === "activo") {
             healthApi.patch(`/master/toggle/${id}`)
                 .then(({ data }) => {
-                    alert(data.mensaje);
+                    Swal.fire({
+                        title: "Usuario desactivado",
+                        text: "",
+                        icon: "success"
+                    });
                     setAux(true)
                 })
         }
@@ -70,7 +73,11 @@ function AdminUsers(props) {
         if (patient.state === "inactivo") {
             healthApi.patch(`/master/toggle/${id}`)
                 .then(({ data }) => {
-                    alert(data.mensaje);
+                    Swal.fire({
+                        title: "Usuario activado",
+                        text: "",
+                        icon: "success"
+                    });
                     setAux2(true)
                 })
         }
