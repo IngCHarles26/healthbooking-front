@@ -5,12 +5,15 @@ import rightArrow from "../../../../assets/brands/right-arrow.svg";
 import logo from "../../../../assets/full-logo-black.svg";
 
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import he from "date-fns/esm/locale/he/index.js";
 import Swal from "sweetalert2";
+import { adduser } from "../../../../../redux/slices/user/user";
+
+
 
 function EditProfile() {
   //analizar si traer el id por parametro y realizar la busqueda en la base de datos o si existe un estado global que almacena esa informacion
@@ -18,6 +21,7 @@ function EditProfile() {
   const [patient, setPatient] = useState({}); //esto puede ser un estado global o cargalo a traves del useEffect
   const [edit, setEdit] = useState(false);
   const [editPatient, setEditPatient] = useState({});
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const searchPatient = healthApi.get(`/patient/${id}`).then(
@@ -49,11 +53,13 @@ function EditProfile() {
   const handleSaveChanges = async () => {
     try {
       await healthApi.put(`/patient/${id}`, editPatient);
+      dispatch(adduser(editPatient))
       Swal.fire({
         title: "Datos actualizados",
         text: "",
         icon: "success"
       });
+
 
       setEdit(false);
 

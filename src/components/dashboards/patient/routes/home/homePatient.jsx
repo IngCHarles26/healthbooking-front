@@ -12,7 +12,7 @@ function HomePatient() {
   const [data, setData] = useState([]);
   const users = useSelector(state => state.user)
   const [realUser, setRealUser] = useState({})
-  console.log(users);
+  // console.log(users);
   useEffect(() => {
 
 
@@ -21,7 +21,7 @@ function HomePatient() {
       const fetchData = async () => {
         try {
           const response = await healthApi.get(`/patient/appointment/${users.id}`);
-          console.log(users)
+          // console.log(users)
           setData(response.data);
         } catch (error) {
           console.error("Error fetching data:", error);

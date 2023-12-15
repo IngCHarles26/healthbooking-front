@@ -28,16 +28,7 @@ const routes = {
 
 }
 
-const infoUser = {
-  image: imagePrueba,
-  name: 'Perico Palotes',
-  info: [
-    { text: 'Altura', info: '190cm' },
-    { text: 'Peso', info: '79kg' },
-    { text: 'Nacimiento', info: 'Sep 04, 1996' },
-    { text: 'RH', info: 'O+' },
-  ],
-}
+
 
 const navigationOptions = [
   { svg: homeSVG, text: 'Inicio', link: 0 },
@@ -53,6 +44,16 @@ function DashboardPatient() {
   const { user, isAuthenticated, isLoading } = useAuth0()
   const navigate = useNavigate()
   // console.log({currentPage})
+  const users = useSelector(state => state.user)
+  // console.log(users)
+
+  const infoUser = {
+    image: imagePrueba,
+    name: users.name,
+    info: [
+      { text: '-', info: '-' },
+    ],
+  }
 
   const validateId = async () => {
     if (user) {

@@ -33,7 +33,7 @@ function Landing() {
   const { loginWithRedirect, user, isAuthenticated } = useAuth0();
   // console.log(user);
   // console.log(isAuthenticated);
-  console.log(user);
+  // console.log(user);
 
 
   const loginAuthenticate = () => {
