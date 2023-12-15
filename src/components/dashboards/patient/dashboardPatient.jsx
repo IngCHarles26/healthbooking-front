@@ -19,7 +19,6 @@ import Loading from "../../Loading/Loading"
 import { useAuth0 } from '@auth0/auth0-react'
 
 import ConfirmDate from "./routes/confirmDate/confirmDate";
-
 //_______________REACT
 import { useEffect } from "react";
 import { healthApi } from "../../../Api/HealthBookingApi";
@@ -31,6 +30,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAllDoctors } from "../../../redux/slices/patient/allDoctors";
 import { addAllSpecialtys } from "../../../redux/slices/patient/allSpecialtys";
 import { addAllSures } from "../../../redux/slices/patient/allSures";
+import { adduser } from "../../../redux/slices/user/user";
 //import Detail from "../general/Detail/Detail";
 //import { changePage } from "../../../redux/slices/pageNav";
 
@@ -47,16 +47,7 @@ const navigationOptions = [
   { svg: editSVG, text: 'Editar perfil', link: 2 },
 ]
 
-const infoUser = {
-  image: imagePrueba,
-  name: 'Perico Palotes',
-  info: [
-    { text: 'Altura', info: '190cm' },
-    { text: 'Peso', info: '79kg' },
-    { text: 'Nacimiento', info: 'Sep 04, 1996' },
-    { text: 'RH', info: 'O+' },
-  ],
-}
+
 
 const infoFinishDate = {
   idPatient: 39421857,
@@ -72,18 +63,63 @@ const infoFinishDate = {
 
 function DashboardPatient() {
 
-  const { isAuthenticated, isLoading } = useAuth0();
-  const user = useSelector(state => state.user)
+
+
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const dataUser = useSelector(state => state.user)
   const dispatch = useDispatch();
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
   //_______________Obtencion de informacion
+  const userEmail = localStorage.getItem("user")
+  console.log(userEmail);
 
-  if (user.state === "inactivo") navigate("/")
-  if (user.rol !== "patient") navigate("/")
+  const validateId = async () => {
+    if (user) {
 
+      let { data } = await healthApi.get('/logging', { params: { email: userEmail } })
+
+      if (data.user) {
+        if (data.user.state === "inactivo") navigate("/")
+        console.log(`lala`);
+        if (data.user.rol !== "patient") navigate("/")
+        console.log(`po`);
+
+      }
+    }
+  }
+
+  const getUser = async () => {
+    console.log(user);
+    if (user) {
+
+      const { data } = await healthApi.get('/logging', { params: { email: userEmail } })
+      if (data.user) {
+        dispatch(adduser(data.user))
+      }
+    }
+  }
+
+  const infoUser = {
+    name: dataUser.name,
+    info: [
+      { text: 'DNI', info: dataUser.id },
+      { text: 'Altura', info: dataUser.height },
+      { text: 'Peso', info: dataUser.weight },
+
+    ],
+  }
 
   useEffect(() => {
+
+    getUser()
+
+    if (isAuthenticated === false && !isLoading) {
+      navigate("/")
+    }
+
+    validateId()
+
     healthApi.get(routes.doctors)
       .then(({ data }) => {
         dispatch(addAllDoctors(convertDoctors(data)));
@@ -97,7 +133,7 @@ function DashboardPatient() {
         dispatch(addAllSures(convertOptions(data)));
       })
     //.catch((err) => console.log(err.message))
-  }, [])
+  }, [isLoading, user])
 
   const pageList = [
     <HomePatient />,
@@ -107,6 +143,7 @@ function DashboardPatient() {
     <ConfirmDate />
   ];
 
+
   if (isLoading) {
     return (
       <Loading />
@@ -114,7 +151,7 @@ function DashboardPatient() {
   }
 
   return (
-    isAuthenticated ? (
+    isAuthenticated && (
 
       <div className="dashboard-patient">
         <AsideLeft
@@ -127,14 +164,12 @@ function DashboardPatient() {
 
         <AsideRight
           type={'Paciente'}
-          image={infoUser.image}
-          name={user.name}
+          image={user.picture}
+          name={dataUser.name}
           info={infoUser.info}
         />
 
-      </div>) : (
-      navigate("/")
-    )
+      </div>)
   );
 }
 

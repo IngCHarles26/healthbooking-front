@@ -51,6 +51,7 @@ function EditProfile() {
       await healthApi.put(`/patient/${id}`, editPatient);
 
       setEdit(false);
+      
     } catch (error) {
       throw alert(error.message);
     }
