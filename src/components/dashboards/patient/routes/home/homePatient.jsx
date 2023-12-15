@@ -7,12 +7,13 @@ import starYellow from "../../../../assets/img/Iconos/star-yellow.png";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import ModalStar from "./ModalStar";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 function HomePatient() {
   const [data, setData] = useState([]);
   const users = useSelector(state => state.user)
   const [realUser, setRealUser] = useState({})
-  // console.log(users);
+
   useEffect(() => {
 
 
@@ -21,7 +22,7 @@ function HomePatient() {
       const fetchData = async () => {
         try {
           const response = await healthApi.get(`/patient/appointment/${users.id}`);
-          // console.log(users)
+
           setData(response.data);
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -66,7 +67,11 @@ function HomePatient() {
         setData(response.data);
       }
     } catch (error) {
-      throw alert("Error fetching data:", error);
+      throw Swal.fire({
+        title: "Algo salio mal",
+        text: "",
+        icon: "success"
+      });
     }
   };
 

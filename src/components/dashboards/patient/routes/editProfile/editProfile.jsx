@@ -64,7 +64,11 @@ function EditProfile() {
       setEdit(false);
 
     } catch (error) {
-      throw alert(error.message);
+      throw Swal.fire({
+        title: "Algo salio mal",
+        text: "",
+        icon: "success"
+      });
     }
   };
 
