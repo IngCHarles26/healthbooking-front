@@ -72,7 +72,6 @@ function DashboardPatient() {
   const navigate = useNavigate()
   //_______________Obtencion de informacion
   const userEmail = localStorage.getItem("user")
-  console.log(userEmail);
 
   const validateId = async () => {
     if (user) {
@@ -81,16 +80,13 @@ function DashboardPatient() {
 
       if (data.user) {
         if (data.user.state === "inactivo") navigate("/")
-        console.log(`lala`);
         if (data.user.rol !== "patient") navigate("/")
-        console.log(`po`);
 
       }
     }
   }
 
   const getUser = async () => {
-    console.log(user);
     if (user) {
 
       const { data } = await healthApi.get('/logging', { params: { email: userEmail } })
