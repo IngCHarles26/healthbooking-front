@@ -11,6 +11,7 @@ import AsideRight from "../general/asideRight/asideRight";
 import Loading from "../../Loading/Loading"
 import ClinicalHistory from "./routes/ClinicalHistory/ClinicalHistory";
 
+import { healthApi } from "../../../Api/HealthBookingApi";
 import { useEffect, useState } from "react";
 //import axios from "axios";
 import HomeDoctor from "./routes/home/homeDoctor";
@@ -39,25 +40,43 @@ const navigationOptions = [
 ]
 
 function DashboardDoctor() {
-  const user = useSelector(state => state.user)
-  const { isAuthenticated, isLoading } = useAuth0()
+
+  //const user = useSelector(state => state.user)
+  const { user, isAuthenticated, isLoading } = useAuth0()
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
-  const id = "0258b824-98ea-47aa-9cb3-8b5a08031d81"
   //_______________Obtencion de informacion
 
-  if (user.state === "inactivo") navigate("/")
-  if (user.rol !== "doctor") navigate("/")
+  const validateId = async () => {
+    if (user) {
+
+      let { data } = await healthApi.get('/logging', { params: { email: user.email } })
+      if (data.user) {
+        if (data.user.state === "inactivo") navigate("/")
+        if (data.user.rol !== "doctor") navigate("/")
+
+      }
+    }
+
+  }
 
   useEffect(() => {
 
-  }, [])
+    if (isAuthenticated === false && !isLoading) {
+      navigate("/")
+    }
+
+    validateId()
+
+  }, [isLoading])
   //_______________Navegacion en el Dashboard 
   const pageList = [
     <HomeDoctor />,
     <ClinicalHistory />,
     <EditDate />
   ];
+
+
 
   if (isLoading) {
     return (
@@ -66,7 +85,7 @@ function DashboardDoctor() {
   }
 
   return (
-    isAuthenticated ? (<div className="wrapper-PatientHome">
+    isAuthenticated && (<div className="wrapper-PatientHome">
       <AsideLeft
         menuData={navigationOptions}
       />
@@ -84,7 +103,7 @@ function DashboardDoctor() {
         />
       </aside>
 
-    </div>) : navigate("/")
+    </div>)
   );
 }
 

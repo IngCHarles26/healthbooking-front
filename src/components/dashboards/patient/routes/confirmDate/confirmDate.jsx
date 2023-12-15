@@ -59,7 +59,6 @@ function ConfirmDate(props) {
   useEffect(() => {
     // Verifica que confirmDateData existe antes de mostrar el SweetAlert
     if (infoBase) {
-      console.log(infoBase)
       // console.log(specialtys)
       const htmlContent = `
 
@@ -105,7 +104,7 @@ function ConfirmDate(props) {
 
         showCancelButton: true, // Oculta el botón de Cancelar
         showConfirmButton: true, // Oculta el botón OK
-        timer: 10000,
+        //timer: 10000000000000,
         customClass: {
           container: 'custom-swal-container', // Clase personalizada para el contenedor
         },
@@ -121,7 +120,6 @@ function ConfirmDate(props) {
 
             // Realiza las acciones necesarias
             handleSendInfo(infoBase);
-            console.log("Confirmar pago");
 
             // No cierres manualmente la alerta, espera a que se redirija o se cierre automáticamente
             resolve();
@@ -131,7 +129,6 @@ function ConfirmDate(props) {
         if (result.dismiss === Swal.DismissReason.cancel) {
           // Acciones cuando se hace clic en Volver
           dispatch(changePage(1));
-          console.log("Volver");
         }
       });
     }
