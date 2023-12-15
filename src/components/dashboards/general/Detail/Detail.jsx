@@ -1,4 +1,4 @@
-import "./Detail.css";
+import "./Detail.scss";
 import { useEffect, useState } from "react";
 import { healthApi } from "../../../../Api/HealthBookingApi";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const id = useSelector((st) => st.doctorSelected);
   const [doctor, setDoctors] = useState([]);
-
+  console.log(doctor)
   useEffect(() => {
     if (doctor.length === 0) {
       healthApi.get(`/patient/doctor/${id}`).then(({ data }) => {
@@ -17,7 +17,6 @@ const Detail = () => {
       return setDoctors({});
     }
   }, [id]);
-
   let sure = doctor?.Sures?.map((sur) => sur.name);
   let specialty = doctor.Specialty;
 
@@ -62,12 +61,17 @@ const Detail = () => {
               <label className="textoDer">{sure?.join(", ")}</label>
             </div>
 
+            <div className="textos">
+              <div className="textoIzq">Puntuacion</div>
+              <label className="textoDer">{doctor?.reviews.average} / 5.00</label>
+            </div>
+
             <hr className="hr" />
           </div>
 
           <div className="contBotonesD">
             <button className="botonD" onClick={() => dispatch(changePage(1))}>
-              Regresar
+              REGRESAR
             </button>
           </div>
         </div>
