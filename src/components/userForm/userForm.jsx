@@ -20,7 +20,7 @@ const UserForm = () => {
   const [sures, setSures] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // const [userExist, setUserExist] = useState(false)
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, logout } = useAuth0();
   const [formData, setFormData] = useState({
     dni: '',
     nombreCompleto: '',
@@ -49,6 +49,8 @@ const UserForm = () => {
         dispatch(adduser(data.user))
         localStorage.setItem("id", data.user.id);
         if (data.user.state === "inactivo") {
+          // logout()
+          navigate("/")
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -60,11 +62,12 @@ const UserForm = () => {
               toast.onmouseleave = Swal.resumeTimer;
             }
           });
-          Toast.fire({
+          await Toast.fire({
             icon: "error",
             title: "Su cuenta ha sido desactivada"
           });
-          return navigate("/")
+          // return navigate("/")
+          return logout()
         }
 
       }
