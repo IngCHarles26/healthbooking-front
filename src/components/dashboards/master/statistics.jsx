@@ -24,7 +24,7 @@ const Statistics = () => {
     const fetchData = async () => {
       try {
         const response = await healthApi.get('/master/appointment');
-        const filterData = response.data.filter(cita => cita.status === 'pendiente');
+        const filterData = response.data.filter(cita => cita.status === 'pago');
         setData(filterData);
 
         // Código para totalAmountPerSpecialty
@@ -126,7 +126,7 @@ const Statistics = () => {
             data={totalAmountPerSpecialty}
             width={"50%"}
             height={"30%"}
-            // margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          // margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid strokeDasharray="4 1 2" />
             <XAxis dataKey="name" fill="#6b48ff" />

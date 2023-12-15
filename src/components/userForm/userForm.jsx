@@ -16,7 +16,7 @@ import { adduser } from '../../redux/slices/user/user';
 const UserForm = () => {
 
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [sures, setSures] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // const [userExist, setUserExist] = useState(false)
@@ -30,24 +30,27 @@ const UserForm = () => {
     obrasocial: '',
   });
 
+  if (isAuthenticated) {
+    // console.log("localstorage");
+    localStorage.setItem("bool", JSON.stringify(isAuthenticated));
+    localStorage.setItem("user", user.email);
+  }
 
   const getSure = async () => {
     const { data } = await healthApi.get('/doctor/sure')
     setSures(data)
   }
-
   const getUser = async () => {
     if (user) {
 
       const { data } = await healthApi.get('/logging', { params: { email: user.email } })
+      console.log(data);
       if (data.user) {
         dispatch(adduser(data.user))
+        localStorage.setItem("id", data.user.id);
+        if (data.user.state === "inactivo") return navigate("/")
 
-        if (data.user.state === "inactivo") navigate("/")
       }
-      console.log(data);
-
-
       if (data.exist) {
         navigate(`/${data.user.rol}`)
       }
@@ -104,11 +107,25 @@ const UserForm = () => {
       });
       Toast.fire({
         icon: "success",
-        title: "Signed in successfully"
+        title: "Registro completado"
       });
       navigate('/patient');
     } else {
-      console.log('Formulario no válido');
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "error",
+        title: "No se ah podido registrar"
+      });
     }
   };
 
