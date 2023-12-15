@@ -98,7 +98,7 @@ function DashboardPatient() {
 
   const infoUser = {
     name: dataUser.name,
-    info: [
+    info: [ 
       { text: 'DNI', info: dataUser.id },
       { text: 'Altura', info: dataUser.height },
       { text: 'Peso', info: dataUser.weight },

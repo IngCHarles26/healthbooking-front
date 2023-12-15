@@ -271,9 +271,11 @@ function HomeDoctor(props) {
                           <button
                             className="botonHC"
                             onClick={() =>
-                              alert(
-                                "No puedes reprogramar esta cita en menos de 24 horas."
-                              )
+                              Swal.fire({
+                                title: "No puedes reprogramar esta cita en menos de 24 horas",
+                                text: "",
+                                icon: "success"
+                              })
                             }
                           >
                             <img className="icono" src={iconoNoProgramar} alt="" />

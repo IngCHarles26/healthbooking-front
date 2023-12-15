@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import { useDispatch, useSelector } from "react-redux";
 import { changePage } from "../../../../../redux/slices/pageNav";
+import Swal from "sweetalert2";
 
 const ClinicalHistory = () => {
 
@@ -53,13 +54,29 @@ const ClinicalHistory = () => {
     event.preventDefault();
     try {
       if (medicalHistory.idPatient === '' && medicalHistory.clinicalHistory === '') {
-        alert("Por Favor llena los campos")
+        Swal.fire({
+          title: "Por Favor llena los campos",
+          text: "",
+          icon: "error"
+        });
       } else if (medicalHistory.idPatient === '') {
-        alert("Falta el paciente, por favor seleccione un nombre")
+        Swal.fire({
+          title: "Falta el paciente, por favor seleccione un nombre",
+          text: "",
+          icon: "error"
+        });
       } else if (medicalHistory.clinicalHistory === '') {
-        alert("Falta el historial clinico, por favor ingrese el valor correspondiente")
+        Swal.fire({
+          title: "Falta el historial clinico, por favor ingrese el valor correspondiente",
+          text: "",
+          icon: "error"
+        });
       } else if (errors.clinicalHistory === "El Link no cumple con el formato requerido.") {
-        alert("Datos erroneos en historial clinico, por favor revise el campo")
+        Swal.fire({
+          title: "Datos erroneos en historial clinico, por favor revise el campo",
+          text: "",
+          icon: "error"
+        });
       } else {
         const { data } = await healthApi.patch("/doctor/clinicalHistory", medicalHistory);
         setSelectName('')
@@ -67,11 +84,18 @@ const ClinicalHistory = () => {
           idPatient: '',
           clinicalHistory: ''
         })
-
-        alert('Registro Exitoso!')
+        Swal.fire({
+          title: "Registro Exitoso!",
+          text: "",
+          icon: "success"
+        });
       }
     } catch (error) {
-      alert(error.message)
+      Swal.fire({
+        title: "Algo salio mal",
+        text: "",
+        icon: "error"
+      });
     }
   }
 

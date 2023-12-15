@@ -11,13 +11,13 @@ import EditProfile from "../components/dashboards/patient/routes/editProfile/edi
 
 const router = createBrowserRouter([
   /* { path: "/confirmdate", element: <Confirmdate /> }, */
-  { path: "/error", element: <Error404 /> },
   { path: "/", element: <Landing /> },
   { path: "/patient", element: <DashboardPatient /> },
   { path: "/patientForm", element: <UserForm /> },
   { path: "/patient/detailDoctor/:id", element: <Detail /> },
   { path: "/master", element: <DashboardMaster /> },
   { path: "/doctor", element: <DashboardDoctor /> },
+  { path: "*", element: <Error404 /> },
 ]);
 
 
