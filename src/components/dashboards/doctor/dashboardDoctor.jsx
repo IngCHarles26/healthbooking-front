@@ -19,6 +19,8 @@ import EditDate from "./routes/editDate/EditDate";
 import { useAuth0 } from "@auth0/auth0-react"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { adduser } from "../../../redux/slices/user/user";
+
 const routes = {
 
 }
@@ -60,12 +62,23 @@ function DashboardDoctor() {
 
   }
 
+  const getUser = async () => {
+    if (user) {
+
+      const { data } = await healthApi.get('/logging', { params: { email: userEmail } })
+      if (data.user) {
+        dispatch(adduser(data.user))
+      }
+    }
+  }
+
+
   useEffect(() => {
 
     if (isAuthenticated === false && !isLoading) {
       navigate("/")
     }
-
+    getUser()
     validateId()
 
   }, [isLoading])
