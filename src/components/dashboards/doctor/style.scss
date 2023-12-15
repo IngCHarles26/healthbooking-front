@@ -1,0 +1,10 @@
+@import '../../../variables';
+
+div.dashboard-doctor{
+  display: flex;
+  // align-items: stretch;
+
+  div.dashboard-main-doctor{
+    width: 100%;
+  }
+}

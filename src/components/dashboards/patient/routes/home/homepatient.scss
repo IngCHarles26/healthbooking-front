@@ -1,100 +1,99 @@
 @import '../../../../../variables';
 
 .starPuntaje{
-    width: auto;
-    height: 10px;
-    margin-right: 2px;
-  }
-  .score{
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-    justify-content: center;
+  width: auto;
+  height: 10px;
+  margin-right: 2px;
+}
+.score{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: center;
+}
 
- }
- 
- div.homepatient-main{
-   height: 100vh;
-   width: 100%;
- 
-   padding: 3rem;
- 
-   display: flex;
-   justify-content: space-between;
-   flex-direction: column;
-   gap: 2rem;
- 
-   & *{
-     font-family: 'DM sans', sans-serif;
-   }
- 
-   header{
-     color: $font-main;
-     font-size: 2rem;
-   }
- 
-   article.homepatient-summary{
-     height: 100%;
- 
-     header{
-       font-size: 3rem;
-       padding-bottom: 2rem;
-     }
- 
-     article.table-wrapper{
-       width: 100%;
- 
-       table.table-table-wrapper{
-         width: 100%;
-         border-radius: 1rem;
-         background-color: $back-main-color;
-         table-layout: auto;
-         border-collapse: collapse;
-         color: $font-white;
-         padding: 2rem;
-         
-         thead{
-           height: 5rem;
-           font-size: 2rem;
-           border-bottom: 1px solid white;
-           padding: 0 2rem;
-           
-         }
-         
-         tbody{
-           font-size: 1.5rem;
-           text-align: center;
-           border-width: 2rem;
- 
-           tr{
-             height: 4rem;
-           }
-         }
-       }
-     }
-   }
- 
-   footer.homepatient-footer{
-     height: 4rem;
-     margin: 0 auto;
-     display: flex;
-     gap: 3rem;
-     align-items: center;
- 
-     p{
-       padding: 0 2rem;
-       font-size: 2rem;
-       
-     }
- 
-     button{
-       height: 100%;
-       background-color: transparent;
-       border: none;
-     }
-   }
- }
- 
+div.homepatient-main{
+height: 100vh;
+width: 100%;
+
+padding: 3rem;
+
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+gap: 2rem;
+
+& *{
+  font-family: 'DM sans', sans-serif;
+}
+
+header{
+  color: $font-main;
+  font-size: 2rem;
+}
+
+article.homepatient-summary{
+  height: 100%;
+
+  header{
+    font-size: 3rem;
+    padding-bottom: 2rem;
+  }
+
+  article.table-wrapper{
+    width: 100%;
+
+    table.table-table-wrapper{
+      width: 100%;
+      border-radius: 1rem;
+      background-color: $back-main-color;
+      table-layout: auto;
+      border-collapse: collapse;
+      color: $font-white;
+      padding: 2rem;
+      
+      thead{
+        height: 5rem;
+        font-size: 2rem;
+        border-bottom: 1px solid white;
+        padding: 0 2rem;
+        
+      }
+      
+      tbody{
+        font-size: 1.5rem;
+        text-align: center;
+        border-width: 2rem;
+
+        tr{
+          height: 4rem;
+        }
+      }
+    }
+  }
+}
+
+footer.homepatient-footer{
+  height: 4rem;
+  margin: 0 auto;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+
+  p{
+    padding: 0 2rem;
+    font-size: 2rem;
+    
+  }
+
+  button{
+    height: 100%;
+    background-color: transparent;
+    border: none;
+  }
+}
+}
+
  
  
  // .homepatient-main {
