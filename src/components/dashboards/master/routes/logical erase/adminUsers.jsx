@@ -84,94 +84,93 @@ function AdminUsers(props) {
     }
 
     return (
-        <main className="homemaster-main">
+        <section className="homemaster-main">
             <header>Dashboard &#62; Adminiastracion de usuarios</header>
 
             <article className="homemaster-summary">
                 <header className="homeMaster-header">Administrar usuarios</header>
-                <div >
-                    <label>Filtrar por rol: </label>
-                    <select value={filterRol} name="name" onChange={(e) => setfilterRol(e.target.value)} >
-                        <option value="all">Sin filtrar</option>
-                        <option value="patient" >Paciente</option>
-                        <option value="doctor" >Doctor</option>
-                    </select>
+                <div className="masterFilters">
+                    <div className="typeFilters">
+                        <label>Filtrar por rol: </label>
+                        <select value={filterRol} name="name" onChange={(e) => setfilterRol(e.target.value)} >
+                            <option value="all">Sin filtrar</option>
+                            <option value="patient" >Paciente</option>
+                            <option value="doctor" >Doctor</option>
+                        </select>
+                    </div>
+                    <div className="typeFilters">
+                        <label>Filtrar por estado: </label>
+                        <select value={filterStatus} name="name" onChange={(e) => setfilterStatus(e.target.value)} >
+                            <option value="all">Sin filtrar</option>
+                            <option value="activo" >Activo</option>
+                            <option value="inactivo" >Inactivo</option>
+                        </select>
+                    </div>
+                    <div className="typeFilters">
+                        <label>Búsqueda: </label>
+                        <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                        <button onClick={(e) => setSearchTerm("")}>
+                            x
+                        </button>
+                    </div>
                 </div>
-                <div >
-                    <label>Filtrar por estado: </label>
-                    <select value={filterStatus} name="name" onChange={(e) => setfilterStatus(e.target.value)} >
-                        <option value="all">Sin filtrar</option>
-                        <option value="activo" >Activo</option>
-                        <option value="inactivo" >Inactivo</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Búsqueda: </label>
-                    <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-                    <button onClick={(e) => setSearchTerm("")}>
-                        x
-                    </button>
-                </div>
-
-                <article className="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Usuarios</th>
-                                <th>ID</th>
-                                <th>Rol</th>
-                                <th>Estado</th>
-                                <th>Cambiar</th>
-                            </tr>
-                        </thead>
-                        {/* {console.log(dataPatients)} */}
-                        <tbody>
-                            {filterUsers?.slice(
-                                (currentPage - 1) * perPage,
-                                (currentPage - 1) * perPage + perPage
-                            )
-                                .map((user) => (
-                                    <tr key={user.id}>
-                                        <td>{user.name}</td>
-                                        <td>{user.id}</td>
-                                        <td>{user.rol === 'patient' ? 'Paciente' : user.rol}</td>
-                                        <td>{user.state}</td>
-                                        <td>
-                                            {user.state === "activo" ? (
-                                                <button
-                                                    // className="botonHC"
-                                                    onClick={() =>
-                                                        disable(user.id)
-                                                    }>
-                                                    Desactivar
-                                                </button>
-                                            ) : (
-                                                <button
-                                                    // className="botonHC"
-                                                    onClick={() =>
-                                                        enable(user.id)
-                                                    }>
-                                                    Activar
-                                                </button>
-                                            )}
-                                        </td>
-                                    </tr>
-                                ))}
-                        </tbody>
-                    </table>
-                </article>
+                <table className="table-wrapper">
+                    <thead>
+                        <tr>
+                            <th>Usuarios</th>
+                            <th>ID</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Cambiar</th>
+                        </tr>
+                    </thead>
+                    {/* {console.log(dataPatients)} */}
+                    <tbody>
+                        {filterUsers?.slice(
+                            (currentPage - 1) * perPage,
+                            (currentPage - 1) * perPage + perPage
+                        )
+                            .map((user) => (
+                                <tr key={user.id}>
+                                    <td>{user.name}</td>
+                                    <td>{user.id}</td>
+                                    <td>{user.rol === 'patient' ? 'Paciente' : user.rol}</td>
+                                    <td>{user.state}</td>
+                                    <td>
+                                        {user.state === "activo" ? (
+                                            <button
+                                                className="isActive"
+                                                onClick={() =>
+                                                    disable(user.id)
+                                                }>
+                                                Desactivar
+                                            </button>
+                                        ) : (
+                                            <button
+                                                className="isDesactive"
+                                                onClick={() =>
+                                                    enable(user.id)
+                                                }>
+                                                Activar
+                                            </button>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                    </tbody>
+                </table>
             </article>
 
             <footer className="homemaster-footer">
                 <button disabled={currentPage === 1} onClick={previous}>
                     <img src={leftArrow} alt="leftArrow" />
                 </button>
-                <button className="pageButton">{currentPage}</button>
+                <p className="pageButton">{currentPage}</p>
                 <button disabled={currentPage === max} onClick={next}>
                     <img src={rightArrow} alt="rightArrow" />
                 </button>
             </footer>
-        </main >
+        </section >
     );
 }
 

@@ -21,19 +21,12 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { adduser } from "../../../redux/slices/user/user";
 
+
+
 const routes = {
 
 }
-const infoUser = {
-  image: imagePrueba,
-  name: 'Perico Palotes',
-  info: [
-    { text: 'Altura', info: '190cm' },
-    { text: 'Peso', info: '79kg' },
-    { text: 'Nacimiento', info: 'Sep 04, 1996' },
-    { text: 'RH', info: 'O+' },
-  ],
-}
+
 
 const navigationOptions = [
   { svg: homeSVG, text: 'Inicio', link: 0 },
@@ -47,6 +40,24 @@ function DashboardDoctor() {
   const { user, isAuthenticated, isLoading } = useAuth0()
   const page = useSelector(st => st.pageNav);
   const navigate = useNavigate()
+
+
+  // ASIDEEEEE
+  const users = useSelector(state => state.user)
+  // console.log(users)
+
+  const infoUser = {
+    image: imagePrueba,
+    name: users.name,
+    info: [
+      { text: 'Tel', info: users.phone },
+      { text: 'Precio', info: `$${users.price}` },
+      { text: 'Matricula', info: users.id },
+      { text: 'Calificacion', info: users.reviews.average },
+    ],
+  }
+
+
   //_______________Obtencion de informacion
 
   const validateId = async () => {
