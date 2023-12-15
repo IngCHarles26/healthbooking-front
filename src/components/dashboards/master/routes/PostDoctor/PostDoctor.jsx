@@ -136,33 +136,89 @@ const PostDoctor = () => {
         doctor.email === '' &&
         doctor.price === '' &&
         doctor.sure.length === 0) {
-        alert("Por Favor llena los campos");
+        Swal.fire({
+          title: "Por Favor llena los campos",
+          text: "",
+          icon: "error"
+        });
       } else if (doctor.name === '') {
-        alert("Falta el nombre. Por favor, completa el campo correspondiente.");
+        Swal.fire({
+          title: "Falta el nombre. Por favor, completa el campo correspondiente.",
+          text: "",
+          icon: "error"
+        });
       } else if (doctor.specialty === '') {
-        alert("Falta la especialidad. Por favor, completa el campo correspondiente.");
+        Swal.fire({
+          title: "Falta la especialidad. Por favor, completa el campo correspondiente.",
+          text: "",
+          icon: "error"
+        });
       } else if (doctor.profilePicture === '') {
-        alert("Falta la foto de perfil. Por favor, completa el campo correspondiente.");
+        Swal.fire({
+          title: "Falta la foto de perfil. Por favor, completa el campo correspondiente.",
+          text: "",
+          icon: "error"
+        });
       } else if (doctor.id === '') {
-        alert("Falta la Licencia. Por favor, completa el campo correspondiente.");
+        Swal.fire({
+          title: "Falta la licencia. Por favor, completa el campo correspondiente.",
+          text: "",
+          icon: "error"
+        });
       } else if (doctor.phone === '') {
-        alert("Falta el teléfono. Por favor, completa el campo correspondiente.");
+        Swal.fire({
+          title: "Falta el telefono. Por favor, completa el campo correspondiente.",
+          text: "",
+          icon: "error"
+        });
       } else if (doctor.email === '') {
-        alert("Falta el correo electrónico. Por favor, completa el campo correspondiente.");
+        Swal.fire({
+          title: "Falta el correo electronico. Por favor, completa el campo correspondiente.",
+          text: "",
+          icon: "error"
+        });
       } else if (doctor.price === '') {
-        alert('Falta la tarifa. Por favor, completa el campo correspondiente')
+        Swal.fire({
+          title: "Falta la tarifa. Por favor, completa el campo correspondiente.",
+          text: "",
+          icon: "error"
+        });
       } else if (doctor.sure.length === 0) {
-        alert("Falta agregar seguros. Por favor, completa el campo correspondiente.");
+        Swal.fire({
+          title: "Falta agregar seguros. Por favor, completa el campo correspondiente.",
+          text: "",
+          icon: "error"
+        });
       } else if (errors.name !== 'El nombre es requerido' && errors.name !== '') {
-        alert('Nombre erroneo, por favor corrige el campo correspondiente')
+        Swal.fire({
+          title: 'Nombre erroneo, por favor corrige el campo correspondiente',
+          text: "",
+          icon: "error"
+        });
       } else if (errors.id !== 'La licencia es requerida' && errors.id !== '') {
-        alert('Licencia erronea, por favor corrige el campo correspondiente')
+        Swal.fire({
+          title: 'Licencia erronea, por favor corrige el campo correspondiente',
+          text: "",
+          icon: "error"
+        });
       } else if (errors.phone !== 'El telefono es requerido' && errors.phone !== '') {
-        alert('Telefono erroneo, por favor corrige el campo correspondiente')
+        Swal.fire({
+          title: 'Telefono erroneo, por favor corrige el campo correspondiente',
+          text: "",
+          icon: "error"
+        });
       } else if (errors.email !== 'El email es requerido' && errors.email !== '') {
-        alert('Correo erroneo, por favor corrige el campo correspondiente')
+        Swal.fire({
+          title: 'Correo erroneo, por favor corrige el campo correspondiente',
+          text: "",
+          icon: "error"
+        });
       } else if (errors.price !== 'La tarifa es requerido' && errors.price !== '') {
-        alert('Tarifa erronea, por favor corrige el campo correspondiente')
+        Swal.fire({
+          title: 'Tarifa erronea, por favor corrige el campo correspondiente',
+          text: "",
+          icon: "error"
+        });
       }
 
       else {
