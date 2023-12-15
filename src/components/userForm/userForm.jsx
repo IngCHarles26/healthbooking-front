@@ -48,7 +48,24 @@ const UserForm = () => {
       if (data.user) {
         dispatch(adduser(data.user))
         localStorage.setItem("id", data.user.id);
-        if (data.user.state === "inactivo") return navigate("/")
+        if (data.user.state === "inactivo") {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "error",
+            title: "Su cuenta ha sido desactivada"
+          });
+          return navigate("/")
+        }
 
       }
       if (data.exist) {
@@ -124,7 +141,7 @@ const UserForm = () => {
       });
       Toast.fire({
         icon: "error",
-        title: "No se ah podido registrar"
+        title: "No se ha podido registrar"
       });
     }
   };

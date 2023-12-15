@@ -21,6 +21,7 @@ import AdminUsers from "./routes/logical erase/adminUsers";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom"
+import { adduser } from "../../../redux/slices/user/user";
 //import PostDoctor from "../doctor/PostDoctor/PostDoctor";
 
 const routes = {
@@ -64,6 +65,16 @@ function DashboardPatient() {
     }
   }
 
+  const getUser = async () => {
+    if (user) {
+
+      const { data } = await healthApi.get('/logging', { params: { email: userEmail } })
+      if (data.user) {
+        dispatch(adduser(data.user))
+      }
+    }
+  }
+
 
   //_______________Obtencion de informacion
   useEffect(() => {
@@ -72,6 +83,7 @@ function DashboardPatient() {
       navigate("/")
     }
 
+    getUser()
     validateId()
 
   }, [isLoading])
