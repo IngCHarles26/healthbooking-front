@@ -4,6 +4,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import logo from "../../../../assets/brands/svgsCreateDoctor/logo.svg"
 import { healthApi } from "../../../../../Api/HealthBookingApi"
+import Swal from "sweetalert2"
 
 
 const PostDoctor = () => {
@@ -27,37 +28,37 @@ const PostDoctor = () => {
     sure: [],
   });
 
-  useEffect(()=>{
-   healthApi.get("/doctor/specialty")
-   .then(({data}) => {
-    setSpecaltys(data)
-    })
+  useEffect(() => {
+    healthApi.get("/doctor/specialty")
+      .then(({ data }) => {
+        setSpecaltys(data)
+      })
 
-  },[])
+  }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     healthApi.get("/doctor/sure")
-    .then(({data}) => {
-     setSures(data)
-    })
- 
-   },[])
+      .then(({ data }) => {
+        setSures(data)
+      })
 
-   const renderSures = () => {
-    return(
+  }, [])
+
+  const renderSures = () => {
+    return (
       <div>
         {seguros.length === 0 && (<p className="MessageError" name="Seguro">{errors.sure}</p>)}
       </div>
-      )
+    )
   }
 
-   useEffect(()=>{
+  useEffect(() => {
     if (seguros.length === 0) setSelectSure('')
     renderSures
-  },[seguros])
+  }, [seguros])
 
   const indicativos = ["+1", "+54", "+57", "+51", "+52"];
-  let especialidad = specialtys.map((item)=> item.name);
+  let especialidad = specialtys.map((item) => item.name);
   let seguro = sures.map((item) => item.name)
 
   const handleChange = (event) => {
@@ -186,7 +187,11 @@ const PostDoctor = () => {
         setSelectSure('');
         setSelectPhone('');
 
-        window.alert("Registro Exitoso!");
+        Swal.fire({
+          title: "Doctor creado",
+          text: "",
+          icon: "success"
+        });;
       }
 
     } catch (error) {
@@ -220,7 +225,7 @@ const PostDoctor = () => {
       <form onSubmit={handleSubmit}>
         <div className="formulario">
           <div className="profile-section">
-          {/* <div className="brand-containerDoc">
+            {/* <div className="brand-containerDoc">
               <div>
                 <img alt="" src={logo} className="brand-logo-imageDoc"></img>
               </div>
@@ -230,31 +235,31 @@ const PostDoctor = () => {
               {foto ? (
                 <img src={foto} alt="Not Found" className="imageViewborder2" />
               ) : <div className="imageViewborder2" />}
-               <div className="cargarFoto-error">
-            {foto ? (
-                <p></p>
-              ) : (
-                <p className="fotoError">{errors.profilePicture}</p>
-              )}
+              <div className="cargarFoto-error">
+                {foto ? (
+                  <p></p>
+                ) : (
+                  <p className="fotoError">{errors.profilePicture}</p>
+                )}
 
-<            input
-              id="input-file"
-              className="inputFile"
-              type="file"
-              accept=".jpg, .jpeg, .png"
-              values={doctor.profilePicture}
-              onChange={mostrarVistaPrevia}
-            />
-            <label htmlFor="input-file" className="upload-label">
-              {/* <div className="upload-icon">
+                <            input
+                  id="input-file"
+                  className="inputFile"
+                  type="file"
+                  accept=".jpg, .jpeg, .png"
+                  values={doctor.profilePicture}
+                  onChange={mostrarVistaPrevia}
+                />
+                <label htmlFor="input-file" className="upload-label">
+                  {/* <div className="upload-icon">
                 <div className="iconpart1"></div>
                 <div className="iconpart2"></div>
                 <div className="iconpart3"></div>
                 <div className="iconpart4"></div>
               </div> */}
-              <div className="upload-text">Cargar Foto</div>
-            </label>
-            </div>
+                  <div className="upload-text">Cargar Foto</div>
+                </label>
+              </div>
             </div>
 
             <div className="doctor-form-container">
@@ -448,8 +453,8 @@ const PostDoctor = () => {
                                 ...doctor,
                                 sure: doctor.sure.length
                                   ? doctor.sure.filter(
-                                      (e) => e !== event.target.value
-                                    )
+                                    (e) => e !== event.target.value
+                                  )
                                   : "",
                               });
                             }}
@@ -465,7 +470,7 @@ const PostDoctor = () => {
               </div>
               <div className="footer-dividerDoc"></div>
             </div>
-            
+
             <div className="button-container">
               <button
                 className="clear-button"
@@ -485,7 +490,7 @@ const PostDoctor = () => {
       </form>
     </div>
 
-  
+
   );
 };
 

@@ -1,5 +1,4 @@
 import "./editProfile.scss";
-
 //_____________SVGs
 import leftArrow from "../../../../assets/brands/left-arrow.svg";
 import rightArrow from "../../../../assets/brands/right-arrow.svg";
@@ -11,6 +10,7 @@ import axios from "axios";
 
 import { healthApi } from "../../../../../Api/HealthBookingApi";
 import he from "date-fns/esm/locale/he/index.js";
+import Swal from "sweetalert2";
 
 function EditProfile() {
   //analizar si traer el id por parametro y realizar la busqueda en la base de datos o si existe un estado global que almacena esa informacion
@@ -49,9 +49,14 @@ function EditProfile() {
   const handleSaveChanges = async () => {
     try {
       await healthApi.put(`/patient/${id}`, editPatient);
+      Swal.fire({
+        title: "Datos actualizados",
+        text: "",
+        icon: "success"
+      });
 
       setEdit(false);
-      
+
     } catch (error) {
       throw alert(error.message);
     }

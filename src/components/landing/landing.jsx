@@ -34,12 +34,7 @@ function Landing() {
   // console.log(user);
   // console.log(isAuthenticated);
   console.log(user);
-  if (isAuthenticated) {
-    // console.log("localstorage");
-    localStorage.removeItem('user');
-    localStorage.setItem("bool", JSON.stringify(isAuthenticated));
-    localStorage.setItem("user", user.email);
-  }
+
 
   const loginAuthenticate = () => {
     if (isAuthenticated) {
