@@ -24,7 +24,7 @@ import {
   getPlan,
   weeksPlan,
 } from "../../../../../redux/slices/patient/agendaDoctor";
-const cardsPerPage = 10;
+const cardsPerPage = 8;
 const weeksAgenda = weeksPlan;
 
 const initialPreference = {

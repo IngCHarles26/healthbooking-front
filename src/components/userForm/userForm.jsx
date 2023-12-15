@@ -44,14 +44,14 @@ const UserForm = () => {
     if (user) {
 
       const { data } = await healthApi.get('/logging', { params: { email: user.email } })
-      console.log(data);
+      // console.log(data);
       if (data.user) {
         dispatch(adduser(data.user))
         localStorage.setItem("id", data.user.id);
         if (data.user.state === "inactivo") {
           const Toast = Swal.mixin({
             toast: true,
-            position: "top-end",  
+            position: "top-end",
             showConfirmButton: false,
             timer: 1500,
             timerProgressBar: true,
@@ -107,26 +107,44 @@ const UserForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const createuser = { id: formData.dni, name: formData.nombreCompleto, phone: formData.telefono, email: user.email, sure: formData.obrasocial, weight: formData.peso, height: formData.altura }
-    dispatch(adduser(createuser))
 
     if (validateForm()) {
       const newUser = await healthApi.post('/patient/register', createuser)
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 1500,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        }
-      });
-      Toast.fire({
-        icon: "success",
-        title: "Registro completado"
-      });
-      navigate('/patient');
+      if (newUser.data === true) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "error",
+          title: "Usuario ya registrado"
+        });
+      } else {
+        dispatch(adduser(createuser))
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Registro completado"
+        });
+        navigate('/patient');
+      }
     } else {
       const Toast = Swal.mixin({
         toast: true,
