@@ -85,7 +85,7 @@ function AdminUsers(props) {
 
     return (
         <section className="homemaster-main">
-            <header>Dashboard &#62; Adminiastracion de usuarios</header>
+            <header>Dashboard &#62; Administracion de usuarios</header>
 
             <article className="homemaster-summary">
                 <header className="homeMaster-header">Administrar usuarios</header>
