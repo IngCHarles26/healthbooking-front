@@ -101,7 +101,7 @@ const Statistics = () => {
 
   return (
     <div>
-      <header className="statistics-header">Dashboard &#62; Statistics</header>
+      <header className="statistics-header">Dashboard &#62; Estadisticas</header>
       <div className="statistics-master">
         <ResponsiveContainer width="40%" aspect={1.5}>
           <h1>Ingresos por semana</h1>

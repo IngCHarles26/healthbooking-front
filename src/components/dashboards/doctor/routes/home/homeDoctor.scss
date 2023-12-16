@@ -57,10 +57,10 @@
   width: 100%;
   height: 100vh;
   // grid-template-rows: 1fr 15fr 1fr;
-  
-  
-    color: $font-main;
-  
+
+
+  color: $font-label-patient-form;
+
   /*
      * -- Box and text styles definitions ----------------------------------------------
     */
@@ -68,7 +68,7 @@
   /*
      * -- Subcomponents and behaviours definitions -------------------------------------
     */
-  > .homeDoctor-title {
+  >.homeDoctor-title {
     color: #352e5b;
     font-family: DM Sans;
     font-size: 1.75rem;
@@ -78,7 +78,7 @@
     text-transform: uppercase;
   }
 
-  > .homeDoctor-navigation {
+  >.homeDoctor-navigation {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -86,7 +86,7 @@
     align-items: center;
   }
 
-  > .homeDoctor-navigation .pageButton {
+  >.homeDoctor-navigation .pageButton {
     // background-color: #8a898b40;
     width: 10rem;
     height: 3rem;
@@ -97,7 +97,7 @@
   }
 }
 
-.homeDoctor-main > article.homeDoctor-summary {
+.homeDoctor-main>article.homeDoctor-summary {
   /*
      * -- Box model and Layout definitions ---------------------------------------------
      */
@@ -122,7 +122,7 @@
   /*
      * -- Subcomponents and behaviours definitions -------------------------------------
      */
-  > .homeDoctor-title {
+  >.homeDoctor-title {
     color: #352e5b;
     font-family: DM Sans;
     font-size: 1.75rem;
@@ -132,21 +132,23 @@
     text-transform: uppercase;
   }
 }
+
 .custom-calendar-container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-//   background: #42a7c3;
+  //   background: #42a7c3;
   width: 100%;
-    
-  .custom-calendar-style{
+
+  .custom-calendar-style {
     width: 50%;
     font-size: 1.7rem;
   }
 }
-.homeDoctor-main > article.homeDoctor-summary > .homeDoctor-calendar {
+
+.homeDoctor-main>article.homeDoctor-summary>.homeDoctor-calendar {
   /* Box Style */
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -154,10 +156,7 @@
   width: 100%;
 }
 
-.homeDoctor-main
-  > article.homeDoctor-summary
-  > .homeDoctor-calendar
-  > .homeDoctor-table {
+.homeDoctor-main>article.homeDoctor-summary>.homeDoctor-calendar>.homeDoctor-table {
   /* Box Style */
   width: 100%;
   table-layout: auto;
@@ -173,17 +172,14 @@
   width: 100%;
   justify-content: center;
   align-content: center;
+
   .icono {
     height: 2.5rem;
   }
 
 }
 
-.homeDoctor-main
-  > article.homeDoctor-summary
-  > .homeDoctor-calendar
-  > .homeDoctor-table
-  > thead {
+.homeDoctor-main>article.homeDoctor-summary>.homeDoctor-calendar>.homeDoctor-table>thead {
   /* Box Style */
   height: 2.5rem;
   border-bottom: 1px solid #f8f7ff;
@@ -199,11 +195,7 @@
   }
 }
 
-.homeDoctor-main
-  > article.homeDoctor-summary
-  > .homeDoctor-calendar
-  > .homeDoctor-table
-  > tbody {
+.homeDoctor-main>article.homeDoctor-summary>.homeDoctor-calendar>.homeDoctor-table>tbody {
   td {
     /* Text Style */
     min-width: 2rem;
